@@ -1,0 +1,108 @@
+[gd_scene format=3 uid="uid://yo1ornr2fnjs"]
+
+[ext_resource type="Texture2D" uid="uid://dkpvif4bvs30b" path="res://planets/mars/mars.png" id="1_1jjcf"]
+[ext_resource type="Script" uid="uid://bs8i3f42tjwe5" path="res://world_pick.gd" id="1_841gj"]
+[ext_resource type="Texture2D" uid="uid://dti4cx6kuv2a8" path="res://planets/mars/mars_disabled.png" id="2_841gj"]
+[ext_resource type="Texture2D" uid="uid://dvjc0xrb6hp2p" path="res://planets/chezburger/chezburger_planet.png" id="3_v8y7f"]
+[ext_resource type="Texture2D" uid="uid://iskautbtfdve" path="res://planets/chezburger/chezburger_planet_disabled.png" id="4_iu8j5"]
+[ext_resource type="Texture2D" uid="uid://ciavqludqi73x" path="res://planets/tequila/tequila_world.png" id="5_c0xir"]
+[ext_resource type="Texture2D" uid="uid://cc5ekuutac162" path="res://planets/tequila/tequila_world_disabled.png" id="6_2pgkm"]
+
+[node name="Node2D" type="Node2D" unique_id=2012523217]
+script = ExtResource("1_841gj")
+
+[node name="planets" type="Control" parent="." unique_id=35887227]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="mars" type="TextureButton" parent="planets" unique_id=1888972080]
+layout_mode = 0
+offset_left = 46.0
+offset_top = 400.0
+offset_right = 196.0
+offset_bottom = 550.0
+texture_normal = ExtResource("1_1jjcf")
+texture_pressed = ExtResource("1_1jjcf")
+texture_hover = ExtResource("1_1jjcf")
+texture_disabled = ExtResource("2_841gj")
+ignore_texture_size = true
+
+[node name="chezburger_planet" type="TextureButton" parent="planets" unique_id=1878684180]
+layout_mode = 0
+offset_left = 130.0
+offset_top = 169.0
+offset_right = 280.0
+offset_bottom = 319.0
+texture_normal = ExtResource("3_v8y7f")
+texture_pressed = ExtResource("3_v8y7f")
+texture_hover = ExtResource("3_v8y7f")
+texture_disabled = ExtResource("4_iu8j5")
+
+[node name="mars2" type="TextureButton" parent="planets" unique_id=1977889239]
+layout_mode = 0
+offset_left = 952.0
+offset_top = 400.0
+offset_right = 1102.0
+offset_bottom = 550.0
+disabled = true
+texture_normal = ExtResource("1_1jjcf")
+texture_pressed = ExtResource("1_1jjcf")
+texture_hover = ExtResource("1_1jjcf")
+texture_disabled = ExtResource("2_841gj")
+ignore_texture_size = true
+
+[node name="chezburger_planet2" type="TextureButton" parent="planets" unique_id=1202727575]
+layout_mode = 0
+offset_left = 850.0
+offset_top = 169.0
+offset_right = 1000.0
+offset_bottom = 319.0
+disabled = true
+texture_normal = ExtResource("1_1jjcf")
+texture_pressed = ExtResource("1_1jjcf")
+texture_hover = ExtResource("1_1jjcf")
+texture_disabled = ExtResource("2_841gj")
+ignore_texture_size = true
+
+[node name="mars4" type="TextureButton" parent="planets" unique_id=1063286949]
+layout_mode = 0
+offset_left = 331.0
+offset_top = 46.0
+offset_right = 481.0
+offset_bottom = 196.0
+disabled = true
+texture_normal = ExtResource("1_1jjcf")
+texture_pressed = ExtResource("1_1jjcf")
+texture_hover = ExtResource("1_1jjcf")
+texture_disabled = ExtResource("2_841gj")
+ignore_texture_size = true
+
+[node name="mars3" type="TextureButton" parent="planets" unique_id=707379421]
+layout_mode = 0
+offset_left = 613.0
+offset_top = 46.0
+offset_right = 763.0
+offset_bottom = 196.0
+disabled = true
+texture_normal = ExtResource("1_1jjcf")
+texture_pressed = ExtResource("1_1jjcf")
+texture_hover = ExtResource("1_1jjcf")
+texture_disabled = ExtResource("2_841gj")
+ignore_texture_size = true
+
+[node name="tequila_world" type="TextureButton" parent="planets" unique_id=718832945]
+layout_mode = 0
+offset_left = 488.0
+offset_top = 364.0
+offset_right = 638.0
+offset_bottom = 539.0
+texture_normal = ExtResource("5_c0xir")
+texture_pressed = ExtResource("5_c0xir")
+texture_hover = ExtResource("5_c0xir")
+texture_disabled = ExtResource("6_2pgkm")
+stretch_mode = 0
