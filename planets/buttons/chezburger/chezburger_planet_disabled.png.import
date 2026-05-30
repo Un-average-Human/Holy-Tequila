@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dvjc0xrb6hp2p"
-path="res://.godot/imported/chezburger_planet.png-9905db48efe74377bd67f1c9bcee10f5.ctex"
+uid="uid://iskautbtfdve"
+path="res://.godot/imported/chezburger_planet_disabled.png-a145d9cf014f2a0801da63865fe6efb5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://planets/chezburger/chezburger_planet.png"
-dest_files=["res://.godot/imported/chezburger_planet.png-9905db48efe74377bd67f1c9bcee10f5.ctex"]
+source_file="res://planets/buttons/chezburger/chezburger_planet_disabled.png"
+dest_files=["res://.godot/imported/chezburger_planet_disabled.png-a145d9cf014f2a0801da63865fe6efb5.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ciavqludqi73x"
-path="res://.godot/imported/tequila_world.png-cbdedda9ef1e0215f9fbaee9e07aac69.ctex"
+uid="uid://daktgohh2dnlj"
+path="res://.godot/imported/skelly_planet_disabled.png-806df3c66cde45d24d8c9d230c48a08b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://planets/tequila/tequila_world.png"
-dest_files=["res://.godot/imported/tequila_world.png-cbdedda9ef1e0215f9fbaee9e07aac69.ctex"]
+source_file="res://planets/buttons/pirate/skelly_planet_disabled.png"
+dest_files=["res://.godot/imported/skelly_planet_disabled.png-806df3c66cde45d24d8c9d230c48a08b.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dkpvif4bvs30b"
-path="res://.godot/imported/mars.png-cf81b00ddd90c24b84075d51959a00bf.ctex"
+uid="uid://doxdf6jfci6ji"
+path="res://.godot/imported/skelly_planet.png-bcc6c1c953d983fc3f53eb494039a367.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://planets/mars/mars.png"
-dest_files=["res://.godot/imported/mars.png-cf81b00ddd90c24b84075d51959a00bf.ctex"]
+source_file="res://planets/buttons/pirate/skelly_planet.png"
+dest_files=["res://.godot/imported/skelly_planet.png-bcc6c1c953d983fc3f53eb494039a367.ctex"]
 
 [params]
 

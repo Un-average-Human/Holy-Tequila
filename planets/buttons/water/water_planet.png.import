@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://daktgohh2dnlj"
-path="res://.godot/imported/skelly_planet_disabled.png-aea00d702db9c3445df40a8fd271d269.ctex"
+uid="uid://ciiqopo2pi5gu"
+path="res://.godot/imported/water_planet.png-d2ae72d90bd30449c86f016842c1c531.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://planets/skelly_planet_disabled.png"
-dest_files=["res://.godot/imported/skelly_planet_disabled.png-aea00d702db9c3445df40a8fd271d269.ctex"]
+source_file="res://planets/buttons/water/water_planet.png"
+dest_files=["res://.godot/imported/water_planet.png-d2ae72d90bd30449c86f016842c1c531.ctex"]
 
 [params]
 

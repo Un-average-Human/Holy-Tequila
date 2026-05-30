@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d00lbdbkau5nt"
-path="res://.godot/imported/brainrot_planet_disabled.png-006bc78c430d43de93dc16148f68e0a8.ctex"
+uid="uid://ddpbx40wwjacw"
+path="res://.godot/imported/mega_market_world_disabled.png-246b893d905b69b9074e6620ea9f92fb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://planets/brainrot_planet_disabled.png"
-dest_files=["res://.godot/imported/brainrot_planet_disabled.png-006bc78c430d43de93dc16148f68e0a8.ctex"]
+source_file="res://planets/buttons/mega_market/mega_market_world_disabled.png"
+dest_files=["res://.godot/imported/mega_market_world_disabled.png-246b893d905b69b9074e6620ea9f92fb.ctex"]
 
 [params]
 

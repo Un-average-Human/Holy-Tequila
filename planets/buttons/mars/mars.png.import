@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://biv0me6ul2vw6"
-path="res://.godot/imported/brainrot_planet.png-5c1cc1e4a900569f385c43d672d13548.ctex"
+uid="uid://dkpvif4bvs30b"
+path="res://.godot/imported/mars.png-f41118042de226c4f28a9996a28a16a8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://planets/brainrot_planet.png"
-dest_files=["res://.godot/imported/brainrot_planet.png-5c1cc1e4a900569f385c43d672d13548.ctex"]
+source_file="res://planets/buttons/mars/mars.png"
+dest_files=["res://.godot/imported/mars.png-f41118042de226c4f28a9996a28a16a8.ctex"]
 
 [params]
 

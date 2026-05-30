@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ciiqopo2pi5gu"
-path="res://.godot/imported/water_planet.png-80b819d7cb892e0837fad7ca31169e73.ctex"
+uid="uid://dvjc0xrb6hp2p"
+path="res://.godot/imported/chezburger_planet.png-dd159bf666fa43c9baaff1951b2ccd80.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://planets/water_planet.png"
-dest_files=["res://.godot/imported/water_planet.png-80b819d7cb892e0837fad7ca31169e73.ctex"]
+source_file="res://planets/buttons/chezburger/chezburger_planet.png"
+dest_files=["res://.godot/imported/chezburger_planet.png-dd159bf666fa43c9baaff1951b2ccd80.ctex"]
 
 [params]
 

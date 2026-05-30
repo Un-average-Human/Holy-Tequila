@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dti4cx6kuv2a8"
-path="res://.godot/imported/mars_disabled.png-0e8fa5d43de030699a424c3c4993795b.ctex"
+uid="uid://dr13t3xkcmg7c"
+path="res://.godot/imported/water_planet_disabled.png-b2979a064812056bd271ffc0ccb9c233.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://planets/mars/mars_disabled.png"
-dest_files=["res://.godot/imported/mars_disabled.png-0e8fa5d43de030699a424c3c4993795b.ctex"]
+source_file="res://planets/buttons/water/water_planet_disabled.png"
+dest_files=["res://.godot/imported/water_planet_disabled.png-b2979a064812056bd271ffc0ccb9c233.ctex"]
 
 [params]
 

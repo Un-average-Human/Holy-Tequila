@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://iskautbtfdve"
-path="res://.godot/imported/chezburger_planet_disabled.png-b49d8059b1b03b347ae51361a77b0867.ctex"
+uid="uid://biv0me6ul2vw6"
+path="res://.godot/imported/brainrot_planet.png-e91e39028a538df9a4c1c38631d4650b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://planets/chezburger/chezburger_planet_disabled.png"
-dest_files=["res://.godot/imported/chezburger_planet_disabled.png-b49d8059b1b03b347ae51361a77b0867.ctex"]
+source_file="res://planets/buttons/brainrot/brainrot_planet.png"
+dest_files=["res://.godot/imported/brainrot_planet.png-e91e39028a538df9a4c1c38631d4650b.ctex"]
 
 [params]
 

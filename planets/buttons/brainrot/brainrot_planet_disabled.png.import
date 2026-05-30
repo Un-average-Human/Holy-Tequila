@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://doxdf6jfci6ji"
-path="res://.godot/imported/skelly_planet.png-9f929a84857e516f5b5d237050368543.ctex"
+uid="uid://d00lbdbkau5nt"
+path="res://.godot/imported/brainrot_planet_disabled.png-01788b42c7eda44f517dbd28b9946370.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://planets/skelly_planet.png"
-dest_files=["res://.godot/imported/skelly_planet.png-9f929a84857e516f5b5d237050368543.ctex"]
+source_file="res://planets/buttons/brainrot/brainrot_planet_disabled.png"
+dest_files=["res://.godot/imported/brainrot_planet_disabled.png-01788b42c7eda44f517dbd28b9946370.ctex"]
 
 [params]
 

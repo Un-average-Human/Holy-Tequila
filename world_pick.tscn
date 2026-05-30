@@ -1,25 +1,27 @@
 [gd_scene format=3 uid="uid://yo1ornr2fnjs"]
 
-[ext_resource type="Texture2D" uid="uid://dkpvif4bvs30b" path="res://planets/mars/mars.png" id="1_1jjcf"]
+[ext_resource type="Texture2D" uid="uid://dkpvif4bvs30b" path="res://planets/buttons/mars/mars.png" id="1_1jjcf"]
 [ext_resource type="Script" uid="uid://bs8i3f42tjwe5" path="res://world_pick.gd" id="1_841gj"]
-[ext_resource type="Texture2D" uid="uid://dti4cx6kuv2a8" path="res://planets/mars/mars_disabled.png" id="2_841gj"]
-[ext_resource type="Texture2D" uid="uid://dvjc0xrb6hp2p" path="res://planets/chezburger/chezburger_planet.png" id="3_v8y7f"]
-[ext_resource type="Texture2D" uid="uid://iskautbtfdve" path="res://planets/chezburger/chezburger_planet_disabled.png" id="4_iu8j5"]
-[ext_resource type="Texture2D" uid="uid://ciavqludqi73x" path="res://planets/tequila/tequila_world.png" id="5_c0xir"]
-[ext_resource type="Texture2D" uid="uid://cc5ekuutac162" path="res://planets/tequila/tequila_world_disabled.png" id="6_2pgkm"]
-[ext_resource type="Texture2D" uid="uid://ciiqopo2pi5gu" path="res://planets/water_planet.png" id="6_cfd4q"]
-[ext_resource type="Texture2D" uid="uid://doxdf6jfci6ji" path="res://planets/skelly_planet.png" id="6_iu8j5"]
-[ext_resource type="Texture2D" uid="uid://daktgohh2dnlj" path="res://planets/skelly_planet_disabled.png" id="7_c0xir"]
-[ext_resource type="Texture2D" uid="uid://dr13t3xkcmg7c" path="res://planets/water_planet_disabled.png" id="7_snhsa"]
-[ext_resource type="Texture2D" uid="uid://biv0me6ul2vw6" path="res://planets/brainrot_planet.png" id="8_2pgkm"]
-[ext_resource type="Texture2D" uid="uid://d00lbdbkau5nt" path="res://planets/brainrot_planet_disabled.png" id="9_ov3og"]
+[ext_resource type="Texture2D" uid="uid://dti4cx6kuv2a8" path="res://planets/buttons/mars/mars_disabled.png" id="2_841gj"]
+[ext_resource type="Texture2D" uid="uid://dvjc0xrb6hp2p" path="res://planets/buttons/chezburger/chezburger_planet.png" id="3_v8y7f"]
+[ext_resource type="Texture2D" uid="uid://iskautbtfdve" path="res://planets/buttons/chezburger/chezburger_planet_disabled.png" id="4_iu8j5"]
+[ext_resource type="Texture2D" uid="uid://ciavqludqi73x" path="res://planets/buttons/tequila/tequila_world.png" id="5_c0xir"]
+[ext_resource type="Texture2D" uid="uid://cc5ekuutac162" path="res://planets/buttons/tequila/tequila_world_disabled.png" id="6_2pgkm"]
+[ext_resource type="Texture2D" uid="uid://mkp5tcbws3bc" path="res://planets/buttons/mega_market/mega_market_world.png" id="6_88ppc"]
+[ext_resource type="Texture2D" uid="uid://ciiqopo2pi5gu" path="res://planets/buttons/water/water_planet.png" id="6_cfd4q"]
+[ext_resource type="Texture2D" uid="uid://doxdf6jfci6ji" path="res://planets/buttons/pirate/skelly_planet.png" id="6_iu8j5"]
+[ext_resource type="Texture2D" uid="uid://daktgohh2dnlj" path="res://planets/buttons/pirate/skelly_planet_disabled.png" id="7_c0xir"]
+[ext_resource type="Texture2D" uid="uid://dr13t3xkcmg7c" path="res://planets/buttons/water/water_planet_disabled.png" id="7_snhsa"]
+[ext_resource type="Texture2D" uid="uid://ddpbx40wwjacw" path="res://planets/buttons/mega_market/mega_market_world_disabled.png" id="7_wpn71"]
+[ext_resource type="Texture2D" uid="uid://biv0me6ul2vw6" path="res://planets/buttons/brainrot/brainrot_planet.png" id="8_2pgkm"]
+[ext_resource type="Texture2D" uid="uid://d00lbdbkau5nt" path="res://planets/buttons/brainrot/brainrot_planet_disabled.png" id="9_ov3og"]
+[ext_resource type="AudioStream" uid="uid://cyvupt6pdvih2" path="res://sfx/interaction/button_hover_sfx.mp3" id="14_snhsa"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_cfd4q"]
 load_path = "res://.godot/imported/mars.png-cf81b00ddd90c24b84075d51959a00bf.ctex"
 
 [node name="Node2D" type="Node2D" unique_id=2012523217]
 script = ExtResource("1_841gj")
-max_rotation = 20
 
 [node name="planets" type="Control" parent="." unique_id=35887227]
 unique_name_in_owner = true
@@ -81,11 +83,8 @@ offset_left = 826.0
 offset_top = 51.0
 offset_right = 976.0
 offset_bottom = 201.0
-disabled = true
-texture_normal = ExtResource("1_1jjcf")
-texture_pressed = ExtResource("1_1jjcf")
-texture_hover = ExtResource("1_1jjcf")
-texture_disabled = ExtResource("2_841gj")
+texture_normal = ExtResource("6_88ppc")
+texture_disabled = ExtResource("7_wpn71")
 ignore_texture_size = true
 
 [node name="chezburger_planet3" type="TextureButton" parent="planets" unique_id=1433159796]
@@ -129,3 +128,7 @@ texture_pressed = ExtResource("5_c0xir")
 texture_hover = ExtResource("5_c0xir")
 texture_disabled = ExtResource("6_2pgkm")
 stretch_mode = 0
+
+[node name="interactive_noises" type="AudioStreamPlayer" parent="." unique_id=1531038019]
+unique_name_in_owner = true
+stream = ExtResource("14_snhsa")
