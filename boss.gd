@@ -1,6 +1,9 @@
 extends AnimatedSprite3D
 class_name Boss
 
+var health: int = 3
+var player: CharacterBody3D
+
 func _simple_attack():
 	pass
 

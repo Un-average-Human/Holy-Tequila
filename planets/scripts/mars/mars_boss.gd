@@ -17,15 +17,18 @@ func _ready() -> void:
 func _start_bossfight(body: Node3D):
 	if body.is_in_group("player"):
 		if is_first_time:
-			entrance.play("pop_up")
+			player = body
 			is_first_time = false
 			
 			var tween = create_tween()
-			tween.tween_property(boss_name, "modulate:a", 1.0, 1)
-			tween.tween_interval(2)
-			tween.tween_property(boss_name, "modulate:a", 0, 1)
+			tween.tween_property(boss_name, "modulate:a", 1.0, 0.5)
+			tween.tween_interval(1.5)
+			tween.tween_property(boss_name, "modulate:a", 0, 0.5)
+			await tween.finished
 			
-			await get_tree().create_timer(2).timeout
+			entrance.play("pop_up")
+			
+			await get_tree().create_timer(1).timeout
 			
 			_rest()
 
@@ -39,3 +42,9 @@ func _rest():
 	
 	await get_tree().create_timer(1.5).timeout
 	panel.hide()
+
+func _physics_process(delta: float) -> void:
+	if player:
+		var target = player.global_position
+		target.y = global_position.y
+		look_at(target, Vector3.UP)

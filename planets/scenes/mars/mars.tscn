@@ -56,7 +56,7 @@ data = PackedVector3Array(0.94149995, -1.6667, 0.018299999, 0.90099996, -1.6667,
 size = Vector3(70, 70, 70)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_gn52h"]
-size = Vector3(15, 15, 35)
+size = Vector3(30, 15, 35)
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_fqkmi"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -175,7 +175,7 @@ animations = [{
 script = ExtResource("1_jo3wj")
 
 [node name="player" parent="." unique_id=1185616285 instance=ExtResource("2_v7l4s")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 11)
 
 [node name="battle_island" type="StaticBody3D" parent="." unique_id=573910593]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
@@ -202,12 +202,12 @@ unique_name_in_owner = true
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="boss_area_detector" unique_id=1343230211]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.5, 4.9000006, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 4.9000006, 0)
 shape = SubResource("BoxShape3D_gn52h")
 
 [node name="spawn_point" type="Marker3D" parent="." unique_id=1312936847]
 unique_name_in_owner = true
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 2, 0)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 2, 11)
 
 [node name="environment" type="Node" parent="." unique_id=1235068419]
 
