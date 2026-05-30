@@ -10,6 +10,9 @@ func _medium_attack():
 func _hard_attack():
 	pass
 
+func _rest():
+	pass
+
 func _stunned():
 	pass
 
