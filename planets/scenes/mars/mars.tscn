@@ -1,7 +1,9 @@
 [gd_scene format=4 uid="uid://dh03uu603qdbw"]
 
-[ext_resource type="Script" uid="uid://c28ae2hrpjea4" path="res://planets/scenes/mars.gd" id="1_fqkmi"]
-[ext_resource type="PackedScene" uid="uid://ckudr8chj1kgo" path="res://player.tscn" id="1_iwty7"]
+[ext_resource type="Script" uid="uid://c28ae2hrpjea4" path="res://planets/scripts/mars/mars.gd" id="1_jo3wj"]
+[ext_resource type="PackedScene" uid="uid://ckudr8chj1kgo" path="res://player.tscn" id="2_v7l4s"]
+[ext_resource type="Texture2D" uid="uid://b551cdfh5l0tf" path="res://planets/assets/mars/mars_boss_idle.png" id="3_sybis"]
+[ext_resource type="Script" uid="uid://u35vl2ph4sue" path="res://planets/scripts/mars/mars_boss.gd" id="4_jo3wj"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eatdk"]
 resource_name = "Material"
@@ -67,13 +69,73 @@ background_mode = 2
 sky = SubResource("Sky_a5kxi")
 tonemap_mode = 2
 
-[node name="Node3D" type="Node3D" unique_id=893850879]
-script = ExtResource("1_fqkmi")
+[sub_resource type="AtlasTexture" id="AtlasTexture_a5kxi"]
+atlas = ExtResource("3_sybis")
+region = Rect2(0, 0, 1080, 1080)
 
-[node name="player" parent="." unique_id=1185616285 instance=ExtResource("1_iwty7")]
+[sub_resource type="AtlasTexture" id="AtlasTexture_gn52h"]
+atlas = ExtResource("3_sybis")
+region = Rect2(1080, 0, 1080, 1080)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4icgy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a5kxi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gn52h")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 3.0
+}]
+
+[sub_resource type="Animation" id="Animation_jo3wj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-2.141858e-06, -59, -49)]
+}
+
+[sub_resource type="Animation" id="Animation_v7l4s"]
+resource_name = "pop_up"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(0.2, 1),
+"update": 0,
+"values": [Vector3(0, -60, -49), Vector3(0, 10, -49)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_sybis"]
+_data = {
+&"RESET": SubResource("Animation_jo3wj"),
+&"pop_up": SubResource("Animation_v7l4s")
+}
+
+[node name="Node3D" type="Node3D" unique_id=893850879]
+script = ExtResource("1_jo3wj")
+
+[node name="player" parent="." unique_id=1185616285 instance=ExtResource("2_v7l4s")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 
 [node name="battle_island" type="StaticBody3D" parent="." unique_id=573910593]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
 
 [node name="Cube" type="MeshInstance3D" parent="battle_island" unique_id=38010769]
 transform = Transform3D(20, 0, 0, 0, 2, 0, 0, 0, 20, 0, -1.5, 0)
@@ -86,6 +148,7 @@ shape = SubResource("ConcavePolygonShape3D_vhqvn")
 
 [node name="void_detector" type="Area3D" parent="." unique_id=1842554380]
 unique_name_in_owner = true
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="void_detector" unique_id=1673562007]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -9.599999, 0)
@@ -93,6 +156,7 @@ shape = SubResource("BoxShape3D_a5kxi")
 
 [node name="boss_area_detector" type="Area3D" parent="." unique_id=1128781379]
 unique_name_in_owner = true
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="boss_area_detector" unique_id=1343230211]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.5, 4.9000006, 0)
@@ -100,7 +164,7 @@ shape = SubResource("BoxShape3D_gn52h")
 
 [node name="spawn_point" type="Marker3D" parent="." unique_id=1312936847]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 2, 0)
 
 [node name="environment" type="Node" parent="." unique_id=1235068419]
 
@@ -110,3 +174,15 @@ environment = SubResource("Environment_gn52h")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="environment" unique_id=676889884]
 transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
 shadow_enabled = true
+
+[node name="boss" type="AnimatedSprite3D" parent="." unique_id=480593947]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.141858e-06, -59, -49)
+pixel_size = 0.04
+sprite_frames = SubResource("SpriteFrames_4icgy")
+animation = &"idle"
+frame_progress = 0.17322849
+script = ExtResource("4_jo3wj")
+
+[node name="entrance_animation" type="AnimationPlayer" parent="boss" unique_id=418906785]
+unique_name_in_owner = true
+libraries/ = SubResource("AnimationLibrary_sybis")
