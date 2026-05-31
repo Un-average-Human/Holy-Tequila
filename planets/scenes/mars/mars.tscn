@@ -2,9 +2,11 @@
 
 [ext_resource type="Script" uid="uid://c28ae2hrpjea4" path="res://planets/scripts/mars/mars.gd" id="1_jo3wj"]
 [ext_resource type="PackedScene" uid="uid://ckudr8chj1kgo" path="res://player.tscn" id="2_v7l4s"]
-[ext_resource type="Texture2D" uid="uid://b551cdfh5l0tf" path="res://planets/assets/mars/mars_boss_idle.png" id="3_sybis"]
+[ext_resource type="Texture2D" uid="uid://b551cdfh5l0tf" path="res://planets/assets/mars/boss_sprites/mars_boss_idle.png" id="3_sybis"]
 [ext_resource type="Script" uid="uid://u35vl2ph4sue" path="res://planets/scripts/mars/mars_boss.gd" id="4_jo3wj"]
-[ext_resource type="Texture2D" uid="uid://bcmaps2p6tgu0" path="res://planets/assets/mars/mars_boss_panel.png" id="5_v7l4s"]
+[ext_resource type="Texture2D" uid="uid://0hmj2517lj48" path="res://planets/assets/mars/boss_sprites/mars_boss_shooting.png" id="4_sybis"]
+[ext_resource type="Texture2D" uid="uid://bcmaps2p6tgu0" path="res://planets/assets/mars/boss_sprites/mars_boss_panel.png" id="5_v7l4s"]
+[ext_resource type="AudioStream" uid="uid://tbnxti3fqbar" path="res://sfx/interaction/whoosh.mp3" id="7_5h2xo"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eatdk"]
 resource_name = "Material"
@@ -81,6 +83,14 @@ region = Rect2(0, 0, 1080, 1080)
 atlas = ExtResource("3_sybis")
 region = Rect2(1080, 0, 1080, 1080)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_lx28s"]
+atlas = ExtResource("4_sybis")
+region = Rect2(0, 0, 1080, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b464i"]
+atlas = ExtResource("4_sybis")
+region = Rect2(1080, 0, 1080, 1080)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_4icgy"]
 animations = [{
 "frames": [{
@@ -92,6 +102,17 @@ animations = [{
 }],
 "loop": true,
 "name": &"idle",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lx28s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b464i")
+}],
+"loop": true,
+"name": &"shooting",
 "speed": 3.0
 }]
 
@@ -110,6 +131,42 @@ tracks/0/keys = {
 "values": [Vector3(-2.141858e-06, -59, -49)]
 }
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_5h2xo"]
+random_pitch = 1.0717734
+streams_count = 1
+stream_0/stream = ExtResource("7_5h2xo")
+
+[sub_resource type="Animation" id="Animation_5h2xo"]
+resource_name = "panel_hide"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1.8, 1),
+"update": 0,
+"values": [Vector3(-5, 15, -45), Vector3(-5, -40, -45)]
+}
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("%panel/../whoosh")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": SubResource("AudioStreamRandomizer_5h2xo")
+}],
+"times": PackedFloat32Array(0.56666666)
+}
+tracks/1/use_blend = true
+
 [sub_resource type="Animation" id="Animation_sybis"]
 resource_name = "panel_pop_up"
 length = 1.5
@@ -125,6 +182,26 @@ tracks/0/keys = {
 "update": 0,
 "values": [Vector3(-5, -40, -45), Vector3(-5, 15, -45)]
 }
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../whoosh")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": SubResource("AudioStreamRandomizer_5h2xo")
+}],
+"times": PackedFloat32Array(0.10000001)
+}
+tracks/1/use_blend = true
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_lx28s"]
+random_pitch = 1.0717734
+streams_count = 1
+stream_0/stream = ExtResource("7_5h2xo")
 
 [sub_resource type="Animation" id="Animation_v7l4s"]
 resource_name = "pop_up"
@@ -141,10 +218,26 @@ tracks/0/keys = {
 "update": 0,
 "values": [Vector3(0, -40, -49), Vector3(0, 15, -49)]
 }
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../whoosh")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": SubResource("AudioStreamRandomizer_lx28s")
+}],
+"times": PackedFloat32Array(0.1)
+}
+tracks/1/use_blend = true
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_sybis"]
 _data = {
 &"RESET": SubResource("Animation_jo3wj"),
+&"panel_hide": SubResource("Animation_5h2xo"),
 &"panel_pop_up": SubResource("Animation_sybis"),
 &"pop_up": SubResource("Animation_v7l4s")
 }
@@ -234,22 +327,32 @@ vertical_alignment = 1
 [node name="boss" type="AnimatedSprite3D" parent="bossfight" unique_id=480593947]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.141858e-06, -59, -49)
 pixel_size = 0.04
+billboard = 1
+texture_filter = 0
 sprite_frames = SubResource("SpriteFrames_4icgy")
-animation = &"idle"
-frame_progress = 0.17322849
+animation = &"shooting"
+frame_progress = 0.98735696
 script = ExtResource("4_jo3wj")
 
 [node name="entrance_animation" type="AnimationPlayer" parent="bossfight/boss" unique_id=418906785]
 unique_name_in_owner = true
 libraries/ = SubResource("AnimationLibrary_sybis")
 
+[node name="gun_point" type="Marker3D" parent="bossfight/boss" unique_id=998118079]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.18441582, -10.657509, 2)
+
 [node name="panel" type="AnimatedSprite3D" parent="bossfight" unique_id=1934872447]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.141858e-06, -59, -49)
 pixel_size = 0.03
+billboard = 1
+texture_filter = 0
 sprite_frames = SubResource("SpriteFrames_lx28s")
 animation = &"weapon_panel"
 
 [node name="panel_animation" type="AnimationPlayer" parent="bossfight/panel" unique_id=1462049422]
 unique_name_in_owner = true
 libraries/ = SubResource("AnimationLibrary_sybis")
+
+[node name="whoosh" type="AudioStreamPlayer3D" parent="bossfight" unique_id=1437294620]

@@ -1,5 +1,8 @@
 extends CharacterBody3D
 
+var health: int = 3
+var heart_list: Array
+@onready var heart_container: HBoxContainer = %heart_container
 
 var current_speed: float = 5.0
 var jump_force: float = 4.5
@@ -10,6 +13,10 @@ var jump_force: float = 4.5
 var mouse_sens: float = 0.01
 
 func _ready() -> void:
+	for heart in heart_container.get_children():
+		heart_list.append(heart)
+		heart.get_child(0).play("idle")
+		
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func _input(event: InputEvent) -> void:
@@ -47,3 +54,15 @@ func _physics_process(delta: float) -> void:
 		velocity.z = move_toward(velocity.z, 0, current_speed)
 
 	move_and_slide()
+
+func _take_damage():
+	if health > 0:
+		health -= 1
+		#damage effect or smth here
+		_update_hearts()
+
+func _update_hearts():
+	for heart in heart_list.size():
+		heart_list[heart].visible = heart < health
+	if health == 1:
+		heart_container.get_child(0).get_child(0).play("pumping")

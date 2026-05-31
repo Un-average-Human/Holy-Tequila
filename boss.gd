@@ -3,6 +3,7 @@ class_name Boss
 
 var health: int = 3
 var player: CharacterBody3D
+var bullet_scene := preload("uid://dwsikl4kkdfi3")
 
 func _simple_attack():
 	pass

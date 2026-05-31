@@ -1,10 +1,53 @@
 [gd_scene format=3 uid="uid://ckudr8chj1kgo"]
 
 [ext_resource type="Script" uid="uid://b0gd8hrqpvtbb" path="res://player.gd" id="1_4flbx"]
+[ext_resource type="Texture2D" uid="uid://dha7gw82f6qfq" path="res://heart_idle.png" id="2_onrkg"]
+[ext_resource type="Texture2D" uid="uid://bfqx1j8kjgxa5" path="res://heart_pumping.png" id="3_i3pqv"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_onrkg"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_i3pqv"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i3pqv"]
+atlas = ExtResource("2_onrkg")
+region = Rect2(0, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hqtel"]
+atlas = ExtResource("2_onrkg")
+region = Rect2(150, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sweqy"]
+atlas = ExtResource("3_i3pqv")
+region = Rect2(0, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2hs0m"]
+atlas = ExtResource("3_i3pqv")
+region = Rect2(150, 0, 150, 150)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sweqy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i3pqv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hqtel")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sweqy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2hs0m")
+}],
+"loop": true,
+"name": &"pumping",
+"speed": 5.0
+}]
 
 [node name="player" type="CharacterBody3D" unique_id=1185616285 groups=["player"]]
 script = ExtResource("1_4flbx")
@@ -21,3 +64,47 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 
 [node name="player_camera" type="Camera3D" parent="neck" unique_id=37718709]
 unique_name_in_owner = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=383149491]
+
+[node name="heart_container" type="HBoxContainer" parent="CanvasLayer" unique_id=281727399]
+unique_name_in_owner = true
+texture_repeat = 2
+custom_minimum_size = Vector2(150, 50)
+offset_left = 50.0
+offset_top = 50.0
+offset_right = 208.0
+offset_bottom = 100.0
+
+[node name="heart1" type="TextureRect" parent="CanvasLayer/heart_container" unique_id=1391252628]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="heart_anim" type="AnimatedSprite2D" parent="CanvasLayer/heart_container/heart1" unique_id=803082292]
+texture_filter = 1
+scale = Vector2(0.333, 0.333)
+sprite_frames = SubResource("SpriteFrames_sweqy")
+animation = &"idle"
+centered = false
+
+[node name="heart2" type="TextureRect" parent="CanvasLayer/heart_container" unique_id=1938991878]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="heart_anim" type="AnimatedSprite2D" parent="CanvasLayer/heart_container/heart2" unique_id=1910239772]
+texture_filter = 1
+scale = Vector2(0.333, 0.333)
+sprite_frames = SubResource("SpriteFrames_sweqy")
+animation = &"idle"
+centered = false
+
+[node name="heart3" type="TextureRect" parent="CanvasLayer/heart_container" unique_id=472175068]
+texture_filter = 1
+layout_mode = 2
+
+[node name="heart_anim" type="AnimatedSprite2D" parent="CanvasLayer/heart_container/heart3" unique_id=1808288230]
+texture_filter = 1
+scale = Vector2(0.333, 0.333)
+sprite_frames = SubResource("SpriteFrames_sweqy")
+animation = &"pumping"
+centered = false
