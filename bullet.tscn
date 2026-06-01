@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://xqeyphuxe5vm" path="res://bullet/energy_bullet.png" id="1_v7oki"]
 [ext_resource type="Texture2D" uid="uid://cri5rskeg5xqe" path="res://bullet/explosion.png" id="1_v8qja"]
+[ext_resource type="Texture2D" uid="uid://55kmks0d6ba1" path="res://bullet/rail_bullet.png" id="3_2b2rl"]
 [ext_resource type="Script" uid="uid://bvw5ohtlf753k" path="res://bullet.gd" id="3_t4vbm"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2b2rl"]
@@ -18,6 +19,14 @@ region = Rect2(0, 0, 150, 150)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_t4vbm"]
 atlas = ExtResource("1_v7oki")
+region = Rect2(150, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t2bd8"]
+atlas = ExtResource("3_2b2rl")
+region = Rect2(0, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h0pa3"]
+atlas = ExtResource("3_2b2rl")
 region = Rect2(150, 0, 150, 150)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_2b2rl"]
@@ -43,6 +52,17 @@ animations = [{
 "loop": true,
 "name": &"martian_bullet",
 "speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t2bd8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h0pa3")
+}],
+"loop": true,
+"name": &"rail_bullet",
+"speed": 5.0
 }]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_t4vbm"]
@@ -54,10 +74,13 @@ pixel_size = 0.005
 billboard = 1
 texture_filter = 0
 sprite_frames = SubResource("SpriteFrames_2b2rl")
-animation = &"explosion"
+animation = &"rail_bullet"
 script = ExtResource("3_t4vbm")
 
 [node name="Area3D" type="Area3D" parent="." unique_id=138555185]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=292758182]
 shape = SubResource("SphereShape3D_t4vbm")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=386763908]
+unit_size = 20.0

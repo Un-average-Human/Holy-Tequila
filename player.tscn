@@ -65,6 +65,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 [node name="player_camera" type="Camera3D" parent="neck" unique_id=37718709]
 unique_name_in_owner = true
 
+[node name="hand" type="Marker3D" parent="neck/player_camera" unique_id=886960652]
+unique_name_in_owner = true
+transform = Transform3D(-4.304732e-08, 0.17364815, -0.9848076, 7.590406e-09, 0.9848077, 0.17364816, 1.0000001, 0, -4.3711392e-08, 0.8, -0.40000004, -0.8000001)
+
+[node name="ray" type="RayCast3D" parent="neck/player_camera" unique_id=1561972548]
+unique_name_in_owner = true
+target_position = Vector3(0, 0, -1000)
+
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=383149491]
 
 [node name="heart_container" type="HBoxContainer" parent="CanvasLayer" unique_id=281727399]

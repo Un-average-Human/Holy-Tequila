@@ -1,0 +1,77 @@
+[gd_scene format=3 uid="uid://bwhs481tm0ui6"]
+
+[ext_resource type="Texture2D" uid="uid://d2yojfymmeaik" path="res://planets/assets/mars/railgun_idle.png" id="1_04xmi"]
+[ext_resource type="Texture2D" uid="uid://bc52ccn6ve27y" path="res://planets/assets/mars/railgun_shooting.png" id="2_xgtvb"]
+[ext_resource type="Script" uid="uid://5ypw7yk6rhuq" path="res://railgun.gd" id="3_xgtvb"]
+[ext_resource type="AudioStream" uid="uid://bn3pml5p33b5v" path="res://sfx/interaction/Plasma.mp3" id="4_l0kwa"]
+[ext_resource type="AudioStream" uid="uid://bxi3tdrgl387e" path="res://sfx/interaction/Gunpickup.mp3" id="5_vxe2x"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l0kwa"]
+atlas = ExtResource("1_04xmi")
+region = Rect2(0, 0, 680, 680)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vxe2x"]
+atlas = ExtResource("1_04xmi")
+region = Rect2(680, 0, 680, 680)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x7sbp"]
+atlas = ExtResource("2_xgtvb")
+region = Rect2(0, 0, 680, 680)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k2jxb"]
+atlas = ExtResource("2_xgtvb")
+region = Rect2(680, 0, 680, 680)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_aeibi"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l0kwa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vxe2x")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x7sbp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k2jxb")
+}],
+"loop": true,
+"name": &"shooting",
+"speed": 5.0
+}]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_04xmi"]
+size = Vector3(2, 2, 2)
+
+[node name="railgun" type="AnimatedSprite3D" unique_id=381419496]
+pixel_size = 0.002
+texture_filter = 0
+sprite_frames = SubResource("SpriteFrames_aeibi")
+animation = &"idle"
+script = ExtResource("3_xgtvb")
+
+[node name="Area3D" type="Area3D" parent="." unique_id=739551938]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1475149753]
+shape = SubResource("BoxShape3D_04xmi")
+
+[node name="gun_point" type="Marker3D" parent="." unique_id=1724206891]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6531829, -0.04892826, 0)
+
+[node name="plasma" type="AudioStreamPlayer" parent="." unique_id=28175244]
+unique_name_in_owner = true
+stream = ExtResource("4_l0kwa")
+
+[node name="pick_up" type="AudioStreamPlayer" parent="." unique_id=1367765713]
+unique_name_in_owner = true
+stream = ExtResource("5_vxe2x")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
