@@ -5,6 +5,7 @@ extends Node2D
 const BUTTON_HOVER_SFX = preload("uid://cyvupt6pdvih2")
 const BUTTON_PRESSED_SFX = preload("uid://b1ag55g30pycm")
 @onready var interactive_noises: AudioStreamPlayer = %interactive_noises
+var planet_scene
 
 func _ready() -> void:
 	for planet: TextureButton in planets.get_children():
@@ -15,6 +16,8 @@ func _ready() -> void:
 		
 		planet.button_down.connect(_is_pressing.bind(planet))
 		planet.button_up.connect(_stopped_pressing.bind(planet))
+		
+		planet.pressed.connect(_world_selected.bind(planet))
 
 
 
@@ -41,3 +44,9 @@ func _is_pressing(button: TextureButton):
 func _stopped_pressing(button: TextureButton):
 	var tween = create_tween()
 	tween.tween_property(button, "scale", Vector2.ONE * 1.25, 0.1).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+
+func _world_selected(planet: TextureButton):
+	match planet.name:
+		"mars":
+			planet_scene = preload("uid://dh03uu603qdbw")
+			get_tree().change_scene_to_packed(planet_scene)

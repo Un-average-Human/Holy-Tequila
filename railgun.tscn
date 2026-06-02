@@ -1,25 +1,28 @@
 [gd_scene format=3 uid="uid://bwhs481tm0ui6"]
 
-[ext_resource type="Texture2D" uid="uid://d2yojfymmeaik" path="res://planets/assets/mars/railgun_idle.png" id="1_04xmi"]
-[ext_resource type="Texture2D" uid="uid://bc52ccn6ve27y" path="res://planets/assets/mars/railgun_shooting.png" id="2_xgtvb"]
-[ext_resource type="Script" uid="uid://5ypw7yk6rhuq" path="res://railgun.gd" id="3_xgtvb"]
 [ext_resource type="AudioStream" uid="uid://bn3pml5p33b5v" path="res://sfx/interaction/Plasma.mp3" id="4_l0kwa"]
 [ext_resource type="AudioStream" uid="uid://bxi3tdrgl387e" path="res://sfx/interaction/Gunpickup.mp3" id="5_vxe2x"]
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_04xmi"]
+load_path = "res://.godot/imported/railgun_idle.png-c1dc47482e6a45120870acd04384374b.s3tc.ctex"
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_l0kwa"]
-atlas = ExtResource("1_04xmi")
+atlas = SubResource("CompressedTexture2D_04xmi")
 region = Rect2(0, 0, 680, 680)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vxe2x"]
-atlas = ExtResource("1_04xmi")
+atlas = SubResource("CompressedTexture2D_04xmi")
 region = Rect2(680, 0, 680, 680)
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_xgtvb"]
+load_path = "res://.godot/imported/railgun_shooting.png-a9987982409f7e7462c54adef9ac9226.s3tc.ctex"
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_x7sbp"]
-atlas = ExtResource("2_xgtvb")
+atlas = SubResource("CompressedTexture2D_xgtvb")
 region = Rect2(0, 0, 680, 680)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_k2jxb"]
-atlas = ExtResource("2_xgtvb")
+atlas = SubResource("CompressedTexture2D_xgtvb")
 region = Rect2(680, 0, 680, 680)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_aeibi"]
@@ -47,6 +50,58 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="GDScript" id="GDScript_l0kwa"]
+script/source = "extends AnimatedSprite3D
+
+var hand: Marker3D
+var player: CharacterBody3D
+var ray: RayCast3D
+@onready var gun_point: Marker3D = %gun_point
+@export var bullet_speed: float = 30.0
+
+const BULLET_SCENE = preload(\"uid://dwsikl4kkdfi3\")
+var target_point
+@onready var plasma: AudioStreamPlayer = %plasma
+@onready var pick_up: AudioStreamPlayer= %pick_up
+
+func _ready() -> void:
+	set_process(false)
+
+func _input(event: InputEvent) -> void:
+	if Input.is_action_just_pressed(\"LMB\"):
+		if ray:
+			if ray.is_colliding():
+				target_point = ray.get_collision_point()
+			else:
+				target_point = ray.to_global(ray.target_position)
+
+			plasma.play()
+			
+			var bullet = BULLET_SCENE.instantiate()
+			
+			if target_point != null:
+				bullet.is_boss_bullet = false
+				bullet.play(\"rail_bullet\")
+				get_tree().root.add_child(bullet)
+
+				bullet.global_position = gun_point.global_position
+				bullet.look_at(target_point)
+				bullet.speed = bullet_speed
+				bullet.set_process(true)
+
+
+func _on_area_3d_body_entered(body: Node3D) -> void:
+	if body.is_in_group(\"player\"):
+		pick_up.play()
+		hand = body.get_node(\"%hand\")
+		ray = body.get_node(\"%ray\")
+		billboard = BaseMaterial3D.BILLBOARD_DISABLED
+		set_process(true)
+
+func _process(delta: float) -> void:
+	global_transform = hand.global_transform
+"
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_04xmi"]
 size = Vector3(2, 2, 2)
 
@@ -55,7 +110,7 @@ pixel_size = 0.002
 texture_filter = 0
 sprite_frames = SubResource("SpriteFrames_aeibi")
 animation = &"idle"
-script = ExtResource("3_xgtvb")
+script = SubResource("GDScript_l0kwa")
 
 [node name="Area3D" type="Area3D" parent="." unique_id=739551938]
 

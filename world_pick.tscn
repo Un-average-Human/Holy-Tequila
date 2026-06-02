@@ -42,7 +42,7 @@ texture_normal = SubResource("CompressedTexture2D_cfd4q")
 texture_disabled = ExtResource("2_841gj")
 ignore_texture_size = true
 
-[node name="chezburger_planet" type="TextureButton" parent="planets" unique_id=1878684180]
+[node name="burger" type="TextureButton" parent="planets" unique_id=1878684180]
 layout_mode = 0
 offset_left = 88.0
 offset_top = 219.0
@@ -77,7 +77,7 @@ texture_hover = ExtResource("1_1jjcf")
 texture_disabled = ExtResource("2_841gj")
 ignore_texture_size = true
 
-[node name="chezburger_planet4" type="TextureButton" parent="planets" unique_id=815547783]
+[node name="mega_market" type="TextureButton" parent="planets" unique_id=815547783]
 layout_mode = 0
 offset_left = 826.0
 offset_top = 51.0
@@ -87,7 +87,7 @@ texture_normal = ExtResource("6_88ppc")
 texture_disabled = ExtResource("7_wpn71")
 ignore_texture_size = true
 
-[node name="chezburger_planet3" type="TextureButton" parent="planets" unique_id=1433159796]
+[node name="water" type="TextureButton" parent="planets" unique_id=1433159796]
 layout_mode = 0
 offset_left = 614.0
 offset_top = 20.0
@@ -97,7 +97,7 @@ texture_normal = ExtResource("6_cfd4q")
 texture_disabled = ExtResource("7_snhsa")
 ignore_texture_size = true
 
-[node name="mars4" type="TextureButton" parent="planets" unique_id=1063286949]
+[node name="pirate" type="TextureButton" parent="planets" unique_id=1063286949]
 layout_mode = 0
 offset_left = 200.0
 offset_top = 51.0
@@ -107,7 +107,7 @@ texture_normal = ExtResource("6_iu8j5")
 texture_disabled = ExtResource("7_c0xir")
 ignore_texture_size = true
 
-[node name="mars3" type="TextureButton" parent="planets" unique_id=707379421]
+[node name="brainrot" type="TextureButton" parent="planets" unique_id=707379421]
 layout_mode = 0
 offset_left = 417.0
 offset_top = 10.0

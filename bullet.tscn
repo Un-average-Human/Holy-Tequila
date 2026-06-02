@@ -3,7 +3,6 @@
 [ext_resource type="Texture2D" uid="uid://xqeyphuxe5vm" path="res://bullet/energy_bullet.png" id="1_v7oki"]
 [ext_resource type="Texture2D" uid="uid://cri5rskeg5xqe" path="res://bullet/explosion.png" id="1_v8qja"]
 [ext_resource type="Texture2D" uid="uid://55kmks0d6ba1" path="res://bullet/rail_bullet.png" id="3_2b2rl"]
-[ext_resource type="Script" uid="uid://bvw5ohtlf753k" path="res://bullet.gd" id="3_t4vbm"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2b2rl"]
 atlas = ExtResource("1_v8qja")
@@ -75,7 +74,6 @@ billboard = 1
 texture_filter = 0
 sprite_frames = SubResource("SpriteFrames_2b2rl")
 animation = &"rail_bullet"
-script = ExtResource("3_t4vbm")
 
 [node name="Area3D" type="Area3D" parent="." unique_id=138555185]
 

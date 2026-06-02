@@ -7,11 +7,6 @@ var heart_list: Array
 var current_speed: float = 5.0
 var jump_force: float = 4.5
 
-@onready var neck: Node3D = %neck
-@onready var player_camera: Camera3D = %player_camera
-
-var mouse_sens: float = 0.01
-
 func _ready() -> void:
 	for heart in heart_container.get_children():
 		heart_list.append(heart)
@@ -26,12 +21,6 @@ func _input(event: InputEvent) -> void:
 				Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 			Input.MOUSE_MODE_VISIBLE:
 				Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-
-	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
-		rotate_y(-event.relative.x * mouse_sens)
-		
-		player_camera.rotate_x(-event.relative.y * mouse_sens)
-		player_camera.rotation.x = clamp(player_camera.rotation.x, deg_to_rad(-90), deg_to_rad(90))
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
