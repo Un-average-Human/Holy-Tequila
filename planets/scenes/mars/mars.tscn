@@ -9,11 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://bcmaps2p6tgu0" path="res://planets/assets/mars/boss_sprites/mars_boss_panel.png" id="5_v7l4s"]
 [ext_resource type="Texture2D" uid="uid://c52ecmmlmo63p" path="res://planets/assets/mars/boss_sprites/mars_boss_stunned.png" id="6_i140t"]
 [ext_resource type="AudioStream" uid="uid://tbnxti3fqbar" path="res://sfx/interaction/whoosh.mp3" id="7_5h2xo"]
-[ext_resource type="Script" uid="uid://bb0t2ovl7wifo" path="res://addons/beehave/nodes/beehave_tree.gd" id="10_xhqe0"]
-[ext_resource type="Script" uid="uid://cg016dbe7gs1x" path="res://addons/beehave/nodes/composites/sequence.gd" id="11_2fwn2"]
-[ext_resource type="Script" uid="uid://8hn4kne15ac5" path="res://addons/beehave/nodes/composites/selector.gd" id="11_jbvca"]
-[ext_resource type="Script" uid="uid://b6ukb1ki3brow" path="res://planets/assets/mars/behaviour/has_bossfight_started.gd" id="13_2fwn2"]
-[ext_resource type="Script" uid="uid://b5lw2dyw3o7y6" path="res://planets/assets/mars/behaviour/start_bossfight.gd" id="14_jbvca"]
+[ext_resource type="BehaviorTree" uid="uid://b1gsrdn52apvk" path="res://planets/assets/mars/behaviour/mars_boss.tres" id="10_pyjlk"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eatdk"]
 resource_name = "Material"
@@ -325,6 +321,8 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="BlackboardPlan" id="BlackboardPlan_i140t"]
+
 [node name="Node3D" type="Node3D" unique_id=893850879]
 script = ExtResource("1_jo3wj")
 
@@ -465,25 +463,6 @@ animation = &"weapon_panel"
 unique_name_in_owner = true
 libraries/ = SubResource("AnimationLibrary_sybis")
 
-[node name="BeehaveTree" type="Node" parent="bossfight" unique_id=2063161822 node_paths=PackedStringArray("blackboard", "actor")]
-script = ExtResource("10_xhqe0")
-actor_node_path = NodePath("..")
-blackboard = NodePath("@Node@44862")
-actor = NodePath("..")
-metadata/_custom_type_script = "uid://bb0t2ovl7wifo"
-
-[node name="SelectorComposite" type="Node" parent="bossfight/BeehaveTree" unique_id=1119966960]
-script = ExtResource("11_jbvca")
-metadata/_custom_type_script = "uid://8hn4kne15ac5"
-
-[node name="SequenceComposite" type="Node" parent="bossfight/BeehaveTree/SelectorComposite" unique_id=825872637]
-script = ExtResource("11_2fwn2")
-metadata/_custom_type_script = "uid://cg016dbe7gs1x"
-
-[node name="has_bossfight_started" type="Node" parent="bossfight/BeehaveTree/SelectorComposite/SequenceComposite" unique_id=1267303849]
-script = ExtResource("13_2fwn2")
-metadata/_custom_type_script = "uid://cbnbvj8prv63i"
-
-[node name="start_bossfight" type="Node" parent="bossfight/BeehaveTree/SelectorComposite/SequenceComposite" unique_id=1861425372]
-script = ExtResource("14_jbvca")
-metadata/_custom_type_script = "uid://cv74jjdrwevpr"
+[node name="BTPlayer" type="BTPlayer" parent="bossfight" unique_id=1062509935]
+behavior_tree = ExtResource("10_pyjlk")
+blackboard_plan = SubResource("BlackboardPlan_i140t")
