@@ -9,5 +9,4 @@ func tick(actor: Node, blackboard: Blackboard) -> int:
 		
 		#adds this value to the enemy's dictionary
 		blackboard.set_value("boss_intro_started", true)
-		return RUNNING
 	return SUCCESS

@@ -105,3 +105,13 @@ centered = false
 [node name="hand" type="Marker3D" parent="." unique_id=886960652]
 unique_name_in_owner = true
 transform = Transform3D(-4.304732e-08, 0.17364815, -0.9848076, 7.590406e-09, 0.9848077, 0.17364816, 1.0000001, 0, -4.3711392e-08, 0.8, 0.099999964, -0.8000001)
+
+[node name="cam_pivot" type="Node3D" parent="." unique_id=1374839627]
+unique_name_in_owner = true
+
+[node name="SpringArm3D" type="SpringArm3D" parent="cam_pivot" unique_id=875577173]
+transform = Transform3D(1, 0, 0, 0, 0.96592593, 0.25881907, 0, -0.25881907, 0.96592593, 0, 0, 0)
+spring_length = 10.0
+
+[node name="player_cam" type="Camera3D" parent="cam_pivot/SpringArm3D" unique_id=394059071]
+unique_name_in_owner = true

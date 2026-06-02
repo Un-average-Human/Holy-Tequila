@@ -11,9 +11,8 @@
 [ext_resource type="AudioStream" uid="uid://tbnxti3fqbar" path="res://sfx/interaction/whoosh.mp3" id="7_5h2xo"]
 [ext_resource type="Script" uid="uid://bb0t2ovl7wifo" path="res://addons/beehave/nodes/beehave_tree.gd" id="10_xhqe0"]
 [ext_resource type="Script" uid="uid://cg016dbe7gs1x" path="res://addons/beehave/nodes/composites/sequence.gd" id="11_2fwn2"]
-[ext_resource type="Script" uid="uid://bg2x340bv6hdo" path="res://planets/scenes/mars/player_cam.gd" id="12_ffogu"]
+[ext_resource type="Script" uid="uid://8hn4kne15ac5" path="res://addons/beehave/nodes/composites/selector.gd" id="11_jbvca"]
 [ext_resource type="Script" uid="uid://b6ukb1ki3brow" path="res://planets/assets/mars/behaviour/has_bossfight_started.gd" id="13_2fwn2"]
-[ext_resource type="Script" uid="uid://crjqmr7expgtl" path="res://addons/beehave/nodes/decorators/limiter.gd" id="13_jbvca"]
 [ext_resource type="Script" uid="uid://b5lw2dyw3o7y6" path="res://planets/assets/mars/behaviour/start_bossfight.gd" id="14_jbvca"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eatdk"]
@@ -199,7 +198,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 1.5),
 "transitions": PackedFloat32Array(1.8, 1),
 "update": 0,
-"values": [Vector3(-5, 15, -45), Vector3(-5, -40, -45)]
+"values": [Vector3(-5, 2, 0), Vector3(-5, -40, -45)]
 }
 tracks/1/type = "audio"
 tracks/1/imported = false
@@ -230,7 +229,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 1.5),
 "transitions": PackedFloat32Array(0.2, 1),
 "update": 0,
-"values": [Vector3(-5, -40, -45), Vector3(-5, 15, -45)]
+"values": [Vector3(-5, -40, -45), Vector3(-5, 2, 0)]
 }
 tracks/1/type = "audio"
 tracks/1/imported = false
@@ -266,7 +265,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 1.5),
 "transitions": PackedFloat32Array(0.2, 1),
 "update": 0,
-"values": [Vector3(0, -40, -49), Vector3(0, 15, -49)]
+"values": [Vector3(0, -40, -49), Vector3(0, 0, 0)]
 }
 tracks/1/type = "audio"
 tracks/1/imported = false
@@ -329,8 +328,9 @@ animations = [{
 [node name="Node3D" type="Node3D" unique_id=893850879]
 script = ExtResource("1_jo3wj")
 
-[node name="player" parent="." unique_id=1185616285 instance=ExtResource("2_v7l4s")]
+[node name="player" parent="." unique_id=1185616285 node_paths=PackedStringArray("boss") instance=ExtResource("2_v7l4s")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 19)
+boss = NodePath("../bossfight")
 
 [node name="battle_island" type="StaticBody3D" parent="." unique_id=573910593]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
@@ -407,13 +407,14 @@ label_settings = SubResource("LabelSettings_pyjlk")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="bossfight" type="Node" parent="." unique_id=804665265]
+[node name="bossfight" type="Node3D" parent="." unique_id=1832705918]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, -30)
 script = ExtResource("3_s0wj5")
 
 [node name="boss" type="AnimatedSprite3D" parent="bossfight" unique_id=480593947]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.141858e-06, -59, -49)
-pixel_size = 0.04
+pixel_size = 0.03
 billboard = 2
 texture_filter = 0
 sprite_frames = SubResource("SpriteFrames_4icgy")
@@ -454,7 +455,7 @@ shape = SubResource("BoxShape3D_pyjlk")
 [node name="panel" type="AnimatedSprite3D" parent="bossfight" unique_id=1934872447]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.141858e-06, -59, -49)
-pixel_size = 0.03
+pixel_size = 0.02
 billboard = 2
 texture_filter = 0
 sprite_frames = SubResource("SpriteFrames_lx28s")
@@ -467,28 +468,22 @@ libraries/ = SubResource("AnimationLibrary_sybis")
 [node name="BeehaveTree" type="Node" parent="bossfight" unique_id=2063161822 node_paths=PackedStringArray("blackboard", "actor")]
 script = ExtResource("10_xhqe0")
 actor_node_path = NodePath("..")
-blackboard = NodePath("@Node@21962")
+blackboard = NodePath("@Node@44862")
 actor = NodePath("..")
 metadata/_custom_type_script = "uid://bb0t2ovl7wifo"
 
-[node name="LimiterDecorator" type="Node" parent="bossfight/BeehaveTree" unique_id=904405412]
-script = ExtResource("13_jbvca")
-max_count = 1
-metadata/_custom_type_script = "uid://crjqmr7expgtl"
+[node name="SelectorComposite" type="Node" parent="bossfight/BeehaveTree" unique_id=1119966960]
+script = ExtResource("11_jbvca")
+metadata/_custom_type_script = "uid://8hn4kne15ac5"
 
-[node name="SelectorComposite" type="Node" parent="bossfight/BeehaveTree/LimiterDecorator" unique_id=1296483371]
+[node name="SequenceComposite" type="Node" parent="bossfight/BeehaveTree/SelectorComposite" unique_id=825872637]
 script = ExtResource("11_2fwn2")
 metadata/_custom_type_script = "uid://cg016dbe7gs1x"
 
-[node name="has_bossfight_started" type="Node" parent="bossfight/BeehaveTree/LimiterDecorator/SelectorComposite" unique_id=1267303849]
+[node name="has_bossfight_started" type="Node" parent="bossfight/BeehaveTree/SelectorComposite/SequenceComposite" unique_id=1267303849]
 script = ExtResource("13_2fwn2")
 metadata/_custom_type_script = "uid://cbnbvj8prv63i"
 
-[node name="start_bossfight" type="Node" parent="bossfight/BeehaveTree/LimiterDecorator/SelectorComposite" unique_id=1861425372]
+[node name="start_bossfight" type="Node" parent="bossfight/BeehaveTree/SelectorComposite/SequenceComposite" unique_id=1861425372]
 script = ExtResource("14_jbvca")
 metadata/_custom_type_script = "uid://cv74jjdrwevpr"
-
-[node name="Camera3D" type="Camera3D" parent="." unique_id=1741316213]
-transform = Transform3D(1, 0, 0, 0, 0.9659259, 0.25881907, 0, -0.25881907, 0.9659258, 0, 7, 26)
-current = true
-script = ExtResource("12_ffogu")
