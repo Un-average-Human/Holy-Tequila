@@ -49,6 +49,8 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_i3pqv"]
+
 [node name="player" type="CharacterBody3D" unique_id=1185616285 groups=["player"]]
 script = ExtResource("1_4flbx")
 
@@ -111,7 +113,9 @@ unique_name_in_owner = true
 
 [node name="SpringArm3D" type="SpringArm3D" parent="cam_pivot" unique_id=875577173]
 transform = Transform3D(1, 0, 0, 0, 0.96592593, 0.25881907, 0, -0.25881907, 0.96592593, 0, 0, 0)
+shape = SubResource("SphereShape3D_i3pqv")
 spring_length = 10.0
+margin = 0.1
 
 [node name="player_cam" type="Camera3D" parent="cam_pivot/SpringArm3D" unique_id=394059071]
 unique_name_in_owner = true

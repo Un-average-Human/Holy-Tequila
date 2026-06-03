@@ -10,10 +10,6 @@ var jump_force: float = 4.5
 @onready var cam_pivot: Node3D = %cam_pivot
 var mouse_sens: float = 0.005
 
-@export var boss: Node3D
-var mouse_offset_x: float = 0.0
-var mouse_offset_y: float = 0.0
-
 var in_bossfight: bool = false
 
 func _ready() -> void:
@@ -25,25 +21,10 @@ func _ready() -> void:
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
-		
-		mouse_offset_y += -event.relative.x * mouse_sens
-		mouse_offset_x += -event.relative.y * mouse_sens
-		
-		if in_bossfight:
-			cam_pivot.rotation.y += -event.relative.x * mouse_sens
-			cam_pivot.rotation.x += -event.relative.y * mouse_sens
-			
-			var midpoint: Vector3 = (global_position + boss.global_position) / 2.0
-			var target_transform: Transform3D = cam_pivot.global_transform.looking_at(midpoint, Vector3.UP)
-			var base_angles: Vector3 = target_transform.basis.get_euler()
-			var limit: float = deg_to_rad(30.0)
-			
-			cam_pivot.rotation.y = clamp(cam_pivot.rotation.y, base_angles.y - limit, base_angles.y + limit)
-			cam_pivot.rotation.x = clamp(cam_pivot.rotation.x, base_angles.x - limit, base_angles.x + limit)
-		else:
-			cam_pivot.rotation.y += -event.relative.x * mouse_sens
+			rotate_y(-event.relative.x * mouse_sens)
 			cam_pivot.rotation.x += -event.relative.y * mouse_sens
 			cam_pivot.rotation.x = clamp(cam_pivot.rotation.x, deg_to_rad(-89), deg_to_rad(89))
+
 
 		
 	if Input.is_action_just_pressed("ESC"):
@@ -70,17 +51,6 @@ func _physics_process(delta: float) -> void:
 		velocity.z = move_toward(velocity.z, 0, current_speed)
 
 	move_and_slide()
-	_update_camera_tracking()
-
-func _update_camera_tracking() -> void:
-	var boss_active = boss != null and boss.bossfight_started
-	
-	if boss_active and not in_bossfight:
-		var midpoint: Vector3 = (global_position + boss.global_position) / 2.0
-		cam_pivot.look_at(midpoint, Vector3.UP)
-		
-	in_bossfight = boss_active
-
 
 func _take_damage():
 	if health > 0:
