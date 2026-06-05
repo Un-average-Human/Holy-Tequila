@@ -17,6 +17,9 @@ property = &"has_started"
 value = SubResource("BBVariant_73gob")
 custom_name = "Is has_started True?"
 
+[sub_resource type="BTRunLimit" id="BTRunLimit_hdq62"]
+children = [SubResource("BTCheckAgentProperty_xihcn")]
+
 [sub_resource type="BBNode" id="BBNode_hdq62"]
 saved_value = NodePath("bossfight/boss/boss_animation")
 resource_name = "bossfight/boss/boss_animation"
@@ -48,7 +51,7 @@ custom_name = "Set can_attack to True"
 
 [sub_resource type="BTSequence" id="BTSequence_xsgl7"]
 custom_name = "Start Bossfight"
-children = [SubResource("BTCheckAgentProperty_xihcn"), SubResource("BTPlayAnimation_73gob"), SubResource("BTSetAgentProperty_e61y8"), SubResource("BTSetAgentProperty_wfqh0")]
+children = [SubResource("BTRunLimit_hdq62"), SubResource("BTPlayAnimation_73gob"), SubResource("BTSetAgentProperty_e61y8"), SubResource("BTSetAgentProperty_wfqh0")]
 
 [sub_resource type="BBVariant" id="BBVariant_hdq62"]
 type = 1
@@ -60,6 +63,8 @@ property = &"can_attack"
 value = SubResource("BBVariant_hdq62")
 custom_name = "Is can_attack True?"
 
+[sub_resource type="BTWait" id="BTWait_hdq62"]
+
 [sub_resource type="BBNode" id="BBNode_73gob"]
 saved_value = NodePath("bossfight/panel/panel_animation")
 resource_name = "bossfight/panel/panel_animation"
@@ -68,10 +73,6 @@ resource_name = "bossfight/panel/panel_animation"
 animation_player = SubResource("BBNode_73gob")
 animation_name = &"panel_show"
 custom_name = "Show Panel"
-
-[sub_resource type="BTDelay" id="BTDelay_hdq62"]
-seconds = 2.0
-children = [SubResource("BTPlayAnimation_xihcn")]
 
 [sub_resource type="BBNode" id="BBNode_e61y8"]
 saved_value = NodePath("bossfight/panel/panel_animation")
@@ -82,6 +83,9 @@ animation_player = SubResource("BBNode_e61y8")
 animation_name = &"panel_show"
 custom_name = "Wait show_panel to Finish"
 
+[sub_resource type="BTWait" id="BTWait_73gob"]
+duration = 0.25
+
 [sub_resource type="BBNode" id="BBNode_xsgl7"]
 saved_value = NodePath("bossfight/panel/panel_animation")
 resource_name = "bossfight/panel/panel_animation"
@@ -91,44 +95,28 @@ animation_player = SubResource("BBNode_xsgl7")
 animation_name = &"panel_hide"
 custom_name = "Hides Panel"
 
-[sub_resource type="BTDelay" id="BTDelay_5qbo4"]
-seconds = 2.0
-children = [SubResource("BTPlayAnimation_tr07w")]
+[sub_resource type="BTWait" id="BTWait_xihcn"]
 
-[sub_resource type="BBVariant" id="BBVariant_wfqh0"]
-type = 1
-saved_value = false
-resource_name = "<null>"
+[sub_resource type="BBNode" id="BBNode_xihcn"]
+saved_value = NodePath("bossfight")
+resource_name = "bossfight"
 
-[sub_resource type="BTSetAgentProperty" id="BTSetAgentProperty_xsgl7"]
-property = &"can_attack"
-value = SubResource("BBVariant_wfqh0")
-custom_name = "Set can_attack to False"
+[sub_resource type="BTCallMethod" id="BTCallMethod_e61y8"]
+node = SubResource("BBNode_xihcn")
+method = &"_attack_one"
+custom_name = "Calls the _attack_one() Function"
 
 [sub_resource type="BTSequence" id="BTSequence_hdq62"]
 custom_name = "Attack One"
-
-[sub_resource type="BTSequence" id="BTSequence_73gob"]
-custom_name = "Attack Two"
-
-[sub_resource type="BTSequence" id="BTSequence_xihcn"]
-custom_name = "Normal Cows"
-
-[sub_resource type="BTSequence" id="BTSequence_e61y8"]
-custom_name = "Mini-boss Cow"
-metadata/_weight_ = 0.01
-
-[sub_resource type="BTProbabilitySelector" id="BTProbabilitySelector_wfqh0"]
-custom_name = "Spawn Cows"
-children = [SubResource("BTSequence_xihcn"), SubResource("BTSequence_e61y8")]
+children = [SubResource("BTCallMethod_e61y8")]
 
 [sub_resource type="BTRandomSelector" id="BTRandomSelector_xsgl7"]
 custom_name = "Pick Random Attack"
-children = [SubResource("BTSequence_hdq62"), SubResource("BTSequence_73gob"), SubResource("BTProbabilitySelector_wfqh0")]
+children = [SubResource("BTSequence_hdq62")]
 
 [sub_resource type="BTSequence" id="BTSequence_tr07w"]
 custom_name = "Pick Attack"
-children = [SubResource("BTCheckAgentProperty_73gob"), SubResource("BTDelay_hdq62"), SubResource("BTAwaitAnimation_wfqh0"), SubResource("BTDelay_5qbo4"), SubResource("BTSetAgentProperty_xsgl7"), SubResource("BTRandomSelector_xsgl7")]
+children = [SubResource("BTCheckAgentProperty_73gob"), SubResource("BTWait_hdq62"), SubResource("BTPlayAnimation_xihcn"), SubResource("BTAwaitAnimation_wfqh0"), SubResource("BTWait_73gob"), SubResource("BTPlayAnimation_tr07w"), SubResource("BTWait_xihcn"), SubResource("BTRandomSelector_xsgl7")]
 
 [sub_resource type="BTSelector" id="BTSelector_tr07w"]
 children = [SubResource("BTSequence_xsgl7"), SubResource("BTSequence_tr07w")]

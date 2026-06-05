@@ -9,6 +9,7 @@ var jump_force: float = 4.5
 
 @onready var cam_pivot: Node3D = %cam_pivot
 var mouse_sens: float = 0.005
+@onready var player_cam: Camera3D = %player_cam
 
 var in_bossfight: bool = false
 
@@ -23,7 +24,7 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 			rotate_y(-event.relative.x * mouse_sens)
 			cam_pivot.rotation.x += -event.relative.y * mouse_sens
-			cam_pivot.rotation.x = clamp(cam_pivot.rotation.x, deg_to_rad(-89), deg_to_rad(89))
+			cam_pivot.rotation.x = clamp(cam_pivot.rotation.x, deg_to_rad(-60), deg_to_rad(60))
 
 
 		
