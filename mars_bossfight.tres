@@ -21,13 +21,13 @@ custom_name = "Is has_started True?"
 children = [SubResource("BTCheckAgentProperty_xihcn")]
 
 [sub_resource type="BBNode" id="BBNode_hdq62"]
-saved_value = NodePath("bossfight/boss/boss_animation")
-resource_name = "bossfight/boss/boss_animation"
+saved_value = NodePath("bossfight")
+resource_name = "bossfight"
 
-[sub_resource type="BTPlayAnimation" id="BTPlayAnimation_73gob"]
-animation_player = SubResource("BBNode_hdq62")
-animation_name = &"pop_up"
-custom_name = "Play pop_up Animation"
+[sub_resource type="BTCallMethod" id="BTCallMethod_73gob"]
+node = SubResource("BBNode_hdq62")
+method = &"_start_bossfight"
+custom_name = "Call _start_bossfight()"
 
 [sub_resource type="BBVariant" id="BBVariant_xihcn"]
 type = 1
@@ -39,19 +39,9 @@ property = &"has_started"
 value = SubResource("BBVariant_xihcn")
 custom_name = "Set has_started to False"
 
-[sub_resource type="BBVariant" id="BBVariant_e61y8"]
-type = 1
-saved_value = true
-resource_name = "true"
-
-[sub_resource type="BTSetAgentProperty" id="BTSetAgentProperty_wfqh0"]
-property = &"can_attack"
-value = SubResource("BBVariant_e61y8")
-custom_name = "Set can_attack to True"
-
 [sub_resource type="BTSequence" id="BTSequence_xsgl7"]
 custom_name = "Start Bossfight"
-children = [SubResource("BTRunLimit_hdq62"), SubResource("BTPlayAnimation_73gob"), SubResource("BTSetAgentProperty_e61y8"), SubResource("BTSetAgentProperty_wfqh0")]
+children = [SubResource("BTRunLimit_hdq62"), SubResource("BTCallMethod_73gob"), SubResource("BTSetAgentProperty_e61y8")]
 
 [sub_resource type="BBVariant" id="BBVariant_hdq62"]
 type = 1

@@ -73,7 +73,7 @@ animations = [{
 [sub_resource type="SphereShape3D" id="SphereShape3D_i3pqv"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_i3pqv"]
-radius = 1.2
+radius = 2.5
 
 [node name="player" type="CharacterBody3D" unique_id=1185616285 groups=["player"]]
 script = ExtResource("1_4flbx")
@@ -150,6 +150,7 @@ margin = 0.1
 unique_name_in_owner = true
 
 [node name="parry_area" type="Area3D" parent="." unique_id=412720686]
+collision_mask = 4
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="parry_area" unique_id=538210318]
 shape = SubResource("CylinderShape3D_i3pqv")

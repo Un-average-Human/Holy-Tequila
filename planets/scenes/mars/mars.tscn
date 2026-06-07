@@ -392,7 +392,7 @@ label_settings = SubResource("LabelSettings_jo3wj")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="boss_health" type="ProgressBar" parent="." unique_id=876821215]
+[node name="boss_healthbar" type="ProgressBar" parent="." unique_id=876821215]
 unique_name_in_owner = true
 modulate = Color(1, 1, 1, 0)
 offset_left = 154.0
@@ -403,7 +403,7 @@ max_value = 3.0
 value = 3.0
 show_percentage = false
 
-[node name="Label" type="Label" parent="boss_health" unique_id=296114845]
+[node name="Label" type="Label" parent="boss_healthbar" unique_id=296114845]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
