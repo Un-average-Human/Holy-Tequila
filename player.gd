@@ -15,6 +15,9 @@ var in_bossfight: bool = false
 
 @onready var parry_area: Area3D = $parry_area
 var is_parrying: bool = false
+const PARRY = preload("uid://cquk2o6tbfumc")
+
+@onready var audio: AudioStreamPlayer3D = %audio
 
 func _ready() -> void:
 	parry_area.area_entered.connect(_parry_detector)
@@ -39,7 +42,7 @@ func _input(event: InputEvent) -> void:
 			Input.MOUSE_MODE_VISIBLE:
 				Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	
-	if Input.is_action_just_pressed("LMB"):
+	if Input.is_action_just_pressed("F"):
 		_start_parry_window()
 
 func _physics_process(delta: float) -> void:
@@ -90,6 +93,5 @@ func _parry(bullet: Node3D):
 	is_parrying = false
 	bullet._parried()
 	
-	Engine.time_scale = 0.0
-	await get_tree().create_timer(0.05).timeout
-	Engine.time_scale = 1.0
+	audio.stream = PARRY
+	audio.play()

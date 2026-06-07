@@ -17,4 +17,4 @@ func _damage_player(body: Node3D):
 		hit_box.monitoring = true
 
 func _parried() -> void:
-	queue_free()
+	Globals.parried.emit(self)

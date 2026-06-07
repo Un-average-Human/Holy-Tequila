@@ -34,7 +34,7 @@ func _attack_one():
 	const BOOMERANG_WHOOSH = preload("uid://ccgwbqeyfist4")
 	
 	can_attack = false
-	var max_bullets: int = 5
+	var max_bullets: int = 1
 	var current_bullets: int = 0
 	
 	boss_sprite.play("shooting")
@@ -50,7 +50,7 @@ func _attack_one():
 		_spawn_boomerang(BOOMERANG_WHOOSH, true)
 
 
-func _spawn_boomerang(wave_sfx: AudioStream, make_parryable: bool) -> void:
+func _spawn_boomerang(sfx: AudioStream, make_parryable: bool) -> void:
 	var plane = MeshInstance3D.new()
 	var plane_mesh = PlaneMesh.new()
 	
@@ -94,12 +94,13 @@ func _spawn_boomerang(wave_sfx: AudioStream, make_parryable: bool) -> void:
 		bullet.can_parry = make_parryable
 		if make_parryable:
 			bullet.play("boomerang_bullet_parryable")
+			Globals.parried.connect(_on_bullet_parried)
 		else:
 			bullet.play("boomerang_bullet")
 		
 		var audio_player = bullet.get_node("%sfx")
-		if audio_player and wave_sfx:
-			audio_player.stream = wave_sfx
+		if audio_player and sfx:
+			audio_player.stream = sfx
 			audio_player.play()
 		
 		bullet.look_at(target_pos, Vector3.UP)
@@ -129,6 +130,12 @@ func _spawn_boomerang(wave_sfx: AudioStream, make_parryable: bool) -> void:
 				bullet.queue_free()
 			if is_instance_valid(plane):
 				plane.queue_free()))
+
+func _on_bullet_parried(bullet: Node3D):
+	var damage_boss_bullet = bullet.duplicate()
+	
+	var tween = create_tween()
+	tween.tween_property(damage_boss_bullet, "global_position", self.global_position, 1.0)
 
 func _attack_two():
 	pass
