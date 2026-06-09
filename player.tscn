@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://7krcx658l6x4" path="res://player.png" id="2_hqtel"]
 [ext_resource type="Texture2D" uid="uid://dha7gw82f6qfq" path="res://heart_idle.png" id="2_onrkg"]
 [ext_resource type="Texture2D" uid="uid://bfqx1j8kjgxa5" path="res://heart_pumping.png" id="3_i3pqv"]
+[ext_resource type="AudioStream" uid="uid://cquk2o6tbfumc" path="res://sfx/interaction/parry.mp3" id="5_sweqy"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_onrkg"]
 
@@ -73,6 +74,7 @@ animations = [{
 [sub_resource type="SphereShape3D" id="SphereShape3D_i3pqv"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_i3pqv"]
+height = 5.0
 radius = 2.5
 
 [node name="player" type="CharacterBody3D" unique_id=1185616285 groups=["player"]]
@@ -150,10 +152,12 @@ margin = 0.1
 unique_name_in_owner = true
 
 [node name="parry_area" type="Area3D" parent="." unique_id=412720686]
+collision_layer = 0
 collision_mask = 4
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="parry_area" unique_id=538210318]
 shape = SubResource("CylinderShape3D_i3pqv")
 
-[node name="audio" type="AudioStreamPlayer3D" parent="." unique_id=533783400]
+[node name="audio" type="AudioStreamPlayer" parent="." unique_id=899686412]
 unique_name_in_owner = true
+stream = ExtResource("5_sweqy")

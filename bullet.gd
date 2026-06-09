@@ -4,6 +4,7 @@ extends AnimatedSprite3D
 var player: CharacterBody3D
 
 var can_parry: bool = false
+var parried: bool = false
 
 func _ready() -> void:
 	hit_box.body_entered.connect(_damage_player)

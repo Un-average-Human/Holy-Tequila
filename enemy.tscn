@@ -1,0 +1,95 @@
+[gd_scene format=3 uid="uid://lsgkfu0leche"]
+
+[ext_resource type="Texture2D" uid="uid://cv8js42nroytg" path="res://alien_cow_attacking.png" id="1_4gyqm"]
+[ext_resource type="Texture2D" uid="uid://f5sxsjenckhb" path="res://alien_cow_idle.png" id="2_qi2p4"]
+[ext_resource type="Script" uid="uid://cvq3xf4yoxfdr" path="res://alien_cow.gd" id="3_qi2p4"]
+[ext_resource type="BehaviorTree" uid="uid://pgmkfl76hgfl" path="res://alien_cow_ai.tres" id="4_iifgy"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iifgy"]
+atlas = ExtResource("1_4gyqm")
+region = Rect2(0, 0, 1080, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_epg4t"]
+atlas = ExtResource("1_4gyqm")
+region = Rect2(1080, 0, 1080, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3yqyl"]
+atlas = ExtResource("2_qi2p4")
+region = Rect2(0, 0, 1080, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wujgv"]
+atlas = ExtResource("2_qi2p4")
+region = Rect2(1080, 0, 1080, 1080)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hb8ge"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iifgy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_epg4t")
+}],
+"loop": true,
+"name": &"alien_cow_attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3yqyl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wujgv")
+}],
+"loop": true,
+"name": &"alien_cow_idle",
+"speed": 5.0
+}]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_4gyqm"]
+height = 2.5289063
+radius = 8.0
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_qi2p4"]
+height = 2.5289063
+radius = 0.64501953
+
+[sub_resource type="BlackboardPlan" id="BlackboardPlan_epg4t"]
+
+[node name="enemy" type="CharacterBody3D" unique_id=823383326 node_paths=PackedStringArray("nav_agent")]
+script = ExtResource("3_qi2p4")
+nav_agent = NodePath("NavigationAgent3D")
+speed = 4.0
+
+[node name="enemy" type="AnimatedSprite3D" parent="." unique_id=207700314]
+pixel_size = 0.0035
+billboard = 2
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_hb8ge")
+animation = &"alien_cow_idle"
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=832013012]
+path_desired_distance = 30.0
+target_desired_distance = 20.0
+debug_enabled = true
+debug_use_custom = true
+
+[node name="parry_detector" type="Area3D" parent="." unique_id=1183736973]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="parry_detector" unique_id=952367565]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.016857743, 0.028033733)
+shape = SubResource("CylinderShape3D_4gyqm")
+
+[node name="can_attack_area" type="Area3D" parent="." unique_id=2048464090]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="can_attack_area" unique_id=1892198685]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.016857743, 0.028033733)
+shape = SubResource("CylinderShape3D_4gyqm")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1816057951]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.016857743, 0.028033733)
+shape = SubResource("CylinderShape3D_qi2p4")
+
+[node name="BTPlayer" type="BTPlayer" parent="." unique_id=325855026]
+behavior_tree = ExtResource("4_iifgy")
+blackboard_plan = SubResource("BlackboardPlan_epg4t")

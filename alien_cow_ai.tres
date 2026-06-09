@@ -1,0 +1,15 @@
+[gd_resource type="BehaviorTree" format=3 uid="uid://pgmkfl76hgfl"]
+
+[ext_resource type="Script" uid="uid://byqdy8c0mnexa" path="res://ai/tasks/navigation/navigate_to_point.gd" id="1_3xwtd"]
+
+[sub_resource type="BlackboardPlan" id="BlackboardPlan_7dlxj"]
+
+[sub_resource type="BTAction" id="BTAction_eu52r"]
+script = ExtResource("1_3xwtd")
+
+[sub_resource type="BTSequence" id="BTSequence_3xwtd"]
+children = [SubResource("BTAction_eu52r")]
+
+[resource]
+blackboard_plan = SubResource("BlackboardPlan_7dlxj")
+root_task = SubResource("BTSequence_3xwtd")

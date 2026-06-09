@@ -17,7 +17,7 @@ var in_bossfight: bool = false
 var is_parrying: bool = false
 const PARRY = preload("uid://cquk2o6tbfumc")
 
-@onready var audio: AudioStreamPlayer3D = %audio
+@onready var audio: AudioStreamPlayer = %audio
 
 func _ready() -> void:
 	parry_area.area_entered.connect(_parry_detector)
@@ -80,18 +80,25 @@ func _start_parry_window():
 		return
 	
 	is_parrying = true
+	
+	for overlapping_area in parry_area.get_overlapping_areas():
+		_parry_detector(overlapping_area)
+	
 	await get_tree().create_timer(0.3).timeout
 	is_parrying = false
 
 func _parry_detector(parryable_object: Area3D) -> void:
 	var bullet = parryable_object.get_parent()
-	if is_parrying and bullet.has_method("_parried") and bullet.can_parry:
-		_parry(bullet)
+	var bullet_parry_area = bullet.get_node("%parry_detector")
+	
+	if parryable_object == bullet_parry_area:
+		if is_parrying and bullet.has_method("_parried") and bullet.can_parry:
+			_parry(bullet)
 
 #what to do if parry is successful
 func _parry(bullet: Node3D):
+	audio.stream = PARRY
+	audio.play()
 	is_parrying = false
 	bullet._parried()
 	
-	audio.stream = PARRY
-	audio.play()
