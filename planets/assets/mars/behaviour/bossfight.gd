@@ -28,7 +28,6 @@ func _start_bossfight():
 	await tween.finished
 	can_attack = true
 
-#first attack
 func _attack_one():
 	const BOOMERANG_WHOOSH = preload("uid://ccgwbqeyfist4")
 	can_attack = false
@@ -55,6 +54,7 @@ func _attack_one():
 		
 		if not last_bullet_parried:
 			_attack_one()
+
 func _spawn_boomerang(sfx: AudioStream, make_parryable: bool) -> Node3D:
 	var plane = MeshInstance3D.new()
 	var plane_mesh = PlaneMesh.new()
@@ -97,6 +97,9 @@ func _spawn_boomerang(sfx: AudioStream, make_parryable: bool) -> Node3D:
 		bullet.global_position = gun_point.global_position
 		bullet.can_parry = make_parryable
 		
+		bullet.look_at(target_pos, Vector3.UP)
+		bullet.rotate_object_local(Vector3.RIGHT, deg_to_rad(60))
+		
 		if make_parryable:
 			bullet.play("boomerang_bullet_parryable")
 			Globals.parried.connect(_on_bullet_parried)
@@ -112,6 +115,7 @@ func _spawn_boomerang(sfx: AudioStream, make_parryable: bool) -> Node3D:
 			audio_player.play())
 			
 	return bullet
+
 func _setup_boomerang_movement(bullet: Node3D, make_parryable: bool) -> void:
 	if not is_instance_valid(bullet):
 		return
@@ -129,9 +133,6 @@ func _setup_boomerang_movement(bullet: Node3D, make_parryable: bool) -> void:
 	var material: StandardMaterial3D = null
 	if is_instance_valid(plane):
 		material = plane.get_surface_override_material(0)
-	
-	bullet.look_at(target_pos, Vector3.UP)
-	bullet.rotate_object_local(Vector3.RIGHT, deg_to_rad(60))
 	
 	var rotation_tween = create_tween().set_loops()
 	rotation_tween.tween_property(bullet, "rotation:z", deg_to_rad(360), 0.2).as_relative()
@@ -159,6 +160,7 @@ func _setup_boomerang_movement(bullet: Node3D, make_parryable: bool) -> void:
 			bullet.queue_free()
 		if is_instance_valid(plane):
 			plane.queue_free())
+
 func _on_bullet_parried(bullet: Node3D):
 	if not is_instance_valid(bullet):
 		return
@@ -190,8 +192,8 @@ func _on_bullet_parried(bullet: Node3D):
 	boss_sprite.play("idle")
 	can_attack = true
 
-#second attack
 func _attack_two():
 	pass
+
 func attack_three():
 	pass

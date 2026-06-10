@@ -1,6 +1,6 @@
 [gd_resource type="BehaviorTree" format=3 uid="uid://pgmkfl76hgfl"]
 
-[ext_resource type="Script" uid="uid://byqdy8c0mnexa" path="res://ai/tasks/navigation/navigate_to_point.gd" id="1_3xwtd"]
+[ext_resource type="Script" uid="uid://byqdy8c0mnexa" path="res://ai/tasks/navigation/navigate_to_random_point.gd" id="1_3xwtd"]
 
 [sub_resource type="BlackboardPlan" id="BlackboardPlan_7dlxj"]
 
