@@ -50,15 +50,22 @@ animations = [{
 height = 2.5289063
 radius = 30.0
 
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_iifgy"]
+height = 2.5289063
+radius = 10.0
+
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_qi2p4"]
 height = 2.5289063
 radius = 0.64501953
 
 [sub_resource type="BlackboardPlan" id="BlackboardPlan_epg4t"]
 
-[node name="enemy" type="CharacterBody3D" unique_id=823383326 node_paths=PackedStringArray("nav_agent", "spot_area", "bt_player")]
+[node name="enemy" type="CharacterBody3D" unique_id=823383326 node_paths=PackedStringArray("nav_agent", "sprite", "charge_area", "spot_area", "bt_player")]
 script = ExtResource("3_qi2p4")
 nav_agent = NodePath("NavigationAgent3D")
+sprite = NodePath("enemy")
+charge_area = NodePath("charge_area")
+charge_speed = 8.0
 speed = 4.0
 jump_velocity = 5.0
 spot_area = NodePath("spot_area")
@@ -93,7 +100,7 @@ shape = SubResource("CylinderShape3D_4gyqm")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="charge_area" unique_id=15534075]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.016857743, 0.028033733)
-shape = SubResource("CylinderShape3D_4gyqm")
+shape = SubResource("CylinderShape3D_iifgy")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1816057951]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.016857743, 0.028033733)

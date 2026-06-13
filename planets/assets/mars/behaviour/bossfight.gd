@@ -187,7 +187,7 @@ func _on_bullet_parried(bullet: Node3D):
 		bullet.queue_free()
 		
 	boss_sprite.play("hurt")
-	_hurt(1)
+	_hurt(1, boss_healthbar)
 	await get_tree().create_timer(0.5).timeout
 	boss_sprite.play("idle")
 	can_attack = true

@@ -19,5 +19,5 @@ func _attack_two():
 func _attack_three():
 	pass
 
-func _hurt(damage: int):
+func _hurt(damage: int, health_bar: ProgressBar):
 	health -= damage

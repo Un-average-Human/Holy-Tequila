@@ -12,35 +12,20 @@ var/target/name = &"target"
 var/target/type = 24
 var/target/hint = 0
 var/target/hint_string = "Target for the enemy to chase"
-
-[sub_resource type="BBVariant" id="BBVariant_3xwtd"]
-saved_value = null
-resource_name = "<null>"
-
-[sub_resource type="BTCheckVar" id="BTCheckVar_7dlxj"]
-variable = &"target"
-check_type = 5
-value = SubResource("BBVariant_3xwtd")
-
-[sub_resource type="BTConsolePrint" id="BTConsolePrint_3xwtd"]
-text = "target"
-
-[sub_resource type="BTCooldown" id="BTCooldown_eu52r"]
-duration = 2.0
-children = [SubResource("BTConsolePrint_3xwtd")]
-
-[sub_resource type="BTSequence" id="BTSequence_c2qe3"]
-children = [SubResource("BTCheckVar_7dlxj"), SubResource("BTCooldown_eu52r")]
+var/can_move/name = &"can_move"
+var/can_move/type = 1
+var/can_move/value = false
+var/can_move/hint = 0
+var/can_move/hint_string = ""
 
 [sub_resource type="BTAction" id="BTAction_7dlxj"]
 script = ExtResource("1_3xwtd")
-rotation_speed = null
 
 [sub_resource type="BTSequence" id="BTSequence_du4l5"]
 children = [SubResource("BTAction_7dlxj")]
 
 [sub_resource type="BTSelector" id="BTSelector_24us4"]
-children = [SubResource("BTSequence_c2qe3"), SubResource("BTSequence_du4l5")]
+children = [SubResource("BTSequence_du4l5")]
 
 [resource]
 blackboard_plan = SubResource("BlackboardPlan_7dlxj")

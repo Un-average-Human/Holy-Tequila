@@ -15,6 +15,7 @@ func _ready() -> void:
 	spot_area.body_exited.connect(_on_body_exited)
 	
 	blackboard = bt_player.blackboard
+	blackboard.set_var("can_move", true)
 	blackboard.bind_var_to_property("target", self, "target")
 
 func _on_body_entered(body: Node3D):
@@ -24,7 +25,6 @@ func _on_body_entered(body: Node3D):
 func _on_body_exited(body: Node3D):
 	if body.is_in_group("player"):
 		target = null
-
 
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():
