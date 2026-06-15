@@ -18,6 +18,7 @@ var is_parrying: bool = false
 const PARRY = preload("uid://cquk2o6tbfumc")
 
 @onready var audio: AudioStreamPlayer = %audio
+var yeet_sprite_scene = preload("uid://dwsikl4kkdfi3")
 
 func _ready() -> void:
 	parry_area.area_entered.connect(_parry_detector)
@@ -97,6 +98,22 @@ func _parry_detector(parryable_object: Area3D) -> void:
 
 #what to do if parry is successful
 func _parry(bullet: Node3D):
+	var yeet_sprite = yeet_sprite_scene.instantiate()
+	get_tree().root.add_child(yeet_sprite)
+	yeet_sprite.scale = Vector3.ZERO
+	yeet_sprite.play("yeet")
+	yeet_sprite.global_position = bullet.global_position
+	yeet_sprite.pixel_size = 0.0025
+	yeet_sprite.billboard = BaseMaterial3D.BILLBOARD_FIXED_Y
+	
+	var tween = create_tween()
+	tween.tween_property(yeet_sprite, "scale", Vector3.ONE, 0.25).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
+	tween.tween_interval(0.5)
+	tween.tween_property(yeet_sprite, "scale", Vector3.ZERO, 0.25).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_QUAD)
+	
+	print("bullet located at: (" + str(bullet.global_position) + ")")
+	print("yeet bubble located at: (" + str(yeet_sprite.global_position) + ")")
+	
 	audio.stream = PARRY
 	audio.play()
 	is_parrying = false

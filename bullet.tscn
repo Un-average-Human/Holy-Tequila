@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://leko6a3b53wh" path="res://bullet/boomerang_bullet_parryable.png" id="2_h0pa3"]
 [ext_resource type="Texture2D" uid="uid://55kmks0d6ba1" path="res://bullet/rail_bullet.png" id="3_2b2rl"]
 [ext_resource type="Script" uid="uid://bvw5ohtlf753k" path="res://bullet.gd" id="5_b7duk"]
+[ext_resource type="Texture2D" uid="uid://dfp6o2tgbdbvm" path="res://bullet/yeet.png" id="6_6ol1o"]
 [ext_resource type="AudioStream" uid="uid://ccgwbqeyfist4" path="res://sfx/interaction/boomerang_whoosh.mp3" id="6_t2bd8"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6ol1o"]
@@ -47,6 +48,14 @@ region = Rect2(0, 0, 150, 150)
 [sub_resource type="AtlasTexture" id="AtlasTexture_h0pa3"]
 atlas = ExtResource("3_2b2rl")
 region = Rect2(150, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2eep6"]
+atlas = ExtResource("6_6ol1o")
+region = Rect2(0, 0, 1080, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qd0d2"]
+atlas = ExtResource("6_6ol1o")
+region = Rect2(1080, 0, 1080, 1080)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_2b2rl"]
 animations = [{
@@ -104,6 +113,17 @@ animations = [{
 "loop": true,
 "name": &"rail_bullet",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2eep6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qd0d2")
+}],
+"loop": true,
+"name": &"yeet",
+"speed": 2.0
 }]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_t4vbm"]
@@ -114,12 +134,18 @@ radius = 1.2
 
 [node name="bullet" type="AnimatedSprite3D" unique_id=2046011295]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 0.5, 0.8660254, 0, -0.8660254, 0.5, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, -5.9604645e-08, 0, 5.9604645e-08, 1, 0, 0, 0)
 pixel_size = 0.015
 texture_filter = 0
 sprite_frames = SubResource("SpriteFrames_2b2rl")
-animation = &"boomerang_bullet_parryable"
+animation = &"yeet"
 script = ExtResource("5_b7duk")
+
+[node name="sfx" type="AudioStreamPlayer3D" parent="." unique_id=386763908]
+unique_name_in_owner = true
+stream = ExtResource("6_t2bd8")
+pitch_scale = 1.15
+panning_strength = 3.0
 
 [node name="Area3D" type="Area3D" parent="." unique_id=138555185]
 unique_name_in_owner = true
@@ -127,12 +153,6 @@ transform = Transform3D(1, 0, 0, 0, 0.8660254, 0.5, 0, -0.5, 0.8660254, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=292758182]
 shape = SubResource("SphereShape3D_t4vbm")
-
-[node name="sfx" type="AudioStreamPlayer3D" parent="." unique_id=386763908]
-unique_name_in_owner = true
-stream = ExtResource("6_t2bd8")
-pitch_scale = 1.15
-panning_strength = 3.0
 
 [node name="parry_detector" type="Area3D" parent="." unique_id=627467987]
 unique_name_in_owner = true

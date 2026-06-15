@@ -5,10 +5,11 @@
 [ext_resource type="Script" uid="uid://dgx4gp3nm4aah" path="res://planets/assets/mars/behaviour/bossfight.gd" id="3_s0wj5"]
 [ext_resource type="Texture2D" uid="uid://b551cdfh5l0tf" path="res://planets/assets/mars/boss_sprites/mars_boss_idle.png" id="3_sybis"]
 [ext_resource type="Texture2D" uid="uid://0hmj2517lj48" path="res://planets/assets/mars/boss_sprites/mars_boss_shooting.png" id="4_sybis"]
+[ext_resource type="Texture2D" uid="uid://ditjk15jr3iy0" path="res://planets/assets/mars/boss_sprites/mars_boss_picking_up_boomerang.png" id="5_i140t"]
 [ext_resource type="Texture2D" uid="uid://bcmaps2p6tgu0" path="res://planets/assets/mars/boss_sprites/mars_boss_panel.png" id="5_v7l4s"]
 [ext_resource type="Texture2D" uid="uid://c52ecmmlmo63p" path="res://planets/assets/mars/boss_sprites/mars_boss_stunned.png" id="6_i140t"]
 [ext_resource type="AudioStream" uid="uid://tbnxti3fqbar" path="res://sfx/interaction/whoosh.mp3" id="7_5h2xo"]
-[ext_resource type="PackedScene" uid="uid://lsgkfu0leche" path="res://enemy.tscn" id="10_i140t"]
+[ext_resource type="Texture2D" uid="uid://cu5ewj63dcsgs" path="res://planets/assets/mars/boss_sprites/mars_boss_shooting_boomerang.png" id="8_ffogu"]
 [ext_resource type="BehaviorTree" uid="uid://byx5sxk0ounxk" path="res://mars_bossfight.tres" id="10_pyjlk"]
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_vhqvn"]
@@ -57,6 +58,14 @@ region = Rect2(0, 0, 1080, 1080)
 atlas = ExtResource("3_sybis")
 region = Rect2(1080, 0, 1080, 1080)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_jbvca"]
+atlas = ExtResource("5_i140t")
+region = Rect2(0, 0, 1080, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3rwun"]
+atlas = ExtResource("5_i140t")
+region = Rect2(1080, 0, 1080, 1080)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_lx28s"]
 atlas = ExtResource("4_sybis")
 region = Rect2(0, 0, 1080, 1080)
@@ -71,6 +80,14 @@ region = Rect2(0, 0, 1080, 1080)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2fwn2"]
 atlas = ExtResource("6_i140t")
+region = Rect2(1080, 0, 1080, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y4ma0"]
+atlas = ExtResource("8_ffogu")
+region = Rect2(0, 0, 1080, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cstp3"]
+atlas = ExtResource("8_ffogu")
 region = Rect2(1080, 0, 1080, 1080)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_4icgy"]
@@ -99,6 +116,17 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_jbvca")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3rwun")
+}],
+"loop": true,
+"name": &"picking_up_boomerang",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_lx28s")
 }, {
 "duration": 1.0,
@@ -118,6 +146,17 @@ animations = [{
 "loop": true,
 "name": &"stunned",
 "speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y4ma0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cstp3")
+}],
+"loop": true,
+"name": &"throwing_boomerang",
+"speed": 5.0
 }]
 
 [sub_resource type="Animation" id="Animation_jo3wj"]
@@ -424,7 +463,7 @@ pixel_size = 0.03
 billboard = 2
 texture_filter = 0
 sprite_frames = SubResource("SpriteFrames_4icgy")
-animation = &"stunned"
+animation = &"throwing_boomerang"
 autoplay = "idle"
 
 [node name="boss_animation" type="AnimationPlayer" parent="bossfight/boss" unique_id=418906785]
@@ -486,5 +525,29 @@ transform = Transform3D(-8.742278e-07, 0, 20, 0, 2, 0, -20, 0, -8.742278e-07, 0,
 mesh = SubResource("ArrayMesh_vhu27")
 surface_material_override/0 = SubResource("StandardMaterial3D_fqkmi")
 
-[node name="enemy" parent="." unique_id=823383326 instance=ExtResource("10_i140t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
+[node name="Node3D" type="Node3D" parent="." unique_id=557216354]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
+
+[node name="Marker3D" type="Marker3D" parent="Node3D" unique_id=635930369]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.388002, 1.5, -12.324287)
+
+[node name="Marker3D2" type="Marker3D" parent="Node3D" unique_id=314455716]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.067461, 1.5, 6.6885533)
+
+[node name="Marker3D3" type="Marker3D" parent="Node3D" unique_id=1298728467]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.1129675, 1.5, 10.404419)
+
+[node name="Marker3D4" type="Marker3D" parent="Node3D" unique_id=530935383]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.828832, 1.5, -1.3005567)
+
+[node name="Marker3D5" type="Marker3D" parent="Node3D" unique_id=733343478]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.2113185, 1.5, -7.06015)
+
+[node name="Marker3D6" type="Marker3D" parent="Node3D" unique_id=1938088733]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.067463, 1.5, -10.899875)
+
+[node name="Marker3D7" type="Marker3D" parent="Node3D" unique_id=1580205473]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.2204204, 1.5, 12.943588)
+
+[node name="Marker3D8" type="Marker3D" parent="Node3D" unique_id=379824745]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5482721, 1.5, 1.1147498)

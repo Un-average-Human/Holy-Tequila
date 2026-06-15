@@ -1,6 +1,11 @@
 extends Boss
 
+var shot_delay: float = 0.25
+
 var last_bullet_parried: bool = false
+var is_looping: bool = false
+
+@onready var enemy_spawn_points: Node3D = $"../enemy_spawn_points"
 
 @onready var boss_area_detector: Area3D = %boss_area_detector
 @onready var boss_sprite: AnimatedSprite3D = %boss
@@ -17,45 +22,62 @@ func _on_boss_area_detector_body_entered(body: Node3D) -> void:
 	if body.is_in_group("player") and has_started == false:
 		has_started = true
 		player = body
+		boss_area_detector.set_deferred("monitoring", false)
+		_start_bossfight()
 
 func _start_bossfight():
+	# FIX: Guard clause utilizing the base class variable.
+	# If this intro has run once, can_attack will be true or the state is initialized.
+	# This halts any duplicate frame processing instantly.
+	if can_attack or boss_name.modulate.a > 0.0:
+		return
+	
 	var tween = create_tween()
 	tween.tween_property(boss_name, "modulate:a", 1.0, 1.0)
 	tween.tween_interval(1.0)
 	tween.tween_property(boss_name, "modulate:a", 0, 1.0)
 	tween.tween_property(boss_healthbar, "modulate:a", 1.0, 1.0)
+	
 	boss_animation.play("pop_up")
 	await tween.finished
 	can_attack = true
 
 func _attack_one():
+	if is_looping:
+		return
+	is_looping = true
+	
 	const BOOMERANG_WHOOSH = preload("uid://ccgwbqeyfist4")
 	can_attack = false
 	var max_bullets: int = 10
 	var current_bullets: int = 0
 	last_bullet_parried = false
-	boss_sprite.play("shooting")
 	
 	while current_bullets < max_bullets:
 		current_bullets += 1
-		var bullet = _spawn_boomerang(BOOMERANG_WHOOSH, false)
-		_setup_boomerang_movement(bullet, false)
-		await get_tree().create_timer(0.5).timeout
+		
+		var spawn_data = await _spawn_boomerang(BOOMERANG_WHOOSH, false)
+		if spawn_data and spawn_data[0]:
+			_setup_boomerang_movement(spawn_data[0], spawn_data[1], false)
+		
+		await get_tree().create_timer(shot_delay).timeout
 		
 	if current_bullets >= max_bullets:
-		await get_tree().create_timer(4).timeout
 		boss_sprite.play("shooting")
 		
-		var parry_bullet = _spawn_boomerang(BOOMERANG_WHOOSH, true)
-		_setup_boomerang_movement(parry_bullet, true)
+		await get_tree().create_timer(4).timeout
 		
-		if is_instance_valid(parry_bullet):
-			await parry_bullet.tree_exited
+		var parry_spawn_data = await _spawn_boomerang(BOOMERANG_WHOOSH, true)
+		if parry_spawn_data and parry_spawn_data[0]:
+			_setup_boomerang_movement(parry_spawn_data[0], parry_spawn_data[1], true)
+			await parry_spawn_data[0].tree_exited
+		
+		is_looping = false
 		
 		if not last_bullet_parried:
 			_attack_one()
 
-func _spawn_boomerang(sfx: AudioStream, make_parryable: bool) -> Node3D:
+func _spawn_boomerang(sfx: AudioStream, make_parryable: bool):
 	var plane = MeshInstance3D.new()
 	var plane_mesh = PlaneMesh.new()
 	plane_mesh.size = Vector2(1.5, 1)
@@ -85,45 +107,64 @@ func _spawn_boomerang(sfx: AudioStream, make_parryable: bool) -> Node3D:
 	
 	var preview_mesh_tween = create_tween()
 	plane.show()
-	preview_mesh_tween.tween_property(plane, "scale:z", dist_to_player, 1).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 	
-	preview_mesh_tween.tween_callback(func():
-		if not is_instance_valid(bullet): 
-			if is_instance_valid(plane):
-				plane.queue_free()
-			return
+	if not make_parryable:
+		boss_sprite.play("picking_up_boomerang")
+		
+	preview_mesh_tween.tween_property(plane, "scale:z", dist_to_player, shot_delay).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+	
+	await preview_mesh_tween.finished
+	
+	if not is_instance_valid(bullet): 
+		if is_instance_valid(plane):
+			plane.queue_free()
+		return null
+		
+	get_tree().root.add_child(bullet)
+	bullet.global_position = gun_point.global_position
+	 
+	if make_parryable:
+		boss_sprite.play("stunned")
+	else:
+		boss_sprite.play("throwing_boomerang")
+	
+	bullet.can_parry = make_parryable
+	bullet.can_damage = true
+	
+	bullet.look_at(target_pos, Vector3.UP)
+	bullet.rotate_object_local(Vector3.RIGHT, deg_to_rad(60))
+	
+	if make_parryable:
+		bullet.play("boomerang_bullet_parryable")
+		
+		var parry_callable = func(parried_bullet: Node3D):
+			if parried_bullet == bullet:
+				_on_bullet_parried(bullet)
+		
+		Globals.parried.connect(parry_callable)
+		
+		bullet.tree_exited.connect(func():
+			if Globals.parried.is_connected(parry_callable):
+				Globals.parried.disconnect(parry_callable)
+		)
+	else:
+		bullet.play("boomerang_bullet")
+	
+	var audio_player = bullet.get_node("%sfx")
+	if audio_player and sfx:
+		audio_player.stream = sfx
+		audio_player.play()
+	
+	if make_parryable:
+		await get_tree().create_timer(0.25).timeout
 			
-		get_tree().root.add_child(bullet)
-		bullet.global_position = gun_point.global_position
-		bullet.can_parry = make_parryable
-		
-		bullet.look_at(target_pos, Vector3.UP)
-		bullet.rotate_object_local(Vector3.RIGHT, deg_to_rad(60))
-		
-		if make_parryable:
-			bullet.play("boomerang_bullet_parryable")
-			Globals.parried.connect(_on_bullet_parried)
-			await get_tree().create_timer(0.25).timeout
-			if not last_bullet_parried and is_instance_valid(bullet):
-				boss_sprite.play("stunned")
-		else:
-			bullet.play("boomerang_bullet")
-		
-		var audio_player = bullet.get_node("%sfx")
-		if audio_player and sfx:
-			audio_player.stream = sfx
-			audio_player.play())
-			
-	return bullet
+	return [bullet, target_pos]
 
-func _setup_boomerang_movement(bullet: Node3D, make_parryable: bool) -> void:
+func _setup_boomerang_movement(bullet: Node3D, target_pos: Vector3, make_parryable: bool) -> void:
 	if not is_instance_valid(bullet):
 		return
 		
 	var gun_point: Marker3D = %gun_point
-	var boomerang_offset = 2.5 
-	var dir_to_player = gun_point.global_position.direction_to(player.global_position)
-	var target_pos = player.global_position + (dir_to_player * boomerang_offset)
 	var end_pos = gun_point.global_position
 	
 	var plane: MeshInstance3D = null
@@ -142,15 +183,16 @@ func _setup_boomerang_movement(bullet: Node3D, make_parryable: bool) -> void:
 	position_tween.bind_node(bullet)
 	
 	bullet.set_meta("move_tween", position_tween)
-		
+	
 	position_tween.tween_property(bullet, "global_position", target_pos, 2).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 	
 	position_tween.tween_callback(func():
 		if is_instance_valid(bullet):
 			bullet.look_at(end_pos, Vector3.UP)
-			bullet.rotate_object_local(Vector3.RIGHT, deg_to_rad(60)))
+			bullet.rotate_object_local(Vector3.RIGHT, deg_to_rad(60))
+	)
 			
-	position_tween.parallel().tween_property(bullet, "global_position", end_pos, 2).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
+	position_tween.tween_property(bullet, "global_position", end_pos, 2).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
 	
 	if material:
 		position_tween.parallel().tween_property(material, "albedo_color:a", 0.0, 2).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
@@ -159,16 +201,18 @@ func _setup_boomerang_movement(bullet: Node3D, make_parryable: bool) -> void:
 		if is_instance_valid(bullet):
 			bullet.queue_free()
 		if is_instance_valid(plane):
-			plane.queue_free())
+			plane.queue_free()
+			
+		if make_parryable and boss_sprite.animation == "stunned":
+			boss_sprite.play("idle")
+	)
 
 func _on_bullet_parried(bullet: Node3D):
 	if not is_instance_valid(bullet):
 		return
 		
 	last_bullet_parried = true
-	if Globals.parried.is_connected(_on_bullet_parried):
-		Globals.parried.disconnect(_on_bullet_parried)
-		
+	
 	if bullet.has_meta("preview_plane"):
 		var plane = bullet.get_meta("preview_plane")
 		if is_instance_valid(plane):
@@ -186,10 +230,13 @@ func _on_bullet_parried(bullet: Node3D):
 	if is_instance_valid(bullet):
 		bullet.queue_free()
 		
-	boss_sprite.play("hurt")
 	_hurt(1, boss_healthbar)
-	await get_tree().create_timer(0.5).timeout
+	boss_sprite.play("hurt")
+	await get_tree().create_timer(0.75).timeout
+	
 	boss_sprite.play("idle")
+	
+	await get_tree().create_timer(0.5).timeout
 	can_attack = true
 
 func _attack_two():

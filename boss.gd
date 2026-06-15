@@ -4,11 +4,8 @@ class_name Boss
 var can_attack: bool = false
 var has_started: bool = false
 
-var health: int = 3
+var health: float = 3.0
 var player: CharacterBody3D
-
-func _start_bossfight():
-	pass
 
 func _attack_one():
 	pass
@@ -19,5 +16,6 @@ func _attack_two():
 func _attack_three():
 	pass
 
-func _hurt(damage: int, health_bar: ProgressBar):
+func _hurt(damage: float, health_bar: ProgressBar):
 	health -= damage
+	health_bar.value -= damage
