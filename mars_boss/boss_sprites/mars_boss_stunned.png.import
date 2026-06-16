@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ditjk15jr3iy0"
-path.s3tc="res://.godot/imported/mars_boss_picking_up_boomerang.png-a9456365e8aa94e6f4fa5ff7d9320526.s3tc.ctex"
+uid="uid://c52ecmmlmo63p"
+path.s3tc="res://.godot/imported/mars_boss_stunned.png-8a8537fc22d1da9f95a5bd82fd870806.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://planets/assets/mars/boss_sprites/mars_boss_picking_up_boomerang.png"
-dest_files=["res://.godot/imported/mars_boss_picking_up_boomerang.png-a9456365e8aa94e6f4fa5ff7d9320526.s3tc.ctex"]
+source_file="res://mars_boss/boss_sprites/mars_boss_stunned.png"
+dest_files=["res://.godot/imported/mars_boss_stunned.png-8a8537fc22d1da9f95a5bd82fd870806.s3tc.ctex"]
 
 [params]
 

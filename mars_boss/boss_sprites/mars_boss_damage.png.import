@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b551cdfh5l0tf"
-path.s3tc="res://.godot/imported/mars_boss_idle.png-0abe46d329abbd76c58d1f343805104a.s3tc.ctex"
+uid="uid://if5fln0vn8aj"
+path.s3tc="res://.godot/imported/mars_boss_damage.png-7a07ca3be31e781cc75e99df65c8b0a9.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://planets/assets/mars/boss_sprites/mars_boss_idle.png"
-dest_files=["res://.godot/imported/mars_boss_idle.png-0abe46d329abbd76c58d1f343805104a.s3tc.ctex"]
+source_file="res://mars_boss/boss_sprites/mars_boss_damage.png"
+dest_files=["res://.godot/imported/mars_boss_damage.png-7a07ca3be31e781cc75e99df65c8b0a9.s3tc.ctex"]
 
 [params]
 

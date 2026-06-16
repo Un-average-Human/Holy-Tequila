@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cu5ewj63dcsgs"
-path.s3tc="res://.godot/imported/mars_boss_shooting_boomerang.png-d66812074b9b9a5c75f82959f3c7b8c9.s3tc.ctex"
+uid="uid://0hmj2517lj48"
+path.s3tc="res://.godot/imported/mars_boss_shooting.png-4f11052a8f747785cacae3d2ff9d6ac2.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://planets/assets/mars/boss_sprites/mars_boss_shooting_boomerang.png"
-dest_files=["res://.godot/imported/mars_boss_shooting_boomerang.png-d66812074b9b9a5c75f82959f3c7b8c9.s3tc.ctex"]
+source_file="res://mars_boss/boss_sprites/mars_boss_shooting.png"
+dest_files=["res://.godot/imported/mars_boss_shooting.png-4f11052a8f747785cacae3d2ff9d6ac2.s3tc.ctex"]
 
 [params]
 

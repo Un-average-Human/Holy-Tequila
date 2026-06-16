@@ -1,5 +1,6 @@
 extends NPC
 
+var can_navigate: bool = false
 var can_parry: bool = false
 
 @export var nav_agent: NavigationAgent3D
@@ -21,12 +22,19 @@ func _ready() -> void:
 	charge_area.body_entered.connect(_player_in_charge_area)
 
 func _damage_player(body: Node3D):
-	if is_charging:
+	if body.is_in_group("player"):
+		if is_charging:
+			var push_dir = global_position.direction_to(body.global_position)
+			push_dir.y = 0.2
+			push_dir = push_dir.normalized()
+			body.move_and_collide(push_dir * knockback)
+			_stop_charging()
+
 		if body.is_in_group("player"):
 			body._take_damage()
 
 func _physics_process(delta: float) -> void:
-	if is_charging:
+	if is_charging and can_navigate:
 
 		velocity.x = charge_dir.x * charge_speed
 		velocity.z = charge_dir.z * charge_speed
@@ -44,7 +52,7 @@ func _physics_process(delta: float) -> void:
 	super(delta)
 
 func _player_in_charge_area(body: Node3D):
-	if body.is_in_group("player") and not is_charging:
+	if body.is_in_group("player") and not is_charging and can_navigate:
 		blackboard.set_var("can_move", false)
 		
 		print("can charge")
@@ -64,7 +72,7 @@ func _player_in_charge_area(body: Node3D):
 		
 		can_parry = true
 		
-		await get_tree().create_timer(2).timeout
+		await get_tree().create_timer(1).timeout
 		
 		is_charging = true
 

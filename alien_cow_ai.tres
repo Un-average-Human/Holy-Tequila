@@ -18,11 +18,20 @@ var/can_move/value = false
 var/can_move/hint = 0
 var/can_move/hint_string = ""
 
+[sub_resource type="BBVariant" id="BBVariant_3xwtd"]
+type = 1
+saved_value = true
+resource_name = "true"
+
+[sub_resource type="BTCheckAgentProperty" id="BTCheckAgentProperty_7dlxj"]
+property = &"can_navigate"
+value = SubResource("BBVariant_3xwtd")
+
 [sub_resource type="BTAction" id="BTAction_7dlxj"]
 script = ExtResource("1_3xwtd")
 
 [sub_resource type="BTSequence" id="BTSequence_du4l5"]
-children = [SubResource("BTAction_7dlxj")]
+children = [SubResource("BTCheckAgentProperty_7dlxj"), SubResource("BTAction_7dlxj")]
 
 [sub_resource type="BTSelector" id="BTSelector_24us4"]
 children = [SubResource("BTSequence_du4l5")]

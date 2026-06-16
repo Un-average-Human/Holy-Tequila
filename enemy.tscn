@@ -60,7 +60,7 @@ radius = 8.0
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_3yqyl"]
 height = 2.5289063
-radius = 2.0
+radius = 1.0
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_qi2p4"]
 height = 2.5289063
@@ -74,7 +74,8 @@ nav_agent = NodePath("NavigationAgent3D")
 sprite = NodePath("enemy")
 charge_area = NodePath("charge_area")
 damage_area = NodePath("damage_area")
-speed = 4.0
+knockback = 5.0
+speed = 2.0
 jump_velocity = 5.0
 spot_area = NodePath("spot_area")
 bt_player = NodePath("BTPlayer")
@@ -90,6 +91,7 @@ animation = &"alien_cow_idle"
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=832013012]
 path_desired_distance = 1.5
 target_desired_distance = 1.5
+path_max_distance = 10.01
 debug_enabled = true
 debug_use_custom = true
 

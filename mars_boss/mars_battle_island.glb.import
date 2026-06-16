@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://d32rpkkp4fr1g"
-path="res://.godot/imported/mars_battle_island.glb-f5992515a35b9d7eb943bf17bdbcf378.scn"
+path="res://.godot/imported/mars_battle_island.glb-2e7fe2445595688f64757ddef43a3897.scn"
 
 [deps]
 
-source_file="res://planets/assets/mars/mars_battle_island.glb"
-dest_files=["res://.godot/imported/mars_battle_island.glb-f5992515a35b9d7eb943bf17bdbcf378.scn"]
+source_file="res://mars_boss/mars_battle_island.glb"
+dest_files=["res://.godot/imported/mars_battle_island.glb-2e7fe2445595688f64757ddef43a3897.scn"]
 
 [params]
 

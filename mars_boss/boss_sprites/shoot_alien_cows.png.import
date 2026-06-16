@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://if5fln0vn8aj"
-path.s3tc="res://.godot/imported/mars_boss_damage.png-0ab22d3c33345f8d7c48310d469bc06e.s3tc.ctex"
+uid="uid://cpjvtkucyf2gs"
+path.s3tc="res://.godot/imported/shoot_alien_cows.png-df6fd21437e05e6185f0911fa7c208f4.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://planets/assets/mars/boss_sprites/mars_boss_damage.png"
-dest_files=["res://.godot/imported/mars_boss_damage.png-0ab22d3c33345f8d7c48310d469bc06e.s3tc.ctex"]
+source_file="res://mars_boss/boss_sprites/shoot_alien_cows.png"
+dest_files=["res://.godot/imported/shoot_alien_cows.png-df6fd21437e05e6185f0911fa7c208f4.s3tc.ctex"]
 
 [params]
 

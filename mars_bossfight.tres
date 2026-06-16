@@ -6,6 +6,11 @@ var/bossfight_started/type = 1
 var/bossfight_started/value = false
 var/bossfight_started/hint = 0
 var/bossfight_started/hint_string = ""
+var/is_attacking/name = &"is_attacking"
+var/is_attacking/type = 1
+var/is_attacking/value = false
+var/is_attacking/hint = 0
+var/is_attacking/hint_string = ""
 
 [sub_resource type="BBVariant" id="BBVariant_hdq62"]
 type = 1
@@ -60,6 +65,16 @@ resource_name = "3.0"
 property = &"health"
 value = SubResource("BBVariant_e61y8")
 
+[sub_resource type="BBVariant" id="BBVariant_xihcn"]
+type = 2
+saved_value = 8
+resource_name = "8"
+
+[sub_resource type="BBVariant" id="BBVariant_xsgl7"]
+type = 3
+saved_value = 1.0
+resource_name = "1.0"
+
 [sub_resource type="BBNode" id="BBNode_xihcn"]
 saved_value = NodePath("bossfight")
 resource_name = "bossfight"
@@ -67,11 +82,12 @@ resource_name = "bossfight"
 [sub_resource type="BTCallMethod" id="BTCallMethod_e61y8"]
 node = SubResource("BBNode_xihcn")
 method = &"_attack_one"
+args = Array[BBVariant]([SubResource("BBVariant_xihcn"), SubResource("BBVariant_xsgl7")])
 custom_name = "Calls the _attack_one() Function"
 
 [sub_resource type="BTSequence" id="BTSequence_hdq62"]
 custom_name = "Phase One"
-children = [SubResource("BTCallMethod_e61y8")]
+children = [SubResource("BTCheckAgentProperty_wfqh0"), SubResource("BTCallMethod_e61y8")]
 
 [sub_resource type="BBVariant" id="BBVariant_wfqh0"]
 type = 3
@@ -82,6 +98,11 @@ resource_name = "2.0"
 property = &"health"
 value = SubResource("BBVariant_wfqh0")
 
+[sub_resource type="BBVariant" id="BBVariant_tr07w"]
+type = 2
+saved_value = 3
+resource_name = "3"
+
 [sub_resource type="BBNode" id="BBNode_tr07w"]
 saved_value = NodePath("bossfight")
 resource_name = "bossfight"
@@ -89,7 +110,30 @@ resource_name = "bossfight"
 [sub_resource type="BTCallMethod" id="BTCallMethod_5qbo4"]
 node = SubResource("BBNode_tr07w")
 method = &"_attack_two"
+args = Array[BBVariant]([SubResource("BBVariant_tr07w")])
 custom_name = "Calls the _attack_two() Function"
+
+[sub_resource type="BBVariant" id="BBVariant_73gob"]
+type = 1
+saved_value = false
+resource_name = "<null>"
+
+[sub_resource type="BTCheckVar" id="BTCheckVar_xihcn"]
+variable = &"is_attacking"
+value = SubResource("BBVariant_73gob")
+
+[sub_resource type="BTRepeatUntilSuccess" id="BTRepeatUntilSuccess_e61y8"]
+children = [SubResource("BTCheckVar_xihcn")]
+
+[sub_resource type="BBVariant" id="BBVariant_5qbo4"]
+type = 2
+saved_value = 12
+resource_name = "12"
+
+[sub_resource type="BBVariant" id="BBVariant_3yw1b"]
+type = 3
+saved_value = 0.5
+resource_name = "0.5"
 
 [sub_resource type="BBNode" id="BBNode_3yw1b"]
 saved_value = NodePath("bossfight")
@@ -98,11 +142,12 @@ resource_name = "bossfight"
 [sub_resource type="BTCallMethod" id="BTCallMethod_ss36a"]
 node = SubResource("BBNode_3yw1b")
 method = &"_attack_one"
+args = Array[BBVariant]([SubResource("BBVariant_5qbo4"), SubResource("BBVariant_3yw1b")])
 custom_name = "Calls the _attack_one() Function"
 
 [sub_resource type="BTSequence" id="BTSequence_qwa0f"]
 custom_name = "Phase Two"
-children = [SubResource("BTCallMethod_5qbo4"), SubResource("BTCallMethod_ss36a")]
+children = [SubResource("BTCheckAgentProperty_xsgl7"), SubResource("BTCallMethod_5qbo4"), SubResource("BTRepeatUntilSuccess_e61y8"), SubResource("BTCallMethod_ss36a")]
 
 [sub_resource type="BBVariant" id="BBVariant_ciena"]
 type = 3
@@ -122,35 +167,76 @@ node = SubResource("BBNode_6n08o")
 method = &"_attack_three"
 custom_name = "Calls the _attack_three() Function"
 
-[sub_resource type="BBNode" id="BBNode_wfqh0"]
+[sub_resource type="BBVariant" id="BBVariant_6n08o"]
+type = 1
+saved_value = false
+resource_name = "<null>"
+
+[sub_resource type="BTCheckVar" id="BTCheckVar_fs5t0"]
+variable = &"is_attacking"
+value = SubResource("BBVariant_6n08o")
+
+[sub_resource type="BTRepeatUntilSuccess" id="BTRepeatUntilSuccess_4cvn3"]
+children = [SubResource("BTCheckVar_fs5t0")]
+
+[sub_resource type="BBVariant" id="BBVariant_ss36a"]
+type = 2
+saved_value = 8
+resource_name = "8"
+
+[sub_resource type="BBNode" id="BBNode_qwa0f"]
 saved_value = NodePath("bossfight")
 resource_name = "bossfight"
 
-[sub_resource type="BTCallMethod" id="BTCallMethod_xsgl7"]
-node = SubResource("BBNode_wfqh0")
+[sub_resource type="BTCallMethod" id="BTCallMethod_ciena"]
+node = SubResource("BBNode_qwa0f")
 method = &"_attack_two"
+args = Array[BBVariant]([SubResource("BBVariant_ss36a")])
 custom_name = "Calls the _attack_two() Function"
 
-[sub_resource type="BBNode" id="BBNode_5qbo4"]
+[sub_resource type="BBVariant" id="BBVariant_wbs6f"]
+type = 1
+saved_value = false
+resource_name = "<null>"
+
+[sub_resource type="BTCheckVar" id="BTCheckVar_xkhm8"]
+variable = &"is_attacking"
+value = SubResource("BBVariant_wbs6f")
+
+[sub_resource type="BTRepeatUntilSuccess" id="BTRepeatUntilSuccess_7t3t3"]
+children = [SubResource("BTCheckVar_xkhm8")]
+
+[sub_resource type="BBVariant" id="BBVariant_xdv6x"]
+type = 2
+saved_value = 18
+resource_name = "18"
+
+[sub_resource type="BBVariant" id="BBVariant_fs5t0"]
+type = 3
+saved_value = 0.25
+resource_name = "0.25"
+
+[sub_resource type="BBNode" id="BBNode_4cvn3"]
 saved_value = NodePath("bossfight")
 resource_name = "bossfight"
 
-[sub_resource type="BTCallMethod" id="BTCallMethod_3yw1b"]
-node = SubResource("BBNode_5qbo4")
+[sub_resource type="BTCallMethod" id="BTCallMethod_wbs6f"]
+node = SubResource("BBNode_4cvn3")
 method = &"_attack_one"
+args = Array[BBVariant]([SubResource("BBVariant_xdv6x"), SubResource("BBVariant_fs5t0")])
 custom_name = "Calls the _attack_one() Function"
 
 [sub_resource type="BTSequence" id="BTSequence_4cvn3"]
 custom_name = "Phase Three"
-children = [SubResource("BTCallMethod_fs5t0"), SubResource("BTCallMethod_xsgl7"), SubResource("BTCallMethod_3yw1b")]
+children = [SubResource("BTCheckAgentProperty_xdv6x"), SubResource("BTCallMethod_fs5t0"), SubResource("BTRepeatUntilSuccess_4cvn3"), SubResource("BTCallMethod_ciena"), SubResource("BTRepeatUntilSuccess_7t3t3"), SubResource("BTCallMethod_wbs6f")]
 
-[sub_resource type="BTRandomSelector" id="BTRandomSelector_xsgl7"]
-custom_name = "Pick Random Attack"
-children = [SubResource("BTCheckAgentProperty_wfqh0"), SubResource("BTSequence_hdq62"), SubResource("BTCheckAgentProperty_xsgl7"), SubResource("BTSequence_qwa0f"), SubResource("BTCheckAgentProperty_xdv6x"), SubResource("BTSequence_4cvn3")]
+[sub_resource type="BTSelector" id="BTSelector_hdq62"]
+custom_name = "Phases"
+children = [SubResource("BTSequence_hdq62"), SubResource("BTSequence_qwa0f"), SubResource("BTSequence_4cvn3")]
 
 [sub_resource type="BTSequence" id="BTSequence_tr07w"]
 custom_name = "Pick Attack"
-children = [SubResource("BTCheckAgentProperty_73gob"), SubResource("BTWait_hdq62"), SubResource("BTPlayAnimation_xihcn"), SubResource("BTAwaitAnimation_wfqh0"), SubResource("BTWait_73gob"), SubResource("BTPlayAnimation_tr07w"), SubResource("BTWait_xihcn"), SubResource("BTRandomSelector_xsgl7")]
+children = [SubResource("BTCheckAgentProperty_73gob"), SubResource("BTWait_hdq62"), SubResource("BTPlayAnimation_xihcn"), SubResource("BTAwaitAnimation_wfqh0"), SubResource("BTWait_73gob"), SubResource("BTPlayAnimation_tr07w"), SubResource("BTWait_xihcn"), SubResource("BTSelector_hdq62")]
 
 [sub_resource type="BTSelector" id="BTSelector_tr07w"]
 children = [SubResource("BTSequence_tr07w")]
