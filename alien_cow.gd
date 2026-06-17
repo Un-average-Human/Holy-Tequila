@@ -55,7 +55,6 @@ func _player_in_charge_area(body: Node3D):
 	if body.is_in_group("player") and not is_charging and can_navigate:
 		blackboard.set_var("can_move", false)
 		
-		print("can charge")
 		velocity = Vector3.ZERO
 		sprite.play("alien_cow_attack")
 		
@@ -94,19 +93,20 @@ func _stop_charging():
 
 func _parried():
 	sprite.billboard = BaseMaterial3D.BILLBOARD_DISABLED
-	look_at(target.global_position)
+	if target:
+		look_at(target.global_position)
 	
 	var tween = create_tween().set_parallel()
 	var rotation_tween = create_tween().set_loops().set_parallel()
 	
 	var launch_height: float = 35.0
 	var horizontal_blast: float = 50.0
-	var target_sky_position = global_position + Vector3(0, launch_height, 0) - (charge_dir * horizontal_blast)
+	var target_height_pos = global_position + Vector3(0, launch_height, 0) - (charge_dir * horizontal_blast)
 	
 	rotation_tween.tween_property(sprite, "rotation:z", deg_to_rad(360), 0.2).as_relative()
 	rotation_tween.tween_property(sprite, "rotation:x", deg_to_rad(360), 0.2).as_relative()
 	
-	tween.tween_property(self, "global_position", target_sky_position, 1.5)\
+	tween.tween_property(self, "global_position", target_height_pos, 1.5)\
 		.set_trans(Tween.TRANS_QUAD)\
 		.set_ease(Tween.EASE_OUT)
 	

@@ -169,6 +169,11 @@ func _on_bullet_parried(bullet: Node3D):
 	boss._hurt(1, boss.boss_healthbar)
 	boss.boss_sprite.play("hurt")
 	await get_tree().create_timer(0.75).timeout
-	boss.boss_sprite.play("idle")
+	if boss.health == 1:
+		boss.boss_sprite.play("angry_last_phase")
+		await get_tree().create_timer(1).timeout
+		boss.boss_sprite.play("idle_last_phase")
+	else:
+		boss.boss_sprite.play("idle")
 	await get_tree().create_timer(0.5).timeout
 	boss.can_attack = true

@@ -81,6 +81,11 @@ animations = [{
 "name": &"boomerang_bullet_parryable",
 "speed": 5.0
 }, {
+"frames": [],
+"loop": true,
+"name": &"bowling_ball",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_2b2rl")
@@ -103,6 +108,11 @@ animations = [{
 "name": &"martian_bullet",
 "speed": 3.0
 }, {
+"frames": [],
+"loop": true,
+"name": &"pencil",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_t2bd8")
@@ -112,6 +122,11 @@ animations = [{
 }],
 "loop": true,
 "name": &"rail_bullet",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"wrench",
 "speed": 5.0
 }, {
 "frames": [{
@@ -138,7 +153,7 @@ transform = Transform3D(1, 0, 0, 0, 1, -5.9604645e-08, 0, 5.9604645e-08, 1, 0, 0
 pixel_size = 0.015
 texture_filter = 0
 sprite_frames = SubResource("SpriteFrames_2b2rl")
-animation = &"yeet"
+animation = &"pencil"
 script = ExtResource("5_b7duk")
 
 [node name="sfx" type="AudioStreamPlayer3D" parent="." unique_id=386763908]

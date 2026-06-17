@@ -1,6 +1,7 @@
 [gd_scene format=4 uid="uid://dh03uu603qdbw"]
 
 [ext_resource type="Script" uid="uid://c28ae2hrpjea4" path="res://planets/scripts/mars/mars.gd" id="1_jo3wj"]
+[ext_resource type="Texture2D" uid="uid://bgw7lwxqggs1l" path="res://mars_boss/boss_sprites/mars_boss_angry.png" id="3_jbvca"]
 [ext_resource type="Texture2D" uid="uid://if5fln0vn8aj" path="res://mars_boss/boss_sprites/mars_boss_damage.png" id="3_pyjlk"]
 [ext_resource type="Script" uid="uid://dgx4gp3nm4aah" path="res://mars_boss/behaviour/bossfight.gd" id="3_s0wj5"]
 [ext_resource type="Texture2D" uid="uid://b551cdfh5l0tf" path="res://mars_boss/boss_sprites/mars_boss_idle.png" id="3_sybis"]
@@ -10,8 +11,10 @@
 [ext_resource type="Texture2D" uid="uid://cpjvtkucyf2gs" path="res://mars_boss/boss_sprites/shoot_alien_cows.png" id="6_ffogu"]
 [ext_resource type="Texture2D" uid="uid://c52ecmmlmo63p" path="res://mars_boss/boss_sprites/mars_boss_stunned.png" id="6_i140t"]
 [ext_resource type="AudioStream" uid="uid://tbnxti3fqbar" path="res://sfx/interaction/whoosh.mp3" id="7_5h2xo"]
+[ext_resource type="Texture2D" uid="uid://deahkwal4ics8" path="res://mars_boss/boss_sprites/picking_up_projectile.png" id="7_y4ma0"]
 [ext_resource type="Texture2D" uid="uid://cu5ewj63dcsgs" path="res://mars_boss/boss_sprites/mars_boss_shooting_boomerang.png" id="8_ffogu"]
 [ext_resource type="BehaviorTree" uid="uid://byx5sxk0ounxk" path="res://mars_bossfight.tres" id="10_pyjlk"]
+[ext_resource type="Texture2D" uid="uid://ciywux4qdymio" path="res://mars_boss/boss_sprites/throwing_projectile.png" id="12_cstp3"]
 [ext_resource type="Script" uid="uid://bjt363mwphu0o" path="res://mars_boss/behaviour/attack_one.gd" id="13_2fwn2"]
 [ext_resource type="Script" uid="uid://sc50i2ixigue" path="res://mars_boss/behaviour/attack_two.gd" id="14_jbvca"]
 [ext_resource type="Script" uid="uid://b1tsj0rvmkbx4" path="res://mars_boss/behaviour/attack_three.gd" id="15_3rwun"]
@@ -46,6 +49,14 @@ font_size = 75
 outline_size = 8
 outline_color = Color(0, 0, 0, 1)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_3dlkd"]
+atlas = ExtResource("3_jbvca")
+region = Rect2(0, 0, 1080, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_orntb"]
+atlas = ExtResource("3_jbvca")
+region = Rect2(1080, 0, 1080, 1080)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_ffogu"]
 atlas = ExtResource("3_pyjlk")
 region = Rect2(0, 0, 1080, 1080)
@@ -68,6 +79,14 @@ region = Rect2(0, 0, 1080, 1080)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3rwun"]
 atlas = ExtResource("5_i140t")
+region = Rect2(1080, 0, 1080, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yiphd"]
+atlas = ExtResource("7_y4ma0")
+region = Rect2(0, 0, 1080, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i4h32"]
+atlas = ExtResource("7_y4ma0")
 region = Rect2(1080, 0, 1080, 1080)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gyhal"]
@@ -102,8 +121,27 @@ region = Rect2(0, 0, 1080, 1080)
 atlas = ExtResource("8_ffogu")
 region = Rect2(1080, 0, 1080, 1080)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_ljt03"]
+atlas = ExtResource("12_cstp3")
+region = Rect2(0, 0, 1080, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xwt4e"]
+atlas = ExtResource("12_cstp3")
+region = Rect2(1080, 0, 1080, 1080)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_4icgy"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3dlkd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_orntb")
+}],
+"loop": true,
+"name": &"angry_last_phase",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ffogu")
@@ -135,6 +173,17 @@ animations = [{
 }],
 "loop": true,
 "name": &"picking_up_boomerang",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yiphd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i4h32")
+}],
+"loop": true,
+"name": &"picking_up_projectiles",
 "speed": 5.0
 }, {
 "frames": [{
@@ -179,6 +228,17 @@ animations = [{
 }],
 "loop": true,
 "name": &"throwing_boomerang",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ljt03")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xwt4e")
+}],
+"loop": true,
+"name": &"throwing_projectile",
 "speed": 5.0
 }]
 
@@ -487,8 +547,9 @@ pixel_size = 0.03
 billboard = 2
 texture_filter = 0
 sprite_frames = SubResource("SpriteFrames_4icgy")
-animation = &"shoot_alien_cow"
+animation = &"throwing_projectile"
 autoplay = "idle"
+frame = 1
 
 [node name="boss_animation" type="AnimationPlayer" parent="bossfight/boss" unique_id=418906785]
 unique_name_in_owner = true
@@ -552,6 +613,14 @@ script = ExtResource("14_jbvca")
 [node name="attack_three" type="Node" parent="bossfight" unique_id=817101289]
 unique_name_in_owner = true
 script = ExtResource("15_3rwun")
+
+[node name="right_hand" type="Marker3D" parent="bossfight/attack_three" unique_id=19984565]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.460022, -41.882095, 0)
+
+[node name="left_hand" type="Marker3D" parent="bossfight/attack_three" unique_id=592246334]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.236311, -41.537003, 0)
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=1546936284]
 navigation_mesh = SubResource("NavigationMesh_b464i")
