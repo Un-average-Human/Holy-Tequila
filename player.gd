@@ -7,18 +7,20 @@ var heart_list: Array
 var current_speed: float = 5.0
 var jump_force: float = 4.5
 
-@onready var cam_pivot: Node3D = %cam_pivot
+@export var cam_pivot: Node3D
 var mouse_sens: float = 0.005
-@onready var player_cam: Camera3D = %player_cam
+@export var player_cam: Camera3D
 
 var in_bossfight: bool = false
 
-@onready var parry_area: Area3D = $parry_area
+@export var parry_area: Area3D
 var is_parrying: bool = false
 const PARRY = preload("uid://cquk2o6tbfumc")
 
-@onready var audio: AudioStreamPlayer = %audio
+@export var audio: AudioStreamPlayer
 var yeet_sprite_scene = preload("uid://dwsikl4kkdfi3")
+
+@export var menu: Control
 
 func _ready() -> void:
 	parry_area.area_entered.connect(_parry_detector)
@@ -36,12 +38,17 @@ func _input(event: InputEvent) -> void:
 
 
 		
-	if Input.is_action_just_pressed("ESC"):
+	if Input.is_action_just_pressed("G"):
 		match Input.mouse_mode:
 			Input.MOUSE_MODE_CAPTURED:
 				Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 			Input.MOUSE_MODE_VISIBLE:
 				Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	
+	if Input.is_action_just_pressed("ESC"):
+		if menu.visible == false:
+			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+			menu._menu_handler(true)
 	
 	if Input.is_action_just_pressed("F"):
 		_start_parry_window()
@@ -74,6 +81,10 @@ func _update_hearts():
 		heart_list[heart].visible = heart < health
 	if health == 1:
 		heart_container.get_child(0).get_child(0).play("pumping")
+	if health == 0:
+		queue_free()
+		SignalBus.player_died.emit()
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 #start parry window
 func _start_parry_window():
@@ -118,4 +129,3 @@ func _parry(bullet: Node3D):
 	audio.play()
 	is_parrying = false
 	bullet._parried()
-	

@@ -4,7 +4,9 @@
 [ext_resource type="Texture2D" uid="uid://7krcx658l6x4" path="res://player.png" id="2_hqtel"]
 [ext_resource type="Texture2D" uid="uid://dha7gw82f6qfq" path="res://heart_idle.png" id="2_onrkg"]
 [ext_resource type="Texture2D" uid="uid://bfqx1j8kjgxa5" path="res://heart_pumping.png" id="3_i3pqv"]
+[ext_resource type="Script" uid="uid://bvq6hhe6vc4xo" path="res://player_menu.gd" id="5_1jxqw"]
 [ext_resource type="AudioStream" uid="uid://cquk2o6tbfumc" path="res://sfx/interaction/parry.mp3" id="5_sweqy"]
+[ext_resource type="FontFile" uid="uid://dj858wkygbdbc" path="res://lowbudget.ttf" id="6_dw050"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_onrkg"]
 
@@ -71,14 +73,23 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="LabelSettings" id="LabelSettings_b26j0"]
+font = ExtResource("6_dw050")
+font_size = 108
+
 [sub_resource type="SphereShape3D" id="SphereShape3D_i3pqv"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_i3pqv"]
 height = 5.0
 radius = 2.5
 
-[node name="player" type="CharacterBody3D" unique_id=1185616285 groups=["player"]]
+[node name="player" type="CharacterBody3D" unique_id=1185616285 node_paths=PackedStringArray("cam_pivot", "player_cam", "parry_area", "audio", "menu") groups=["player"]]
 script = ExtResource("1_4flbx")
+cam_pivot = NodePath("cam_pivot")
+player_cam = NodePath("cam_pivot/SpringArm3D/player_cam")
+parry_area = NodePath("parry_area")
+audio = NodePath("audio")
+menu = NodePath("CanvasLayer/menus")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2115076140]
 shape = SubResource("CapsuleShape3D_onrkg")
@@ -87,6 +98,7 @@ shape = SubResource("CapsuleShape3D_onrkg")
 pixel_size = 0.00185
 billboard = 2
 texture_filter = 0
+render_priority = 1
 sprite_frames = SubResource("SpriteFrames_b26j0")
 animation = &"idle"
 autoplay = "idle"
@@ -135,6 +147,84 @@ sprite_frames = SubResource("SpriteFrames_sweqy")
 animation = &"pumping"
 centered = false
 
+[node name="menus" type="Control" parent="CanvasLayer" unique_id=1221877459 node_paths=PackedStringArray("resume_btn", "settings_btn", "return_to_menu_btn", "quit_btn")]
+process_mode = 3
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("5_1jxqw")
+resume_btn = NodePath("base_menu/VBoxContainer/resume_btn")
+settings_btn = NodePath("base_menu/VBoxContainer/settings_btn")
+return_to_menu_btn = NodePath("base_menu/VBoxContainer/return_to_menu_btn")
+quit_btn = NodePath("base_menu/VBoxContainer/quit_btn")
+metadata/_edit_use_anchors_ = true
+
+[node name="base_menu" type="Control" parent="CanvasLayer/menus" unique_id=1683858886]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Panel" type="Panel" parent="CanvasLayer/menus/base_menu" unique_id=1644119175]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/menus/base_menu" unique_id=2023656874]
+layout_mode = 0
+anchor_left = 0.7725694
+anchor_top = 0.5339506
+anchor_right = 0.9809028
+anchor_bottom = 0.96803653
+metadata/_edit_use_anchors_ = true
+
+[node name="resume_btn" type="Button" parent="CanvasLayer/menus/base_menu/VBoxContainer" unique_id=1139338188]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Resume"
+
+[node name="settings_btn" type="Button" parent="CanvasLayer/menus/base_menu/VBoxContainer" unique_id=618041196]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Settings"
+
+[node name="return_to_menu_btn" type="Button" parent="CanvasLayer/menus/base_menu/VBoxContainer" unique_id=1360249776]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Return to Menu"
+
+[node name="quit_btn" type="Button" parent="CanvasLayer/menus/base_menu/VBoxContainer" unique_id=1757050539]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Quit"
+
+[node name="Label" type="Label" parent="CanvasLayer/menus/base_menu" unique_id=1366479137]
+layout_mode = 0
+anchor_left = 0.7725694
+anchor_top = 0.07716049
+anchor_right = 0.9809028
+anchor_bottom = 0.24537037
+text = "PAUSED"
+label_settings = SubResource("LabelSettings_b26j0")
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="settings" type="Control" parent="CanvasLayer/menus" unique_id=559157259]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
 [node name="hand" type="Marker3D" parent="." unique_id=886960652]
 unique_name_in_owner = true
 transform = Transform3D(-4.304732e-08, 0.17364815, -0.9848076, 7.590406e-09, 0.9848077, 0.17364816, 1.0000001, 0, -4.3711392e-08, 0.8, 0.099999964, -0.8000001)
@@ -161,3 +251,4 @@ shape = SubResource("CylinderShape3D_i3pqv")
 [node name="audio" type="AudioStreamPlayer" parent="." unique_id=899686412]
 unique_name_in_owner = true
 stream = ExtResource("5_sweqy")
+bus = &"SFX"

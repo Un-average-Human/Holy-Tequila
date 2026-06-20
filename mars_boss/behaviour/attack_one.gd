@@ -9,7 +9,6 @@ func execute(max_bullets: int, delay: float) -> void:
 	if boss.blackboard:
 		boss.blackboard.set_var("is_attacking", true)
 	
-	const BOOMERANG_WHOOSH = preload("uid://ccgwbqeyfist4")
 	boss.can_attack = false
 	var current_bullets: int = 0
 	boss.shot_delay = delay
@@ -18,7 +17,7 @@ func execute(max_bullets: int, delay: float) -> void:
 	while current_bullets < max_bullets:
 		current_bullets += 1
 		
-		var spawn_data = await _spawn_boomerang(BOOMERANG_WHOOSH, false)
+		var spawn_data = await _spawn_boomerang(boss.BOOMERANG_WHOOSH, false)
 		if spawn_data and spawn_data[0]:
 			_setup_boomerang_movement(spawn_data[0], spawn_data[1], false)
 		
@@ -28,7 +27,7 @@ func execute(max_bullets: int, delay: float) -> void:
 		boss.boss_sprite.play("shooting")
 		await get_tree().create_timer(4).timeout
 		
-		var parry_spawn_data = await _spawn_boomerang(BOOMERANG_WHOOSH, true)
+		var parry_spawn_data = await _spawn_boomerang(boss.BOOMERANG_WHOOSH, true)
 		if parry_spawn_data and parry_spawn_data[0]:
 			_setup_boomerang_movement(parry_spawn_data[0], parry_spawn_data[1], true)
 			await parry_spawn_data[0].tree_exited
@@ -49,7 +48,7 @@ func _spawn_boomerang(sfx: AudioStream, make_parryable: bool):
 	plane_mesh.size = Vector2(1.5, 1)
 	plane_mesh.center_offset = Vector3(0, 0, -0.5)
 	plane.mesh = plane_mesh
-	get_tree().root.add_child(plane)
+	get_tree().current_scene.add_child(plane)
 	
 	var material = StandardMaterial3D.new()
 	material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
@@ -84,6 +83,8 @@ func _spawn_boomerang(sfx: AudioStream, make_parryable: bool):
 		return null
 		
 	get_tree().root.add_child(bullet)
+	bullet.pixel_size = 0.015
+	bullet.billboard = BaseMaterial3D.BILLBOARD_DISABLED
 	bullet.global_position = gun_point.global_position
 	 
 	if make_parryable:
@@ -98,11 +99,13 @@ func _spawn_boomerang(sfx: AudioStream, make_parryable: bool):
 	
 	if make_parryable:
 		bullet.play("boomerang_bullet_parryable")
+		boss.audio.stream = boss.PLASMA
+		boss.audio.play()
 		var parry_callable = func(parried_bullet: Node3D):
 			if parried_bullet == bullet: _on_bullet_parried(bullet)
-		Globals.parried.connect(parry_callable)
+		SignalBus.parried.connect(parry_callable)
 		bullet.tree_exited.connect(func():
-			if Globals.parried.is_connected(parry_callable): Globals.parried.disconnect(parry_callable)
+			if SignalBus.parried.is_connected(parry_callable): SignalBus.parried.disconnect(parry_callable)
 		)
 	else:
 		bullet.play("boomerang_bullet")

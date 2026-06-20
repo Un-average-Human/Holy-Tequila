@@ -18,114 +18,172 @@
 [ext_resource type="Texture2D" uid="uid://biv0me6ul2vw6" path="res://planets/buttons/brainrot/brainrot_planet.png" id="8_2pgkm"]
 [ext_resource type="Texture2D" uid="uid://d00lbdbkau5nt" path="res://planets/buttons/brainrot/brainrot_planet_disabled.png" id="9_ov3og"]
 [ext_resource type="AudioStream" uid="uid://cyvupt6pdvih2" path="res://sfx/interaction/button_hover_sfx.mp3" id="14_snhsa"]
+[ext_resource type="FontFile" uid="uid://dj858wkygbdbc" path="res://lowbudget.ttf" id="19_4re1r"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_cfd4q"]
 load_path = "res://.godot/imported/mars.png-cf81b00ddd90c24b84075d51959a00bf.ctex"
 
-[node name="Node2D" type="Node2D" unique_id=2012523217]
-script = ExtResource("1_841gj")
+[sub_resource type="LabelSettings" id="LabelSettings_hpjpr"]
+font = ExtResource("19_4re1r")
+font_size = 50
+outline_size = 3
 
-[node name="planets" type="Control" parent="." unique_id=35887227]
-unique_name_in_owner = true
+[node name="Node2D" type="Control" unique_id=829474174]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_841gj")
+metadata/_edit_use_anchors_ = true
+
+[node name="planets" type="Control" parent="." unique_id=35887227]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
 
 [node name="mars" type="TextureButton" parent="planets" unique_id=1888972080]
+texture_filter = 1
 layout_mode = 0
-offset_left = 42.0
-offset_top = 428.0
-offset_right = 192.0
-offset_bottom = 578.0
+anchor_left = 0.036458332
+anchor_top = 0.66049385
+anchor_right = 0.16666667
+anchor_bottom = 0.8919753
 texture_normal = SubResource("CompressedTexture2D_cfd4q")
 texture_disabled = ExtResource("2_841gj")
 ignore_texture_size = true
+metadata/_edit_use_anchors_ = true
 
 [node name="burger" type="TextureButton" parent="planets" unique_id=1878684180]
+texture_filter = 1
 layout_mode = 0
-offset_left = 88.0
-offset_top = 219.0
-offset_right = 238.0
-offset_bottom = 369.0
+anchor_left = 0.07638889
+anchor_top = 0.33796296
+anchor_right = 0.20659722
+anchor_bottom = 0.5694444
+offset_bottom = 3.0517578e-05
+disabled = true
 texture_normal = ExtResource("3_v8y7f")
 texture_disabled = ExtResource("4_iu8j5")
+metadata/_edit_use_anchors_ = true
 
 [node name="mars2" type="TextureButton" parent="planets" unique_id=1977889239]
+texture_filter = 1
 layout_mode = 0
-offset_left = 971.0
-offset_top = 428.0
-offset_right = 1121.0
-offset_bottom = 578.0
+anchor_left = 0.8428819
+anchor_top = 0.66049385
+anchor_right = 0.9730903
+anchor_bottom = 0.8919753
 disabled = true
 texture_normal = ExtResource("1_1jjcf")
 texture_pressed = ExtResource("1_1jjcf")
 texture_hover = ExtResource("1_1jjcf")
 texture_disabled = ExtResource("2_841gj")
 ignore_texture_size = true
+metadata/_edit_use_anchors_ = true
 
 [node name="chezburger_planet2" type="TextureButton" parent="planets" unique_id=1202727575]
+texture_filter = 1
 layout_mode = 0
-offset_left = 929.0
-offset_top = 219.0
-offset_right = 1079.0
-offset_bottom = 369.0
+anchor_left = 0.8064236
+anchor_top = 0.33796296
+anchor_right = 0.9366319
+anchor_bottom = 0.5694444
+offset_bottom = 3.0517578e-05
+disabled = true
 texture_normal = ExtResource("6_df3fn")
 texture_disabled = ExtResource("7_4re1r")
 ignore_texture_size = true
+metadata/_edit_use_anchors_ = true
 
 [node name="mega_market" type="TextureButton" parent="planets" unique_id=815547783]
+texture_filter = 1
 layout_mode = 0
-offset_left = 826.0
-offset_top = 51.0
-offset_right = 976.0
-offset_bottom = 201.0
+anchor_left = 0.7170139
+anchor_top = 0.0787037
+anchor_right = 0.8472222
+anchor_bottom = 0.3101852
+disabled = true
 texture_normal = ExtResource("6_88ppc")
 texture_disabled = ExtResource("7_wpn71")
 ignore_texture_size = true
+metadata/_edit_use_anchors_ = true
 
 [node name="water" type="TextureButton" parent="planets" unique_id=1433159796]
+texture_filter = 1
 layout_mode = 0
-offset_left = 614.0
-offset_top = 20.0
-offset_right = 764.0
-offset_bottom = 170.0
+anchor_left = 0.5329861
+anchor_top = 0.030864198
+anchor_right = 0.6631944
+anchor_bottom = 0.26234567
+disabled = true
 texture_normal = ExtResource("6_cfd4q")
 texture_disabled = ExtResource("7_snhsa")
 ignore_texture_size = true
+metadata/_edit_use_anchors_ = true
 
 [node name="pirate" type="TextureButton" parent="planets" unique_id=1063286949]
+texture_filter = 1
 layout_mode = 0
-offset_left = 200.0
-offset_top = 51.0
-offset_right = 350.0
-offset_bottom = 201.0
+anchor_left = 0.1736111
+anchor_top = 0.0787037
+anchor_right = 0.30381945
+anchor_bottom = 0.3101852
+disabled = true
 texture_normal = ExtResource("6_iu8j5")
 texture_disabled = ExtResource("7_c0xir")
 ignore_texture_size = true
+metadata/_edit_use_anchors_ = true
 
 [node name="brainrot" type="TextureButton" parent="planets" unique_id=707379421]
+texture_filter = 1
 layout_mode = 0
-offset_left = 417.0
-offset_top = 10.0
-offset_right = 567.0
-offset_bottom = 160.0
+anchor_left = 0.36197916
+anchor_top = 0.015432099
+anchor_right = 0.4921875
+anchor_bottom = 0.24691358
+disabled = true
 texture_normal = ExtResource("8_2pgkm")
 texture_disabled = ExtResource("9_ov3og")
 ignore_texture_size = true
+metadata/_edit_use_anchors_ = true
 
 [node name="tequila_world" type="TextureButton" parent="planets" unique_id=718832945]
-layout_mode = 0
-offset_left = 488.0
-offset_top = 364.0
-offset_right = 638.0
-offset_bottom = 539.0
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.4236111
+anchor_top = 0.5617284
+anchor_right = 0.5538194
+anchor_bottom = 0.83179015
+disabled = true
 texture_normal = ExtResource("5_c0xir")
 texture_disabled = ExtResource("6_2pgkm")
 stretch_mode = 0
+metadata/_edit_use_anchors_ = true
 
 [node name="interactive_noises" type="AudioStreamPlayer" parent="." unique_id=1531038019]
 unique_name_in_owner = true
 stream = ExtResource("14_snhsa")
+bus = &"SFX"
+
+[node name="Label" type="Label" parent="." unique_id=1883111888]
+layout_mode = 0
+anchor_left = 0.16927083
+anchor_top = 0.8287037
+anchor_right = 0.8289931
+anchor_bottom = 0.9907407
+text = "Only mars is available right now. I still have to complete the other planets and it'll take a while"
+label_settings = SubResource("LabelSettings_hpjpr")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+metadata/_edit_use_anchors_ = true

@@ -5,9 +5,15 @@
 [ext_resource type="Texture2D" uid="uid://cri5rskeg5xqe" path="res://bullet/explosion.png" id="1_v8qja"]
 [ext_resource type="Texture2D" uid="uid://leko6a3b53wh" path="res://bullet/boomerang_bullet_parryable.png" id="2_h0pa3"]
 [ext_resource type="Texture2D" uid="uid://55kmks0d6ba1" path="res://bullet/rail_bullet.png" id="3_2b2rl"]
+[ext_resource type="Texture2D" uid="uid://vocbm77ljj8" path="res://bullet/bowling_ball.png" id="3_gofb6"]
 [ext_resource type="Script" uid="uid://bvw5ohtlf753k" path="res://bullet.gd" id="5_b7duk"]
+[ext_resource type="Texture2D" uid="uid://ctus6vif0cccr" path="res://bullet/mona_lisa.png" id="6_2eep6"]
 [ext_resource type="Texture2D" uid="uid://dfp6o2tgbdbvm" path="res://bullet/yeet.png" id="6_6ol1o"]
 [ext_resource type="AudioStream" uid="uid://ccgwbqeyfist4" path="res://sfx/interaction/boomerang_whoosh.mp3" id="6_t2bd8"]
+[ext_resource type="Texture2D" uid="uid://chh4chrcixr6l" path="res://bullet/nacho_jar.png" id="7_qd0d2"]
+[ext_resource type="Texture2D" uid="uid://gtyd6a70uf33" path="res://bullet/radio.png" id="8_4r2mu"]
+[ext_resource type="Texture2D" uid="uid://dxqilihvwuxo4" path="res://bullet/tuba.png" id="9_4r2mu"]
+[ext_resource type="Texture2D" uid="uid://l7jvtkaev2om" path="res://bullet/wrench.png" id="11_o7457"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6ol1o"]
 atlas = ExtResource("1_2b2rl")
@@ -25,6 +31,14 @@ region = Rect2(0, 0, 150, 150)
 atlas = ExtResource("2_h0pa3")
 region = Rect2(150, 0, 150, 150)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_4r2mu"]
+atlas = ExtResource("3_gofb6")
+region = Rect2(0, 0, 1080, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o7457"]
+atlas = ExtResource("3_gofb6")
+region = Rect2(1080, 0, 1080, 1080)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_2b2rl"]
 atlas = ExtResource("1_v8qja")
 region = Rect2(0, 0, 1080, 1080)
@@ -41,6 +55,30 @@ region = Rect2(0, 0, 150, 150)
 atlas = ExtResource("1_v7oki")
 region = Rect2(150, 0, 150, 150)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_ugsrq"]
+atlas = ExtResource("6_2eep6")
+region = Rect2(0, 0, 1080, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_51pxt"]
+atlas = ExtResource("6_2eep6")
+region = Rect2(1080, 0, 1080, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_05w2j"]
+atlas = ExtResource("7_qd0d2")
+region = Rect2(0, 0, 1080, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ck3xx"]
+atlas = ExtResource("7_qd0d2")
+region = Rect2(1080, 0, 1080, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_djjri"]
+atlas = ExtResource("8_4r2mu")
+region = Rect2(0, 0, 1080, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c3f7j"]
+atlas = ExtResource("8_4r2mu")
+region = Rect2(1080, 0, 1080, 1080)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_t2bd8"]
 atlas = ExtResource("3_2b2rl")
 region = Rect2(0, 0, 150, 150)
@@ -48,6 +86,22 @@ region = Rect2(0, 0, 150, 150)
 [sub_resource type="AtlasTexture" id="AtlasTexture_h0pa3"]
 atlas = ExtResource("3_2b2rl")
 region = Rect2(150, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5kas7"]
+atlas = ExtResource("9_4r2mu")
+region = Rect2(0, 0, 1080, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_er210"]
+atlas = ExtResource("9_4r2mu")
+region = Rect2(1080, 0, 1080, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rkqai"]
+atlas = ExtResource("11_o7457")
+region = Rect2(0, 0, 1080, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_loama"]
+atlas = ExtResource("11_o7457")
+region = Rect2(1080, 0, 1080, 1080)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2eep6"]
 atlas = ExtResource("6_6ol1o")
@@ -81,7 +135,13 @@ animations = [{
 "name": &"boomerang_bullet_parryable",
 "speed": 5.0
 }, {
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4r2mu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o7457")
+}],
 "loop": true,
 "name": &"bowling_ball",
 "speed": 5.0
@@ -108,10 +168,38 @@ animations = [{
 "name": &"martian_bullet",
 "speed": 3.0
 }, {
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ugsrq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_51pxt")
+}],
 "loop": true,
-"name": &"pencil",
-"speed": 5.0
+"name": &"mona_lisa",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_05w2j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ck3xx")
+}],
+"loop": true,
+"name": &"nacho_jar",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_djjri")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c3f7j")
+}],
+"loop": true,
+"name": &"radio",
+"speed": 3.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -121,10 +209,27 @@ animations = [{
 "texture": SubResource("AtlasTexture_h0pa3")
 }],
 "loop": true,
-"name": &"rail_bullet",
+"name": &"rail",
 "speed": 5.0
 }, {
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5kas7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_er210")
+}],
+"loop": true,
+"name": &"tuba",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rkqai")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_loama")
+}],
 "loop": true,
 "name": &"wrench",
 "speed": 5.0
@@ -147,14 +252,18 @@ radius = 0.75
 [sub_resource type="SphereShape3D" id="SphereShape3D_t2bd8"]
 radius = 1.2
 
-[node name="bullet" type="AnimatedSprite3D" unique_id=2046011295]
+[node name="bullet" type="AnimatedSprite3D" unique_id=2046011295 node_paths=PackedStringArray("damage_collision", "parry_collision") groups=["projectile"]]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, -5.9604645e-08, 0, 5.9604645e-08, 1, 0, 0, 0)
-pixel_size = 0.015
+pixel_size = 0.0025
+billboard = 2
 texture_filter = 0
+render_priority = 1
 sprite_frames = SubResource("SpriteFrames_2b2rl")
-animation = &"pencil"
+animation = &"wrench"
 script = ExtResource("5_b7duk")
+damage_collision = NodePath("Area3D/CollisionShape3D")
+parry_collision = NodePath("parry_detector/CollisionShape3D")
 
 [node name="sfx" type="AudioStreamPlayer3D" parent="." unique_id=386763908]
 unique_name_in_owner = true

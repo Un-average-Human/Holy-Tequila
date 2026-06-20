@@ -35,6 +35,8 @@ func execute(enemy_amount: int) -> void:
 		var alien_cow = ALIEN_COW_SCENE.instantiate()
 		get_tree().root.add_child(alien_cow)
 		alien_cow.global_position = boss.boss_sprite.global_position
+		boss.audio.stream = boss.PLASMA
+		boss.audio.play()
 		
 		var shoot_enemy_tween = create_tween()
 		shoot_enemy_tween.tween_property(boss.boss_sprite, "scale", Vector3.ONE * 0.75, 0.25)\

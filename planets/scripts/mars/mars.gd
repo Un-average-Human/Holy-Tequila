@@ -11,6 +11,18 @@ func _ready() -> void:
 	add_child(player)
 	
 	void_detector.body_exited.connect(_fell_in_void)
+	SignalBus.player_died.connect(_end_bossfight)
 
 func _fell_in_void(body: Node3D):
 	body.global_position = spawn_point.global_position
+	
+func _end_bossfight(): 
+	get_tree().call_group("projectile", "queue_free")
+	await get_tree().process_frame
+	
+	var game_over_scene = preload("uid://ctaa2uxxlgoop")
+	var game_over_menu = game_over_scene.instantiate()
+	get_tree().root.add_child(game_over_menu)
+	game_over_menu._bossfight_finished()
+	
+	queue_free()

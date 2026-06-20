@@ -14,12 +14,18 @@ var spawn_points: Array[Vector3]
 @onready var boss_name: Label = %boss_name
 @onready var boss_healthbar: ProgressBar = %boss_healthbar
 
-# Node References to Attack Class Objects
-@onready var attack_one_node: BossAttackOne = %attack_one
-@onready var attack_two_node: BossAttackTwo = %attack_two
-@onready var attack_three_node: BossAttackThree = %attack_three
+@onready var attack_one_node = %attack_one
+@onready var attack_two_node: = %attack_two
+@onready var attack_three_node = %attack_three
+
+@onready var audio: AudioStreamPlayer = %audio
+const PLASMA = preload("uid://bn3pml5p33b5v")
+const SHUFFLING = preload("uid://7qn3fg1ifae1")
+const BOOMERANG_WHOOSH = preload("uid://ccgwbqeyfist4")
 
 func _ready() -> void:
+	BossfightData.current_boss = "Spaceship Boss"
+	
 	boss_area_detector.body_entered.connect(_on_boss_area_detector_body_entered)
 	blackboard = bt_player.blackboard
 	
