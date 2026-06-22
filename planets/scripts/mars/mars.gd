@@ -9,6 +9,7 @@ func _ready() -> void:
 	var player = player_scene.instantiate()
 	player.global_position = spawn_point.global_position
 	add_child(player)
+	player.special_action = player.get_node("parry")
 	
 	void_detector.body_exited.connect(_fell_in_void)
 	SignalBus.player_died.connect(_end_bossfight)

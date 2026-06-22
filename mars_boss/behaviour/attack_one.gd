@@ -21,11 +21,11 @@ func execute(max_bullets: int, delay: float) -> void:
 		if spawn_data and spawn_data[0]:
 			_setup_boomerang_movement(spawn_data[0], spawn_data[1], false)
 		
-		await get_tree().create_timer(boss.shot_delay).timeout
+		await get_tree().create_timer(boss.shot_delay, false).timeout
 		
 	if current_bullets >= max_bullets:
 		boss.boss_sprite.play("shooting")
-		await get_tree().create_timer(4).timeout
+		await get_tree().create_timer(4, false).timeout
 		
 		var parry_spawn_data = await _spawn_boomerang(boss.BOOMERANG_WHOOSH, true)
 		if parry_spawn_data and parry_spawn_data[0]:
@@ -82,7 +82,7 @@ func _spawn_boomerang(sfx: AudioStream, make_parryable: bool):
 		if is_instance_valid(plane): plane.queue_free()
 		return null
 		
-	get_tree().root.add_child(bullet)
+	add_child(bullet)
 	bullet.pixel_size = 0.015
 	bullet.billboard = BaseMaterial3D.BILLBOARD_DISABLED
 	bullet.global_position = gun_point.global_position
@@ -116,7 +116,7 @@ func _spawn_boomerang(sfx: AudioStream, make_parryable: bool):
 		audio_player.play()
 	
 	if make_parryable:
-		await get_tree().create_timer(0.25).timeout
+		await get_tree().create_timer(0.25, false).timeout
 	return [bullet, target_pos]
 
 func _setup_boomerang_movement(bullet: Node3D, target_pos: Vector3, make_parryable: bool) -> void:
@@ -171,12 +171,12 @@ func _on_bullet_parried(bullet: Node3D):
 		
 	boss._hurt(1, boss.boss_healthbar)
 	boss.boss_sprite.play("hurt")
-	await get_tree().create_timer(0.75).timeout
+	await get_tree().create_timer(0.75, false).timeout
 	if boss.health == 1:
 		boss.boss_sprite.play("angry_last_phase")
-		await get_tree().create_timer(1).timeout
+		await get_tree().create_timer(1, false).timeout
 		boss.boss_sprite.play("idle_last_phase")
 	else:
 		boss.boss_sprite.play("idle")
-	await get_tree().create_timer(0.5).timeout
+	await get_tree().create_timer(0.5, false).timeout
 	boss.can_attack = true

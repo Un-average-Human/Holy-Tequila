@@ -31,7 +31,7 @@ func _damage_player(body: Node3D):
 			_stop_charging()
 
 		if body.is_in_group("player"):
-			body._take_damage()
+			body.take_damage()
 
 func _physics_process(delta: float) -> void:
 	if is_charging and can_navigate:

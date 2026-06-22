@@ -102,7 +102,7 @@ func _pick_projectile():
 
 func _projectile_thrown(projectile_animation: String):
 	var arc_height: float = 35.0
-	var anim_speed: float = 5.0
+	var anim_speed: float = 3.0
 	var bullet = bullet_scene.instantiate()
 	
 	get_tree().root.add_child(bullet)
@@ -113,6 +113,14 @@ func _projectile_thrown(projectile_animation: String):
 	
 	bullet.play(projectile_animation)
 	bullet.global_position = hand_throwing_projectile.global_position
+
+	const CRASHING = preload("uid://blabxyo86i4xa")
+	const FALLING = preload("uid://b8ot65ydrbcb8")
+
+	var audio: AudioStreamPlayer3D = bullet.get_node("%sfx")
+	audio.stop()
+	audio.stream = FALLING
+	audio.play()
 
 	var movement_tween = create_tween().set_parallel(true)
 	movement_tween.bind_node(bullet)
@@ -133,5 +141,8 @@ func _projectile_thrown(projectile_animation: String):
 	.set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_QUAD)
 	
 	height_tween.tween_callback(func():
-		await get_tree().create_timer(0.3).timeout
+		await get_tree().create_timer(0.1).timeout
+		audio.stop()
+		audio.stream = CRASHING
+		audio.play(0.0)
 		bullet.can_damage = false)

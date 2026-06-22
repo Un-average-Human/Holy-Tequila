@@ -18,7 +18,7 @@ func _ready() -> void:
 func _damage_player(body: Node3D):
 	if body.is_in_group("player") and can_damage:
 		player = body
-		player._take_damage()
+		player.take_damage()
 		hit_box.monitoring = false
 		if one_hit:
 			can_damage = false

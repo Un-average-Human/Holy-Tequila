@@ -540,6 +540,7 @@ bt_player = NodePath("BTPlayer")
 
 [node name="boss" type="AnimatedSprite3D" parent="bossfight" unique_id=480593947]
 unique_name_in_owner = true
+process_mode = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.141858e-06, -59, -49)
 pixel_size = 0.03
 billboard = 2

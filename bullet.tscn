@@ -254,6 +254,7 @@ radius = 1.2
 
 [node name="bullet" type="AnimatedSprite3D" unique_id=2046011295 node_paths=PackedStringArray("damage_collision", "parry_collision") groups=["projectile"]]
 unique_name_in_owner = true
+process_mode = 1
 transform = Transform3D(1, 0, 0, 0, 1, -5.9604645e-08, 0, 5.9604645e-08, 1, 0, 0, 0)
 pixel_size = 0.0025
 billboard = 2

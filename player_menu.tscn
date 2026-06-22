@@ -1,0 +1,107 @@
+[gd_scene format=3 uid="uid://du6p1clay1guf"]
+
+[ext_resource type="Script" uid="uid://bvq6hhe6vc4xo" path="res://player_menu.gd" id="1_gqtt3"]
+[ext_resource type="FontFile" uid="uid://dj858wkygbdbc" path="res://lowbudget.ttf" id="2_2x2nn"]
+[ext_resource type="PackedScene" uid="uid://cco88hukojaa0" path="res://settings_menu.tscn" id="3_2x2nn"]
+[ext_resource type="Theme" uid="uid://boqtjf88xcpu4" path="res://demo/assets/ui.theme" id="3_78uhb"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_b26j0"]
+font = ExtResource("2_2x2nn")
+font_size = 108
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_78uhb"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[node name="menus" type="Control" unique_id=946525344 node_paths=PackedStringArray("resume_btn", "settings_btn", "return_to_menu_btn", "quit_btn", "base_menu", "settings_menu")]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_gqtt3")
+resume_btn = NodePath("base_menu/VBoxContainer/resume_btn")
+settings_btn = NodePath("base_menu/VBoxContainer/settings_btn")
+return_to_menu_btn = NodePath("base_menu/VBoxContainer/return_to_menu_btn")
+quit_btn = NodePath("base_menu/VBoxContainer/quit_btn")
+base_menu = NodePath("base_menu")
+settings_menu = NodePath("settings")
+metadata/_edit_use_anchors_ = true
+
+[node name="base_menu" type="Control" parent="." unique_id=1404344088]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Panel" type="Panel" parent="base_menu" unique_id=349072360]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="base_menu" unique_id=930580874]
+layout_mode = 0
+anchor_left = 0.7725694
+anchor_top = 0.07716049
+anchor_right = 0.9809028
+anchor_bottom = 0.24537037
+text = "PAUSED"
+label_settings = SubResource("LabelSettings_b26j0")
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect" type="Panel" parent="base_menu/Label" unique_id=34034428]
+layout_mode = 0
+anchor_top = 0.96330273
+anchor_right = 1.0
+anchor_bottom = 1.0091743
+theme_override_styles/panel = SubResource("StyleBoxFlat_78uhb")
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="base_menu" unique_id=387343964]
+layout_mode = 0
+anchor_left = 0.7725694
+anchor_top = 0.5339506
+anchor_right = 0.9809028
+anchor_bottom = 0.96803653
+metadata/_edit_use_anchors_ = true
+
+[node name="resume_btn" type="Button" parent="base_menu/VBoxContainer" unique_id=533068655]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("3_78uhb")
+text = "Resume"
+
+[node name="settings_btn" type="Button" parent="base_menu/VBoxContainer" unique_id=1444438056]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("3_78uhb")
+text = "Settings"
+
+[node name="return_to_menu_btn" type="Button" parent="base_menu/VBoxContainer" unique_id=127577036]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("3_78uhb")
+text = "Return to Menu"
+
+[node name="quit_btn" type="Button" parent="base_menu/VBoxContainer" unique_id=1403285503]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("3_78uhb")
+text = "Quit"
+
+[node name="settings" parent="." unique_id=11976931 instance=ExtResource("3_2x2nn")]
+visible = false
+layout_mode = 1
