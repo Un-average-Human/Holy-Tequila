@@ -77,7 +77,7 @@ animations = [{
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_i3pqv"]
 height = 5.0
-radius = 2.5
+radius = 1.5
 
 [node name="player" type="CharacterBody3D" unique_id=1185616285 node_paths=PackedStringArray("cam_pivot", "player_cam", "audio", "menu") groups=["player"]]
 script = ExtResource("1_4flbx")

@@ -1,6 +1,7 @@
 [gd_scene format=4 uid="uid://dh03uu603qdbw"]
 
 [ext_resource type="Script" uid="uid://c28ae2hrpjea4" path="res://planets/scripts/mars/mars.gd" id="1_jo3wj"]
+[ext_resource type="Theme" uid="uid://boqtjf88xcpu4" path="res://demo/assets/ui.theme" id="2_cstp3"]
 [ext_resource type="Texture2D" uid="uid://bgw7lwxqggs1l" path="res://mars_boss/boss_sprites/mars_boss_angry.png" id="3_jbvca"]
 [ext_resource type="Texture2D" uid="uid://if5fln0vn8aj" path="res://mars_boss/boss_sprites/mars_boss_damage.png" id="3_pyjlk"]
 [ext_resource type="Script" uid="uid://dgx4gp3nm4aah" path="res://mars_boss/behaviour/bossfight.gd" id="3_s0wj5"]
@@ -45,9 +46,12 @@ tonemap_mode = 2
 [sub_resource type="LabelSettings" id="LabelSettings_jo3wj"]
 font_size = 75
 
-[sub_resource type="LabelSettings" id="LabelSettings_pyjlk"]
-outline_size = 8
-outline_color = Color(0, 0, 0, 1)
+[sub_resource type="LabelSettings" id="LabelSettings_cstp3"]
+font_size = 30
+stacked_outline_count = 2
+stacked_outline_0/size = 1
+stacked_outline_0/color = Color(1, 1, 1, 1)
+stacked_outline_1/size = 5
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3dlkd"]
 atlas = ExtResource("3_jbvca")
@@ -452,7 +456,7 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_bgdwm")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fqkmi"]
-albedo_color = Color(1, 0.6442817, 0.540147, 1)
+albedo_color = Color(0.9160114, 0.35252526, 0, 1)
 roughness = 0.0
 
 [node name="Node3D" type="Node3D" unique_id=893850879]
@@ -490,9 +494,8 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 1
 [node name="WorldEnvironment" type="WorldEnvironment" parent="environment" unique_id=246648152]
 environment = SubResource("Environment_gn52h")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="environment" unique_id=676889884]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="environment" unique_id=1528611758]
 transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
-light_color = Color(1, 0.65882355, 0, 1)
 shadow_enabled = true
 
 [node name="boss_name" type="Label" parent="." unique_id=2016849949]
@@ -502,6 +505,7 @@ anchors_preset = -1
 anchor_top = 0.7623457
 anchor_right = 1.0
 anchor_bottom = 0.9228395
+theme = ExtResource("2_cstp3")
 text = "Spaceship Boss (no budget)"
 label_settings = SubResource("LabelSettings_jo3wj")
 horizontal_alignment = 1
@@ -528,8 +532,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("2_cstp3")
 text = "Spaceship Boss"
-label_settings = SubResource("LabelSettings_pyjlk")
+label_settings = SubResource("LabelSettings_cstp3")
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -633,8 +638,17 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.067461, 1.5, 6.6885533)
 [node name="Marker3D3" type="Marker3D" parent="enemy_spawn_points" unique_id=1298728467]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.1129675, 1.5, 10.404419)
 
-[node name="Marker3D4" type="Marker3D" parent="enemy_spawn_points" unique_id=530935383]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.449998, 1.5, -3.6894193)
+[node name="Marker3D9" type="Marker3D" parent="enemy_spawn_points" unique_id=1712934243]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.235677, 1.5, -8.435388)
+
+[node name="Marker3D10" type="Marker3D" parent="enemy_spawn_points" unique_id=1275209333]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.129165, 1.5, -14.883713)
+
+[node name="Marker3D11" type="Marker3D" parent="enemy_spawn_points" unique_id=1232915383]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.188557, 1.5, -0.6973965)
+
+[node name="Marker3D12" type="Marker3D" parent="enemy_spawn_points" unique_id=1142832184]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.2839255, 1.5, 6.369971)
 
 [node name="Marker3D5" type="Marker3D" parent="enemy_spawn_points" unique_id=733343478]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.2113185, 1.5, -7.06015)

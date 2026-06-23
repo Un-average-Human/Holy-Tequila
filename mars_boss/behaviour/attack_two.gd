@@ -33,7 +33,7 @@ func execute(enemy_amount: int) -> void:
 		var target_pos: Vector3 = boss.spawn_points[random_pos]
 		
 		var alien_cow = ALIEN_COW_SCENE.instantiate()
-		get_tree().root.add_child(alien_cow)
+		add_child(alien_cow)
 		alien_cow.global_position = boss.boss_sprite.global_position
 		boss.audio.stream = boss.PLASMA
 		boss.audio.play()

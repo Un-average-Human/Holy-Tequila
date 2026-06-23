@@ -16,7 +16,6 @@ var hand_throwing_projectile: Marker3D
 @onready var left_hand: Marker3D = %left_hand
 
 var bullet_scene: PackedScene = preload("uid://dwsikl4kkdfi3")
-var target_pos: Vector3
 
 var projectile_queue: Array[String]
 var available_projectiles: Dictionary[String, float] = {
@@ -36,13 +35,13 @@ func execute() -> void:
 	
 	while projectile_amount < max_projectiles:
 		boss.boss_sprite.play("picking_up_projectiles")
-		await get_tree().create_timer(shot_delay).timeout
+		await get_tree().create_timer(shot_delay, false).timeout
 		
 		projectile_amount += 1
 		_random_projectile_preview()
-		await get_tree().create_timer(0.5).timeout
+		await get_tree().create_timer(0.5, false).timeout
 		
-	await get_tree().create_timer(5).timeout
+	await get_tree().create_timer(5, false).timeout
 	boss.blackboard.set_var("is_attacking", false)
 	
 func _random_projectile_preview():
@@ -63,8 +62,8 @@ func _random_projectile_preview():
 	var mesh = MeshInstance3D.new()
 	var circle_mesh = CylinderMesh.new()
 
-	circle_mesh.top_radius = 0.001
-	circle_mesh.bottom_radius = 0.001
+	circle_mesh.top_radius = projectile_preview_radius
+	circle_mesh.bottom_radius = projectile_preview_radius
 	circle_mesh.height = 0.001
 	mesh.mesh = circle_mesh
 	
@@ -75,20 +74,24 @@ func _random_projectile_preview():
 	
 	get_tree().root.add_child(mesh)
 
+	var target_pos: Vector3
 	target_pos = boss.player.global_position - Vector3(0, 0.999, 0)
 	mesh.global_position = target_pos
 	
-	var scale_preview_tween = create_tween()
-	scale_preview_tween.tween_property(circle_mesh, "bottom_radius", projectile_preview_radius, 0.5)
-	scale_preview_tween.tween_property(circle_mesh, "top_radius", projectile_preview_radius, 0.5)
+	mesh.scale = Vector3(0, 1, 0)
+	var scale_preview_tween = create_tween().set_parallel(true)
+	scale_preview_tween.tween_property(mesh, "scale:x", 1.0, 0.5)\
+	.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BACK)
+	scale_preview_tween.tween_property(mesh, "scale:z", 1.0, 0.5)\
+	.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BACK)
 	
 	if projectile_queue.size() <= 1:
 		_pick_projectile()
 	var projectile_animation
 	if projectile_queue.size() > 0:
 		projectile_animation = projectile_queue.pop_front()
-		projectile_queue.erase(projectile_animation)
-	_projectile_thrown(projectile_animation)
+	
+	_projectile_thrown(projectile_animation, target_pos, mesh)
 
 func _pick_projectile():
 	var temp_list: Array[String]
@@ -100,7 +103,7 @@ func _pick_projectile():
 			temp_list.shuffle()
 	projectile_queue.append_array(temp_list)
 
-func _projectile_thrown(projectile_animation: String):
+func _projectile_thrown(projectile_animation: String, target_pos: Vector3, preview_mesh: MeshInstance3D):
 	var arc_height: float = 35.0
 	var anim_speed: float = 3.0
 	var bullet = bullet_scene.instantiate()
@@ -122,13 +125,11 @@ func _projectile_thrown(projectile_animation: String):
 	audio.stream = FALLING
 	audio.play()
 
-	var movement_tween = create_tween().set_parallel(true)
-	movement_tween.bind_node(bullet)
+	var movement_tween = bullet.create_tween().set_parallel(true)
 	movement_tween.tween_property(bullet, "global_position:x", target_pos.x, anim_speed)
 	movement_tween.tween_property(bullet, "global_position:z", target_pos.z, anim_speed)
 	
-	var height_tween = create_tween()
-	height_tween.bind_node(bullet)
+	var height_tween = bullet.create_tween()
 	height_tween.tween_property(
 		bullet, 
 		"global_position:y", 
@@ -137,12 +138,20 @@ func _projectile_thrown(projectile_animation: String):
 	height_tween.tween_property(
 		bullet, 
 		"global_position:y", 
-	target_pos.y, anim_speed / 2.0)\
+		target_pos.y, anim_speed / 2.0)\
 	.set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_QUAD)
 	
 	height_tween.tween_callback(func():
-		await get_tree().create_timer(0.1).timeout
 		audio.stop()
 		audio.stream = CRASHING
-		audio.play(0.0)
+		audio.play(4.0)
+		
+		if is_instance_valid(preview_mesh):
+			var mat = preview_mesh.get_surface_override_material(0)
+			if mat is StandardMaterial3D:
+				var fade_tween = create_tween()
+				fade_tween.tween_property(mat, "albedo_color:a", 0.0, 0.3)
+				fade_tween.tween_callback(preview_mesh.queue_free)
+		
+		await get_tree().create_timer(0.1, false).timeout
 		bullet.can_damage = false)

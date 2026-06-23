@@ -15,10 +15,31 @@ enum ACTIONS {Forward, Backward, Left, Right, SpecialAction, Jump}
 @export var available_actions: VBoxContainer
 @export var rebind_key_button_list: Array[Button]
 
+@export_category("FPS-Related Options")
+@export var vsync_toggle: CheckButton
+@export var fps_limit_array: Array[String] = ["30 FPS", "60 FPS", "120 FPS", "240 FPS", "No Limit"]
+@export var fps_limit_picker: OptionButton
+
+@export_category("Window Options")
+@export var window_mode_array: Array[String] = ["Windowed", "Maximized", "Fullscreen", "Exclusive Fullscreen"]
+@export var window_mode_picker: OptionButton
+
 var is_customisable: bool = false
 var action_string: String = ""
 
 func _ready() -> void:
+	for mode in window_mode_array:
+		window_mode_picker.add_item(mode)
+	for limit in fps_limit_array:
+		fps_limit_picker.add_item(limit)
+		
+	window_mode_picker.item_selected.connect(_option_buttons.bind(window_mode_picker))
+	fps_limit_picker.item_selected.connect(_option_buttons.bind(fps_limit_picker))
+	window_mode_picker.select(2)
+	fps_limit_picker.select(4)
+	
+	vsync_toggle.toggled.connect(_check_button.bind(vsync_toggle))
+	
 	for tab_button: Button in menu_tabs.get_children():
 		tab_button.toggled.connect(_settings_tab.bind(tab_button))
 		if tab_button.is_pressed():
@@ -45,6 +66,37 @@ func _settings_tab(toggled_on: bool, button: Button):
 			_:
 				SignalBus.back_pressed.emit()
 				menu_tabs.get_child(0).set_pressed(true)
+
+#check button
+func _check_button(toggled: bool, button: CheckButton):
+	match button:
+		vsync_toggle:
+			if DisplayServer.window_get_vsync_mode() == DisplayServer.VSYNC_DISABLED:
+				DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_ENABLED)
+			else:
+				DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_DISABLED)
+
+#option buttons
+func _option_buttons(index: int, button: Button):
+	match button:
+		window_mode_picker:
+			var chosen_mode: String = window_mode_array[index]
+			match chosen_mode:
+				"Windowed":
+					DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+				"Maximized":
+					DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_MAXIMIZED)
+				"Fullscreen":
+					DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+				"Exclusive Fullscreen":
+					DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN)
+		fps_limit_picker:
+			var value_string: String = fps_limit_array[index]
+			if value_string == "No Limit":
+				Engine.max_fps = 0
+			else:
+				Engine.max_fps = value_string.to_int()
+
 # change keybinds
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey and is_customisable:

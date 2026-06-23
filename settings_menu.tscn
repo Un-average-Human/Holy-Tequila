@@ -27,7 +27,7 @@ outline_size = 1
 [sub_resource type="ButtonGroup" id="ButtonGroup_mlw3h"]
 allow_unpress = true
 
-[node name="settings" type="Control" unique_id=11976931 node_paths=PackedStringArray("graphic_settings", "audio_settings", "controls_settings", "menu_tabs", "menu_title", "available_actions", "rebind_key_button_list")]
+[node name="settings" type="Control" unique_id=11976931 node_paths=PackedStringArray("graphic_settings", "audio_settings", "controls_settings", "menu_tabs", "menu_title", "available_actions", "rebind_key_button_list", "vsync_toggle", "fps_limit_picker", "window_mode_picker")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -42,6 +42,9 @@ menu_tabs = NodePath("menu_tabs")
 menu_title = NodePath("Label")
 available_actions = NodePath("menus/controls_settings/HBoxContainer/keybinds/available_actions")
 rebind_key_button_list = [NodePath("menus/controls_settings/HBoxContainer/keybinds/available_actions/SpecialAction/Button"), NodePath("menus/controls_settings/HBoxContainer/keybinds/available_actions/Forward/Button"), NodePath("menus/controls_settings/HBoxContainer/keybinds/available_actions/Backward/Button"), NodePath("menus/controls_settings/HBoxContainer/keybinds/available_actions/Jump/Button"), NodePath("menus/controls_settings/HBoxContainer/keybinds/available_actions/Left/Button"), NodePath("menus/controls_settings/HBoxContainer/keybinds/available_actions/Right/Button")]
+vsync_toggle = NodePath("menus/graphic_settings/vsync/CheckButton")
+fps_limit_picker = NodePath("menus/graphic_settings/fps_limit/fps_limit_picker")
+window_mode_picker = NodePath("menus/graphic_settings/window_mode/window_mode_picker")
 
 [node name="Panel" type="Panel" parent="." unique_id=1154094936]
 layout_mode = 1
@@ -93,7 +96,6 @@ theme_override_constants/margin_bottom = 50
 metadata/_edit_use_anchors_ = true
 
 [node name="graphic_settings" type="VBoxContainer" parent="menus" unique_id=815811161]
-visible = false
 layout_mode = 2
 
 [node name="vsync" type="Label" parent="menus/graphic_settings" unique_id=1566104176]
@@ -116,7 +118,7 @@ size_flags_vertical = 6
 text = "Window mode:"
 label_settings = SubResource("LabelSettings_ufg0w")
 
-[node name="OptionButton" type="OptionButton" parent="menus/graphic_settings/window_mode" unique_id=308119233]
+[node name="window_mode_picker" type="OptionButton" parent="menus/graphic_settings/window_mode" unique_id=308119233]
 layout_mode = 0
 offset_left = 160.0
 offset_right = 282.0
@@ -124,14 +126,7 @@ offset_bottom = 34.0
 theme = ExtResource("2_0cmel")
 theme_override_fonts/font = ExtResource("1_ufg0w")
 theme_override_font_sizes/font_size = 30
-selected = 2
-item_count = 3
-popup/item_0/text = "Windowed"
-popup/item_0/id = 0
-popup/item_1/text = "Maximized"
-popup/item_1/id = 1
-popup/item_2/text = "Fullscreen"
-popup/item_2/id = 2
+flat = true
 
 [node name="fps_limit" type="Label" parent="menus/graphic_settings" unique_id=103485488]
 layout_mode = 2
@@ -139,7 +134,7 @@ size_flags_vertical = 6
 text = "FPS Limit:"
 label_settings = SubResource("LabelSettings_ufg0w")
 
-[node name="OptionButton2" type="OptionButton" parent="menus/graphic_settings/fps_limit" unique_id=1159300377]
+[node name="fps_limit_picker" type="OptionButton" parent="menus/graphic_settings/fps_limit" unique_id=1159300377]
 layout_mode = 0
 offset_left = 160.0
 offset_right = 282.0
@@ -147,16 +142,6 @@ offset_bottom = 34.0
 theme = ExtResource("2_0cmel")
 theme_override_fonts/font = ExtResource("1_ufg0w")
 theme_override_font_sizes/font_size = 30
-selected = 3
-item_count = 4
-popup/item_0/text = "30 FPS"
-popup/item_0/id = 0
-popup/item_1/text = "60 FPS"
-popup/item_1/id = 1
-popup/item_2/text = "120 FPS"
-popup/item_2/id = 2
-popup/item_3/text = "No Limit"
-popup/item_3/id = 3
 
 [node name="audio_settings" type="VBoxContainer" parent="menus" unique_id=1124650892]
 visible = false
