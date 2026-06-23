@@ -29,12 +29,12 @@ func execute(max_bullets: int, delay: float) -> void:
 	if parry_spawn_data and parry_spawn_data:
 		_setup_boomerang_movement(parry_spawn_data[0], parry_spawn_data[1], true)
 	
-	var extra_flurry_count: int = randi_range(2, 4)
+	var extra_boomerangs: int = randi_range(2, 4)
 	var current_extra: int = 0
 	
 	await boss.get_tree().create_timer(boss.shot_delay, false).timeout
 	
-	while current_extra < extra_flurry_count:
+	while current_extra < extra_boomerangs:
 		current_extra += 1
 		
 		if boss.last_bullet_parried:
@@ -44,7 +44,7 @@ func execute(max_bullets: int, delay: float) -> void:
 		if spawn_data and spawn_data:
 			_setup_boomerang_movement(spawn_data[0], spawn_data[1], false)
 		
-		if current_extra < extra_flurry_count:
+		if current_extra < extra_boomerangs	:
 			await boss.get_tree().create_timer(boss.shot_delay, false).timeout
 			
 	var flight_timer = boss.get_tree().create_timer(4.0, false)

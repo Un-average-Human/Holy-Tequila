@@ -6,7 +6,7 @@ var max_projectiles: int = 10
 var projectile_amount: int = 0
 var projectile_preview_radius: float = 2.0
 
-var shot_delay: float = 3.0
+var shot_delay: float = 1.0
 
 var last_num: int = -1
 var rng := RandomNumberGenerator.new()
@@ -41,7 +41,7 @@ func execute() -> void:
 		_random_projectile_preview()
 		await get_tree().create_timer(0.5, false).timeout
 		
-	await get_tree().create_timer(5, false).timeout
+	await get_tree().create_timer(2.5, false).timeout
 	boss.blackboard.set_var("is_attacking", false)
 	
 func _random_projectile_preview():
