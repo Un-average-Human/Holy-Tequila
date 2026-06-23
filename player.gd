@@ -3,6 +3,7 @@ extends CharacterBody3D
 var health: int = 3
 var heart_list: Array
 @onready var heart_container: HBoxContainer = %heart_container
+var can_take_damage: bool = true
 
 var current_speed: float = 5.0
 var jump_force: float = 4.5
@@ -68,9 +69,14 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func take_damage():
+	if not can_take_damage:
+		return
 	if health > 0:
 		health -= 1
 		_update_hearts()
+		can_take_damage = false
+		await get_tree().create_timer(0.5, false).timeout
+		can_take_damage = true
 
 func _update_hearts():
 	for heart in heart_list.size():
