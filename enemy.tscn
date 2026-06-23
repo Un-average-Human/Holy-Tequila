@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://lsgkfu0leche"]
 
-[ext_resource type="Texture2D" uid="uid://cv8js42nroytg" path="res://alien_cow_attacking.png" id="1_4gyqm"]
-[ext_resource type="Texture2D" uid="uid://f5sxsjenckhb" path="res://alien_cow_idle.png" id="2_qi2p4"]
-[ext_resource type="Script" uid="uid://cvq3xf4yoxfdr" path="res://alien_cow.gd" id="3_qi2p4"]
-[ext_resource type="BehaviorTree" uid="uid://pgmkfl76hgfl" path="res://alien_cow_ai.tres" id="4_iifgy"]
+[ext_resource type="Texture2D" uid="uid://cv8js42nroytg" path="res://enemy/sprite/alien_cow_attacking.png" id="1_4gyqm"]
+[ext_resource type="Texture2D" uid="uid://f5sxsjenckhb" path="res://enemy/sprite/alien_cow_idle.png" id="2_qi2p4"]
+[ext_resource type="Script" uid="uid://cvq3xf4yoxfdr" path="res://enemy/alien_cow.gd" id="3_qi2p4"]
+[ext_resource type="BehaviorTree" uid="uid://pgmkfl76hgfl" path="res://enemy/ai/alien_cow_ai.tres" id="4_iifgy"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_iifgy"]
 atlas = ExtResource("1_4gyqm")

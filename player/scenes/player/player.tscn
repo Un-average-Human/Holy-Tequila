@@ -1,0 +1,210 @@
+[gd_scene format=3 uid="uid://ckudr8chj1kgo"]
+
+[ext_resource type="Script" uid="uid://b0gd8hrqpvtbb" path="res://player/scripts/player/player.gd" id="1_4flbx"]
+[ext_resource type="Texture2D" uid="uid://7krcx658l6x4" path="res://player/sprites/player/player.png" id="2_hqtel"]
+[ext_resource type="Texture2D" uid="uid://dha7gw82f6qfq" path="res://player/sprites/ui/heart_idle.png" id="2_onrkg"]
+[ext_resource type="Texture2D" uid="uid://bfqx1j8kjgxa5" path="res://player/sprites/ui/heart_pumping.png" id="3_i3pqv"]
+[ext_resource type="Theme" uid="uid://boqtjf88xcpu4" path="res://demo/assets/ui.theme" id="5_7illk"]
+[ext_resource type="AudioStream" uid="uid://cquk2o6tbfumc" path="res://sfx/interaction/parry.mp3" id="5_sweqy"]
+[ext_resource type="Script" uid="uid://bdvo6bq4h1oyu" path="res://player/abilities/parry.gd" id="6_2hs0m"]
+[ext_resource type="PackedScene" uid="uid://du6p1clay1guf" path="res://player/scenes/ui/player_menu.tscn" id="7_1jxqw"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_onrkg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1jxqw"]
+atlas = ExtResource("2_hqtel")
+region = Rect2(0, 0, 1080, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dw050"]
+atlas = ExtResource("2_hqtel")
+region = Rect2(1080, 0, 1080, 1080)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_b26j0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1jxqw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dw050")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 3.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i3pqv"]
+atlas = ExtResource("2_onrkg")
+region = Rect2(0, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hqtel"]
+atlas = ExtResource("2_onrkg")
+region = Rect2(150, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sweqy"]
+atlas = ExtResource("3_i3pqv")
+region = Rect2(0, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2hs0m"]
+atlas = ExtResource("3_i3pqv")
+region = Rect2(150, 0, 150, 150)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sweqy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i3pqv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hqtel")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sweqy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2hs0m")
+}],
+"loop": true,
+"name": &"pumping",
+"speed": 3.0
+}]
+
+[sub_resource type="LabelSettings" id="LabelSettings_lrqc5"]
+font_size = 30
+stacked_outline_count = 1
+stacked_outline_0/size = 5
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_i3pqv"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_i3pqv"]
+height = 5.0
+radius = 1.5
+
+[node name="player" type="CharacterBody3D" unique_id=1185616285 node_paths=PackedStringArray("cam_pivot", "player_cam", "audio", "menu") groups=["player"]]
+script = ExtResource("1_4flbx")
+cam_pivot = NodePath("cam_pivot")
+player_cam = NodePath("cam_pivot/SpringArm3D/player_cam")
+audio = NodePath("audio")
+menu = NodePath("menus")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2115076140]
+shape = SubResource("CapsuleShape3D_onrkg")
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="CollisionShape3D" unique_id=422786133]
+pixel_size = 0.00185
+billboard = 2
+texture_filter = 0
+render_priority = 1
+sprite_frames = SubResource("SpriteFrames_b26j0")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=383149491]
+
+[node name="heart_container" type="HBoxContainer" parent="CanvasLayer" unique_id=281727399]
+unique_name_in_owner = true
+texture_repeat = 2
+custom_minimum_size = Vector2(150, 50)
+offset_left = 50.0
+offset_top = 550.0
+offset_right = 208.0
+offset_bottom = 600.0
+
+[node name="heart1" type="TextureRect" parent="CanvasLayer/heart_container" unique_id=1391252628]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="heart_anim" type="AnimatedSprite2D" parent="CanvasLayer/heart_container/heart1" unique_id=803082292]
+texture_filter = 1
+scale = Vector2(0.333, 0.333)
+sprite_frames = SubResource("SpriteFrames_sweqy")
+animation = &"pumping"
+centered = false
+
+[node name="heart2" type="TextureRect" parent="CanvasLayer/heart_container" unique_id=1938991878]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="heart_anim" type="AnimatedSprite2D" parent="CanvasLayer/heart_container/heart2" unique_id=1910239772]
+texture_filter = 1
+scale = Vector2(0.333, 0.333)
+sprite_frames = SubResource("SpriteFrames_sweqy")
+animation = &"idle"
+centered = false
+
+[node name="heart3" type="TextureRect" parent="CanvasLayer/heart_container" unique_id=472175068]
+texture_filter = 1
+layout_mode = 2
+
+[node name="heart_anim" type="AnimatedSprite2D" parent="CanvasLayer/heart_container/heart3" unique_id=1808288230]
+texture_filter = 1
+scale = Vector2(0.333, 0.333)
+sprite_frames = SubResource("SpriteFrames_sweqy")
+animation = &"pumping"
+centered = false
+
+[node name="ability_cooldown" type="ProgressBar" parent="CanvasLayer" unique_id=865429901]
+texture_filter = 1
+offset_left = 702.0
+offset_top = 560.0
+offset_right = 1104.0
+offset_bottom = 590.0
+step = 0.0
+value = 100.0
+show_percentage = false
+
+[node name="Label" type="Label" parent="CanvasLayer/ability_cooldown" unique_id=512107829]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource("5_7illk")
+text = "Ability Cooldown"
+label_settings = SubResource("LabelSettings_lrqc5")
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="hand" type="Marker3D" parent="." unique_id=886960652]
+unique_name_in_owner = true
+transform = Transform3D(-4.304732e-08, 0.17364815, -0.9848076, 7.590406e-09, 0.9848077, 0.17364816, 1.0000001, 0, -4.3711392e-08, 0.8, 0.099999964, -0.8000001)
+
+[node name="cam_pivot" type="Node3D" parent="." unique_id=1374839627]
+unique_name_in_owner = true
+
+[node name="SpringArm3D" type="SpringArm3D" parent="cam_pivot" unique_id=875577173]
+transform = Transform3D(1, 0, 0, 0, 0.96592593, 0.25881907, 0, -0.25881907, 0.96592593, 0, 0, 0)
+shape = SubResource("SphereShape3D_i3pqv")
+spring_length = 5.0
+margin = 0.1
+
+[node name="player_cam" type="Camera3D" parent="cam_pivot/SpringArm3D" unique_id=394059071]
+unique_name_in_owner = true
+
+[node name="parry_area" type="Area3D" parent="." unique_id=412720686]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="parry_area" unique_id=538210318]
+shape = SubResource("CylinderShape3D_i3pqv")
+
+[node name="audio" type="AudioStreamPlayer" parent="." unique_id=899686412]
+unique_name_in_owner = true
+stream = ExtResource("5_sweqy")
+bus = &"SFX"
+
+[node name="parry" type="Node" parent="." unique_id=1156471812 node_paths=PackedStringArray("parry_area", "audio", "ability_cooldown_bar", "ability_label")]
+script = ExtResource("6_2hs0m")
+parry_area = NodePath("../parry_area")
+audio = NodePath("../audio")
+ability_cooldown_bar = NodePath("../CanvasLayer/ability_cooldown")
+ability_label = NodePath("../CanvasLayer/ability_cooldown/Label")
+
+[node name="dash" type="Node" parent="." unique_id=1511424969]
+
+[node name="menus" parent="." unique_id=946525344 instance=ExtResource("7_1jxqw")]
+visible = false

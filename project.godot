@@ -35,6 +35,12 @@ window/stretch/aspect="ignore"
 
 enabled=PackedStringArray("res://addons/godot_super-wakatime/plugin.cfg")
 
+[file_customization]
+
+folder_colors={
+"res://ai/": "purple"
+}
+
 [global_group]
 
 player=""
