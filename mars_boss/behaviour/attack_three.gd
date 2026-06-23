@@ -6,7 +6,7 @@ var max_projectiles: int = 10
 var projectile_amount: int = 0
 var projectile_preview_radius: float = 2.0
 
-var shot_delay: float = 1.0
+var shot_delay: float = 1.5
 
 var last_num: int = -1
 var rng := RandomNumberGenerator.new()

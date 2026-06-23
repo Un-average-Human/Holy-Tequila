@@ -24,6 +24,5 @@ func _end_bossfight():
 	var game_over_scene = preload("uid://ctaa2uxxlgoop")
 	var game_over_menu = game_over_scene.instantiate()
 	get_tree().root.add_child(game_over_menu)
-	game_over_menu._bossfight_finished()
 	
 	queue_free()
