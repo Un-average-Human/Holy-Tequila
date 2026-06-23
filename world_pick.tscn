@@ -20,9 +20,6 @@
 [ext_resource type="AudioStream" uid="uid://cyvupt6pdvih2" path="res://sfx/interaction/button_hover_sfx.mp3" id="14_snhsa"]
 [ext_resource type="FontFile" uid="uid://dj858wkygbdbc" path="res://lowbudget.ttf" id="19_4re1r"]
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_cfd4q"]
-load_path = "res://.godot/imported/mars.png-cf81b00ddd90c24b84075d51959a00bf.ctex"
-
 [sub_resource type="LabelSettings" id="LabelSettings_hpjpr"]
 font = ExtResource("19_4re1r")
 font_size = 50
@@ -57,7 +54,7 @@ anchor_left = 0.036458332
 anchor_top = 0.66049385
 anchor_right = 0.16666667
 anchor_bottom = 0.8919753
-texture_normal = SubResource("CompressedTexture2D_cfd4q")
+texture_normal = ExtResource("1_1jjcf")
 texture_disabled = ExtResource("2_841gj")
 ignore_texture_size = true
 metadata/_edit_use_anchors_ = true
@@ -84,8 +81,6 @@ anchor_right = 0.9730903
 anchor_bottom = 0.8919753
 disabled = true
 texture_normal = ExtResource("1_1jjcf")
-texture_pressed = ExtResource("1_1jjcf")
-texture_hover = ExtResource("1_1jjcf")
 texture_disabled = ExtResource("2_841gj")
 ignore_texture_size = true
 metadata/_edit_use_anchors_ = true
