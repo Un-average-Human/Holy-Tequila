@@ -18,29 +18,48 @@ func execute(max_bullets: int, delay: float) -> void:
 		current_bullets += 1
 		
 		var spawn_data = await _spawn_boomerang(boss.BOOMERANG_WHOOSH, false)
-		if spawn_data and spawn_data[0]:
+		if spawn_data and spawn_data:
 			_setup_boomerang_movement(spawn_data[0], spawn_data[1], false)
 		
-		await get_tree().create_timer(boss.shot_delay, false).timeout
+		await boss.get_tree().create_timer(boss.shot_delay, false).timeout
 		
-	if current_bullets >= max_bullets:
-		boss.boss_sprite.play("shooting")
-		await get_tree().create_timer(4, false).timeout
+	boss.boss_sprite.play("shooting")
+	
+	var parry_spawn_data = await _spawn_boomerang(boss.BOOMERANG_WHOOSH, true)
+	if parry_spawn_data and parry_spawn_data:
+		_setup_boomerang_movement(parry_spawn_data[0], parry_spawn_data[1], true)
+	
+	var extra_flurry_count: int = randi_range(2, 4)
+	var current_extra: int = 0
+	
+	await boss.get_tree().create_timer(boss.shot_delay, false).timeout
+	
+	while current_extra < extra_flurry_count:
+		current_extra += 1
 		
-		var parry_spawn_data = await _spawn_boomerang(boss.BOOMERANG_WHOOSH, true)
-		if parry_spawn_data and parry_spawn_data[0]:
-			_setup_boomerang_movement(parry_spawn_data[0], parry_spawn_data[1], true)
-			await parry_spawn_data[0].tree_exited
+		if boss.last_bullet_parried:
+			break
+			
+		var spawn_data = await _spawn_boomerang(boss.BOOMERANG_WHOOSH, false)
+		if spawn_data and spawn_data:
+			_setup_boomerang_movement(spawn_data[0], spawn_data[1], false)
 		
-		boss.is_looping = false
+		if current_extra < extra_flurry_count:
+			await boss.get_tree().create_timer(boss.shot_delay, false).timeout
+			
+	var flight_timer = boss.get_tree().create_timer(4.0, false)
+	while flight_timer.get_time_left() > 0 and not boss.last_bullet_parried:
+		await boss.get_tree().process_frame
 		
-		if not boss.last_bullet_parried:
-			if boss.blackboard:
-				boss.blackboard.set_var("is_attacking", false)
-			execute(max_bullets, delay)
-		else:
-			if boss.blackboard:
-				boss.blackboard.set_var("is_attacking", false)
+	boss.is_looping = false
+	
+	if not boss.last_bullet_parried:
+		if boss.blackboard:
+			boss.blackboard.set_var("is_attacking", false)
+		execute(max_bullets, delay)
+	else:
+		if boss.blackboard:
+			boss.blackboard.set_var("is_attacking", false)
 
 func _spawn_boomerang(sfx: AudioStream, make_parryable: bool):
 	var plane = MeshInstance3D.new()
@@ -48,7 +67,8 @@ func _spawn_boomerang(sfx: AudioStream, make_parryable: bool):
 	plane_mesh.size = Vector2(1.5, 1)
 	plane_mesh.center_offset = Vector3(0, 0, -0.5)
 	plane.mesh = plane_mesh
-	get_tree().current_scene.add_child(plane)
+	
+	boss.get_parent().add_child(plane)
 	
 	var material = StandardMaterial3D.new()
 	material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
@@ -58,6 +78,8 @@ func _spawn_boomerang(sfx: AudioStream, make_parryable: bool):
 	var gun_point: Marker3D = boss.get_node("%gun_point")
 	var bullet = preload("uid://dwsikl4kkdfi3").instantiate()
 	bullet.set_meta("preview_plane", plane)
+	
+	bullet.add_to_group("boss_boomerangs")
 	
 	var boomerang_offset = 2.5 
 	var dir_to_player = gun_point.global_position.direction_to(boss.player.global_position)
@@ -82,15 +104,13 @@ func _spawn_boomerang(sfx: AudioStream, make_parryable: bool):
 		if is_instance_valid(plane): plane.queue_free()
 		return null
 		
-	add_child(bullet)
+	boss.get_parent().add_child(bullet)
+	
 	bullet.pixel_size = 0.015
 	bullet.billboard = BaseMaterial3D.BILLBOARD_DISABLED
 	bullet.global_position = gun_point.global_position
 	 
-	if make_parryable:
-		boss.boss_sprite.play("stunned")
-	else:
-		boss.boss_sprite.play("throwing_boomerang")
+	boss.boss_sprite.play("throwing_boomerang")
 	
 	bullet.can_parry = make_parryable
 	bullet.can_damage = true
@@ -116,7 +136,7 @@ func _spawn_boomerang(sfx: AudioStream, make_parryable: bool):
 		audio_player.play()
 	
 	if make_parryable:
-		await get_tree().create_timer(0.25, false).timeout
+		await boss.get_tree().create_timer(0.25, false).timeout
 	return [bullet, target_pos]
 
 func _setup_boomerang_movement(bullet: Node3D, target_pos: Vector3, make_parryable: bool) -> void:
@@ -151,32 +171,67 @@ func _setup_boomerang_movement(bullet: Node3D, target_pos: Vector3, make_parryab
 	position_tween.tween_callback(func():
 		if is_instance_valid(bullet): bullet.queue_free()
 		if is_instance_valid(plane): plane.queue_free()
-		if make_parryable and boss.boss_sprite.animation == "stunned": boss.boss_sprite.play("idle")
 	)
 
 func _on_bullet_parried(bullet: Node3D):
 	if not is_instance_valid(bullet): return
+	
 	boss.last_bullet_parried = true
+	
+	if bullet.is_in_group("boss_boomerangs"):
+		bullet.remove_from_group("boss_boomerangs")
+	
+	var active_boomerangs = boss.get_tree().get_nodes_in_group("boss_boomerangs")
+	for active_b in active_boomerangs:
+		if is_instance_valid(active_b):
+			if active_b.has_meta("preview_plane"):
+				var p = active_b.get_meta("preview_plane")
+				if is_instance_valid(p): p.queue_free()
+			if active_b.has_meta("move_tween"):
+				var t = active_b.get_meta("move_tween")
+				if is_instance_valid(t): t.kill()
+			active_b.queue_free()
+
 	if bullet.has_meta("preview_plane"):
 		var plane = bullet.get_meta("preview_plane")
 		if is_instance_valid(plane): plane.queue_free()
+		
 	if bullet.has_meta("move_tween"):
 		var current_tween = bullet.get_meta("move_tween")
-		if is_instance_valid(current_tween): current_tween.kill()
+		if is_instance_valid(current_tween): 
+			current_tween.kill()
+			
+	bullet.set_process(false)
+	bullet.set_physics_process(false)
+	if bullet is Area3D:
+		bullet.monitorable = false
+		bullet.monitoring = false
+	var internal_detector = bullet.get_node_or_null("%parry_detector")
+	if internal_detector and internal_detector is Area3D:
+		internal_detector.monitorable = false
+		internal_detector.monitoring = false
 
 	var parry_tween = create_tween()
 	parry_tween.tween_property(bullet, "global_position", boss.global_position, 0.5)
-	await parry_tween.finished
-	if is_instance_valid(bullet): bullet.queue_free()
-		
+	
+	parry_tween.tween_callback(func():
+		if is_instance_valid(bullet): 
+			bullet.queue_free()
+			
+		_apply_boss_damage_pipeline()
+	)
+
+func _apply_boss_damage_pipeline() -> void:
 	boss._hurt(1, boss.boss_healthbar)
 	boss.boss_sprite.play("hurt")
-	await get_tree().create_timer(0.75, false).timeout
+	
+	await boss.get_tree().create_timer(0.75, false).timeout
 	if boss.health == 1:
 		boss.boss_sprite.play("angry_last_phase")
-		await get_tree().create_timer(1, false).timeout
+		await boss.get_tree().create_timer(1, false).timeout
 		boss.boss_sprite.play("idle_last_phase")
 	else:
 		boss.boss_sprite.play("idle")
-	await get_tree().create_timer(0.5, false).timeout
+		
+	await boss.get_tree().create_timer(0.5, false).timeout
 	boss.can_attack = true

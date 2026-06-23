@@ -142,6 +142,8 @@ func _projectile_thrown(projectile_animation: String, target_pos: Vector3, previ
 	.set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_QUAD)
 	
 	height_tween.tween_callback(func():
+		await get_tree().create_timer(0.1, false).timeout
+		bullet.can_damage = false
 		audio.stop()
 		audio.stream = CRASHING
 		audio.play(4.0)
@@ -151,7 +153,4 @@ func _projectile_thrown(projectile_animation: String, target_pos: Vector3, previ
 			if mat is StandardMaterial3D:
 				var fade_tween = create_tween()
 				fade_tween.tween_property(mat, "albedo_color:a", 0.0, 0.3)
-				fade_tween.tween_callback(preview_mesh.queue_free)
-		
-		await get_tree().create_timer(0.1, false).timeout
-		bullet.can_damage = false)
+				fade_tween.tween_callback(preview_mesh.queue_free))

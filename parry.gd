@@ -1,8 +1,13 @@
 extends Node
 
 @export var parry_area: Area3D
+@export var parry_cooldown: float = 1.0
+@export var parry_window: float = 0.3
+
+var can_parry: bool = true
 var is_parrying: bool = false
 const PARRY = preload("uid://cquk2o6tbfumc")
+
 var yeet_sprite_scene = preload("uid://dwsikl4kkdfi3")
 @export var audio: AudioStreamPlayer
 
@@ -13,9 +18,12 @@ func execute():
 	_start_parry_window()
 
 func _start_parry_window():
+	if not can_parry:
+		return
 	if is_parrying:
 		return
 	
+	can_parry = false
 	is_parrying = true
 	
 	for overlapping_area in parry_area.get_overlapping_areas():
@@ -23,6 +31,9 @@ func _start_parry_window():
 	
 	await get_tree().create_timer(0.3).timeout
 	is_parrying = false
+	await get_tree().create_timer(parry_cooldown - parry_window)
+	can_parry = true
+	
 
 func _parry_detector(parryable_object: Area3D) -> void:
 	var bullet = parryable_object.get_parent()
