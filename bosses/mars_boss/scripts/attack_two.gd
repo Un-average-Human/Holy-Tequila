@@ -1,5 +1,4 @@
 extends Node
-class_name BossAttackTwo
 
 var boss: Boss
 const ALIEN_COW_SCENE = preload("uid://lsgkfu0leche")

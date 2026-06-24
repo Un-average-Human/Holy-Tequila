@@ -1,6 +1,6 @@
 extends Control
 
-enum ACTIONS {Forward, Backward, Left, Right, SpecialAction, Jump}
+enum ACTIONS {Forward, Backward, Left, Right, SpecialAction, Jump, OpenMenu, UnlockMouse}
 
 @export_category("Sub-Menus")
 @export var graphic_settings: VBoxContainer

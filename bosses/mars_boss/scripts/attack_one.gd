@@ -1,5 +1,4 @@
 extends Node
-class_name BossAttackOne
 
 var boss: Boss
 

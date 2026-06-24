@@ -4,6 +4,7 @@ var health: int = 3
 var heart_list: Array
 @onready var heart_container: HBoxContainer = %heart_container
 var can_take_damage: bool = true
+@export var damage_vignette: Panel
 
 var current_speed: float = 5.0
 var jump_force: float = 4.5
@@ -15,12 +16,12 @@ var mouse_sens: float = 0.005
 var in_bossfight: bool = false
 
 @export var audio: AudioStreamPlayer
-
 @export var menu: Control
-
 @export var special_action: Node
+@export var animated_sprite: AnimatedSprite3D
 
 func _ready() -> void:
+	damage_vignette.self_modulate.a = 0.0
 	for heart in heart_container.get_children():
 		heart_list.append(heart)
 		heart.get_child(0).play("idle")
@@ -35,14 +36,14 @@ func _input(event: InputEvent) -> void:
 
 
 		
-	if Input.is_action_just_pressed("G"):
+	if Input.is_action_just_pressed("UnlockMouse"):
 		match Input.mouse_mode:
 			Input.MOUSE_MODE_CAPTURED:
 				Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 			Input.MOUSE_MODE_VISIBLE:
 				Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	
-	if Input.is_action_just_pressed("ESC"):
+	if Input.is_action_just_pressed("OpenMenu"):
 		if menu.visible == false:
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 			menu._menu_handler(true)
@@ -74,9 +75,22 @@ func take_damage():
 	if health > 0:
 		health -= 1
 		_update_hearts()
+		
+		var damage_vignette_tween = create_tween()
+		damage_vignette_tween.tween_property(damage_vignette, "self_modulate:a", 1, 0.25)
+		damage_vignette_tween.tween_interval(0.5)
+		damage_vignette_tween.tween_property(damage_vignette, "self_modulate:a", 0, 0.25)
+		
 		can_take_damage = false
-		await get_tree().create_timer(0.5, false).timeout
-		can_take_damage = true
+		invincibility_frame()
+
+func invincibility_frame():
+	print("i-frame is taking place")
+	var invincibility_frame_tween = create_tween().set_loops(2)
+	invincibility_frame_tween.tween_property(animated_sprite, "modulate:a", 0.5, 0.25)
+	invincibility_frame_tween.tween_property(animated_sprite, "modulate:a", 1, 0.25)
+	await invincibility_frame_tween.finished
+	can_take_damage = true
 
 func _update_hearts():
 	for heart in heart_list.size():

@@ -8,7 +8,20 @@
 font = ExtResource("1_y26ei")
 font_size = 128
 
-[node name="Control" type="Control" unique_id=265440457 node_paths=PackedStringArray("retry_button", "return_to_menu_button", "game_over_layer", "quote_label", "boss_name")]
+[sub_resource type="FontVariation" id="FontVariation_ccer4"]
+base_font = ExtResource("1_y26ei")
+variation_embolden = 0.75
+
+[sub_resource type="FontVariation" id="FontVariation_8u835"]
+base_font = ExtResource("1_y26ei")
+variation_embolden = 0.75
+variation_transform = Transform2D(1, 0.2, 0, 1, 0, 0)
+
+[sub_resource type="FontVariation" id="FontVariation_ftari"]
+base_font = ExtResource("1_y26ei")
+variation_transform = Transform2D(1, 0.2, 0, 1, 0, 0)
+
+[node name="Control" type="Control" unique_id=265440457 node_paths=PackedStringArray("retry_button", "return_to_menu_button", "game_over_layer", "boss_quote_layer", "quote_label", "boss_name")]
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
@@ -23,8 +36,9 @@ script = ExtResource("1_ccer4")
 retry_button = NodePath("game_over/VBoxContainer/retry")
 return_to_menu_button = NodePath("game_over/VBoxContainer/return_to_menu")
 game_over_layer = NodePath("game_over")
-quote_label = NodePath("game_over/boss_quote")
-boss_name = NodePath("game_over/boss_name")
+boss_quote_layer = NodePath("boss_quote/quote_group")
+quote_label = NodePath("boss_quote/quote_group/boss_quote")
+boss_name = NodePath("boss_quote/quote_group/boss_name")
 
 [node name="game_over" type="CanvasLayer" parent="." unique_id=1074039067]
 layer = 2
@@ -62,18 +76,43 @@ label_settings = SubResource("LabelSettings_ftari")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="boss_quote" type="RichTextLabel" parent="game_over" unique_id=601135561]
-offset_left = 150.46298
-offset_top = 226.0
-offset_right = 499.53702
-offset_bottom = 498.0
-text = "Description blah blah"
+[node name="boss_quote" type="CanvasLayer" parent="." unique_id=1404370382]
 
-[node name="boss_name" type="RichTextLabel" parent="game_over" unique_id=141616034]
-offset_left = 150.46298
+[node name="quote_group" type="Control" parent="boss_quote" unique_id=147221568]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -350.0
 offset_top = 150.0
-offset_right = 499.53702
-offset_bottom = 226.0
+offset_right = -1153.9999
+offset_bottom = -150.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="boss_quote" type="RichTextLabel" parent="boss_quote/quote_group" unique_id=601135561]
+layout_mode = 0
+offset_top = 76.0
+offset_right = 349.07404
+offset_bottom = 348.0
+theme = ExtResource("2_ccer4")
+theme_override_fonts/normal_font = ExtResource("1_y26ei")
+theme_override_fonts/bold_font = SubResource("FontVariation_ccer4")
+theme_override_fonts/bold_italics_font = SubResource("FontVariation_8u835")
+theme_override_fonts/italics_font = SubResource("FontVariation_ftari")
+theme_override_font_sizes/normal_font_size = 30
+theme_override_font_sizes/bold_font_size = 30
+theme_override_font_sizes/bold_italics_font_size = 30
+theme_override_font_sizes/italics_font_size = 30
+theme_override_font_sizes/mono_font_size = 30
+bbcode_enabled = true
+text = "test"
+
+[node name="boss_name" type="RichTextLabel" parent="boss_quote/quote_group" unique_id=141616034]
+layout_mode = 0
+offset_right = 349.07404
+offset_bottom = 76.0
+bbcode_enabled = true
 text = "Boss Name"
 horizontal_alignment = 1
 vertical_alignment = 1
