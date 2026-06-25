@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://l7jvtkaev2om"
-path.s3tc="res://.godot/imported/wrench.png-25ffaee79fde1c2bf53514b0fc69b66c.s3tc.ctex"
+uid="uid://dfp6o2tgbdbvm"
+path.s3tc="res://.godot/imported/yeet.png-f8ec4bc0175071ae8fd8c5dead1142a7.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://bullet/wrench.png"
-dest_files=["res://.godot/imported/wrench.png-25ffaee79fde1c2bf53514b0fc69b66c.s3tc.ctex"]
+source_file="res://bullet/sprites/yeet.png"
+dest_files=["res://.godot/imported/yeet.png-f8ec4bc0175071ae8fd8c5dead1142a7.s3tc.ctex"]
 
 [params]
 

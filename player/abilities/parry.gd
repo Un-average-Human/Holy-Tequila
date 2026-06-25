@@ -79,8 +79,7 @@ func _parry(object: Node3D):
 	audio.stream = PARRY
 	audio.play()
 	is_parrying = false
-	for bullet in parry_area.get_overlapping_bodies():
-		bullet._parried()
+	object._parried()
 
 func _process(delta: float) -> void:
 	if ability_cooldown_bar.value < ability_cooldown:

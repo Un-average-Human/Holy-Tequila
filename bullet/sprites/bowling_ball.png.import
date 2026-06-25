@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://vocbm77ljj8"
-path.s3tc="res://.godot/imported/bowling_ball.png-3fd6957f72119f5d0f64a045b99681f8.s3tc.ctex"
+path.s3tc="res://.godot/imported/bowling_ball.png-3fc5667834a85febcac18851ccffc2d8.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://bullet/bowling_ball.png"
-dest_files=["res://.godot/imported/bowling_ball.png-3fd6957f72119f5d0f64a045b99681f8.s3tc.ctex"]
+source_file="res://bullet/sprites/bowling_ball.png"
+dest_files=["res://.godot/imported/bowling_ball.png-3fc5667834a85febcac18851ccffc2d8.s3tc.ctex"]
 
 [params]
 

@@ -1,7 +1,11 @@
 extends Node
 
 var boss: Boss
+@export var marker_safe_radius: float = 8.0
 const ALIEN_COW_SCENE = preload("uid://lsgkfu0leche")
+
+var target_pos: Vector3
+var random_pos
 
 func execute(enemy_amount: int) -> void:
 	if boss.blackboard and boss.blackboard.get_var("is_attacking", false):
@@ -28,8 +32,12 @@ func execute(enemy_amount: int) -> void:
 	while cows_spawned < enemy_amount:
 		cows_spawned += 1
 		
-		var random_pos = rng.randi_range(0, boss.spawn_points.size() - 1)
-		var target_pos: Vector3 = boss.spawn_points[random_pos]
+		random_pos = rng.randi_range(0, boss.spawn_points.size() - 1)
+		target_pos = boss.spawn_points[random_pos]
+		
+		while target_pos.distance_to(boss.target.global_position) < marker_safe_radius:
+			random_pos = rng.randi_range(0, boss.spawn_points.size() - 1)
+			target_pos = boss.spawn_points[random_pos]
 		
 		var alien_cow = ALIEN_COW_SCENE.instantiate()
 		add_child(alien_cow)

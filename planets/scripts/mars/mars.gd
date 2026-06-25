@@ -15,7 +15,9 @@ func _ready() -> void:
 	SignalBus.player_died.connect(_end_bossfight)
 
 func _fell_in_void(body: Node3D):
-	body.global_position = spawn_point.global_position
+	if body.is_in_group("player"):
+		body.global_position = spawn_point.global_position
+		body.take_damage()
 	
 func _end_bossfight(): 
 	get_tree().call_group("projectile", "queue_free")

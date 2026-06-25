@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://xqeyphuxe5vm"
-path.s3tc="res://.godot/imported/energy_bullet.png-2a6adbd29e60a0c0188b4d3e71b7cf2f.s3tc.ctex"
+uid="uid://chh4chrcixr6l"
+path.s3tc="res://.godot/imported/nacho_jar.png-c89dc595b836acfd71428f90f5399a65.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://bullet/energy_bullet.png"
-dest_files=["res://.godot/imported/energy_bullet.png-2a6adbd29e60a0c0188b4d3e71b7cf2f.s3tc.ctex"]
+source_file="res://bullet/sprites/nacho_jar.png"
+dest_files=["res://.godot/imported/nacho_jar.png-c89dc595b836acfd71428f90f5399a65.s3tc.ctex"]
 
 [params]
 

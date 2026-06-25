@@ -465,6 +465,7 @@ script = ExtResource("1_jo3wj")
 
 [node name="battle_island" type="StaticBody3D" parent="." unique_id=573910593]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
+collision_layer = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="battle_island" unique_id=734364744]
 transform = Transform3D(20, 0, 0, 0, 2, 0, 0, 0, 20, 0, -1.5, 0)

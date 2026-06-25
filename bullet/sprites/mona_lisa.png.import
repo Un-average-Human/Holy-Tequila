@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dfp6o2tgbdbvm"
-path.s3tc="res://.godot/imported/yeet.png-68f4a9021ebd3ca923b20b52e0f3e5f6.s3tc.ctex"
+uid="uid://ctus6vif0cccr"
+path.s3tc="res://.godot/imported/mona_lisa.png-f2a825dca80cbfae88962fd896321b04.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://bullet/yeet.png"
-dest_files=["res://.godot/imported/yeet.png-68f4a9021ebd3ca923b20b52e0f3e5f6.s3tc.ctex"]
+source_file="res://bullet/sprites/mona_lisa.png"
+dest_files=["res://.godot/imported/mona_lisa.png-f2a825dca80cbfae88962fd896321b04.s3tc.ctex"]
 
 [params]
 

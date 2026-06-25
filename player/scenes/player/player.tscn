@@ -34,13 +34,14 @@ animations = [{
 }]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7illk"]
-bg_color = Color(0.6, 0.6, 0.6, 0)
-border_width_left = 100
-border_width_top = 100
-border_width_right = 100
-border_width_bottom = 100
-border_color = Color(1, 0, 0, 0.49803922)
+bg_color = Color(1, 0, 0, 0)
+border_width_left = 150
+border_width_top = 150
+border_width_right = 150
+border_width_bottom = 150
+border_color = Color(1, 0, 0, 0.2784314)
 border_blend = true
+shadow_color = Color(1, 1, 1, 0.6)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i3pqv"]
 atlas = ExtResource("2_onrkg")
@@ -92,7 +93,7 @@ stacked_outline_0/size = 5
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_i3pqv"]
 height = 5.0
-radius = 2.0
+radius = 8.0
 
 [node name="player" type="CharacterBody3D" unique_id=1185616285 node_paths=PackedStringArray("damage_vignette", "cam_pivot", "player_cam", "audio", "menu", "animated_sprite") groups=["player"]]
 script = ExtResource("1_4flbx")
@@ -118,6 +119,7 @@ autoplay = "idle"
 [node name="ui" type="CanvasLayer" parent="." unique_id=383149491]
 
 [node name="damage_vignette" type="Panel" parent="ui" unique_id=1636105890]
+self_modulate = Color(1, 0, 0, 1)
 offset_right = 1152.0
 offset_bottom = 648.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_7illk")
@@ -127,9 +129,9 @@ unique_name_in_owner = true
 texture_repeat = 2
 custom_minimum_size = Vector2(150, 50)
 offset_left = 50.0
-offset_top = 550.0
+offset_top = 585.0
 offset_right = 208.0
-offset_bottom = 600.0
+offset_bottom = 635.0
 
 [node name="heart1" type="TextureRect" parent="ui/heart_container" unique_id=1391252628]
 custom_minimum_size = Vector2(50, 0)
@@ -167,17 +169,20 @@ centered = false
 [node name="ability_cooldown" type="ProgressBar" parent="ui" unique_id=865429901]
 texture_filter = 1
 offset_left = 702.0
-offset_top = 560.0
+offset_top = 595.0
 offset_right = 1104.0
-offset_bottom = 590.0
+offset_bottom = 625.0
 step = 0.0
 value = 100.0
 show_percentage = false
 
 [node name="Label" type="Label" parent="ui/ability_cooldown" unique_id=512107829]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 theme = ExtResource("5_7illk")
 text = "Ability Cooldown"
 label_settings = SubResource("LabelSettings_lrqc5")
@@ -200,6 +205,7 @@ unique_name_in_owner = true
 
 [node name="SpringArm3D" type="SpringArm3D" parent="cam_pivot" unique_id=875577173]
 transform = Transform3D(1, 0, 0, 0, 0.96592593, 0.25881907, 0, -0.25881907, 0.96592593, 0, 0, 0)
+collision_mask = 2
 shape = SubResource("SphereShape3D_i3pqv")
 spring_length = 5.0
 margin = 0.1
@@ -212,6 +218,14 @@ collision_layer = 0
 collision_mask = 4
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="parry_area" unique_id=538210318]
+shape = SubResource("CylinderShape3D_i3pqv")
+
+[node name="safe_area" type="Area3D" parent="." unique_id=1674106189]
+unique_name_in_owner = true
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="safe_area" unique_id=1737551127]
 shape = SubResource("CylinderShape3D_i3pqv")
 
 [node name="audio" type="AudioStreamPlayer" parent="." unique_id=899686412]

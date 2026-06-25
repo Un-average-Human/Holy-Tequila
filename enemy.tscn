@@ -85,6 +85,7 @@ pixel_size = 0.0035
 billboard = 2
 double_sided = false
 texture_filter = 1
+render_priority = 1
 sprite_frames = SubResource("SpriteFrames_hb8ge")
 animation = &"alien_cow_idle"
 

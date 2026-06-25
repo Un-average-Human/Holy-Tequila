@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dljs2kx7b73oa"
-path.s3tc="res://.godot/imported/boomerang_bullet.png-2fd6085701312fbe7252b035d7276eba.s3tc.ctex"
+uid="uid://leko6a3b53wh"
+path.s3tc="res://.godot/imported/boomerang_bullet_parryable.png-6cfdbffbaf7f837ff3c9244cbd705332.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://bullet/boomerang_bullet.png"
-dest_files=["res://.godot/imported/boomerang_bullet.png-2fd6085701312fbe7252b035d7276eba.s3tc.ctex"]
+source_file="res://bullet/sprites/boomerang_bullet_parryable.png"
+dest_files=["res://.godot/imported/boomerang_bullet_parryable.png-6cfdbffbaf7f837ff3c9244cbd705332.s3tc.ctex"]
 
 [params]
 

@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://chh4chrcixr6l"
-path.s3tc="res://.godot/imported/nacho_jar.png-d23c4691959510856e2f0b6423e51497.s3tc.ctex"
+uid="uid://dljs2kx7b73oa"
+path.s3tc="res://.godot/imported/boomerang_bullet.png-6571f4b487c70975a9f54e6d098ad574.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://bullet/nacho_jar.png"
-dest_files=["res://.godot/imported/nacho_jar.png-d23c4691959510856e2f0b6423e51497.s3tc.ctex"]
+source_file="res://bullet/sprites/boomerang_bullet.png"
+dest_files=["res://.godot/imported/boomerang_bullet.png-6571f4b487c70975a9f54e6d098ad574.s3tc.ctex"]
 
 [params]
 

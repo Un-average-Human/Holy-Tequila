@@ -99,12 +99,12 @@ func _option_buttons(index: int, button: Button):
 
 # change keybinds
 func _input(event: InputEvent) -> void:
-	if event is InputEventKey and is_customisable:
+	if event is InputEvent and is_customisable:
 		if event.is_pressed():
 			_change_action_key(event)
 			is_customisable = false
 
-func _change_action_key(new_key: InputEventKey):
+func _change_action_key(new_key: InputEvent):
 	var action_events = InputMap.action_get_events(action_string)
 	if not action_events.is_empty():
 		InputMap.action_erase_event(action_string, action_events[0])
@@ -131,6 +131,11 @@ func _update_keys():
 				if first_event is InputEventKey:
 					var clean_label = DisplayServer.keyboard_get_label_from_physical(first_event.physical_keycode)
 					input_button.text = OS.get_keycode_string(clean_label)
+				elif first_event is InputEventMouseButton:
+					if first_event.button_index == MOUSE_BUTTON_LEFT:
+						input_button.text = "LMB"
+					elif first_event.button_index == MOUSE_BUTTON_RIGHT:
+						input_button.text = "RMB"
 				else:
 					input_button.text = first_event.as_text()
 			else:

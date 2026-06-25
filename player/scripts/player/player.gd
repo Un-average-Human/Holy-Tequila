@@ -78,14 +78,13 @@ func take_damage():
 		
 		var damage_vignette_tween = create_tween()
 		damage_vignette_tween.tween_property(damage_vignette, "self_modulate:a", 1, 0.25)
-		damage_vignette_tween.tween_interval(0.5)
+		#damage_vignette_tween.tween_interval(0.5)
 		damage_vignette_tween.tween_property(damage_vignette, "self_modulate:a", 0, 0.25)
 		
 		can_take_damage = false
 		invincibility_frame()
 
 func invincibility_frame():
-	print("i-frame is taking place")
 	var invincibility_frame_tween = create_tween().set_loops(2)
 	invincibility_frame_tween.tween_property(animated_sprite, "modulate:a", 0.5, 0.25)
 	invincibility_frame_tween.tween_property(animated_sprite, "modulate:a", 1, 0.25)

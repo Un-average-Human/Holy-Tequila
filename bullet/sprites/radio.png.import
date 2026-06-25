@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://55kmks0d6ba1"
-path.s3tc="res://.godot/imported/rail_bullet.png-5afe17478b633dc65518112683b18923.s3tc.ctex"
+uid="uid://gtyd6a70uf33"
+path.s3tc="res://.godot/imported/radio.png-df7fa0f080a105c028d9194f291f2db0.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://bullet/rail_bullet.png"
-dest_files=["res://.godot/imported/rail_bullet.png-5afe17478b633dc65518112683b18923.s3tc.ctex"]
+source_file="res://bullet/sprites/radio.png"
+dest_files=["res://.godot/imported/radio.png-df7fa0f080a105c028d9194f291f2db0.s3tc.ctex"]
 
 [params]
 

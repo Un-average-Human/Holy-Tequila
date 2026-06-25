@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ctus6vif0cccr"
-path.s3tc="res://.godot/imported/mona_lisa.png-7512d33c24d1a9535678190d846a2fe3.s3tc.ctex"
+uid="uid://dxqilihvwuxo4"
+path.s3tc="res://.godot/imported/tuba.png-58cf0f589b18b919983204ebd4c91224.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://bullet/mona_lisa.png"
-dest_files=["res://.godot/imported/mona_lisa.png-7512d33c24d1a9535678190d846a2fe3.s3tc.ctex"]
+source_file="res://bullet/sprites/tuba.png"
+dest_files=["res://.godot/imported/tuba.png-58cf0f589b18b919983204ebd4c91224.s3tc.ctex"]
 
 [params]
 
