@@ -123,9 +123,6 @@ func _spawn_boomerang(sfx: AudioStream, make_parryable: bool):
 		var parry_callable = func(parried_bullet: Node3D):
 			if parried_bullet == bullet: _on_bullet_parried(bullet)
 		SignalBus.parried.connect(parry_callable)
-		bullet.tree_exited.connect(func():
-			if SignalBus.parried.is_connected(parry_callable): SignalBus.parried.disconnect(parry_callable)
-		)
 	else:
 		bullet.play("boomerang_bullet")
 	
@@ -177,19 +174,19 @@ func _on_bullet_parried(bullet: Node3D):
 	
 	boss.last_bullet_parried = true
 	
-	if bullet.is_in_group("boss_boomerangs"):
-		bullet.remove_from_group("boss_boomerangs")
+	if bullet.is_in_group("projectile"):
+		bullet.remove_from_group("projectile")
 	
-	var active_boomerangs = boss.get_tree().get_nodes_in_group("boss_boomerangs")
-	for active_b in active_boomerangs:
-		if is_instance_valid(active_b):
-			if active_b.has_meta("preview_plane"):
-				var p = active_b.get_meta("preview_plane")
+	var boomerangoomerangs = boss.get_tree().get_nodes_in_group("projectile")
+	for boomerang in boomerangoomerangs:
+		if is_instance_valid(boomerang):
+			if boomerang.has_meta("preview_plane"):
+				var p = boomerang.get_meta("preview_plane")
 				if is_instance_valid(p): p.queue_free()
-			if active_b.has_meta("move_tween"):
-				var t = active_b.get_meta("move_tween")
+			if boomerang.has_meta("move_tween"):
+				var t = boomerang.get_meta("move_tween")
 				if is_instance_valid(t): t.kill()
-			active_b.queue_free()
+			boomerang.queue_free()
 
 	if bullet.has_meta("preview_plane"):
 		var plane = bullet.get_meta("preview_plane")

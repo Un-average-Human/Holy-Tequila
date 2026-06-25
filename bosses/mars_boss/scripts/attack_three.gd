@@ -9,7 +9,6 @@ var projectile_preview_radius: float = 2.0
 var shot_delay: float = 1.5
 
 var last_num: int = -1
-var rng := RandomNumberGenerator.new()
 
 var hand_throwing_projectile: Marker3D
 @onready var right_hand: Marker3D = %right_hand
@@ -27,8 +26,9 @@ var available_projectiles: Dictionary[String, float] = {
 		"mona_lisa" : 0.003
 	}
 
+var bomb_thrown: bool = false
+
 func execute() -> void:
-	print("has called 3rd func")
 	if boss.blackboard and boss.blackboard.get_var("is_attacking", false):
 		return
 	boss.blackboard.set_var("is_attacking", true)
@@ -40,14 +40,24 @@ func execute() -> void:
 		projectile_amount += 1
 		_random_projectile_preview()
 		await get_tree().create_timer(0.5, false).timeout
+
+	var extra_projectile_amount: int
+	var extra_projectiles: int = GeneralData.rng.randi_range(1, 3)
+	while extra_projectile_amount < extra_projectiles:
+		boss.boss_sprite.play("picking_up_projectiles")
+		await get_tree().create_timer(shot_delay, false).timeout
 		
+		extra_projectile_amount += 1
+		_random_projectile_preview()
+		await get_tree().create_timer(0.5, false).timeout
+	
 	await get_tree().create_timer(2.5, false).timeout
 	boss.blackboard.set_var("is_attacking", false)
 	
 func _random_projectile_preview():
 	var new_num: int = last_num
 	while new_num == last_num:
-		new_num = rng.randi_range(0, 1)
+		new_num = GeneralData.rng.randi_range(0, 1)
 	
 	boss.boss_sprite.play("throwing_projectile")
 	boss.boss_sprite.stop()
@@ -85,13 +95,18 @@ func _random_projectile_preview():
 	scale_preview_tween.tween_property(mesh, "scale:z", 1.0, 0.5)\
 	.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BACK)
 	
-	if projectile_queue.size() <= 1:
-		_pick_projectile()
-	var projectile_animation
-	if projectile_queue.size() > 0:
-		projectile_animation = projectile_queue.pop_front()
+	if projectile_amount != max_projectiles:
+		if projectile_queue.size() <= 1:
+			_pick_projectile()
+		var projectile_animation
+		if projectile_queue.size() > 0:
+			projectile_animation = projectile_queue.pop_front()
 	
-	_projectile_thrown(projectile_animation, target_pos, mesh)
+		_projectile_thrown(projectile_animation, target_pos, mesh)
+	
+	elif projectile_amount == max_projectiles and bomb_thrown == false:
+		bomb_thrown = true
+		_projectile_thrown("parriable_bomb", target_pos, mesh)
 
 func _pick_projectile():
 	var temp_list: Array[String]
@@ -110,6 +125,7 @@ func _projectile_thrown(projectile_animation: String, target_pos: Vector3, previ
 	
 	get_tree().root.add_child(bullet)
 	
+	bullet.pixel_size = 0.003
 	bullet.can_damage = true
 	bullet.one_hit = true
 	bullet.damage_collision.shape.radius = 1.0
@@ -148,9 +164,33 @@ func _projectile_thrown(projectile_animation: String, target_pos: Vector3, previ
 		audio.stream = CRASHING
 		audio.play(4.0)
 		
+		if bullet.animation == "parriable_bomb":
+			SignalBus.parried
+			_parriable_bomb(audio, bullet)
 		if is_instance_valid(preview_mesh):
 			var mat = preview_mesh.get_surface_override_material(0)
 			if mat is StandardMaterial3D:
 				var fade_tween = create_tween()
 				fade_tween.tween_property(mat, "albedo_color:a", 0.0, 0.3)
 				fade_tween.tween_callback(preview_mesh.queue_free))
+
+func _parriable_bomb(audio: AudioStreamPlayer3D, bullet: AnimatedSprite3D):
+	const BOMB_HISS = preload("uid://paa1wbql6uhc")
+	const BOMB_EXPLOSION = preload("uid://b3ulg3d20kt1w")
+
+	audio.stream = BOMB_HISS
+	audio.play()
+	var timer = await get_tree().create_timer(3.0).timeout
+	
+	bullet.scale = Vector3.ZERO
+	bullet.global_position.y += 1
+	bullet.pixel_size = 0.0075
+	bullet.play("explosion")
+	
+	audio.stop()
+	audio.stream = BOMB_EXPLOSION
+	audio.play()
+	
+	var bullet_scale_tween = create_tween()
+	bullet_scale_tween.tween_property(bullet, "scale", Vector3.ONE, 0.25)\
+	.set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)

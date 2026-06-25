@@ -24,7 +24,6 @@ func execute(enemy_amount: int) -> void:
 	boss.boss_sprite.billboard = BaseMaterial3D.BILLBOARD_FIXED_Y
 	
 	var cows_spawned: int = 0
-	var rng = RandomNumberGenerator.new()
 	
 	var anim_speed: float = 1.0
 	var arc_height: float = 5.0
@@ -32,11 +31,11 @@ func execute(enemy_amount: int) -> void:
 	while cows_spawned < enemy_amount:
 		cows_spawned += 1
 		
-		random_pos = rng.randi_range(0, boss.spawn_points.size() - 1)
+		random_pos = GeneralData.rng.randi_range(0, boss.spawn_points.size() - 1)
 		target_pos = boss.spawn_points[random_pos]
 		
-		while target_pos.distance_to(boss.target.global_position) < marker_safe_radius:
-			random_pos = rng.randi_range(0, boss.spawn_points.size() - 1)
+		while target_pos.distance_to(boss.player.global_position) < marker_safe_radius:
+			random_pos = GeneralData.rng.randi_range(0, boss.spawn_points.size() - 1)
 			target_pos = boss.spawn_points[random_pos]
 		
 		var alien_cow = ALIEN_COW_SCENE.instantiate()

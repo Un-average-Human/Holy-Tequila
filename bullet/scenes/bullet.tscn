@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://dfp6o2tgbdbvm" path="res://bullet/sprites/yeet.png" id="6_6ol1o"]
 [ext_resource type="Texture2D" uid="uid://chh4chrcixr6l" path="res://bullet/sprites/nacho_jar.png" id="7_qd0d2"]
 [ext_resource type="Texture2D" uid="uid://gtyd6a70uf33" path="res://bullet/sprites/radio.png" id="8_4r2mu"]
+[ext_resource type="Texture2D" uid="uid://cl6gvbow6bocy" path="res://bullet/sprites/parriable_bomb.png" id="8_pa47w"]
 [ext_resource type="Texture2D" uid="uid://dxqilihvwuxo4" path="res://bullet/sprites/tuba.png" id="9_4r2mu"]
 [ext_resource type="Texture2D" uid="uid://l7jvtkaev2om" path="res://bullet/sprites/wrench.png" id="11_o7457"]
 [ext_resource type="AudioStream" uid="uid://blabxyo86i4xa" path="res://sfx/interaction/crashing.mp3" id="14_4r2mu"]
@@ -69,6 +70,14 @@ region = Rect2(0, 0, 1080, 1080)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ck3xx"]
 atlas = ExtResource("7_qd0d2")
+region = Rect2(1080, 0, 1080, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_swme1"]
+atlas = ExtResource("8_pa47w")
+region = Rect2(0, 0, 1080, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5ct8v"]
+atlas = ExtResource("8_pa47w")
 region = Rect2(1080, 0, 1080, 1080)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_djjri"]
@@ -192,6 +201,17 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_swme1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5ct8v")
+}],
+"loop": true,
+"name": &"parriable_bomb",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_djjri")
 }, {
 "duration": 1.0,
@@ -252,16 +272,18 @@ radius = 0.75
 [sub_resource type="SphereShape3D" id="SphereShape3D_t2bd8"]
 radius = 1.2
 
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_pa47w"]
+
 [node name="bullet" type="AnimatedSprite3D" unique_id=2046011295 node_paths=PackedStringArray("damage_collision", "parry_collision") groups=["projectile"]]
 unique_name_in_owner = true
 process_mode = 1
 transform = Transform3D(1, 0, 0, 0, 1, -5.9604645e-08, 0, 5.9604645e-08, 1, 0, 0, 0)
-pixel_size = 0.0025
+pixel_size = 0.0075
 billboard = 2
 texture_filter = 0
 render_priority = 1
 sprite_frames = SubResource("SpriteFrames_2b2rl")
-animation = &"wrench"
+animation = &"explosion"
 script = ExtResource("5_b7duk")
 damage_collision = NodePath("Area3D/CollisionShape3D")
 parry_collision = NodePath("parry_detector/CollisionShape3D")
@@ -286,3 +308,6 @@ collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="parry_detector" unique_id=573716430]
 shape = SubResource("SphereShape3D_t2bd8")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1677077460]
+mesh = SubResource("CapsuleMesh_pa47w")

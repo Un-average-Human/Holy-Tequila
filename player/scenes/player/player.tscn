@@ -220,14 +220,6 @@ collision_mask = 4
 [node name="CollisionShape3D" type="CollisionShape3D" parent="parry_area" unique_id=538210318]
 shape = SubResource("CylinderShape3D_i3pqv")
 
-[node name="safe_area" type="Area3D" parent="." unique_id=1674106189]
-unique_name_in_owner = true
-collision_layer = 0
-collision_mask = 4
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="safe_area" unique_id=1737551127]
-shape = SubResource("CylinderShape3D_i3pqv")
-
 [node name="audio" type="AudioStreamPlayer" parent="." unique_id=899686412]
 unique_name_in_owner = true
 stream = ExtResource("5_sweqy")

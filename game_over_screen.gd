@@ -13,9 +13,9 @@ extends Control
 @export var boss_name: RichTextLabel
 
 func _ready() -> void:
-	var boss_key = BossfightData.current_boss
+	var boss_key = GeneralData.current_boss
 	
-	if BossfightData.boss_data.has(boss_key) and boss_key != "":
+	if GeneralData.boss_data.has(boss_key) and boss_key != "":
 		_boss_quote_stuff(boss_key)
 	
 	return_to_menu_button.pressed.connect(_buttons.bind(return_to_menu_button))
@@ -24,13 +24,13 @@ func _ready() -> void:
 func _buttons(button: Button):
 	match button:
 		return_to_menu_button:
-			get_tree().change_scene_to_file(BossfightData.menu)
+			get_tree().change_scene_to_file(GeneralData.menu)
 		retry_button:
-			get_tree().change_scene_to_file(BossfightData.current_world)
+			get_tree().change_scene_to_file(GeneralData.current_world)
 	queue_free()
 
 func _boss_quote_stuff(boss_key: String):
-	var data = BossfightData.boss_data[boss_key]
+	var data = GeneralData.boss_data[boss_key]
 	boss_name.text = "[u][b]" + boss_key + "[/b][/u]"
 	quote_label.text = data["winning_quote"]
 	

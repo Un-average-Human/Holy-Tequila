@@ -22,7 +22,7 @@ buses/default_bus_layout="uid://dbcn8rv8xi6ix"
 [autoload]
 
 Globals="*uid://b0e0gq1jdc8qx"
-BossfightData="*uid://cxdx7mxbk7atu"
+GeneralData="*uid://cxdx7mxbk7atu"
 SignalBus="*uid://d187uaxwitf5f"
 
 [display]

@@ -78,7 +78,7 @@ func take_damage():
 		
 		var damage_vignette_tween = create_tween()
 		damage_vignette_tween.tween_property(damage_vignette, "self_modulate:a", 1, 0.25)
-		#damage_vignette_tween.tween_interval(0.5)
+		damage_vignette_tween.tween_interval(0.25)
 		damage_vignette_tween.tween_property(damage_vignette, "self_modulate:a", 0, 0.25)
 		
 		can_take_damage = false

@@ -1,5 +1,7 @@
 extends Node
 
+var rng = RandomNumberGenerator.new()
+
 var menu = "uid://yo1ornr2fnjs"
 var current_world
 var current_boss: String = ""

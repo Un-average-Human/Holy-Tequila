@@ -27,7 +27,7 @@ func _button_handler(button: Button):
 			settings_menu.show()
 		return_to_menu_btn:
 			get_tree().set_pause(false)
-			get_tree().change_scene_to_file(BossfightData.menu)
+			get_tree().change_scene_to_file(GeneralData.menu)
 		quit_btn:
 			get_tree().quit()
 
