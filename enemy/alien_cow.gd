@@ -25,9 +25,11 @@ func _damage_player(body: Node3D):
 	if body.is_in_group("player"):
 		if is_charging:
 			var push_dir = global_position.direction_to(body.global_position)
-			push_dir.y = 0.2
+			push_dir.y = 0.025
 			push_dir = push_dir.normalized()
-			body.move_and_collide(push_dir * knockback)
+			
+			body.apply_knockback(push_dir * knockback)
+			
 			_stop_charging()
 
 		if body.is_in_group("player"):

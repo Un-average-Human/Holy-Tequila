@@ -27,6 +27,8 @@ var available_projectiles: Dictionary[String, float] = {
 	}
 
 var bomb_thrown: bool = false
+var extra_projectile_amount: int
+var extra_projectiles: int
 
 func execute() -> void:
 	if boss.blackboard and boss.blackboard.get_var("is_attacking", false):
@@ -41,8 +43,7 @@ func execute() -> void:
 		_random_projectile_preview()
 		await get_tree().create_timer(0.5, false).timeout
 
-	var extra_projectile_amount: int
-	var extra_projectiles: int = GeneralData.rng.randi_range(1, 3)
+	extra_projectiles = GeneralData.rng.randi_range(1, 3)
 	while extra_projectile_amount < extra_projectiles:
 		boss.boss_sprite.play("picking_up_projectiles")
 		await get_tree().create_timer(shot_delay, false).timeout
@@ -85,7 +86,8 @@ func _random_projectile_preview():
 	get_tree().root.add_child(mesh)
 
 	var target_pos: Vector3
-	target_pos = boss.player.global_position - Vector3(0, 0.999, 0)
+	target_pos = boss.player.global_position
+	target_pos.y = 0
 	mesh.global_position = target_pos
 	
 	mesh.scale = Vector3(0, 1, 0)
@@ -104,9 +106,18 @@ func _random_projectile_preview():
 	
 		_projectile_thrown(projectile_animation, target_pos, mesh)
 	
-	elif projectile_amount == max_projectiles and bomb_thrown == false:
+	elif projectile_amount == max_projectiles and !bomb_thrown:
 		bomb_thrown = true
 		_projectile_thrown("parriable_bomb", target_pos, mesh)
+	
+	if bomb_thrown and extra_projectile_amount < extra_projectiles:
+		if projectile_queue.size() <= 1:
+			_pick_projectile()
+		var projectile_animation
+		if projectile_queue.size() > 0:
+			projectile_animation = projectile_queue.pop_front()
+	
+		_projectile_thrown(projectile_animation, target_pos, mesh)
 
 func _pick_projectile():
 	var temp_list: Array[String]
@@ -163,6 +174,7 @@ func _projectile_thrown(projectile_animation: String, target_pos: Vector3, previ
 		audio.stop()
 		audio.stream = CRASHING
 		audio.play(4.0)
+		await audio.finished
 		
 		if bullet.animation == "parriable_bomb":
 			SignalBus.parried

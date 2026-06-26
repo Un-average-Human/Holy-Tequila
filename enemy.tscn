@@ -74,13 +74,14 @@ nav_agent = NodePath("NavigationAgent3D")
 sprite = NodePath("enemy")
 charge_area = NodePath("charge_area")
 damage_area = NodePath("damage_area")
-knockback = 5.0
+knockback = 10.0
 speed = 2.0
 jump_velocity = 5.0
 spot_area = NodePath("spot_area")
 bt_player = NodePath("BTPlayer")
 
 [node name="enemy" type="AnimatedSprite3D" parent="." unique_id=207700314]
+cast_shadow = 0
 pixel_size = 0.0035
 billboard = 2
 double_sided = false

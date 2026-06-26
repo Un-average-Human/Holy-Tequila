@@ -20,6 +20,8 @@ var in_bossfight: bool = false
 @export var special_action: Node
 @export var animated_sprite: AnimatedSprite3D
 
+@export var knockback_vel: Vector3 = Vector3.ZERO
+
 func _ready() -> void:
 	damage_vignette.self_modulate.a = 0.0
 	for heart in heart_container.get_children():
@@ -50,24 +52,6 @@ func _input(event: InputEvent) -> void:
 	
 	if Input.is_action_just_pressed("SpecialAction"):
 		special_action.execute()
-
-func _physics_process(delta: float) -> void:
-	if not is_on_floor():
-		velocity += get_gravity() * delta
-
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
-		velocity.y = jump_force
-
-	var input_dir := Input.get_vector("Left", "Right", "Forward", "Backward")
-	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	if direction:
-		velocity.x = direction.x * current_speed
-		velocity.z = direction.z * current_speed
-	else:
-		velocity.x = move_toward(velocity.x, 0, current_speed)
-		velocity.z = move_toward(velocity.z, 0, current_speed)
-
-	move_and_slide()
 
 func take_damage():
 	if not can_take_damage:
@@ -100,3 +84,27 @@ func _update_hearts():
 		queue_free()
 		SignalBus.player_died.emit()
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+
+func apply_knockback(force: Vector3) -> void:
+	knockback_vel = force
+
+func _physics_process(delta: float) -> void:
+	if not is_on_floor():
+		velocity += get_gravity() * delta
+
+	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
+		velocity.y = jump_force
+
+	var input_dir := Input.get_vector("Left", "Right", "Forward", "Backward")
+	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	if direction:
+		velocity.x = direction.x * current_speed
+		velocity.z = direction.z * current_speed
+	else:
+		velocity.x = move_toward(velocity.x, 0, current_speed)
+		velocity.z = move_toward(velocity.z, 0, current_speed)
+
+	velocity += knockback_vel
+	knockback_vel = knockback_vel.move_toward(Vector3.ZERO, current_speed * delta * 10.0)
+
+	move_and_slide()

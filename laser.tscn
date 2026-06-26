@@ -1,0 +1,54 @@
+[gd_scene format=3 uid="uid://t24j68g7nre2"]
+
+[ext_resource type="Texture2D" uid="uid://c4t6hbh8ferwm" path="res://bullet/sprites/laser.png" id="1_fn5yt"]
+[ext_resource type="Script" uid="uid://b8bmqnrb84k72" path="res://laser.gd" id="2_6vqwg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6vqwg"]
+atlas = ExtResource("1_fn5yt")
+region = Rect2(0, 0, 1080, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g6b45"]
+atlas = ExtResource("1_fn5yt")
+region = Rect2(1080, 0, 1080, 1080)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7vci3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6vqwg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g6b45")
+}],
+"loop": true,
+"name": &"laser",
+"speed": 3.0
+}]
+
+[node name="Node3D" type="Node3D" unique_id=1100840163 node_paths=PackedStringArray("sprite")]
+script = ExtResource("2_6vqwg")
+sprite = NodePath("AnimatedSprite3D")
+
+[node name="Marker3D" type="Marker3D" parent="." unique_id=244731682]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -21)
+
+[node name="Marker3D2" type="Marker3D" parent="." unique_id=1383292340]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 21)
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="." unique_id=1600880180]
+transform = Transform3D(-1, -1.1744453e-05, 6.600236e-15, 0, -3.3998717e-06, -1, 1.509958e-07, -77.78, 4.371139e-08, 0, 0, 0)
+cast_shadow = 0
+pixel_size = 0.0005
+alpha_cut = 1
+texture_filter = 0
+render_priority = 1
+sprite_frames = SubResource("SpriteFrames_7vci3")
+animation = &"laser"
+autoplay = "laser"
+frame_progress = 0.4464097
+
+[node name="laser_ray" type="RayCast3D" parent="." unique_id=547071481]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 21)
+target_position = Vector3(0, 0, -42)
+debug_shape_custom_color = Color(0, 1, 0, 1)
+debug_shape_thickness = 5

@@ -272,12 +272,11 @@ radius = 0.75
 [sub_resource type="SphereShape3D" id="SphereShape3D_t2bd8"]
 radius = 1.2
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_pa47w"]
-
 [node name="bullet" type="AnimatedSprite3D" unique_id=2046011295 node_paths=PackedStringArray("damage_collision", "parry_collision") groups=["projectile"]]
 unique_name_in_owner = true
 process_mode = 1
 transform = Transform3D(1, 0, 0, 0, 1, -5.9604645e-08, 0, 5.9604645e-08, 1, 0, 0, 0)
+cast_shadow = 0
 pixel_size = 0.0075
 billboard = 2
 texture_filter = 0
@@ -308,6 +307,3 @@ collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="parry_detector" unique_id=573716430]
 shape = SubResource("SphereShape3D_t2bd8")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1677077460]
-mesh = SubResource("CapsuleMesh_pa47w")

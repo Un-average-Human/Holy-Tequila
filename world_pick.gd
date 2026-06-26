@@ -48,5 +48,5 @@ func _stopped_pressing(button: TextureButton):
 func _world_selected(planet: TextureButton):
 	match planet.name:
 		"mars":
-			BossfightData.current_world = "uid://dh03uu603qdbw"
-			get_tree().change_scene_to_file(BossfightData.current_world)
+			GeneralData.current_world = "uid://dh03uu603qdbw"
+			get_tree().change_scene_to_file(GeneralData.current_world)
