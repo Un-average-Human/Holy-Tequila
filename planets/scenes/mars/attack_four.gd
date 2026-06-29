@@ -9,10 +9,14 @@ const laser_scene = preload("uid://t24j68g7nre2")
 @export var vertical_top_laser: Marker3D
 @export var vertical_bottom_laser: Marker3D
 
-@export var duration: float
-@export var loop_pace_delay: float = 5.0
-@export var max_laser_count: int = 10
+@export var duration: float = 10.0
+@export var normal_spawn_delay: float = 5.0
+@export var short_spawn_delay: float = 1
 
+@export var max_laser_count: int = 10
+@export var double_laser_threshold: int = 1
+
+var is_double_laser: bool = false
 var total_lasers_spawned: int = 0
 
 func execute() -> void:
@@ -27,6 +31,9 @@ func _start_laser_attack_loop() -> void:
 		var vertical_target: bool = GeneralData.rng.randf() > 0.5
 		var start_pos: Marker3D
 		var end_pos: Marker3D
+		
+		if total_lasers_spawned == double_laser_threshold:
+			is_double_laser = true
 		
 		if vertical_target:
 			var start_at_top: bool = GeneralData.rng.randf() > 0.5
@@ -45,10 +52,14 @@ func _start_laser_attack_loop() -> void:
 				start_pos = horizontal_right_laser
 				end_pos = horizontal_left_laser
 
+		if is_double_laser:
+			is_double_laser = false
+			_spawn_and_move_laser(start_pos, end_pos)
+			await get_tree().create_timer(short_spawn_delay).timeout
+
 		_spawn_and_move_laser(start_pos, end_pos)
 		total_lasers_spawned += 1
-		
-		await get_tree().create_timer(loop_pace_delay).timeout
+		await get_tree().create_timer(normal_spawn_delay).timeout
 
 	_deactivate_lasers()
 
