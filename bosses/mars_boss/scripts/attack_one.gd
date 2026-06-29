@@ -43,7 +43,7 @@ func execute(max_bullets: int, delay: float) -> void:
 		if spawn_data and spawn_data:
 			_setup_boomerang_movement(spawn_data[0], spawn_data[1], false)
 		
-		if current_extra < extra_boomerangs	:
+		if current_extra < extra_boomerangs:
 			await boss.get_tree().create_timer(boss.shot_delay, false).timeout
 			
 	var flight_timer = boss.get_tree().create_timer(4.0, false)

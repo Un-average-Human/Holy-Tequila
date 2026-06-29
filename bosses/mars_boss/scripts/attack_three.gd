@@ -2,11 +2,12 @@ extends Node
 
 var boss: Boss
 
-var max_projectiles: int = 10
-var projectile_amount: int = 0
-var projectile_preview_radius: float = 2.0
+@export var max_projectiles: int = 10
+@export var projectile_amount: int = 0
+@export var projectile_preview_radius: float = 2.0
 
-var shot_delay: float = 1.5
+@export var shot_delay: float = 1.5
+@export var shot_delay_interval: float = 0.15
 
 var last_num: int = -1
 
@@ -41,6 +42,7 @@ func execute() -> void:
 		
 		projectile_amount += 1
 		_random_projectile_preview()
+		shot_delay -= shot_delay_interval
 		await get_tree().create_timer(0.5, false).timeout
 
 	extra_projectiles = GeneralData.rng.randi_range(1, 3)
@@ -50,6 +52,7 @@ func execute() -> void:
 		
 		extra_projectile_amount += 1
 		_random_projectile_preview()
+		shot_delay -= shot_delay_interval
 		await get_tree().create_timer(0.5, false).timeout
 	
 	await get_tree().create_timer(2.5, false).timeout

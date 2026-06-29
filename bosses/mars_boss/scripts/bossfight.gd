@@ -17,6 +17,7 @@ var spawn_points: Array[Vector3]
 @onready var attack_one_node = %attack_one
 @onready var attack_two_node: = %attack_two
 @onready var attack_three_node = %attack_three
+@onready var attack_four_node = %attack_four
 
 @onready var audio: AudioStreamPlayer = %audio
 const PLASMA = preload("uid://bn3pml5p33b5v")
@@ -31,10 +32,10 @@ func _ready() -> void:
 	boss_area_detector.body_entered.connect(_on_boss_area_detector_body_entered)
 	blackboard = bt_player.blackboard
 	
-	# Pass base reference injection dependencies down to children modules
 	attack_one_node.boss = self
 	attack_two_node.boss = self
 	attack_three_node.boss = self
+	attack_four_node.boss = self
 	
 	for spawn_point in enemy_spawn_points.get_children():
 		spawn_points.append(spawn_point.global_position)
@@ -43,7 +44,6 @@ func _on_boss_area_detector_body_entered(body: Node3D) -> void:
 	if body.is_in_group("player") and has_started == false:
 		has_started = true
 		player = body
-		animated_sprite_3d.target = player
 		boss_area_detector.set_deferred("monitoring", false)
 		_start_bossfight()
 
@@ -66,3 +66,6 @@ func _attack_two(enemy_amount: int):
 
 func _attack_three():
 	attack_three_node.execute()
+
+func _attack_four():
+	attack_four_node.execute()

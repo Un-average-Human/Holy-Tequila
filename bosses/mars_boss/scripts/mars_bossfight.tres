@@ -157,6 +157,27 @@ resource_name = "1.0"
 property = &"health"
 value = SubResource("BBVariant_ciena")
 
+[sub_resource type="BBNode" id="BBNode_31xh7"]
+saved_value = NodePath("bossfight")
+resource_name = "bossfight"
+
+[sub_resource type="BTCallMethod" id="BTCallMethod_37u1d"]
+node = SubResource("BBNode_31xh7")
+method = &"_attack_four"
+custom_name = "Calls the _attack_four() Function"
+
+[sub_resource type="BBVariant" id="BBVariant_3bm08"]
+type = 1
+saved_value = false
+resource_name = "<null>"
+
+[sub_resource type="BTCheckVar" id="BTCheckVar_dooya"]
+variable = &"is_attacking"
+value = SubResource("BBVariant_3bm08")
+
+[sub_resource type="BTRepeatUntilSuccess" id="BTRepeatUntilSuccess_qng45"]
+children = [SubResource("BTCheckVar_dooya")]
+
 [sub_resource type="BBNode" id="BBNode_6n08o"]
 saved_value = NodePath("bossfight")
 resource_name = "bossfight"
@@ -227,7 +248,7 @@ custom_name = "Calls the _attack_one() Function"
 
 [sub_resource type="BTSequence" id="BTSequence_4cvn3"]
 custom_name = "Phase Three"
-children = [SubResource("BTCheckAgentProperty_xdv6x"), SubResource("BTCallMethod_fs5t0"), SubResource("BTRepeatUntilSuccess_4cvn3"), SubResource("BTCallMethod_ciena"), SubResource("BTRepeatUntilSuccess_7t3t3"), SubResource("BTCallMethod_wbs6f")]
+children = [SubResource("BTCheckAgentProperty_xdv6x"), SubResource("BTCallMethod_37u1d"), SubResource("BTRepeatUntilSuccess_qng45"), SubResource("BTCallMethod_fs5t0"), SubResource("BTRepeatUntilSuccess_4cvn3"), SubResource("BTCallMethod_ciena"), SubResource("BTRepeatUntilSuccess_7t3t3"), SubResource("BTCallMethod_wbs6f")]
 
 [sub_resource type="BTSelector" id="BTSelector_hdq62"]
 custom_name = "Phases"

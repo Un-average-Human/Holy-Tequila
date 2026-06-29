@@ -2,6 +2,22 @@
 
 [ext_resource type="Texture2D" uid="uid://c4t6hbh8ferwm" path="res://bullet/sprites/laser.png" id="1_fn5yt"]
 [ext_resource type="Script" uid="uid://b8bmqnrb84k72" path="res://laser.gd" id="2_6vqwg"]
+[ext_resource type="Texture2D" uid="uid://4q335xxs2p" path="res://icon.svg" id="2_g6b45"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7vci3"]
+atlas = ExtResource("2_g6b45")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xw5cg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7vci3")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6vqwg"]
 atlas = ExtResource("1_fn5yt")
@@ -25,15 +41,24 @@ animations = [{
 "speed": 3.0
 }]
 
-[node name="Node3D" type="Node3D" unique_id=1100840163 node_paths=PackedStringArray("sprite")]
+[node name="Node3D" type="Node3D" unique_id=1100840163 node_paths=PackedStringArray("sprite", "damage_ray")]
 script = ExtResource("2_6vqwg")
 sprite = NodePath("AnimatedSprite3D")
+damage_ray = NodePath("laser_ray")
 
 [node name="Marker3D" type="Marker3D" parent="." unique_id=244731682]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -21)
 
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="Marker3D" unique_id=1959783815]
+billboard = 2
+sprite_frames = SubResource("SpriteFrames_xw5cg")
+
 [node name="Marker3D2" type="Marker3D" parent="." unique_id=1383292340]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 21)
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="Marker3D2" unique_id=1411568923]
+billboard = 2
+sprite_frames = SubResource("SpriteFrames_xw5cg")
 
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="." unique_id=1600880180]
 transform = Transform3D(-1, -1.1744453e-05, 6.600236e-15, 0, -3.3998717e-06, -1, 1.509958e-07, -77.78, 4.371139e-08, 0, 0, 0)

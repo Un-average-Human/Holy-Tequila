@@ -1,6 +1,8 @@
 extends Node3D
 
 @export var sprite: AnimatedSprite3D
+@export var damage_ray: RayCast3D
+
 var target:
 	set(new_value):
 		print(new_value)
@@ -24,3 +26,8 @@ func _process(delta: float) -> void:
 	
 	var direction = global_position.direction_to(target_pos)
 	rotation.z = atan2(direction.y, direction.x) + 90
+	
+	if damage_ray.is_colliding():
+		var collider = damage_ray.get_collider()
+		if collider.is_in_group("player"):
+			collider.take_damage()
