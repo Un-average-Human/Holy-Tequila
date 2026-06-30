@@ -66,8 +66,8 @@ value = SubResource("BBVariant_e61y8")
 
 [sub_resource type="BBVariant" id="BBVariant_xihcn"]
 type = 2
-saved_value = 8
-resource_name = "8"
+saved_value = 5
+resource_name = "5"
 
 [sub_resource type="BBVariant" id="BBVariant_xsgl7"]
 type = 3
@@ -99,8 +99,8 @@ value = SubResource("BBVariant_wfqh0")
 
 [sub_resource type="BBVariant" id="BBVariant_tr07w"]
 type = 2
-saved_value = 3
-resource_name = "3"
+saved_value = 1
+resource_name = "1"
 
 [sub_resource type="BBNode" id="BBNode_tr07w"]
 saved_value = NodePath("bossfight")
@@ -126,13 +126,13 @@ children = [SubResource("BTCheckVar_xihcn")]
 
 [sub_resource type="BBVariant" id="BBVariant_5qbo4"]
 type = 2
-saved_value = 12
-resource_name = "12"
+saved_value = 10
+resource_name = "10"
 
 [sub_resource type="BBVariant" id="BBVariant_3yw1b"]
 type = 3
-saved_value = 0.5
-resource_name = "0.5"
+saved_value = 0.75
+resource_name = "0.75"
 
 [sub_resource type="BBNode" id="BBNode_3yw1b"]
 saved_value = NodePath("bossfight")
@@ -201,8 +201,8 @@ children = [SubResource("BTCheckVar_fs5t0")]
 
 [sub_resource type="BBVariant" id="BBVariant_ss36a"]
 type = 2
-saved_value = 8
-resource_name = "8"
+saved_value = 3
+resource_name = "3"
 
 [sub_resource type="BBNode" id="BBNode_qwa0f"]
 saved_value = NodePath("bossfight")
@@ -228,13 +228,13 @@ children = [SubResource("BTCheckVar_xkhm8")]
 
 [sub_resource type="BBVariant" id="BBVariant_xdv6x"]
 type = 2
-saved_value = 18
-resource_name = "18"
+saved_value = 15
+resource_name = "15"
 
 [sub_resource type="BBVariant" id="BBVariant_fs5t0"]
 type = 3
-saved_value = 0.25
-resource_name = "0.25"
+saved_value = 0.5
+resource_name = "0.5"
 
 [sub_resource type="BBNode" id="BBNode_4cvn3"]
 saved_value = NodePath("bossfight")

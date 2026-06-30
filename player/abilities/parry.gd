@@ -15,6 +15,8 @@ var yeet_sprite_scene = preload("uid://dwsikl4kkdfi3")
 @export var ability_cooldown_bar: ProgressBar
 @export var ability_label: Label
 
+var parriable_objects: Array
+
 func _ready() -> void:
 	if is_instance_valid(ability_cooldown_bar):
 		ability_cooldown_bar.max_value = ability_cooldown
@@ -22,6 +24,7 @@ func _ready() -> void:
 
 	set_process(false)
 	parry_area.area_entered.connect(_parry_detector)
+	parry_area.area_exited.connect(_left_parry_area)
 
 func execute():
 	_start_parry_window()
@@ -53,16 +56,33 @@ func _start_parry_window():
 		
 	set_process(true)
 
-func _parry_detector(parryable_object: Area3D) -> void:
-	var bullet = parryable_object.get_parent()
+func _left_parry_area(parriable_object: Area3D):
+	var bullet = parriable_object.get_parent()
 	var bullet_parry_area = bullet.get_node("%parry_detector")
 	
-	if parryable_object == bullet_parry_area:
+	if parriable_object == bullet_parry_area:
+		parriable_objects.erase(bullet)
+
+func _parry_detector(parriable_object: Area3D) -> void:
+	var bullet = parriable_object.get_parent()
+	var bullet_parry_area = bullet.get_node("%parry_detector")
+	
+	if parriable_object == bullet_parry_area:
+		parriable_objects.append(bullet)
+	for object in range(parriable_objects.size()):
 		if is_parrying and bullet.has_method("_parried") and bullet.can_parry:
-			_parry(bullet)
+			_parry(parriable_objects[object])
 
 #what to do if parry is successful
 func _parry(object: Node3D):
+	print(object)
+	_yeet_sprite(object)
+	audio.stream = PARRY
+	audio.play()
+	is_parrying = false
+	object._parried()
+
+func _yeet_sprite(object: Node3D):
 	var yeet_sprite = yeet_sprite_scene.instantiate()
 	get_tree().root.add_child(yeet_sprite)
 	yeet_sprite.scale = Vector3.ZERO
@@ -75,11 +95,6 @@ func _parry(object: Node3D):
 	tween.tween_property(yeet_sprite, "scale", Vector3.ONE, 0.25).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
 	tween.tween_interval(0.5)
 	tween.tween_property(yeet_sprite, "scale", Vector3.ZERO, 0.25).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_QUAD)
-	
-	audio.stream = PARRY
-	audio.play()
-	is_parrying = false
-	object._parried()
 
 func _process(delta: float) -> void:
 	if ability_cooldown_bar.value < ability_cooldown:

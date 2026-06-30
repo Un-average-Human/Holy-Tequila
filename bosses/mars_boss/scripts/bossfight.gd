@@ -24,8 +24,6 @@ const PLASMA = preload("uid://bn3pml5p33b5v")
 const SHUFFLING = preload("uid://7qn3fg1ifae1")
 const BOOMERANG_WHOOSH = preload("uid://ccgwbqeyfist4")
 
-@onready var animated_sprite_3d: Node3D = $"../Node3D"
-
 func _ready() -> void:
 	GeneralData.current_boss = "Spaceship Boss"
 	

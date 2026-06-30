@@ -128,7 +128,7 @@ func _pick_projectile():
 		temp_list.append(projectile)
 	temp_list.shuffle()
 	if projectile_queue != null:
-		while temp_list.back() == projectile_queue.front():
+		while temp_list.back() == projectile_queue.front() or temp_list.size() == 0:
 			temp_list.shuffle()
 	projectile_queue.append_array(temp_list)
 

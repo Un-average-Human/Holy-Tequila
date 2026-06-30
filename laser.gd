@@ -25,7 +25,6 @@ func _process(delta: float) -> void:
 	var target_pos = target.player_cam.global_position
 	
 	var direction = global_position.direction_to(target_pos)
-	rotation.z = atan2(direction.y, direction.x) + 90
 	
 	if damage_ray.is_colliding():
 		var collider = damage_ray.get_collider()

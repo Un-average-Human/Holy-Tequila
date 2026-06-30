@@ -19,7 +19,7 @@ func _damage_player(body: Node3D):
 	if body.is_in_group("player") and can_damage:
 		player = body
 		player.take_damage()
-		hit_box.monitoring = false
+		hit_box.set_deferred("monitoring", false)
 		if one_hit:
 			can_damage = false
 		await get_tree().create_timer(1).timeout

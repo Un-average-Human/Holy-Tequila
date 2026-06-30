@@ -9,12 +9,12 @@ const laser_scene = preload("uid://t24j68g7nre2")
 @export var vertical_top_laser: Marker3D
 @export var vertical_bottom_laser: Marker3D
 
-@export var duration: float = 10.0
-@export var normal_spawn_delay: float = 5.0
+@export var duration: float = 5.0
+@export var normal_spawn_delay: float = 2.5
 @export var short_spawn_delay: float = 1
 
-@export var max_laser_count: int = 10
-@export var double_laser_threshold: int = 1
+@export var max_laser_count: int = 25
+@export var double_laser_threshold: int = 5
 
 var is_double_laser: bool = false
 var total_lasers_spawned: int = 0
@@ -25,14 +25,16 @@ func execute() -> void:
 	boss.blackboard.set_var("is_attacking", true)
 	
 	_start_laser_attack_loop()
+	
+	boss.blackboard.set_var("is_attacking", false)
 
 func _start_laser_attack_loop() -> void:
 	while total_lasers_spawned < max_laser_count:
 		var vertical_target: bool = GeneralData.rng.randf() > 0.5
 		var start_pos: Marker3D
 		var end_pos: Marker3D
-		
-		if total_lasers_spawned == double_laser_threshold:
+
+		if total_lasers_spawned % double_laser_threshold == 0 and total_lasers_spawned > 0:
 			is_double_laser = true
 		
 		if vertical_target:
@@ -66,22 +68,22 @@ func _start_laser_attack_loop() -> void:
 func _spawn_and_move_laser(start: Marker3D, end: Marker3D) -> void:
 	var laser_instance = laser_scene.instantiate()
 	start.add_child(laser_instance)
-	
+
 	laser_instance.target = boss.player
 	laser_instance.scale.z = 0.001
-	
+
 	var target_pos = start.global_position
 	var start_laser_tween = create_tween().set_parallel()
-	
+
 	start_laser_tween.tween_property(laser_instance, "global_position", target_pos, 1)\
 	.set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 	start_laser_tween.tween_property(laser_instance, "scale:z", 1.0, 1.5)\
 	.set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
-	
+
 	var tween = create_tween()
 	tween.tween_property(laser_instance, "global_position", end.global_position, duration).set_delay(1.5)
 	tween.finished.connect(laser_instance.queue_free)
 
 func _deactivate_lasers() -> void:
-	total_lasers_spawned = 0 
+	total_lasers_spawned = 0
 	boss.blackboard.set_var("is_attacking", false)
