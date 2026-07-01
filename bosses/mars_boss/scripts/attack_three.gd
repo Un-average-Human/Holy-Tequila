@@ -91,7 +91,7 @@ func _random_projectile_preview():
 	material.albedo_color = Color(1.0, 0.0, 0.0, 0.5)
 	mesh.set_surface_override_material(0, material)
 	
-	get_tree().root.add_child(mesh)
+	add_child(mesh)
 
 	var target_pos: Vector3
 	target_pos = boss.player.global_position
@@ -142,7 +142,7 @@ func _projectile_thrown(projectile_animation: String, target_pos: Vector3, previ
 	var anim_speed: float = 3.0
 	var bullet = bullet_scene.instantiate()
 	
-	get_tree().root.add_child(bullet)
+	add_child(bullet)
 	
 	bullet.pixel_size = 0.003
 	bullet.can_damage = true
@@ -184,7 +184,11 @@ func _projectile_thrown(projectile_animation: String, target_pos: Vector3, previ
 		audio.play(4.0)
 		await audio.finished
 		
-		if bullet.animation == "parriable_bomb":
+		if bullet.animation != "parriable_bomb":
+			var bullet_fade_tween = create_tween()
+			bullet_fade_tween.tween_property(bullet, "modulate:a", 0.0, 0.5).set_delay(1.0)
+			bullet_fade_tween.tween_callback(bullet.queue_free)
+		else:
 			SignalBus.parried
 			_parriable_bomb(audio, bullet)
 		if is_instance_valid(preview_mesh):
@@ -203,7 +207,7 @@ func _parriable_bomb(audio: AudioStreamPlayer3D, bullet: AnimatedSprite3D):
 	var timer = await get_tree().create_timer(3.0).timeout
 	
 	bullet.scale = Vector3(0.001, 0.001, 0.001)
-	bullet.global_position.y += 1
+	bullet.global_position.y += 2
 	bullet.pixel_size = 0.0075
 	bullet.play("explosion")
 	
@@ -214,3 +218,6 @@ func _parriable_bomb(audio: AudioStreamPlayer3D, bullet: AnimatedSprite3D):
 	var bullet_scale_tween = create_tween()
 	bullet_scale_tween.tween_property(bullet, "scale", Vector3.ONE, 0.25)\
 	.set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	bullet_scale_tween.tween_interval(1)
+	bullet_scale_tween.tween_property(bullet, "scale", Vector3.ZERO, 0.25)\
+	.set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN)
