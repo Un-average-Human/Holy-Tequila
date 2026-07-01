@@ -1,6 +1,7 @@
 extends Node
 
 var boss: Boss
+var current_parry_callable: Callable
 
 func execute(max_bullets: int, delay: float) -> void:
 	if boss.blackboard and boss.blackboard.get_var("is_attacking", false):
@@ -55,6 +56,7 @@ func execute(max_bullets: int, delay: float) -> void:
 	if not boss.last_bullet_parried:
 		if boss.blackboard:
 			boss.blackboard.set_var("is_attacking", false)
+		await boss.get_tree().process_frame
 		execute(max_bullets, delay)
 	else:
 		if boss.blackboard:
@@ -120,9 +122,13 @@ func _spawn_boomerang(sfx: AudioStream, make_parryable: bool):
 		bullet.play("boomerang_bullet_parryable")
 		boss.audio.stream = boss.PLASMA
 		boss.audio.play()
-		var parry_callable = func(parried_bullet: Node3D):
+		
+		if current_parry_callable.is_valid():
+			SignalBus.parried.disconnect(current_parry_callable)
+			
+		current_parry_callable = func(parried_bullet: Node3D):
 			if parried_bullet == bullet: _on_bullet_parried(bullet)
-		SignalBus.parried.connect(parry_callable)
+		SignalBus.parried.connect(current_parry_callable)
 	else:
 		bullet.play("boomerang_bullet")
 	
@@ -172,6 +178,9 @@ func _setup_boomerang_movement(bullet: Node3D, target_pos: Vector3, make_parryab
 func _on_bullet_parried(bullet: Node3D):
 	if not is_instance_valid(bullet): return
 	
+	if current_parry_callable.is_valid():
+		SignalBus.parried.disconnect(current_parry_callable)
+	
 	boss.last_bullet_parried = true
 	
 	if bullet.is_in_group("projectile"):
@@ -218,11 +227,11 @@ func _on_bullet_parried(bullet: Node3D):
 	)
 
 func _apply_boss_damage_pipeline() -> void:
-	boss._hurt(1, boss.boss_healthbar)
+	boss._hurt(1.0, boss.boss_healthbar)
 	boss.boss_sprite.play("hurt")
 	
 	await boss.get_tree().create_timer(0.75, false).timeout
-	if boss.health == 1:
+	if float(boss.health) <= 1.0:
 		boss.boss_sprite.play("angry_last_phase")
 		await boss.get_tree().create_timer(1, false).timeout
 		boss.boss_sprite.play("idle_last_phase")

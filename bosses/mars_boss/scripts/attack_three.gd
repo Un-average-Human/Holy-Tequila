@@ -6,8 +6,9 @@ var boss: Boss
 @export var projectile_amount: int = 0
 @export var projectile_preview_radius: float = 2.0
 
-@export var shot_delay: float = 1.5
-@export var shot_delay_interval: float = 0.15
+@export var main_shot_delay: float = 1.5
+var shot_delay: float
+@export var shot_delay_interval: float = 0.1
 
 var last_num: int = -1
 
@@ -31,10 +32,14 @@ var bomb_thrown: bool = false
 var extra_projectile_amount: int
 var extra_projectiles: int
 
-func execute() -> void:
+func execute(bullets: int) -> void:
 	if boss.blackboard and boss.blackboard.get_var("is_attacking", false):
 		return
 	boss.blackboard.set_var("is_attacking", true)
+	
+	projectile_amount = 0
+	shot_delay = main_shot_delay
+	max_projectiles = bullets
 	
 	while projectile_amount < max_projectiles:
 		boss.boss_sprite.play("picking_up_projectiles")
@@ -93,7 +98,7 @@ func _random_projectile_preview():
 	target_pos.y = 0
 	mesh.global_position = target_pos
 	
-	mesh.scale = Vector3(0, 1, 0)
+	mesh.scale = Vector3(0.001, 1, 0.001)
 	var scale_preview_tween = create_tween().set_parallel(true)
 	scale_preview_tween.tween_property(mesh, "scale:x", 1.0, 0.5)\
 	.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BACK)
@@ -197,7 +202,7 @@ func _parriable_bomb(audio: AudioStreamPlayer3D, bullet: AnimatedSprite3D):
 	audio.play()
 	var timer = await get_tree().create_timer(3.0).timeout
 	
-	bullet.scale = Vector3.ZERO
+	bullet.scale = Vector3(0.001, 0.001, 0.001)
 	bullet.global_position.y += 1
 	bullet.pixel_size = 0.0075
 	bullet.play("explosion")

@@ -62,8 +62,8 @@ func _attack_one(max_bullets: int, delay: float):
 func _attack_two(enemy_amount: int):
 	attack_two_node.execute(enemy_amount)
 
-func _attack_three():
-	attack_three_node.execute()
+func _attack_three(max_bullets: int):
+	attack_three_node.execute(max_bullets)
 
 func _attack_four():
 	attack_four_node.execute()

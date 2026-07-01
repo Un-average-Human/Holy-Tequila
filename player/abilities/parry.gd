@@ -58,28 +58,37 @@ func _start_parry_window():
 
 func _left_parry_area(parriable_object: Area3D):
 	var bullet = parriable_object.get_parent()
-	var bullet_parry_area = bullet.get_node("%parry_detector")
+	var bullet_parry_area = bullet.get_node_or_null("%parry_detector")
 	
-	if parriable_object == bullet_parry_area:
+	if bullet and parriable_object == bullet_parry_area:
 		parriable_objects.erase(bullet)
 
 func _parry_detector(parriable_object: Area3D) -> void:
 	var bullet = parriable_object.get_parent()
-	var bullet_parry_area = bullet.get_node("%parry_detector")
+	var bullet_parry_area = bullet.get_node_or_null("%parry_detector")
 	
-	if parriable_object == bullet_parry_area:
+	if not bullet or parriable_object != bullet_parry_area:
+		return
+		
+	if not parriable_objects.has(bullet):
 		parriable_objects.append(bullet)
-	for object in range(parriable_objects.size()):
-		if is_parrying and bullet.has_method("_parried") and bullet.can_parry:
-			_parry(parriable_objects[object])
+		
+	parriable_objects = parriable_objects.filter(func(obj): return is_instance_valid(obj))
+	
+	for i in range(parriable_objects.size() - 1, -1, -1):
+		var target_bullet = parriable_objects[i]
+		
+		if is_parrying and target_bullet.has_method("_parried") and target_bullet.can_parry:
+			parriable_objects.remove_at(i)
+			_parry(target_bullet)
 
-#what to do if parry is successful
 func _parry(object: Node3D):
+	if not is_instance_valid(object):
+		return
 	print(object)
 	_yeet_sprite(object)
 	audio.stream = PARRY
 	audio.play()
-	is_parrying = false
 	object._parried()
 
 func _yeet_sprite(object: Node3D):

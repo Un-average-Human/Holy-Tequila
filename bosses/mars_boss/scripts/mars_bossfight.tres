@@ -99,8 +99,8 @@ value = SubResource("BBVariant_wfqh0")
 
 [sub_resource type="BBVariant" id="BBVariant_tr07w"]
 type = 2
-saved_value = 1
-resource_name = "1"
+saved_value = 3
+resource_name = "3"
 
 [sub_resource type="BBNode" id="BBNode_tr07w"]
 saved_value = NodePath("bossfight")
@@ -178,6 +178,11 @@ value = SubResource("BBVariant_3bm08")
 [sub_resource type="BTRepeatUntilSuccess" id="BTRepeatUntilSuccess_qng45"]
 children = [SubResource("BTCheckVar_dooya")]
 
+[sub_resource type="BBVariant" id="BBVariant_31xh7"]
+type = 2
+saved_value = 15
+resource_name = "15"
+
 [sub_resource type="BBNode" id="BBNode_6n08o"]
 saved_value = NodePath("bossfight")
 resource_name = "bossfight"
@@ -185,6 +190,7 @@ resource_name = "bossfight"
 [sub_resource type="BTCallMethod" id="BTCallMethod_fs5t0"]
 node = SubResource("BBNode_6n08o")
 method = &"_attack_three"
+args = Array[BBVariant]([SubResource("BBVariant_31xh7")])
 custom_name = "Calls the _attack_three() Function"
 
 [sub_resource type="BBVariant" id="BBVariant_6n08o"]
@@ -201,8 +207,8 @@ children = [SubResource("BTCheckVar_fs5t0")]
 
 [sub_resource type="BBVariant" id="BBVariant_ss36a"]
 type = 2
-saved_value = 3
-resource_name = "3"
+saved_value = 5
+resource_name = "5"
 
 [sub_resource type="BBNode" id="BBNode_qwa0f"]
 saved_value = NodePath("bossfight")
@@ -226,6 +232,33 @@ value = SubResource("BBVariant_wbs6f")
 [sub_resource type="BTRepeatUntilSuccess" id="BTRepeatUntilSuccess_7t3t3"]
 children = [SubResource("BTCheckVar_xkhm8")]
 
+[sub_resource type="BBVariant" id="BBVariant_37u1d"]
+type = 2
+saved_value = 20
+resource_name = "20"
+
+[sub_resource type="BBNode" id="BBNode_37u1d"]
+saved_value = NodePath("bossfight")
+resource_name = "bossfight"
+
+[sub_resource type="BTCallMethod" id="BTCallMethod_3bm08"]
+node = SubResource("BBNode_37u1d")
+method = &"_attack_three"
+args = Array[BBVariant]([SubResource("BBVariant_37u1d")])
+custom_name = "Calls the _attack_three() Function"
+
+[sub_resource type="BBVariant" id="BBVariant_dooya"]
+type = 1
+saved_value = false
+resource_name = "<null>"
+
+[sub_resource type="BTCheckVar" id="BTCheckVar_qng45"]
+variable = &"is_attacking"
+value = SubResource("BBVariant_dooya")
+
+[sub_resource type="BTRepeatUntilSuccess" id="BTRepeatUntilSuccess_wocyu"]
+children = [SubResource("BTCheckVar_qng45")]
+
 [sub_resource type="BBVariant" id="BBVariant_xdv6x"]
 type = 2
 saved_value = 15
@@ -248,7 +281,7 @@ custom_name = "Calls the _attack_one() Function"
 
 [sub_resource type="BTSequence" id="BTSequence_4cvn3"]
 custom_name = "Phase Three"
-children = [SubResource("BTCheckAgentProperty_xdv6x"), SubResource("BTCallMethod_37u1d"), SubResource("BTRepeatUntilSuccess_qng45"), SubResource("BTCallMethod_fs5t0"), SubResource("BTRepeatUntilSuccess_4cvn3"), SubResource("BTCallMethod_ciena"), SubResource("BTRepeatUntilSuccess_7t3t3"), SubResource("BTCallMethod_wbs6f")]
+children = [SubResource("BTCheckAgentProperty_xdv6x"), SubResource("BTCallMethod_37u1d"), SubResource("BTRepeatUntilSuccess_qng45"), SubResource("BTCallMethod_fs5t0"), SubResource("BTRepeatUntilSuccess_4cvn3"), SubResource("BTCallMethod_ciena"), SubResource("BTRepeatUntilSuccess_7t3t3"), SubResource("BTCallMethod_3bm08"), SubResource("BTRepeatUntilSuccess_wocyu"), SubResource("BTCallMethod_wbs6f")]
 
 [sub_resource type="BTSelector" id="BTSelector_hdq62"]
 custom_name = "Phases"

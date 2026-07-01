@@ -9,8 +9,8 @@ const laser_scene = preload("uid://t24j68g7nre2")
 @export var vertical_top_laser: Marker3D
 @export var vertical_bottom_laser: Marker3D
 
-@export var duration: float = 5.0
-@export var normal_spawn_delay: float = 2.5
+@export var duration: float = 8.0
+@export var normal_spawn_delay: float = duration / 2
 @export var short_spawn_delay: float = 1
 
 @export var max_laser_count: int = 25
@@ -25,8 +25,7 @@ func execute() -> void:
 	boss.blackboard.set_var("is_attacking", true)
 	
 	_start_laser_attack_loop()
-	
-	boss.blackboard.set_var("is_attacking", false)
+	_deactivate_lasers()
 
 func _start_laser_attack_loop() -> void:
 	while total_lasers_spawned < max_laser_count:
