@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dwsikl4kkdfi3"]
 
 [ext_resource type="Texture2D" uid="uid://dljs2kx7b73oa" path="res://bullet/sprites/boomerang_bullet.png" id="1_2b2rl"]
+[ext_resource type="Texture2D" uid="uid://eo4if552v8tf" path="res://bullet/sprites/ai_grant_projectile.png" id="1_swme1"]
 [ext_resource type="Texture2D" uid="uid://xqeyphuxe5vm" path="res://bullet/sprites/energy_bullet.png" id="1_v7oki"]
 [ext_resource type="Texture2D" uid="uid://cri5rskeg5xqe" path="res://bullet/sprites/explosion.png" id="1_v8qja"]
 [ext_resource type="Texture2D" uid="uid://leko6a3b53wh" path="res://bullet/sprites/boomerang_bullet_parryable.png" id="2_h0pa3"]
@@ -15,6 +16,14 @@
 [ext_resource type="Texture2D" uid="uid://dxqilihvwuxo4" path="res://bullet/sprites/tuba.png" id="9_4r2mu"]
 [ext_resource type="Texture2D" uid="uid://l7jvtkaev2om" path="res://bullet/sprites/wrench.png" id="11_o7457"]
 [ext_resource type="AudioStream" uid="uid://blabxyo86i4xa" path="res://sfx/interaction/crashing.mp3" id="14_4r2mu"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lej23"]
+atlas = ExtResource("1_swme1")
+region = Rect2(0, 0, 1080, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cd33h"]
+atlas = ExtResource("1_swme1")
+region = Rect2(1080, 0, 1080, 1080)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6ol1o"]
 atlas = ExtResource("1_2b2rl")
@@ -122,6 +131,17 @@ region = Rect2(1080, 0, 1080, 1080)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_2b2rl"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lej23")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cd33h")
+}],
+"loop": true,
+"name": &"ai_grant",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_6ol1o")
@@ -277,12 +297,12 @@ unique_name_in_owner = true
 process_mode = 1
 transform = Transform3D(1, 0, 0, 0, 1, -5.9604645e-08, 0, 5.9604645e-08, 1, 0, 0, 0)
 cast_shadow = 0
-pixel_size = 0.0075
+pixel_size = 0.003
 billboard = 2
 texture_filter = 0
 render_priority = 1
 sprite_frames = SubResource("SpriteFrames_2b2rl")
-animation = &"explosion"
+animation = &"ai_grant"
 script = ExtResource("5_b7duk")
 damage_collision = NodePath("Area3D/CollisionShape3D")
 parry_collision = NodePath("parry_detector/CollisionShape3D")

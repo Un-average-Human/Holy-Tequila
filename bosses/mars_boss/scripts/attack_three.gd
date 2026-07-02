@@ -25,18 +25,22 @@ var available_projectiles: Dictionary[String, float] = {
 		"tuba" : 0.003,
 		"nacho_jar" : 0.003,
 		"radio" : 0.003,
-		"mona_lisa" : 0.003
+		"mona_lisa" : 0.003,
+		"ai_grant" : 0.003
 	}
 
 var bomb_thrown: bool = false
+var can_throw_bomb: bool
+
 var extra_projectile_amount: int
 var extra_projectiles: int
 
-func execute(bullets: int) -> void:
+func execute(bullets: int, throw_bomb: bool) -> void:
 	if boss.blackboard and boss.blackboard.get_var("is_attacking", false):
 		return
 	boss.blackboard.set_var("is_attacking", true)
 	
+	can_throw_bomb = throw_bomb
 	projectile_amount = 0
 	shot_delay = main_shot_delay
 	max_projectiles = bullets
@@ -64,6 +68,31 @@ func execute(bullets: int) -> void:
 	boss.blackboard.set_var("is_attacking", false)
 	
 func _random_projectile_preview():
+	var should_throw: bool = false
+	var projectile_animation: String = ""
+	
+	if projectile_amount != max_projectiles:
+		should_throw = true
+		if projectile_queue.size() <= 1:
+			_pick_projectile()
+		if projectile_queue.size() > 0:
+			projectile_animation = projectile_queue.pop_front()
+			
+	elif projectile_amount == max_projectiles and !bomb_thrown and can_throw_bomb:
+		should_throw = true
+		bomb_thrown = true
+		projectile_animation = "parriable_bomb"
+		
+	elif bomb_thrown and extra_projectile_amount < extra_projectiles:
+		should_throw = true
+		if projectile_queue.size() <= 1:
+			_pick_projectile()
+		if projectile_queue.size() > 0:
+			projectile_animation = projectile_queue.pop_front()
+
+	if not should_throw:
+		return
+
 	var new_num: int = last_num
 	while new_num == last_num:
 		new_num = GeneralData.rng.randi_range(0, 1)
@@ -105,27 +134,7 @@ func _random_projectile_preview():
 	scale_preview_tween.tween_property(mesh, "scale:z", 1.0, 0.5)\
 	.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BACK)
 	
-	if projectile_amount != max_projectiles:
-		if projectile_queue.size() <= 1:
-			_pick_projectile()
-		var projectile_animation
-		if projectile_queue.size() > 0:
-			projectile_animation = projectile_queue.pop_front()
-	
-		_projectile_thrown(projectile_animation, target_pos, mesh)
-	
-	elif projectile_amount == max_projectiles and !bomb_thrown:
-		bomb_thrown = true
-		_projectile_thrown("parriable_bomb", target_pos, mesh)
-	
-	if bomb_thrown and extra_projectile_amount < extra_projectiles:
-		if projectile_queue.size() <= 1:
-			_pick_projectile()
-		var projectile_animation
-		if projectile_queue.size() > 0:
-			projectile_animation = projectile_queue.pop_front()
-	
-		_projectile_thrown(projectile_animation, target_pos, mesh)
+	_projectile_thrown(projectile_animation, target_pos, mesh)
 
 func _pick_projectile():
 	var temp_list: Array[String]
@@ -182,7 +191,6 @@ func _projectile_thrown(projectile_animation: String, target_pos: Vector3, previ
 		audio.stop()
 		audio.stream = CRASHING
 		audio.play(4.0)
-		await audio.finished
 		
 		if bullet.animation != "parriable_bomb":
 			var bullet_fade_tween = create_tween()
@@ -196,7 +204,8 @@ func _projectile_thrown(projectile_animation: String, target_pos: Vector3, previ
 			if mat is StandardMaterial3D:
 				var fade_tween = create_tween()
 				fade_tween.tween_property(mat, "albedo_color:a", 0.0, 0.3)
-				fade_tween.tween_callback(preview_mesh.queue_free))
+				fade_tween.tween_callback(preview_mesh.queue_free)
+	)
 
 func _parriable_bomb(audio: AudioStreamPlayer3D, bullet: AnimatedSprite3D):
 	const BOMB_HISS = preload("uid://paa1wbql6uhc")
@@ -204,10 +213,10 @@ func _parriable_bomb(audio: AudioStreamPlayer3D, bullet: AnimatedSprite3D):
 
 	audio.stream = BOMB_HISS
 	audio.play()
-	var timer = await get_tree().create_timer(3.0).timeout
+	await get_tree().create_timer(3.0).timeout
 	
 	bullet.scale = Vector3(0.001, 0.001, 0.001)
-	bullet.global_position.y += 2
+	bullet.global_position.y += 2.5
 	bullet.pixel_size = 0.0075
 	bullet.play("explosion")
 	
@@ -221,3 +230,4 @@ func _parriable_bomb(audio: AudioStreamPlayer3D, bullet: AnimatedSprite3D):
 	bullet_scale_tween.tween_interval(1)
 	bullet_scale_tween.tween_property(bullet, "scale", Vector3.ZERO, 0.25)\
 	.set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN)
+	bullet_scale_tween.tween_callback(bullet.queue_free)

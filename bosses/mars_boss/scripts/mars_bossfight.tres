@@ -43,6 +43,7 @@ animation_name = &"panel_show"
 custom_name = "Wait show_panel to Finish"
 
 [sub_resource type="BTWait" id="BTWait_73gob"]
+duration = 2.0
 
 [sub_resource type="BBNode" id="BBNode_xsgl7"]
 saved_value = NodePath("bossfight/panel/panel_animation")
@@ -183,6 +184,11 @@ type = 2
 saved_value = 15
 resource_name = "15"
 
+[sub_resource type="BBVariant" id="BBVariant_qng45"]
+type = 1
+saved_value = false
+resource_name = "<null>"
+
 [sub_resource type="BBNode" id="BBNode_6n08o"]
 saved_value = NodePath("bossfight")
 resource_name = "bossfight"
@@ -190,7 +196,7 @@ resource_name = "bossfight"
 [sub_resource type="BTCallMethod" id="BTCallMethod_fs5t0"]
 node = SubResource("BBNode_6n08o")
 method = &"_attack_three"
-args = Array[BBVariant]([SubResource("BBVariant_31xh7")])
+args = Array[BBVariant]([SubResource("BBVariant_31xh7"), SubResource("BBVariant_qng45")])
 custom_name = "Calls the _attack_three() Function"
 
 [sub_resource type="BBVariant" id="BBVariant_6n08o"]
@@ -237,6 +243,11 @@ type = 2
 saved_value = 20
 resource_name = "20"
 
+[sub_resource type="BBVariant" id="BBVariant_wocyu"]
+type = 1
+saved_value = true
+resource_name = "true"
+
 [sub_resource type="BBNode" id="BBNode_37u1d"]
 saved_value = NodePath("bossfight")
 resource_name = "bossfight"
@@ -244,7 +255,7 @@ resource_name = "bossfight"
 [sub_resource type="BTCallMethod" id="BTCallMethod_3bm08"]
 node = SubResource("BBNode_37u1d")
 method = &"_attack_three"
-args = Array[BBVariant]([SubResource("BBVariant_37u1d")])
+args = Array[BBVariant]([SubResource("BBVariant_37u1d"), SubResource("BBVariant_wocyu")])
 custom_name = "Calls the _attack_three() Function"
 
 [sub_resource type="BBVariant" id="BBVariant_dooya"]

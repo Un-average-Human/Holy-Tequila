@@ -457,7 +457,7 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_bgdwm")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fqkmi"]
-albedo_color = Color(0.9160114, 0.35252526, 0, 1)
+albedo_color = Color(0.91764706, 0.2784314, 0, 1)
 roughness = 0.0
 
 [node name="Node3D" type="Node3D" unique_id=893850879]
