@@ -146,6 +146,7 @@ theme_override_fonts/font = ExtResource("1_ufg0w")
 theme_override_font_sizes/font_size = 30
 
 [node name="audio_settings" type="VBoxContainer" parent="menus" unique_id=1124650892]
+visible = false
 layout_mode = 2
 
 [node name="master" type="Label" parent="menus/audio_settings" unique_id=1161753183]

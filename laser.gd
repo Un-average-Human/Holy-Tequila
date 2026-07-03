@@ -16,15 +16,11 @@ var target:
 func _ready() -> void:
 	set_process(false)
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if not is_instance_valid(target):
 		target = null
 		set_process(false)
 		return
-		
-	var target_pos = target.player_cam.global_position
-	
-	var direction = global_position.direction_to(target_pos)
 	
 	if damage_ray.is_colliding():
 		var collider = damage_ray.get_collider()

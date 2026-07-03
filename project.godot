@@ -24,6 +24,7 @@ buses/default_bus_layout="uid://dbcn8rv8xi6ix"
 Globals="*uid://b0e0gq1jdc8qx"
 GeneralData="*uid://cxdx7mxbk7atu"
 SignalBus="*uid://d187uaxwitf5f"
+SceneTransition="*uid://d4f587fr07qpb"
 
 [display]
 
@@ -45,6 +46,7 @@ folder_colors={
 player=""
 boss_hitbox=""
 projectile=""
+alien_cows=""
 
 [input]
 

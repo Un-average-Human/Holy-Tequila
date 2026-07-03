@@ -49,4 +49,6 @@ func _world_selected(planet: TextureButton):
 	match planet.name:
 		"mars":
 			GeneralData.current_world = "uid://dh03uu603qdbw"
-			get_tree().change_scene_to_file(GeneralData.current_world)
+			
+	if GeneralData.current_world != "":
+		SceneTransition.transition(true, GeneralData.current_world)

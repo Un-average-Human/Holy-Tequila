@@ -7,10 +7,12 @@
 [ext_resource type="Script" uid="uid://dgx4gp3nm4aah" path="res://bosses/mars_boss/scripts/bossfight.gd" id="3_s0wj5"]
 [ext_resource type="Texture2D" uid="uid://b551cdfh5l0tf" path="res://bosses/mars_boss/boss_sprites/mars_boss_idle.png" id="3_sybis"]
 [ext_resource type="Texture2D" uid="uid://0hmj2517lj48" path="res://bosses/mars_boss/boss_sprites/mars_boss_shooting.png" id="4_sybis"]
+[ext_resource type="Texture2D" uid="uid://coclkixcchksq" path="res://bullet/sprites/funny_explosion.png" id="5_3dlkd"]
 [ext_resource type="Texture2D" uid="uid://ditjk15jr3iy0" path="res://bosses/mars_boss/boss_sprites/mars_boss_picking_up_boomerang.png" id="5_i140t"]
 [ext_resource type="Texture2D" uid="uid://bcmaps2p6tgu0" path="res://bosses/mars_boss/boss_sprites/mars_boss_panel.png" id="5_v7l4s"]
 [ext_resource type="Texture2D" uid="uid://cpjvtkucyf2gs" path="res://bosses/mars_boss/boss_sprites/shoot_alien_cows.png" id="6_ffogu"]
 [ext_resource type="Texture2D" uid="uid://c52ecmmlmo63p" path="res://bosses/mars_boss/boss_sprites/mars_boss_stunned.png" id="6_i140t"]
+[ext_resource type="Texture2D" uid="uid://ccmp86p2sgiuk" path="res://bosses/mars_boss/boss_sprites/mars_boss_inspecting.png" id="7_5e115"]
 [ext_resource type="AudioStream" uid="uid://tbnxti3fqbar" path="res://sfx/interaction/whoosh.mp3" id="7_5h2xo"]
 [ext_resource type="Texture2D" uid="uid://deahkwal4ics8" path="res://bosses/mars_boss/boss_sprites/picking_up_projectile.png" id="7_y4ma0"]
 [ext_resource type="Texture2D" uid="uid://cu5ewj63dcsgs" path="res://bosses/mars_boss/boss_sprites/mars_boss_shooting_boomerang.png" id="8_ffogu"]
@@ -62,6 +64,70 @@ region = Rect2(0, 0, 1080, 1080)
 atlas = ExtResource("3_jbvca")
 region = Rect2(1080, 0, 1080, 1080)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_aubw5"]
+atlas = ExtResource("5_3dlkd")
+region = Rect2(426, 200, 142, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g6rbh"]
+atlas = ExtResource("5_3dlkd")
+region = Rect2(568, 200, 142, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k4acq"]
+atlas = ExtResource("5_3dlkd")
+region = Rect2(0, 400, 142, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bdv0g"]
+atlas = ExtResource("5_3dlkd")
+region = Rect2(142, 400, 142, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cksdp"]
+atlas = ExtResource("5_3dlkd")
+region = Rect2(284, 400, 142, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qd7tv"]
+atlas = ExtResource("5_3dlkd")
+region = Rect2(426, 400, 142, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fdrqt"]
+atlas = ExtResource("5_3dlkd")
+region = Rect2(0, 600, 142, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_enja5"]
+atlas = ExtResource("5_3dlkd")
+region = Rect2(142, 600, 142, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jnwig"]
+atlas = ExtResource("5_3dlkd")
+region = Rect2(0, 0, 142, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yy1yh"]
+atlas = ExtResource("5_3dlkd")
+region = Rect2(142, 0, 142, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aw1r3"]
+atlas = ExtResource("5_3dlkd")
+region = Rect2(284, 0, 142, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q8gvg"]
+atlas = ExtResource("5_3dlkd")
+region = Rect2(426, 0, 142, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hu8ch"]
+atlas = ExtResource("5_3dlkd")
+region = Rect2(568, 0, 142, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8hadb"]
+atlas = ExtResource("5_3dlkd")
+region = Rect2(0, 200, 142, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dtqe4"]
+atlas = ExtResource("5_3dlkd")
+region = Rect2(142, 200, 142, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qa2vf"]
+atlas = ExtResource("5_3dlkd")
+region = Rect2(284, 200, 142, 200)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_ffogu"]
 atlas = ExtResource("3_pyjlk")
 region = Rect2(0, 0, 1080, 1080)
@@ -76,6 +142,14 @@ region = Rect2(0, 0, 1080, 1080)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gn52h"]
 atlas = ExtResource("3_sybis")
+region = Rect2(1080, 0, 1080, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_klmcc"]
+atlas = ExtResource("7_5e115")
+region = Rect2(0, 0, 1080, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0sajp"]
+atlas = ExtResource("7_5e115")
 region = Rect2(1080, 0, 1080, 1080)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jbvca"]
@@ -149,6 +223,59 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_aubw5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g6rbh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k4acq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bdv0g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cksdp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qd7tv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fdrqt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_enja5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jnwig")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yy1yh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aw1r3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q8gvg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hu8ch")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8hadb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dtqe4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qa2vf")
+}],
+"loop": false,
+"name": &"explosion",
+"speed": 24.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_ffogu")
 }, {
 "duration": 1.0,
@@ -167,6 +294,17 @@ animations = [{
 }],
 "loop": true,
 "name": &"idle",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_klmcc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0sajp")
+}],
+"loop": true,
+"name": &"inspecting",
 "speed": 3.0
 }, {
 "frames": [{
@@ -554,8 +692,10 @@ pixel_size = 0.03
 billboard = 2
 texture_filter = 0
 sprite_frames = SubResource("SpriteFrames_4icgy")
-animation = &"shooting"
+animation = &"explosion"
 autoplay = "idle"
+frame = 15
+frame_progress = 1.0
 
 [node name="boss_animation" type="AnimationPlayer" parent="bossfight/boss" unique_id=418906785]
 unique_name_in_owner = true
@@ -613,9 +753,11 @@ blackboard_plan = SubResource("BlackboardPlan_i140t")
 unique_name_in_owner = true
 script = ExtResource("13_2fwn2")
 
-[node name="attack_two" type="Node" parent="bossfight" unique_id=1968172233]
+[node name="attack_two" type="Node" parent="bossfight" unique_id=1968172233 node_paths=PackedStringArray("normal_point", "inspecting_point")]
 unique_name_in_owner = true
 script = ExtResource("14_jbvca")
+normal_point = NodePath("../../normal_point")
+inspecting_point = NodePath("../../inspecting_point")
 
 [node name="attack_three" type="Node" parent="bossfight" unique_id=817101289]
 unique_name_in_owner = true
@@ -689,3 +831,9 @@ transform = Transform3D(1, -1.7484555e-07, 0, 1.7484555e-07, 1, 0, 0, 0, 1, -24,
 
 [node name="horizontal_right" type="Marker3D" parent="laser_spawn_points" unique_id=355764848]
 transform = Transform3D(1, -1.7484555e-07, 0, 1.7484555e-07, 1, 0, 0, 0, 1, 24, 0.5, 0)
+
+[node name="inspecting_point" type="Marker3D" parent="." unique_id=436470088]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.5, -27)
+
+[node name="normal_point" type="Marker3D" parent="." unique_id=496536603]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.5, -35)

@@ -4,6 +4,13 @@ var boss: Boss
 @export var marker_safe_radius: float = 8.0
 const ALIEN_COW_SCENE = preload("uid://lsgkfu0leche")
 
+@export var normal_point: Marker3D
+@export var inspecting_point: Marker3D
+@export var inspecting_time: float = 30.0
+var inspecting_timer: Timer
+
+var cow_array: Array
+
 var target_pos: Vector3
 var random_pos
 
@@ -39,7 +46,7 @@ func execute(enemy_amount: int) -> void:
 			target_pos = boss.spawn_points[random_pos]
 		
 		var alien_cow = ALIEN_COW_SCENE.instantiate()
-		add_child(alien_cow)
+		get_tree().current_scene.add_child(alien_cow)
 		alien_cow.global_position = boss.boss_sprite.global_position
 		boss.audio.stream = boss.PLASMA
 		boss.audio.play()
@@ -70,6 +77,8 @@ func execute(enemy_amount: int) -> void:
 			.set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_QUAD)
 		
 		await height_tween.finished
+		alien_cow.tree_exited.connect(_end_inspecting.bind(alien_cow))
+		cow_array.append(alien_cow)
 		alien_cow.can_navigate = true
 	
 	var return_tween = create_tween()
@@ -79,10 +88,41 @@ func execute(enemy_amount: int) -> void:
 		.set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_QUAD)
 	return_tween.tween_callback(func():
 		boss.boss_sprite.billboard = BaseMaterial3D.BILLBOARD_FIXED_Y
-		boss.boss_sprite.play("idle")
-		if boss.blackboard:
-			boss.blackboard.set_var("is_attacking", false)
 	)
-
 	await get_tree().create_timer(0.25).timeout
-	boss.boss_sprite.play("idle")
+	_inspect_player()
+
+func _inspect_player():
+	if boss.health == 1:
+		boss.boss_sprite.play("inspecting")
+	else:
+		boss.boss_sprite.play("idle")
+	
+	var inspecting_tween = create_tween()
+	inspecting_tween.tween_property(boss.boss_sprite, "global_position", inspecting_point.global_position, 1)\
+	.set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN_OUT)
+	
+	inspecting_timer = Timer.new()
+	inspecting_timer.start(inspecting_time)
+	inspecting_timer.timeout.connect(_end_inspecting.bind(null, true))
+
+func _end_inspecting(alien_cow: CharacterBody3D, timer_finished: bool = false):
+	cow_array.erase(alien_cow)
+	
+	var can_proceed: bool = false
+	
+	if cow_array.is_empty():
+		inspecting_timer.queue_free()
+		inspecting_timer = null
+		can_proceed = true
+	elif timer_finished:
+		can_proceed = true
+	
+	if can_proceed:
+		var inspecting_tween = create_tween()
+		inspecting_tween.tween_property(boss.boss_sprite, "global_position", normal_point.global_position, 1)\
+		.set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN_OUT)
+		
+		await inspecting_tween.finished
+		boss.boss_sprite.play("idle")
+		boss.blackboard.set_var("is_attacking", false)

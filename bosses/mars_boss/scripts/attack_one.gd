@@ -141,7 +141,7 @@ func _spawn_boomerang(sfx: AudioStream, make_parryable: bool):
 		await boss.get_tree().create_timer(0.25, false).timeout
 	return [bullet, target_pos]
 
-func _setup_boomerang_movement(bullet: Node3D, target_pos: Vector3, make_parryable: bool) -> void:
+func _setup_boomerang_movement(bullet: Node3D, target_pos: Vector3, _make_parryable: bool) -> void:
 	if not is_instance_valid(bullet): return
 	var gun_point: Marker3D = boss.get_node("%gun_point")
 	var end_pos = gun_point.global_position
