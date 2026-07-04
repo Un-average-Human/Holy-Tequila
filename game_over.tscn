@@ -21,7 +21,7 @@ variation_transform = Transform2D(1, 0.2, 0, 1, 0, 0)
 base_font = ExtResource("1_y26ei")
 variation_transform = Transform2D(1, 0.2, 0, 1, 0, 0)
 
-[node name="Control" type="Control" unique_id=265440457 node_paths=PackedStringArray("retry_button", "return_to_menu_button", "game_over_layer", "boss_quote_layer", "quote_label", "boss_name")]
+[node name="Control" type="Control" unique_id=265440457 node_paths=PackedStringArray("retry_button", "return_to_menu_button", "game_over_layer", "boss_quote_layer", "title", "quote_label", "boss_name")]
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
@@ -37,6 +37,7 @@ retry_button = NodePath("game_over/VBoxContainer/retry")
 return_to_menu_button = NodePath("game_over/VBoxContainer/return_to_menu")
 game_over_layer = NodePath("game_over")
 boss_quote_layer = NodePath("boss_quote/quote_group")
+title = NodePath("game_over/title")
 quote_label = NodePath("boss_quote/quote_group/boss_quote")
 boss_name = NodePath("boss_quote/quote_group/boss_name")
 

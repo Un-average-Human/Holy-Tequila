@@ -57,7 +57,7 @@ func take_damage():
 	if not can_take_damage:
 		return
 	if health > 0:
-		health -= 1
+		#health -= 1
 		_update_hearts()
 		
 		var damage_vignette_tween = create_tween()
@@ -69,9 +69,13 @@ func take_damage():
 		invincibility_frame()
 
 func invincibility_frame():
-	var invincibility_frame_tween = create_tween().set_loops(2)
-	invincibility_frame_tween.tween_property(animated_sprite, "modulate:a", 0.5, 0.25)
-	invincibility_frame_tween.tween_property(animated_sprite, "modulate:a", 1, 0.25)
+	var invincibility_frame_tween = create_tween().set_loops(3)
+	invincibility_frame_tween.tween_property(animated_sprite, "modulate:a", 0.5, 0.25)\
+	.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
+	
+	invincibility_frame_tween.tween_property(animated_sprite, "modulate:a", 1, 0.25)\
+	.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
+	
 	await invincibility_frame_tween.finished
 	can_take_damage = true
 

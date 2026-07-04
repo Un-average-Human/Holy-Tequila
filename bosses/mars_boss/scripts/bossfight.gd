@@ -68,8 +68,6 @@ func _attack_three(max_bullets: int, throw_bomb: bool):
 func _attack_four():
 	attack_four_node.execute()
 
-func _death():
-	boss_sprite.play("explosion")
-	boss_sprite.pixel_size = 0.3
-	await boss_sprite.animation_finished
-	queue_free()
+func death():
+	print("Should die")
+	self.queue_free()

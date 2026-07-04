@@ -112,7 +112,8 @@ func _end_inspecting(alien_cow: CharacterBody3D, timer_finished: bool = false):
 	var can_proceed: bool = false
 	
 	if cow_array.is_empty():
-		inspecting_timer.queue_free()
+		if is_instance_valid(inspecting_timer):
+			inspecting_timer.queue_free()
 		inspecting_timer = null
 		can_proceed = true
 	elif timer_finished:

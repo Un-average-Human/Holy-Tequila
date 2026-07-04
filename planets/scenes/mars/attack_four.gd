@@ -13,7 +13,6 @@ const laser_scene = preload("uid://t24j68g7nre2")
 @export var normal_spawn_delay: float = duration / 2
 @export var short_spawn_delay: float = 1
 
-@export var max_laser_count: int = 25
 @export var double_laser_threshold: int = 5
 
 var is_double_laser: bool = false
@@ -24,11 +23,11 @@ func execute() -> void:
 		return
 	boss.blackboard.set_var("is_attacking", true)
 	
-	_start_laser_attack_loop()
 	_deactivate_lasers()
+	_start_laser_attack_loop()
 
 func _start_laser_attack_loop() -> void:
-	while total_lasers_spawned < max_laser_count:
+	while is_instance_valid(boss):
 		var vertical_target: bool = GeneralData.rng.randf() > 0.5
 		var start_pos: Marker3D
 		var end_pos: Marker3D
@@ -57,6 +56,8 @@ func _start_laser_attack_loop() -> void:
 			is_double_laser = false
 			_spawn_and_move_laser(start_pos, end_pos)
 			await get_tree().create_timer(short_spawn_delay).timeout
+			if not is_instance_valid(boss): 
+				break
 
 		_spawn_and_move_laser(start_pos, end_pos)
 		total_lasers_spawned += 1
@@ -65,6 +66,9 @@ func _start_laser_attack_loop() -> void:
 	_deactivate_lasers()
 
 func _spawn_and_move_laser(start: Marker3D, end: Marker3D) -> void:
+	if not is_instance_valid(start) or not is_instance_valid(end) or not is_instance_valid(boss):
+		return
+		
 	var laser_instance = laser_scene.instantiate()
 	start.add_child(laser_instance)
 
@@ -74,10 +78,8 @@ func _spawn_and_move_laser(start: Marker3D, end: Marker3D) -> void:
 	var target_pos = start.global_position
 	var start_laser_tween = create_tween().set_parallel()
 
-	start_laser_tween.tween_property(laser_instance, "global_position", target_pos, 1)\
-	.set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
-	start_laser_tween.tween_property(laser_instance, "scale:z", 1.0, 1.5)\
-	.set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+	start_laser_tween.tween_property(laser_instance, "global_position", target_pos, 1)
+	start_laser_tween.tween_property(laser_instance, "scale:z", 1.0, 1.5)
 
 	var tween = create_tween()
 	tween.tween_property(laser_instance, "global_position", end.global_position, duration).set_delay(1.5)
@@ -85,4 +87,5 @@ func _spawn_and_move_laser(start: Marker3D, end: Marker3D) -> void:
 
 func _deactivate_lasers() -> void:
 	total_lasers_spawned = 0
-	boss.blackboard.set_var("is_attacking", false)
+	if is_instance_valid(boss) and boss.blackboard:
+		boss.blackboard.set_var("is_attacking", false)

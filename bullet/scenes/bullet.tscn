@@ -16,7 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://cl6gvbow6bocy" path="res://bullet/sprites/parriable_bomb.png" id="8_pa47w"]
 [ext_resource type="Texture2D" uid="uid://dxqilihvwuxo4" path="res://bullet/sprites/tuba.png" id="9_4r2mu"]
 [ext_resource type="Texture2D" uid="uid://l7jvtkaev2om" path="res://bullet/sprites/wrench.png" id="11_o7457"]
-[ext_resource type="AudioStream" uid="uid://blabxyo86i4xa" path="res://sfx/interaction/crashing.mp3" id="14_4r2mu"]
+[ext_resource type="AudioStream" uid="uid://b3ulg3d20kt1w" path="res://sfx/interaction/explosion.mp3" id="17_5ct8v"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lej23"]
 atlas = ExtResource("1_swme1")
@@ -428,15 +428,14 @@ texture_filter = 0
 render_priority = 1
 sprite_frames = SubResource("SpriteFrames_2b2rl")
 animation = &"funny_explosion"
-frame_progress = 0.052007522
+frame_progress = 0.27948347
 script = ExtResource("5_b7duk")
 damage_collision = NodePath("Area3D/CollisionShape3D")
 parry_collision = NodePath("parry_detector/CollisionShape3D")
 
 [node name="sfx" type="AudioStreamPlayer3D" parent="." unique_id=386763908]
 unique_name_in_owner = true
-stream = ExtResource("14_4r2mu")
-pitch_scale = 1.15
+stream = ExtResource("17_5ct8v")
 panning_strength = 3.0
 
 [node name="Area3D" type="Area3D" parent="." unique_id=138555185]

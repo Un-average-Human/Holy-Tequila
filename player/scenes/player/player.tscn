@@ -111,7 +111,6 @@ shape = SubResource("CapsuleShape3D_onrkg")
 cast_shadow = 0
 pixel_size = 0.00185
 billboard = 2
-alpha_cut = 1
 texture_filter = 0
 render_priority = 1
 sprite_frames = SubResource("SpriteFrames_b26j0")
