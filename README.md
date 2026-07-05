@@ -1,4 +1,4 @@
-# Funny bossrush thing
+# HOLY TEQUILA?!
 
 <br>
 
@@ -8,8 +8,11 @@ Want a very false response? Neither do I. Anyways, I got this idea while I was a
 ## Why?
 Funni
 
+## THERE'S LORE?!!
+Um, not a good one but yes! Don Ramon has stolen your Holy Tequila given by the alcohol Gods themselves. He plans on injecting himself with it and become godly, but for that he needs to make said drink safe to consume. Fight his goons and face off against him to recover the holy drink.
+
 ## How to play?
-Erm, I added a tutorial for a reason, BUT if you are one of those that just SKIP the tutorial when you NEED it then yeah, I can tell you the controls.<br>
+Erm, I added a tutorial for a reason, BUT if you are one of those people that just SKIP the tutorial when you NEED it then yeah, I can tell you the controls.<br>
 <br>WASD to move
 <br>SPACE to jump
 <br>G to lock/unlock the mouse
