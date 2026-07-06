@@ -1,6 +1,6 @@
 [gd_scene format=4 uid="uid://dh03uu603qdbw"]
 
-[ext_resource type="Script" uid="uid://c28ae2hrpjea4" path="res://planets/scripts/mars.gd" id="1_jo3wj"]
+[ext_resource type="Script" uid="uid://c28ae2hrpjea4" path="res://planets/scripts/mars/mars.gd" id="1_jo3wj"]
 [ext_resource type="Theme" uid="uid://boqtjf88xcpu4" path="res://demo/assets/ui.theme" id="2_cstp3"]
 [ext_resource type="Texture2D" uid="uid://bgw7lwxqggs1l" path="res://bosses/mars_boss/boss_sprites/mars_boss_angry.png" id="3_jbvca"]
 [ext_resource type="Texture2D" uid="uid://if5fln0vn8aj" path="res://bosses/mars_boss/boss_sprites/mars_boss_damage.png" id="3_pyjlk"]
@@ -600,7 +600,6 @@ roughness = 0.0
 
 [node name="Node3D" type="Node3D" unique_id=893850879]
 script = ExtResource("1_jo3wj")
-special_action = "parry"
 
 [node name="battle_island" type="StaticBody3D" parent="." unique_id=573910593]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, -0.5, 0)

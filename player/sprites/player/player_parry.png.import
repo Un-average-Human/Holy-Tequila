@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dax4e07b70jm1"
-path.s3tc="res://.godot/imported/laser_orb.png-e7132dd621a1bc1ac40e02e822e44e42.s3tc.ctex"
+uid="uid://bjc00u4f5o2xm"
+path.s3tc="res://.godot/imported/player_parry.png-4f208a58a2e15595aecfe5dfef999c14.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://enemy/sprite/laser_orb.png"
-dest_files=["res://.godot/imported/laser_orb.png-e7132dd621a1bc1ac40e02e822e44e42.s3tc.ctex"]
+source_file="res://player/sprites/player/player_parry.png"
+dest_files=["res://.godot/imported/player_parry.png-4f208a58a2e15595aecfe5dfef999c14.s3tc.ctex"]
 
 [params]
 

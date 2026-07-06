@@ -54,6 +54,7 @@ func _start_bossfight():
 	tween.tween_property(boss_healthbar, "modulate:a", 1.0, 1.0)
 	boss_animation.play("pop_up")
 	await tween.finished
+	can_pick_attack = true
 	can_attack = true
 
 func _attack_one(max_bullets: int, delay: float):
@@ -68,6 +69,29 @@ func _attack_three(max_bullets: int, throw_bomb: bool):
 func _attack_four():
 	attack_four_node.execute()
 
-func death():
-	print("Should die")
-	self.queue_free()
+func death(BOMB_EXPLOSION):
+	can_attack = false
+	can_pick_attack = false
+	
+	bt_player.active = false
+	
+	if is_instance_valid(attack_three_node):
+		attack_three_node.set_process(false)
+		attack_three_node.set_physics_process(false)
+		attack_three_node.queue_free()
+	
+	if is_instance_valid(boss_healthbar):
+		boss_healthbar.hide()
+
+	audio.stream = BOMB_EXPLOSION
+	audio.play()
+	
+	boss_sprite.play("explosion")
+	boss_sprite.pixel_size = 0.5	
+	
+	await boss_sprite.animation_finished or boss_sprite.animation_changed
+	self.visible = false
+	
+	await get_tree().create_timer(1).timeout
+	SignalBus.boss_defeated.emit()
+	queue_free()

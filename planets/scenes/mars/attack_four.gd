@@ -76,14 +76,23 @@ func _spawn_and_move_laser(start: Marker3D, end: Marker3D) -> void:
 	laser_instance.scale.z = 0.001
 
 	var target_pos = start.global_position
+	
 	var start_laser_tween = create_tween().set_parallel()
+	start_laser_tween.tween_property(laser_instance, "global_position", target_pos, 1)\
+	.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
+	start_laser_tween.tween_property(laser_instance, "scale:z", 1.0, 1.5)\
+	.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
 
-	start_laser_tween.tween_property(laser_instance, "global_position", target_pos, 1)
-	start_laser_tween.tween_property(laser_instance, "scale:z", 1.0, 1.5)
+	var move_laser_tween = create_tween()
+	move_laser_tween.tween_property(laser_instance, "global_position", end.global_position, duration)\
+	.set_delay(1.5)
+	await move_laser_tween.finished
 
-	var tween = create_tween()
-	tween.tween_property(laser_instance, "global_position", end.global_position, duration).set_delay(1.5)
-	tween.finished.connect(laser_instance.queue_free)
+	var end_laser_tween = create_tween()
+	end_laser_tween.tween_property(laser_instance, "scale:z", 0.001, 1.5)\
+	.set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_QUAD)
+	end_laser_tween.tween_property(laser_instance, "global_position:y", target_pos.y - 50, 1)\
+	.set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_QUAD)
 
 func _deactivate_lasers() -> void:
 	total_lasers_spawned = 0

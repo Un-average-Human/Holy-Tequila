@@ -11,6 +11,11 @@ var/is_attacking/type = 1
 var/is_attacking/value = false
 var/is_attacking/hint = 0
 var/is_attacking/hint_string = ""
+var/is_bomb_active/name = &"is_bomb_active"
+var/is_bomb_active/type = 1
+var/is_bomb_active/value = false
+var/is_bomb_active/hint = 0
+var/is_bomb_active/hint_string = ""
 
 [sub_resource type="BBVariant" id="BBVariant_hdq62"]
 type = 1
@@ -20,7 +25,7 @@ resource_name = "true"
 [sub_resource type="BTCheckAgentProperty" id="BTCheckAgentProperty_73gob"]
 property = &"can_attack"
 value = SubResource("BBVariant_hdq62")
-custom_name = "Is can_attack True?"
+custom_name = "Is can_pick_attack True?"
 
 [sub_resource type="BTWait" id="BTWait_hdq62"]
 

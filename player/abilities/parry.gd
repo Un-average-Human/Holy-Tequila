@@ -1,7 +1,7 @@
 extends Node
 
 @export var parry_area: Area3D
-@export var parry_cooldown: float = 3.0
+@export var parry_cooldown: float = 2.0
 @export var parry_window: float = 0.3
 
 var can_parry: bool = true
@@ -16,6 +16,9 @@ var yeet_sprite_scene = preload("uid://dwsikl4kkdfi3")
 @export var ability_label: Label
 
 var parriable_objects: Array
+
+@export var impact_frame: ColorRect
+@export var sprite: AnimatedSprite3D
 
 func _ready() -> void:
 	if is_instance_valid(ability_cooldown_bar):
@@ -36,6 +39,8 @@ func _start_parry_window():
 	can_parry = false
 	is_parrying = true
 	
+	sprite.play("parrying")
+	
 	if is_instance_valid(ability_cooldown_bar):
 		ability_cooldown_bar.max_value = parry_window
 		ability_cooldown_bar.value = parry_window
@@ -49,6 +54,9 @@ func _start_parry_window():
 	
 	await get_tree().create_timer(parry_window).timeout
 	is_parrying = false
+	
+	if sprite.animation == "parrying":
+		sprite.play("idle")
 	
 	if is_instance_valid(ability_cooldown_bar):
 		ability_cooldown_bar.max_value = ability_cooldown
@@ -85,11 +93,18 @@ func _parry_detector(parriable_object: Area3D) -> void:
 func _parry(object: Node3D):
 	if not is_instance_valid(object):
 		return
-	print(object)
 	_yeet_sprite(object)
 	audio.stream = PARRY
 	audio.play()
 	object._parried()
+
+	impact_frame.show()
+	
+	await get_tree().create_timer(0.1).timeout
+	
+	impact_frame.hide()
+
+	sprite.play("idle")
 
 func _yeet_sprite(object: Node3D):
 	var yeet_sprite = yeet_sprite_scene.instantiate()

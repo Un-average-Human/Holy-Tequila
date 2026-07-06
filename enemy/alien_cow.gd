@@ -2,47 +2,38 @@ extends NPC
 
 var can_navigate: bool = false
 var can_parry: bool = false
+var is_charging: bool = false
+var is_resting: bool = false
+var player_in_area: bool = false
+
+var charge_dir: Vector3 = Vector3.ZERO
+var charge_target_pos: Vector3
 
 @export var nav_agent: NavigationAgent3D
 @export var sprite: AnimatedSprite3D
 
 @export var charge_area: Area3D
 @export var charge_speed: float = 8.0
+@export var charge_cooldown: float = 1.0
 
 @export var damage_area: Area3D
 @export var knockback: float
 
-var is_charging: bool = false
-var charge_dir: Vector3 = Vector3.ZERO
-var charge_target_pos: Vector3
-
 func _ready() -> void:
 	super()
 	damage_area.body_entered.connect(_damage_player)
-	charge_area.body_entered.connect(_player_in_charge_area)
-
-func _damage_player(body: Node3D):
-	if body.is_in_group("player"):
-		if is_charging:
-			var push_dir = global_position.direction_to(body.global_position)
-			push_dir.y = 0.025
-			push_dir = push_dir.normalized()
-			
-			body.apply_knockback(push_dir * knockback)
-			
-			_stop_charging()
-
-		if body.is_in_group("player"):
-			body.take_damage()
+	
+	charge_area.body_entered.connect(_player_entered_charge_area)
+	charge_area.body_exited.connect(_player_exited_charge_area)
 
 func _physics_process(delta: float) -> void:
 	if is_charging and can_navigate:
-
 		velocity.x = charge_dir.x * charge_speed
 		velocity.z = charge_dir.z * charge_speed
 
-		var collision = move_and_collide(velocity * delta)
-		if collision:
+		move_and_slide()
+		
+		if get_slide_collision_count() > 0:
 			_stop_charging()
 			return
 			
@@ -51,35 +42,58 @@ func _physics_process(delta: float) -> void:
 		if flat_pos.distance_to(flat_target) < 0.5:
 			_stop_charging()
 		return
+		
 	super(delta)
 
-func _player_in_charge_area(body: Node3D):
-	if body.is_in_group("player") and not is_charging and can_navigate:
-		blackboard.set_var("can_move", false)
-		
-		velocity = Vector3.ZERO
-		sprite.play("alien_cow_attack")
-		
-		var current_target = blackboard.get_var("target")
-		if is_instance_valid(current_target):
-			charge_target_pos = current_target.global_position
-		else:
-			blackboard.set_var("can_move", true)
-			return
-			
-		charge_dir = self.global_position.direction_to(charge_target_pos)
-		charge_dir.y = 0
-		charge_dir = charge_dir.normalized()
-		
-		can_parry = true
-		
-		await get_tree().create_timer(1).timeout
-		
-		is_charging = true
+func _player_entered_charge_area(body: Node3D) -> void:
+	if body.is_in_group("player"):
+		player_in_area = true
+		_attempt_charge_loop()
 
-func _stop_charging():
+func _player_exited_charge_area(body: Node3D) -> void:
+	if body.is_in_group("player"):
+		player_in_area = false
+
+func _attempt_charge_loop() -> void:
+	if not is_instance_valid(self):
+		return
+		
+	if not player_in_area:
+		return
+
+	if is_charging or is_resting or not can_navigate:
+		get_tree().create_timer(0.1).timeout.connect(_attempt_charge_loop)
+		return
+
+	var current_target = blackboard.get_var("target")
+	if is_instance_valid(current_target):
+		_start_charge(current_target)
+	else:
+		get_tree().create_timer(0.5).timeout.connect(_attempt_charge_loop)
+
+func _start_charge(current_target: Node3D) -> void:
+	blackboard.set_var("can_move", false)
+	velocity = Vector3.ZERO
+	sprite.play("alien_cow_attack")
+	
+	charge_target_pos = current_target.global_position
+	charge_dir = self.global_position.direction_to(charge_target_pos)
+	charge_dir.y = 0
+	charge_dir = charge_dir.normalized()
+	
+	can_parry = true
+	
+	await get_tree().create_timer(1.0).timeout
+	
+	if not is_instance_valid(self) or not can_parry: 
+		return
+		
+	is_charging = true
+
+func _stop_charging() -> void:
 	is_charging = false
 	can_parry = false
+	is_resting = true
 	
 	if charge_dir.length_squared() > 0.001:
 		velocity.x = charge_dir.x * speed
@@ -92,8 +106,25 @@ func _stop_charging():
 	
 	if target:
 		sprite.play("alien_cow_idle")
+		
+	await get_tree().create_timer(charge_cooldown).timeout
+	is_resting = false
+	
+	_attempt_charge_loop()
 
-func _parried():
+func _damage_player(body: Node3D) -> void:
+	if body.is_in_group("player"):
+		if is_charging:
+			var push_dir = global_position.direction_to(body.global_position)
+			push_dir.y = 0.025
+			push_dir = push_dir.normalized()
+			
+			body.apply_knockback(push_dir * knockback)
+			_stop_charging()
+
+		body.take_damage()
+
+func _parried() -> void:
 	sprite.billboard = BaseMaterial3D.BILLBOARD_DISABLED
 	if target:
 		look_at(target.global_position)

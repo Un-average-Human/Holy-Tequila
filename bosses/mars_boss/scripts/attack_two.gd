@@ -46,6 +46,10 @@ func execute(enemy_amount: int) -> void:
 			target_pos = boss.spawn_points[random_pos]
 		
 		var alien_cow = ALIEN_COW_SCENE.instantiate()
+		
+		if alien_cow is CharacterBody3D:
+			alien_cow.set_physics_process(false)
+		
 		get_tree().current_scene.add_child(alien_cow)
 		alien_cow.global_position = boss.boss_sprite.global_position
 		boss.audio.stream = boss.PLASMA
@@ -77,8 +81,15 @@ func execute(enemy_amount: int) -> void:
 			.set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_QUAD)
 		
 		await height_tween.finished
+		
+		if alien_cow is CharacterBody3D:
+			alien_cow.velocity = Vector3.ZERO
+			alien_cow.global_position = target_pos
+			alien_cow.set_physics_process(true)
+		
 		alien_cow.tree_exited.connect(_end_inspecting.bind(alien_cow))
 		cow_array.append(alien_cow)
+		await get_tree().process_frame
 		alien_cow.can_navigate = true
 	
 	var return_tween = create_tween()
@@ -125,5 +136,4 @@ func _end_inspecting(alien_cow: CharacterBody3D, timer_finished: bool = false):
 		.set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN_OUT)
 		
 		await inspecting_tween.finished
-		boss.boss_sprite.play("idle")
 		boss.blackboard.set_var("is_attacking", false)

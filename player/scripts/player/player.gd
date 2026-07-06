@@ -57,7 +57,7 @@ func take_damage():
 	if not can_take_damage:
 		return
 	if health > 0:
-		#health -= 1
+		health -= 1
 		_update_hearts()
 		
 		var damage_vignette_tween = create_tween()
@@ -91,6 +91,9 @@ func _update_hearts():
 
 func apply_knockback(force: Vector3) -> void:
 	knockback_vel = force
+
+func unlock_mouse():
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():

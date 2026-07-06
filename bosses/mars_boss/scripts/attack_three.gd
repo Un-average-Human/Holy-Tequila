@@ -282,11 +282,4 @@ func _on_bomb_parried(bullet: AnimatedSprite3D, audio: AudioStreamPlayer3D) -> v
 func _apply_boss_damage_pipeline() -> void:
 	boss.blackboard.set_var("is_attacking", true)
 	boss._hurt(1.0, boss.boss_healthbar)
-	
-	boss.audio.stream = BOMB_EXPLOSION
-	boss.audio.play()
-	boss.boss_sprite.play("explosion")
-	
-	await boss.boss_sprite.animation_finished
-	boss.death()
-	SignalBus.boss_defeated.emit()
+	boss.death(BOMB_EXPLOSION)

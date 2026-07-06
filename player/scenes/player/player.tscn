@@ -3,11 +3,13 @@
 [ext_resource type="Script" uid="uid://b0gd8hrqpvtbb" path="res://player/scripts/player/player.gd" id="1_4flbx"]
 [ext_resource type="Texture2D" uid="uid://7krcx658l6x4" path="res://player/sprites/player/player.png" id="2_hqtel"]
 [ext_resource type="Texture2D" uid="uid://dha7gw82f6qfq" path="res://player/sprites/ui/heart_idle.png" id="2_onrkg"]
+[ext_resource type="Texture2D" uid="uid://bjc00u4f5o2xm" path="res://player/sprites/player/player_parry.png" id="3_8q143"]
 [ext_resource type="Texture2D" uid="uid://bfqx1j8kjgxa5" path="res://player/sprites/ui/heart_pumping.png" id="3_i3pqv"]
 [ext_resource type="Theme" uid="uid://boqtjf88xcpu4" path="res://demo/assets/ui.theme" id="5_7illk"]
 [ext_resource type="AudioStream" uid="uid://cquk2o6tbfumc" path="res://sfx/interaction/parry.mp3" id="5_sweqy"]
 [ext_resource type="Script" uid="uid://bdvo6bq4h1oyu" path="res://player/abilities/parry.gd" id="6_2hs0m"]
 [ext_resource type="PackedScene" uid="uid://du6p1clay1guf" path="res://player/scenes/ui/player_menu.tscn" id="7_1jxqw"]
+[ext_resource type="Shader" uid="uid://dyk1bhab1vxh8" path="res://player/scenes/player/impact_frame.gdshader" id="9_lrqc5"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_onrkg"]
 
@@ -17,6 +19,14 @@ region = Rect2(0, 0, 1080, 1080)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dw050"]
 atlas = ExtResource("2_hqtel")
+region = Rect2(1080, 0, 1080, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_534hv"]
+atlas = ExtResource("3_8q143")
+region = Rect2(0, 0, 1080, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nl2mh"]
+atlas = ExtResource("3_8q143")
 region = Rect2(1080, 0, 1080, 1080)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_b26j0"]
@@ -31,6 +41,17 @@ animations = [{
 "loop": true,
 "name": &"idle",
 "speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_534hv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nl2mh")
+}],
+"loop": true,
+"name": &"parrying",
+"speed": 5.0
 }]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7illk"]
@@ -95,6 +116,15 @@ stacked_outline_0/size = 5
 height = 5.0
 radius = 8.0
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8q143"]
+shader = ExtResource("9_lrqc5")
+shader_parameter/threshold = 0.5
+shader_parameter/smoothness = 0.05
+shader_parameter/bg_color = Color(0, 0, 0, 1)
+shader_parameter/fg_color = Color(1, 1, 1, 1)
+shader_parameter/invert = false
+shader_parameter/intensity = 1.0
+
 [node name="player" type="CharacterBody3D" unique_id=1185616285 node_paths=PackedStringArray("damage_vignette", "cam_pivot", "player_cam", "audio", "menu", "animated_sprite") groups=["player"]]
 script = ExtResource("1_4flbx")
 damage_vignette = NodePath("ui/damage_vignette")
@@ -102,19 +132,19 @@ cam_pivot = NodePath("cam_pivot")
 player_cam = NodePath("cam_pivot/SpringArm3D/player_cam")
 audio = NodePath("audio")
 menu = NodePath("menu/menus")
-animated_sprite = NodePath("CollisionShape3D/AnimatedSprite3D")
+animated_sprite = NodePath("CollisionShape3D/sprites")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2115076140]
 shape = SubResource("CapsuleShape3D_onrkg")
 
-[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="CollisionShape3D" unique_id=422786133]
+[node name="sprites" type="AnimatedSprite3D" parent="CollisionShape3D" unique_id=422786133]
 cast_shadow = 0
 pixel_size = 0.00185
 billboard = 2
 texture_filter = 0
 render_priority = 1
 sprite_frames = SubResource("SpriteFrames_b26j0")
-animation = &"idle"
+animation = &"parrying"
 autoplay = "idle"
 
 [node name="ui" type="CanvasLayer" parent="." unique_id=383149491]
@@ -124,6 +154,7 @@ self_modulate = Color(1, 0, 0, 1)
 offset_right = 1152.0
 offset_bottom = 648.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_7illk")
+metadata/_edit_use_anchors_ = true
 
 [node name="heart_container" type="HBoxContainer" parent="ui" unique_id=281727399]
 unique_name_in_owner = true
@@ -133,6 +164,7 @@ offset_left = 50.0
 offset_top = 585.0
 offset_right = 208.0
 offset_bottom = 635.0
+metadata/_edit_use_anchors_ = true
 
 [node name="heart1" type="TextureRect" parent="ui/heart_container" unique_id=1391252628]
 custom_minimum_size = Vector2(50, 0)
@@ -176,6 +208,7 @@ offset_bottom = 625.0
 step = 0.0
 value = 100.0
 show_percentage = false
+metadata/_edit_use_anchors_ = true
 
 [node name="Label" type="Label" parent="ui/ability_cooldown" unique_id=512107829]
 layout_mode = 1
@@ -226,11 +259,22 @@ unique_name_in_owner = true
 stream = ExtResource("5_sweqy")
 bus = &"SFX"
 
-[node name="parry" type="Node" parent="." unique_id=1156471812 node_paths=PackedStringArray("parry_area", "audio", "ability_cooldown_bar", "ability_label")]
+[node name="parry" type="Node" parent="." unique_id=1156471812 node_paths=PackedStringArray("parry_area", "audio", "ability_cooldown_bar", "ability_label", "impact_frame", "sprite")]
 script = ExtResource("6_2hs0m")
 parry_area = NodePath("../parry_area")
 audio = NodePath("../audio")
 ability_cooldown_bar = NodePath("../ui/ability_cooldown")
 ability_label = NodePath("../ui/ability_cooldown/Label")
+impact_frame = NodePath("impact_frame")
+sprite = NodePath("../CollisionShape3D/sprites")
+
+[node name="impact_frame" type="ColorRect" parent="parry" unique_id=526881555]
+visible = false
+material = SubResource("ShaderMaterial_8q143")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="dash" type="Node" parent="." unique_id=1511424969]
