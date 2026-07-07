@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://0hmj2517lj48"
 path.s3tc="res://.godot/imported/mars_boss_shooting.png-935423da66f7a382f2537534dd8fcc13.s3tc.ctex"
+path.etc2="res://.godot/imported/mars_boss_shooting.png-935423da66f7a382f2537534dd8fcc13.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://bosses/mars_boss/boss_sprites/mars_boss_shooting.png"
-dest_files=["res://.godot/imported/mars_boss_shooting.png-935423da66f7a382f2537534dd8fcc13.s3tc.ctex"]
+dest_files=["res://.godot/imported/mars_boss_shooting.png-935423da66f7a382f2537534dd8fcc13.s3tc.ctex", "res://.godot/imported/mars_boss_shooting.png-935423da66f7a382f2537534dd8fcc13.etc2.ctex"]
 
 [params]
 

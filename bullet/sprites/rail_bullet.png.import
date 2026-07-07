@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://55kmks0d6ba1"
 path.s3tc="res://.godot/imported/rail_bullet.png-e0686767812b273d63a9a0f004225e8c.s3tc.ctex"
+path.etc2="res://.godot/imported/rail_bullet.png-e0686767812b273d63a9a0f004225e8c.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://bullet/sprites/rail_bullet.png"
-dest_files=["res://.godot/imported/rail_bullet.png-e0686767812b273d63a9a0f004225e8c.s3tc.ctex"]
+dest_files=["res://.godot/imported/rail_bullet.png-e0686767812b273d63a9a0f004225e8c.s3tc.ctex", "res://.godot/imported/rail_bullet.png-e0686767812b273d63a9a0f004225e8c.etc2.ctex"]
 
 [params]
 

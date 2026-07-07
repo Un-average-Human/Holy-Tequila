@@ -1,25 +1,29 @@
 [gd_scene format=3 uid="uid://ctaa2uxxlgoop"]
 
-[ext_resource type="Script" uid="uid://dyew2ky8w3jeu" path="res://game_over_screen.gd" id="1_ccer4"]
-[ext_resource type="FontFile" uid="uid://dj858wkygbdbc" path="res://lowbudget.ttf" id="1_y26ei"]
-[ext_resource type="Theme" uid="uid://boqtjf88xcpu4" path="res://demo/assets/ui.theme" id="2_ccer4"]
+[ext_resource type="Script" uid="uid://dyew2ky8w3jeu" path="res://menus/scripts/game_over_screen.gd" id="1_g6o4y"]
+[ext_resource type="Theme" uid="uid://boqtjf88xcpu4" path="res://demo/assets/ui.theme" id="2_qxhjj"]
+[ext_resource type="FontFile" uid="uid://dj858wkygbdbc" path="res://lowbudget.ttf" id="3_hw2hc"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ftari"]
-font = ExtResource("1_y26ei")
+font = ExtResource("3_hw2hc")
 font_size = 128
 
 [sub_resource type="FontVariation" id="FontVariation_ccer4"]
-base_font = ExtResource("1_y26ei")
+base_font = ExtResource("3_hw2hc")
 variation_embolden = 0.75
 
 [sub_resource type="FontVariation" id="FontVariation_8u835"]
-base_font = ExtResource("1_y26ei")
+base_font = ExtResource("3_hw2hc")
 variation_embolden = 0.75
 variation_transform = Transform2D(1, 0.2, 0, 1, 0, 0)
 
 [sub_resource type="FontVariation" id="FontVariation_ftari"]
-base_font = ExtResource("1_y26ei")
+base_font = ExtResource("3_hw2hc")
 variation_transform = Transform2D(1, 0.2, 0, 1, 0, 0)
+
+[sub_resource type="FontVariation" id="FontVariation_28vn7"]
+base_font = ExtResource("3_hw2hc")
+variation_embolden = 0.75
 
 [node name="Control" type="Control" unique_id=265440457 node_paths=PackedStringArray("retry_button", "return_to_menu_button", "game_over_layer", "boss_quote_layer", "title", "quote_label", "boss_name")]
 layout_mode = 3
@@ -30,7 +34,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-script = ExtResource("1_ccer4")
+script = ExtResource("1_g6o4y")
 retry_button = NodePath("game_over/VBoxContainer/retry")
 return_to_menu_button = NodePath("game_over/VBoxContainer/return_to_menu")
 game_over_layer = NodePath("game_over")
@@ -62,13 +66,13 @@ theme_override_constants/separation = 10
 [node name="retry" type="Button" parent="game_over/VBoxContainer" unique_id=1684500364]
 layout_mode = 2
 size_flags_vertical = 3
-theme = ExtResource("2_ccer4")
+theme = ExtResource("2_qxhjj")
 text = "Try Again"
 
 [node name="return_to_menu" type="Button" parent="game_over/VBoxContainer" unique_id=536127702]
 layout_mode = 2
 size_flags_vertical = 3
-theme = ExtResource("2_ccer4")
+theme = ExtResource("2_qxhjj")
 text = "Return to Menu"
 
 [node name="title" type="Label" parent="game_over" unique_id=158073978]
@@ -99,8 +103,8 @@ layout_mode = 0
 offset_top = 76.0
 offset_right = 349.07404
 offset_bottom = 348.0
-theme = ExtResource("2_ccer4")
-theme_override_fonts/normal_font = ExtResource("1_y26ei")
+theme = ExtResource("2_qxhjj")
+theme_override_fonts/normal_font = ExtResource("3_hw2hc")
 theme_override_fonts/bold_font = SubResource("FontVariation_ccer4")
 theme_override_fonts/bold_italics_font = SubResource("FontVariation_8u835")
 theme_override_fonts/italics_font = SubResource("FontVariation_ftari")
@@ -116,6 +120,15 @@ text = "test"
 layout_mode = 0
 offset_right = 349.07404
 offset_bottom = 76.0
+theme_override_fonts/normal_font = ExtResource("3_hw2hc")
+theme_override_fonts/bold_font = SubResource("FontVariation_28vn7")
+theme_override_fonts/bold_italics_font = SubResource("FontVariation_8u835")
+theme_override_fonts/italics_font = SubResource("FontVariation_ftari")
+theme_override_font_sizes/normal_font_size = 30
+theme_override_font_sizes/bold_font_size = 30
+theme_override_font_sizes/bold_italics_font_size = 30
+theme_override_font_sizes/italics_font_size = 30
+theme_override_font_sizes/mono_font_size = 30
 bbcode_enabled = true
 text = "Boss Name"
 horizontal_alignment = 1

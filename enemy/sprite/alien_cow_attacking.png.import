@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://cv8js42nroytg"
 path.s3tc="res://.godot/imported/alien_cow_attacking.png-312cdd32d8ce503a84450279375ab6a5.s3tc.ctex"
+path.etc2="res://.godot/imported/alien_cow_attacking.png-312cdd32d8ce503a84450279375ab6a5.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://enemy/sprite/alien_cow_attacking.png"
-dest_files=["res://.godot/imported/alien_cow_attacking.png-312cdd32d8ce503a84450279375ab6a5.s3tc.ctex"]
+dest_files=["res://.godot/imported/alien_cow_attacking.png-312cdd32d8ce503a84450279375ab6a5.s3tc.ctex", "res://.godot/imported/alien_cow_attacking.png-312cdd32d8ce503a84450279375ab6a5.etc2.ctex"]
 
 [params]
 

@@ -1,27 +1,27 @@
 [gd_scene format=3 uid="uid://yo1ornr2fnjs"]
 
-[ext_resource type="Texture2D" uid="uid://dkpvif4bvs30b" path="res://planets/buttons/mars/mars.png" id="1_1jjcf"]
-[ext_resource type="Script" uid="uid://bs8i3f42tjwe5" path="res://world_pick.gd" id="1_841gj"]
-[ext_resource type="Texture2D" uid="uid://dti4cx6kuv2a8" path="res://planets/buttons/mars/mars_disabled.png" id="2_841gj"]
-[ext_resource type="Texture2D" uid="uid://dvjc0xrb6hp2p" path="res://planets/buttons/chezburger/chezburger_planet.png" id="3_v8y7f"]
-[ext_resource type="Texture2D" uid="uid://iskautbtfdve" path="res://planets/buttons/chezburger/chezburger_planet_disabled.png" id="4_iu8j5"]
-[ext_resource type="Texture2D" uid="uid://ciavqludqi73x" path="res://planets/buttons/tequila/tequila_world.png" id="5_c0xir"]
-[ext_resource type="Texture2D" uid="uid://cc5ekuutac162" path="res://planets/buttons/tequila/tequila_world_disabled.png" id="6_2pgkm"]
-[ext_resource type="Texture2D" uid="uid://mkp5tcbws3bc" path="res://planets/buttons/mega_market/mega_market_world.png" id="6_88ppc"]
-[ext_resource type="Texture2D" uid="uid://ciiqopo2pi5gu" path="res://planets/buttons/water/water_planet.png" id="6_cfd4q"]
-[ext_resource type="Texture2D" uid="uid://cavkgglqa6f2s" path="res://planets/buttons/database/database_world.png" id="6_df3fn"]
-[ext_resource type="Texture2D" uid="uid://doxdf6jfci6ji" path="res://planets/buttons/pirate/skelly_planet.png" id="6_iu8j5"]
-[ext_resource type="Texture2D" uid="uid://47ad6j2ma00a" path="res://planets/buttons/database/database_world_disabled.png" id="7_4re1r"]
-[ext_resource type="Texture2D" uid="uid://daktgohh2dnlj" path="res://planets/buttons/pirate/skelly_planet_disabled.png" id="7_c0xir"]
-[ext_resource type="Texture2D" uid="uid://dr13t3xkcmg7c" path="res://planets/buttons/water/water_planet_disabled.png" id="7_snhsa"]
-[ext_resource type="Texture2D" uid="uid://ddpbx40wwjacw" path="res://planets/buttons/mega_market/mega_market_world_disabled.png" id="7_wpn71"]
-[ext_resource type="Texture2D" uid="uid://biv0me6ul2vw6" path="res://planets/buttons/brainrot/brainrot_planet.png" id="8_2pgkm"]
-[ext_resource type="Texture2D" uid="uid://d00lbdbkau5nt" path="res://planets/buttons/brainrot/brainrot_planet_disabled.png" id="9_ov3og"]
-[ext_resource type="AudioStream" uid="uid://cyvupt6pdvih2" path="res://sfx/interaction/button_hover_sfx.mp3" id="14_snhsa"]
-[ext_resource type="FontFile" uid="uid://dj858wkygbdbc" path="res://lowbudget.ttf" id="19_4re1r"]
+[ext_resource type="Script" uid="uid://bs8i3f42tjwe5" path="res://menus/scripts/world_pick.gd" id="1_mba7w"]
+[ext_resource type="Texture2D" uid="uid://dkpvif4bvs30b" path="res://planets/buttons/mars/mars.png" id="2_kkp1b"]
+[ext_resource type="Texture2D" uid="uid://dti4cx6kuv2a8" path="res://planets/buttons/mars/mars_disabled.png" id="3_jvghj"]
+[ext_resource type="Texture2D" uid="uid://dvjc0xrb6hp2p" path="res://planets/buttons/chezburger/chezburger_planet.png" id="4_4c2iq"]
+[ext_resource type="Texture2D" uid="uid://iskautbtfdve" path="res://planets/buttons/chezburger/chezburger_planet_disabled.png" id="5_hdv20"]
+[ext_resource type="Texture2D" uid="uid://cavkgglqa6f2s" path="res://planets/buttons/database/database_world.png" id="6_x8koh"]
+[ext_resource type="Texture2D" uid="uid://47ad6j2ma00a" path="res://planets/buttons/database/database_world_disabled.png" id="7_bc8qd"]
+[ext_resource type="Texture2D" uid="uid://mkp5tcbws3bc" path="res://planets/buttons/mega_market/mega_market_world.png" id="8_l4oky"]
+[ext_resource type="Texture2D" uid="uid://ddpbx40wwjacw" path="res://planets/buttons/mega_market/mega_market_world_disabled.png" id="9_ax8ab"]
+[ext_resource type="Texture2D" uid="uid://ciiqopo2pi5gu" path="res://planets/buttons/water/water_planet.png" id="10_jvnvb"]
+[ext_resource type="Texture2D" uid="uid://dr13t3xkcmg7c" path="res://planets/buttons/water/water_planet_disabled.png" id="11_mwyvg"]
+[ext_resource type="Texture2D" uid="uid://doxdf6jfci6ji" path="res://planets/buttons/pirate/skelly_planet.png" id="12_llfse"]
+[ext_resource type="Texture2D" uid="uid://daktgohh2dnlj" path="res://planets/buttons/pirate/skelly_planet_disabled.png" id="13_1gjib"]
+[ext_resource type="Texture2D" uid="uid://biv0me6ul2vw6" path="res://planets/buttons/brainrot/brainrot_planet.png" id="14_ccwmf"]
+[ext_resource type="Texture2D" uid="uid://d00lbdbkau5nt" path="res://planets/buttons/brainrot/brainrot_planet_disabled.png" id="15_lab5a"]
+[ext_resource type="Texture2D" uid="uid://ciavqludqi73x" path="res://planets/buttons/tequila/tequila_world.png" id="16_rxi88"]
+[ext_resource type="Texture2D" uid="uid://cc5ekuutac162" path="res://planets/buttons/tequila/tequila_world_disabled.png" id="17_p5vp4"]
+[ext_resource type="AudioStream" uid="uid://cyvupt6pdvih2" path="res://sfx/interaction/button_hover_sfx.mp3" id="18_qr0nj"]
+[ext_resource type="FontFile" uid="uid://dj858wkygbdbc" path="res://lowbudget.ttf" id="19_3xe1t"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_hpjpr"]
-font = ExtResource("19_4re1r")
+font = ExtResource("19_3xe1t")
 font_size = 50
 outline_size = 3
 
@@ -34,7 +34,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-script = ExtResource("1_841gj")
+script = ExtResource("1_mba7w")
 metadata/_edit_use_anchors_ = true
 
 [node name="planets" type="Control" parent="." unique_id=35887227]
@@ -54,8 +54,8 @@ anchor_left = 0.036458332
 anchor_top = 0.66049385
 anchor_right = 0.16666667
 anchor_bottom = 0.8919753
-texture_normal = ExtResource("1_1jjcf")
-texture_disabled = ExtResource("2_841gj")
+texture_normal = ExtResource("2_kkp1b")
+texture_disabled = ExtResource("3_jvghj")
 ignore_texture_size = true
 metadata/_edit_use_anchors_ = true
 
@@ -68,8 +68,8 @@ anchor_right = 0.20659722
 anchor_bottom = 0.5694444
 offset_bottom = 3.0517578e-05
 disabled = true
-texture_normal = ExtResource("3_v8y7f")
-texture_disabled = ExtResource("4_iu8j5")
+texture_normal = ExtResource("4_4c2iq")
+texture_disabled = ExtResource("5_hdv20")
 metadata/_edit_use_anchors_ = true
 
 [node name="mars2" type="TextureButton" parent="planets" unique_id=1977889239]
@@ -80,8 +80,8 @@ anchor_top = 0.66049385
 anchor_right = 0.9730903
 anchor_bottom = 0.8919753
 disabled = true
-texture_normal = ExtResource("1_1jjcf")
-texture_disabled = ExtResource("2_841gj")
+texture_normal = ExtResource("2_kkp1b")
+texture_disabled = ExtResource("3_jvghj")
 ignore_texture_size = true
 metadata/_edit_use_anchors_ = true
 
@@ -94,8 +94,8 @@ anchor_right = 0.9366319
 anchor_bottom = 0.5694444
 offset_bottom = 3.0517578e-05
 disabled = true
-texture_normal = ExtResource("6_df3fn")
-texture_disabled = ExtResource("7_4re1r")
+texture_normal = ExtResource("6_x8koh")
+texture_disabled = ExtResource("7_bc8qd")
 ignore_texture_size = true
 metadata/_edit_use_anchors_ = true
 
@@ -107,8 +107,8 @@ anchor_top = 0.0787037
 anchor_right = 0.8472222
 anchor_bottom = 0.3101852
 disabled = true
-texture_normal = ExtResource("6_88ppc")
-texture_disabled = ExtResource("7_wpn71")
+texture_normal = ExtResource("8_l4oky")
+texture_disabled = ExtResource("9_ax8ab")
 ignore_texture_size = true
 metadata/_edit_use_anchors_ = true
 
@@ -120,8 +120,8 @@ anchor_top = 0.030864198
 anchor_right = 0.6631944
 anchor_bottom = 0.26234567
 disabled = true
-texture_normal = ExtResource("6_cfd4q")
-texture_disabled = ExtResource("7_snhsa")
+texture_normal = ExtResource("10_jvnvb")
+texture_disabled = ExtResource("11_mwyvg")
 ignore_texture_size = true
 metadata/_edit_use_anchors_ = true
 
@@ -133,8 +133,8 @@ anchor_top = 0.0787037
 anchor_right = 0.30381945
 anchor_bottom = 0.3101852
 disabled = true
-texture_normal = ExtResource("6_iu8j5")
-texture_disabled = ExtResource("7_c0xir")
+texture_normal = ExtResource("12_llfse")
+texture_disabled = ExtResource("13_1gjib")
 ignore_texture_size = true
 metadata/_edit_use_anchors_ = true
 
@@ -146,8 +146,8 @@ anchor_top = 0.015432099
 anchor_right = 0.4921875
 anchor_bottom = 0.24691358
 disabled = true
-texture_normal = ExtResource("8_2pgkm")
-texture_disabled = ExtResource("9_ov3og")
+texture_normal = ExtResource("14_ccwmf")
+texture_disabled = ExtResource("15_lab5a")
 ignore_texture_size = true
 metadata/_edit_use_anchors_ = true
 
@@ -160,14 +160,14 @@ anchor_top = 0.5617284
 anchor_right = 0.5538194
 anchor_bottom = 0.83179015
 disabled = true
-texture_normal = ExtResource("5_c0xir")
-texture_disabled = ExtResource("6_2pgkm")
+texture_normal = ExtResource("16_rxi88")
+texture_disabled = ExtResource("17_p5vp4")
 stretch_mode = 0
 metadata/_edit_use_anchors_ = true
 
 [node name="interactive_noises" type="AudioStreamPlayer" parent="." unique_id=1531038019]
 unique_name_in_owner = true
-stream = ExtResource("14_snhsa")
+stream = ExtResource("18_qr0nj")
 bus = &"SFX"
 
 [node name="Label" type="Label" parent="." unique_id=1883111888]

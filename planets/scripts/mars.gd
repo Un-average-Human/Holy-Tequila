@@ -19,9 +19,13 @@ func _ready() -> void:
 	SignalBus.boss_defeated.connect(_end_bossfight.bind(true))
 
 func _fell_in_void(body: Node3D):
-	if body.is_in_group("player"):
+	if body == player:
+		if player.is_on_floor():
+			return
+			
 		body.global_position = spawn_point.global_position
 		body.take_damage()
+
 	
 func _end_bossfight(has_player_won: bool):
 	player.unlock_mouse()

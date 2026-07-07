@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://cpjvtkucyf2gs"
 path.s3tc="res://.godot/imported/shoot_alien_cows.png-b156cf685dea8defcf2c2c8f2c89367e.s3tc.ctex"
+path.etc2="res://.godot/imported/shoot_alien_cows.png-b156cf685dea8defcf2c2c8f2c89367e.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://bosses/mars_boss/boss_sprites/shoot_alien_cows.png"
-dest_files=["res://.godot/imported/shoot_alien_cows.png-b156cf685dea8defcf2c2c8f2c89367e.s3tc.ctex"]
+dest_files=["res://.godot/imported/shoot_alien_cows.png-b156cf685dea8defcf2c2c8f2c89367e.s3tc.ctex", "res://.godot/imported/shoot_alien_cows.png-b156cf685dea8defcf2c2c8f2c89367e.etc2.ctex"]
 
 [params]
 

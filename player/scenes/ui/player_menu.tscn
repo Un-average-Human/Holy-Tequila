@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bvq6hhe6vc4xo" path="res://player/scripts/ui/player_menu.gd" id="1_lc8v8"]
 [ext_resource type="FontFile" uid="uid://dj858wkygbdbc" path="res://lowbudget.ttf" id="2_es14f"]
 [ext_resource type="Theme" uid="uid://boqtjf88xcpu4" path="res://demo/assets/ui.theme" id="3_0whq1"]
-[ext_resource type="PackedScene" uid="uid://cco88hukojaa0" path="res://settings_menu.tscn" id="4_tmto2"]
+[ext_resource type="PackedScene" uid="uid://cco88hukojaa0" path="res://menus/scenes/settings_menu.tscn" id="4_tmto2"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_b26j0"]
 font = ExtResource("2_es14f")

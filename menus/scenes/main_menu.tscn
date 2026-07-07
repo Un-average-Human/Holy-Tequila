@@ -1,0 +1,83 @@
+[gd_scene format=3 uid="uid://bj0vpm662j5bq"]
+
+[ext_resource type="Script" uid="uid://bthyivxcv8rx5" path="res://menus/scenes/main_menu.gd" id="1_1ddq0"]
+[ext_resource type="Theme" uid="uid://boqtjf88xcpu4" path="res://demo/assets/ui.theme" id="2_hhkev"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_7vrkn"]
+font_size = 100
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5um5d"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[node name="Control" type="Control" unique_id=784955104]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1ddq0")
+
+[node name="Panel" type="Panel" parent="." unique_id=384136148]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="." unique_id=57279602]
+layout_mode = 0
+offset_left = 30.0
+offset_right = 320.0
+offset_bottom = 205.0
+theme = ExtResource("2_hhkev")
+text = "HOLY TEQUILA"
+label_settings = SubResource("LabelSettings_7vrkn")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="button" type="VBoxContainer" parent="." unique_id=1077011063]
+layout_mode = 0
+offset_left = 54.0
+offset_top = 273.3724
+offset_right = 296.0
+offset_bottom = 579.62756
+
+[node name="play_btn" type="Button" parent="button" unique_id=1165018170]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("2_hhkev")
+text = "Play"
+
+[node name="tutorial_btn" type="Button" parent="button" unique_id=1055499387]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("2_hhkev")
+text = "Tutorial"
+
+[node name="settings_btn" type="Button" parent="button" unique_id=2128147972]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("2_hhkev")
+text = "Settings"
+
+[node name="quit_btn" type="Button" parent="button" unique_id=808256549]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("2_hhkev")
+text = "Quit"
+
+[node name="ColorRect" type="Panel" parent="." unique_id=285267250]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.026041666
+anchor_top = 0.31635803
+anchor_right = 0.2777778
+anchor_bottom = 0.32253087
+theme_override_styles/panel = SubResource("StyleBoxFlat_5um5d")
+metadata/_edit_use_anchors_ = true

@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://b551cdfh5l0tf"
 path.s3tc="res://.godot/imported/mars_boss_idle.png-f5c6c9dccd6fff03e6ca69e5868e3870.s3tc.ctex"
+path.etc2="res://.godot/imported/mars_boss_idle.png-f5c6c9dccd6fff03e6ca69e5868e3870.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://bosses/mars_boss/boss_sprites/mars_boss_idle.png"
-dest_files=["res://.godot/imported/mars_boss_idle.png-f5c6c9dccd6fff03e6ca69e5868e3870.s3tc.ctex"]
+dest_files=["res://.godot/imported/mars_boss_idle.png-f5c6c9dccd6fff03e6ca69e5868e3870.s3tc.ctex", "res://.godot/imported/mars_boss_idle.png-f5c6c9dccd6fff03e6ca69e5868e3870.etc2.ctex"]
 
 [params]
 

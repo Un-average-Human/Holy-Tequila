@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://coclkixcchksq"
 path.s3tc="res://.godot/imported/funny_explosion.png-2fa5bca73aeb2310819faa3824f9f8f5.s3tc.ctex"
+path.etc2="res://.godot/imported/funny_explosion.png-2fa5bca73aeb2310819faa3824f9f8f5.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://bullet/sprites/funny_explosion.png"
-dest_files=["res://.godot/imported/funny_explosion.png-2fa5bca73aeb2310819faa3824f9f8f5.s3tc.ctex"]
+dest_files=["res://.godot/imported/funny_explosion.png-2fa5bca73aeb2310819faa3824f9f8f5.s3tc.ctex", "res://.godot/imported/funny_explosion.png-2fa5bca73aeb2310819faa3824f9f8f5.etc2.ctex"]
 
 [params]
 

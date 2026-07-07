@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://bgw7lwxqggs1l"
 path.s3tc="res://.godot/imported/mars_boss_angry.png-7ec27623d9ce4d5bb503f4169a6523d2.s3tc.ctex"
+path.etc2="res://.godot/imported/mars_boss_angry.png-7ec27623d9ce4d5bb503f4169a6523d2.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://bosses/mars_boss/boss_sprites/mars_boss_angry.png"
-dest_files=["res://.godot/imported/mars_boss_angry.png-7ec27623d9ce4d5bb503f4169a6523d2.s3tc.ctex"]
+dest_files=["res://.godot/imported/mars_boss_angry.png-7ec27623d9ce4d5bb503f4169a6523d2.s3tc.ctex", "res://.godot/imported/mars_boss_angry.png-7ec27623d9ce4d5bb503f4169a6523d2.etc2.ctex"]
 
 [params]
 

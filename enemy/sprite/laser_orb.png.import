@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://dax4e07b70jm1"
 path.s3tc="res://.godot/imported/laser_orb.png-e7132dd621a1bc1ac40e02e822e44e42.s3tc.ctex"
+path.etc2="res://.godot/imported/laser_orb.png-e7132dd621a1bc1ac40e02e822e44e42.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://enemy/sprite/laser_orb.png"
-dest_files=["res://.godot/imported/laser_orb.png-e7132dd621a1bc1ac40e02e822e44e42.s3tc.ctex"]
+dest_files=["res://.godot/imported/laser_orb.png-e7132dd621a1bc1ac40e02e822e44e42.s3tc.ctex", "res://.godot/imported/laser_orb.png-e7132dd621a1bc1ac40e02e822e44e42.etc2.ctex"]
 
 [params]
 

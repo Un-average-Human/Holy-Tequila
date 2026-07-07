@@ -1,5 +1,6 @@
 extends NPC
 
+var is_dead: bool = false
 var can_navigate: bool = false
 var can_parry: bool = false
 var is_charging: bool = false
@@ -27,6 +28,9 @@ func _ready() -> void:
 	charge_area.body_exited.connect(_player_exited_charge_area)
 
 func _physics_process(delta: float) -> void:
+	if is_dead:
+		return
+
 	if is_charging and can_navigate:
 		velocity.x = charge_dir.x * charge_speed
 		velocity.z = charge_dir.z * charge_speed
@@ -46,6 +50,7 @@ func _physics_process(delta: float) -> void:
 	super(delta)
 
 func _player_entered_charge_area(body: Node3D) -> void:
+	if is_dead: return
 	if body.is_in_group("player"):
 		player_in_area = true
 		_attempt_charge_loop()
@@ -55,7 +60,7 @@ func _player_exited_charge_area(body: Node3D) -> void:
 		player_in_area = false
 
 func _attempt_charge_loop() -> void:
-	if not is_instance_valid(self):
+	if is_dead or not is_instance_valid(self):
 		return
 		
 	if not player_in_area:
@@ -72,6 +77,7 @@ func _attempt_charge_loop() -> void:
 		get_tree().create_timer(0.5).timeout.connect(_attempt_charge_loop)
 
 func _start_charge(current_target: Node3D) -> void:
+	if is_dead: return
 	blackboard.set_var("can_move", false)
 	velocity = Vector3.ZERO
 	sprite.play("alien_cow_attack")
@@ -85,12 +91,13 @@ func _start_charge(current_target: Node3D) -> void:
 	
 	await get_tree().create_timer(1.0).timeout
 	
-	if not is_instance_valid(self) or not can_parry: 
+	if is_dead or not is_instance_valid(self) or not can_parry: 
 		return
 		
 	is_charging = true
 
 func _stop_charging() -> void:
+	if is_dead: return
 	is_charging = false
 	can_parry = false
 	is_resting = true
@@ -113,6 +120,9 @@ func _stop_charging() -> void:
 	_attempt_charge_loop()
 
 func _damage_player(body: Node3D) -> void:
+	if is_dead:
+		return
+
 	if body.is_in_group("player"):
 		if is_charging:
 			var push_dir = global_position.direction_to(body.global_position)
@@ -125,6 +135,25 @@ func _damage_player(body: Node3D) -> void:
 		body.take_damage()
 
 func _parried() -> void:
+	if is_dead:
+		return
+	is_dead = true
+	
+	is_charging = false
+	can_navigate = false
+	player_in_area = false
+	velocity = Vector3.ZERO
+	
+	collision_layer = 0
+	collision_mask = 0
+	
+	if is_instance_valid(damage_area):
+		damage_area.monitoring = false
+		damage_area.monitorable = false
+	if is_instance_valid(charge_area):
+		charge_area.monitoring = false
+		charge_area.monitorable = false
+
 	sprite.billboard = BaseMaterial3D.BILLBOARD_DISABLED
 	if target:
 		look_at(target.global_position)
@@ -132,18 +161,18 @@ func _parried() -> void:
 	var tween = create_tween().set_parallel()
 	var rotation_tween = create_tween().set_loops().set_parallel()
 	
-	var launch_height: float = 35.0
-	var horizontal_blast: float = 50.0
+	var launch_height: float = 15.0
+	var horizontal_blast: float = 25.0
 	var target_height_pos = global_position + Vector3(0, launch_height, 0) - (charge_dir * horizontal_blast)
 	
 	rotation_tween.tween_property(sprite, "rotation:z", deg_to_rad(360), 0.2).as_relative()
 	rotation_tween.tween_property(sprite, "rotation:x", deg_to_rad(360), 0.2).as_relative()
 	
-	tween.tween_property(self, "global_position", target_height_pos, 1.5)\
+	tween.tween_property(self, "global_position", target_height_pos, 2.5)\
 		.set_trans(Tween.TRANS_QUAD)\
 		.set_ease(Tween.EASE_OUT)
 	
-	tween.tween_property(self, "scale", Vector3.ZERO, 1.5)\
+	tween.tween_property(self, "scale", Vector3.ZERO, 2.5)\
 		.set_trans(Tween.TRANS_QUAD)\
 		.set_ease(Tween.EASE_IN)
 

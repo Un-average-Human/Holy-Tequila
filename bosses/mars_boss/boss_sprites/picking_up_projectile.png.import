@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://deahkwal4ics8"
 path.s3tc="res://.godot/imported/picking_up_projectile.png-7522cf8f76d67e12774bd95bc34b7eb6.s3tc.ctex"
+path.etc2="res://.godot/imported/picking_up_projectile.png-7522cf8f76d67e12774bd95bc34b7eb6.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://bosses/mars_boss/boss_sprites/picking_up_projectile.png"
-dest_files=["res://.godot/imported/picking_up_projectile.png-7522cf8f76d67e12774bd95bc34b7eb6.s3tc.ctex"]
+dest_files=["res://.godot/imported/picking_up_projectile.png-7522cf8f76d67e12774bd95bc34b7eb6.s3tc.ctex", "res://.godot/imported/picking_up_projectile.png-7522cf8f76d67e12774bd95bc34b7eb6.etc2.ctex"]
 
 [params]
 

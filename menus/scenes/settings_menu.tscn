@@ -1,12 +1,12 @@
 [gd_scene format=3 uid="uid://cco88hukojaa0"]
 
-[ext_resource type="Script" uid="uid://cww2lhas61ota" path="res://settings.gd" id="1_mlw3h"]
-[ext_resource type="FontFile" uid="uid://dj858wkygbdbc" path="res://lowbudget.ttf" id="1_ufg0w"]
-[ext_resource type="Theme" uid="uid://boqtjf88xcpu4" path="res://demo/assets/ui.theme" id="2_0cmel"]
-[ext_resource type="Script" uid="uid://dfs4rvyp3vb4w" path="res://volume.gd" id="4_d0eu6"]
+[ext_resource type="Script" uid="uid://cww2lhas61ota" path="res://menus/scripts/settings.gd" id="1_ux87g"]
+[ext_resource type="FontFile" uid="uid://dj858wkygbdbc" path="res://lowbudget.ttf" id="2_5icng"]
+[ext_resource type="Theme" uid="uid://boqtjf88xcpu4" path="res://demo/assets/ui.theme" id="3_ncq1m"]
+[ext_resource type="Script" uid="uid://dfs4rvyp3vb4w" path="res://menus/scripts/volume.gd" id="4_xtyl5"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_b26j0"]
-font = ExtResource("1_ufg0w")
+font = ExtResource("2_5icng")
 font_size = 108
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_78uhb"]
@@ -17,7 +17,7 @@ corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
 
 [sub_resource type="LabelSettings" id="LabelSettings_ufg0w"]
-font = ExtResource("1_ufg0w")
+font = ExtResource("2_5icng")
 font_size = 30
 outline_size = 1
 
@@ -35,7 +35,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_mlw3h")
+script = ExtResource("1_ux87g")
 graphic_settings = NodePath("menus/graphic_settings")
 audio_settings = NodePath("menus/audio_settings")
 controls_settings = NodePath("menus/controls_settings")
@@ -125,8 +125,8 @@ layout_mode = 0
 offset_left = 160.0
 offset_right = 282.0
 offset_bottom = 34.0
-theme = ExtResource("2_0cmel")
-theme_override_fonts/font = ExtResource("1_ufg0w")
+theme = ExtResource("3_ncq1m")
+theme_override_fonts/font = ExtResource("2_5icng")
 theme_override_font_sizes/font_size = 30
 flat = true
 
@@ -141,8 +141,8 @@ layout_mode = 0
 offset_left = 160.0
 offset_right = 282.0
 offset_bottom = 34.0
-theme = ExtResource("2_0cmel")
-theme_override_fonts/font = ExtResource("1_ufg0w")
+theme = ExtResource("3_ncq1m")
+theme_override_fonts/font = ExtResource("2_5icng")
 theme_override_font_sizes/font_size = 30
 
 [node name="audio_settings" type="VBoxContainer" parent="menus" unique_id=1124650892]
@@ -152,7 +152,7 @@ layout_mode = 2
 [node name="master" type="Label" parent="menus/audio_settings" unique_id=1161753183]
 layout_mode = 2
 size_flags_vertical = 6
-theme = ExtResource("2_0cmel")
+theme = ExtResource("3_ncq1m")
 text = "Master Audio:"
 label_settings = SubResource("LabelSettings_d0eu6")
 
@@ -164,13 +164,13 @@ offset_bottom = 66.0
 size_flags_vertical = 2
 max_value = 1.0
 step = 0.001
-script = ExtResource("4_d0eu6")
+script = ExtResource("4_xtyl5")
 bus_name = "Master"
 
 [node name="music" type="Label" parent="menus/audio_settings" unique_id=2029449083]
 layout_mode = 2
 size_flags_vertical = 6
-theme = ExtResource("2_0cmel")
+theme = ExtResource("3_ncq1m")
 text = "Music:"
 label_settings = SubResource("LabelSettings_d0eu6")
 
@@ -182,13 +182,13 @@ offset_bottom = 74.0
 size_flags_vertical = 2
 max_value = 1.0
 step = 0.001
-script = ExtResource("4_d0eu6")
+script = ExtResource("4_xtyl5")
 bus_name = "Music"
 
 [node name="sfx" type="Label" parent="menus/audio_settings" unique_id=291192192]
 layout_mode = 2
 size_flags_vertical = 6
-theme = ExtResource("2_0cmel")
+theme = ExtResource("3_ncq1m")
 text = "Sound effects:"
 label_settings = SubResource("LabelSettings_d0eu6")
 
@@ -200,7 +200,7 @@ offset_bottom = 85.0
 size_flags_vertical = 2
 max_value = 1.0
 step = 0.001
-script = ExtResource("4_d0eu6")
+script = ExtResource("4_xtyl5")
 bus_name = "SFX"
 
 [node name="controls_settings" type="VBoxContainer" parent="menus" unique_id=464197822]
@@ -213,7 +213,7 @@ layout_mode = 2
 [node name="keybinds" type="Label" parent="menus/controls_settings/HBoxContainer" unique_id=544763650]
 layout_mode = 2
 size_flags_horizontal = 3
-theme = ExtResource("2_0cmel")
+theme = ExtResource("3_ncq1m")
 text = "Keybinds:"
 metadata/_edit_use_anchors_ = true
 
@@ -255,7 +255,7 @@ toggle_mode = true
 [node name="Forward" type="Label" parent="menus/controls_settings/HBoxContainer/keybinds/available_actions/VBoxContainer" unique_id=1223017953]
 layout_mode = 2
 size_flags_vertical = 6
-theme = ExtResource("2_0cmel")
+theme = ExtResource("3_ncq1m")
 text = "Forwards: "
 
 [node name="forward_btn" type="Button" parent="menus/controls_settings/HBoxContainer/keybinds/available_actions/VBoxContainer/Forward" unique_id=1244268933]
@@ -396,7 +396,7 @@ toggle_mode = true
 [node name="camera" type="Label" parent="menus/controls_settings/HBoxContainer" unique_id=1698597629]
 layout_mode = 2
 size_flags_horizontal = 3
-theme = ExtResource("2_0cmel")
+theme = ExtResource("3_ncq1m")
 text = "Camera:"
 metadata/_edit_use_anchors_ = true
 
@@ -453,13 +453,13 @@ offset_left = 24.0
 offset_top = 275.0
 offset_right = 175.0
 offset_bottom = 469.0
-theme = ExtResource("2_0cmel")
+theme = ExtResource("3_ncq1m")
 theme_override_constants/separation = 25
 
 [node name="graphic_tab" type="Button" parent="menu_tabs" unique_id=1540494907]
 layout_mode = 2
 size_flags_vertical = 3
-theme = ExtResource("2_0cmel")
+theme = ExtResource("3_ncq1m")
 toggle_mode = true
 button_pressed = true
 button_group = SubResource("ButtonGroup_mlw3h")
@@ -469,7 +469,7 @@ metadata/_edit_use_anchors_ = true
 [node name="audio_tab" type="Button" parent="menu_tabs" unique_id=1071156589]
 layout_mode = 2
 size_flags_vertical = 3
-theme = ExtResource("2_0cmel")
+theme = ExtResource("3_ncq1m")
 toggle_mode = true
 button_group = SubResource("ButtonGroup_mlw3h")
 text = "Audio Settings"
@@ -478,7 +478,7 @@ metadata/_edit_use_anchors_ = true
 [node name="controls_tab" type="Button" parent="menu_tabs" unique_id=1412701088]
 layout_mode = 2
 size_flags_vertical = 3
-theme = ExtResource("2_0cmel")
+theme = ExtResource("3_ncq1m")
 toggle_mode = true
 button_group = SubResource("ButtonGroup_mlw3h")
 text = "Control Settings"
@@ -487,7 +487,7 @@ metadata/_edit_use_anchors_ = true
 [node name="back" type="Button" parent="menu_tabs" unique_id=938485414]
 layout_mode = 2
 size_flags_vertical = 3
-theme = ExtResource("2_0cmel")
+theme = ExtResource("3_ncq1m")
 toggle_mode = true
 button_group = SubResource("ButtonGroup_mlw3h")
 text = "Back"

@@ -26,6 +26,11 @@ func _button_handler(button: Button):
 			base_menu.hide()
 			settings_menu.show()
 		return_to_menu_btn:
+			for connection in SignalBus.player_died.get_connections():
+				SignalBus.player_died.disconnect(connection["callable"])
+			for connection in SignalBus.boss_defeated.get_connections():
+				SignalBus.boss_defeated.disconnect(connection["callable"])
+			
 			get_tree().set_pause(false)
 			SceneTransition.transition(true, GeneralData.menu)
 		quit_btn:

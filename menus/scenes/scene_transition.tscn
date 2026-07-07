@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://d4f587fr07qpb"]
 
-[ext_resource type="Shader" uid="uid://buk6dlic7rlo2" path="res://transition.gdshader" id="1_jiq3i"]
-[ext_resource type="Script" uid="uid://do0ol8a5ltdo1" path="res://scene_transition.gd" id="2_gbkcp"]
+[ext_resource type="Script" uid="uid://do0ol8a5ltdo1" path="res://menus/scripts/scene_transition.gd" id="1_okbb6"]
+[ext_resource type="Shader" uid="uid://buk6dlic7rlo2" path="res://transition.gdshader" id="2_7uw5p"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gbkcp"]
-shader = ExtResource("1_jiq3i")
+shader = ExtResource("2_7uw5p")
 shader_parameter/use_sprite_alpha = true
 shader_parameter/use_transition_texture = false
 shader_parameter/transition_type = 0
@@ -33,7 +33,7 @@ shader_parameter/progress_bias = Vector2(0, 0)
 
 [node name="SceneTransition" type="CanvasLayer" unique_id=1833535979 node_paths=PackedStringArray("color_rect")]
 layer = 100
-script = ExtResource("2_gbkcp")
+script = ExtResource("1_okbb6")
 color_rect = NodePath("ColorRect")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1829870024]
