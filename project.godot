@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Holy Tequila"
-run/main_scene="uid://yo1ornr2fnjs"
+run/main_scene="uid://bj0vpm662j5bq"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
 
