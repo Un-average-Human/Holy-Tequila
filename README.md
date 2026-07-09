@@ -3,10 +3,10 @@
 <br>
 
 ## Errr, how did you even think of this?
-Want a very false response? Neither do I. Anyways, I got this idea while I was at school talking with my friend about my unfinished projects when I brought up a very old game I had made with multiplayer and stuff, and in that game I had a Holy Tequila and a Devilish Vodka. He started babbling about how stupid the idea was and I thought: "Very stupid. I can make something extremely stupid with that" and this project came to be! Heavily inspired by the puzzle bosses from Astro Bot and the hand drawn style from Cuphead.
+Um, I got this idea while I was at school talking with my friend about my unfinished projects when I brought up a very old game I had made with multiplayer and stuff, and in that game I had a Holy Tequila and a Devilish Vodka. He started babbling about how stupid the idea was and I thought: "Very stupid. I can make something extremely stupid with that" and this project came to be! Heavily inspired by the puzzle bosses from Astro Bot and the hand drawn style from Cuphead.
 
 ## Why?
-Funni
+Funni. And there's the fact I wanted to try out behaviour trees so I could get better at using them in case I decided i wanted NPCs for my big project. The boss uses a behaviour tree that can be easily modified to my taste (attack patterns and everything).
 
 ## THERE'S LORE?!!
 Um, not a good one but yes! Don Ramon has stolen your Holy Tequila given by the alcohol Gods themselves. He plans on injecting himself with it and become godly, but for that he needs to make said drink safe to consume. Fight his goons and face off against him to recover the holy drink.
