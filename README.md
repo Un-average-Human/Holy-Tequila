@@ -18,3 +18,10 @@ Erm, I added a tutorial for a reason, BUT if you are one of those people that ju
 <br>G to lock/unlock the mouse
 <br>ESC to open the menu ofc
 <br>F to use the special action
+
+## How to install?
+Pretty simple actually! Go to the game's Itch.io page [here](https://un-average-human.itch.io/holy-tequila) and download the zip file corresponding to your OS.<br>
+### MacOS
+For MacOS you'll have to extract the zip file, go to the contents folder inside the game's folder and then go into the MacOS folder where the game will be. You can just run it, but if you encounter any issues running it you'll have to go to System Preferences -> Security and Privacy -> "Open Anyway" and then type your password. The game should now work fine if it wasn't before.
+### Windows
+For Windows you'll simply have to extract the zip file and run the .exe file in there and it should work fine.
