@@ -26,6 +26,7 @@ enum ACTIONS {Forward, Backward, Left, Right, SpecialAction, Jump, OpenMenu, Unl
 
 var is_customisable: bool = false
 var action_string: String = ""
+var previous_menu
 
 func _ready() -> void:
 	for mode in window_mode_array:
@@ -35,10 +36,9 @@ func _ready() -> void:
 		
 	window_mode_picker.item_selected.connect(_option_buttons.bind(window_mode_picker))
 	fps_limit_picker.item_selected.connect(_option_buttons.bind(fps_limit_picker))
-	window_mode_picker.select(2)
-	fps_limit_picker.select(4)
-	
 	vsync_toggle.toggled.connect(_check_button.bind(vsync_toggle))
+	
+	_sync_ui_to_current_settings()
 	
 	for tab_button: Button in menu_tabs.get_children():
 		tab_button.toggled.connect(_settings_tab.bind(tab_button))
@@ -49,9 +49,34 @@ func _ready() -> void:
 		rebind_key_button.pressed.connect(_on_toggle_action_button_pressed.bind(rebind_key_button))
 	_update_keys()
 
+func _sync_ui_to_current_settings() -> void:
+	var current_mode := DisplayServer.window_get_mode()
+	var mode_string := "Windowed"
+	
+	match current_mode:
+		DisplayServer.WINDOW_MODE_WINDOWED: mode_string = "Windowed"
+		DisplayServer.WINDOW_MODE_MAXIMIZED: mode_string = "Maximized"
+		DisplayServer.WINDOW_MODE_FULLSCREEN: mode_string = "Fullscreen"
+		DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN: mode_string = "Exclusive Fullscreen"
+		
+	var mode_index := window_mode_array.find(mode_string)
+	if mode_index != -1:
+		window_mode_picker.select(mode_index)
+		
+	var vsync_mode := DisplayServer.window_get_vsync_mode()
+	vsync_toggle.set_pressed_no_signal(vsync_mode != DisplayServer.VSYNC_DISABLED)
+
+	var current_fps := Engine.max_fps
+	var fps_string := "No Limit" if current_fps == 0 else str(current_fps) + " FPS"
+	
+	var fps_index := fps_limit_array.find(fps_string)
+	if fps_index != -1:
+		fps_limit_picker.select(fps_index)
+	else:
+		fps_limit_picker.select(fps_limit_array.find("No Limit"))
+
 func _settings_tab(toggled_on: bool, button: Button):
 	if toggled_on:
-		
 		graphic_settings.hide()
 		audio_settings.hide()
 		controls_settings.hide()
@@ -64,14 +89,18 @@ func _settings_tab(toggled_on: bool, button: Button):
 			"controls_tab":
 				controls_settings.show()
 			_:
-				SignalBus.back_pressed.emit()
+				if SceneTransition.previous_scene_path != "":
+					SceneTransition.transition(true, SceneTransition.previous_scene_path)
+				else:
+					SignalBus.back_pressed.emit()
 				menu_tabs.get_child(0).set_pressed(true)
+
 
 #check button
 func _check_button(toggled: bool, button: CheckButton):
 	match button:
 		vsync_toggle:
-			if DisplayServer.window_get_vsync_mode() == DisplayServer.VSYNC_DISABLED:
+			if toggled:
 				DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_ENABLED)
 			else:
 				DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_DISABLED)

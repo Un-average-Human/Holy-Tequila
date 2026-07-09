@@ -121,7 +121,13 @@ func _random_projectile_preview():
 	mesh.set_surface_override_material(0, material)
 	add_child(mesh)
 
-	var target_pos = boss.player.global_position
+	var target_pos
+	if boss.player:
+		target_pos = boss.player.global_position
+	
+	if target_pos == null:
+		return
+	
 	target_pos.y = 0
 	mesh.global_position = target_pos
 	mesh.scale = Vector3(0.001, 1, 0.001)
@@ -239,11 +245,17 @@ func _explode_bomb(audio: AudioStreamPlayer3D, bullet: AnimatedSprite3D):
 	audio.play()
 	
 	var bullet_scale_tween = create_tween()
-	bullet_scale_tween.bind_node(bullet)
+	
+	var col_shape: CollisionShape3D = bullet.get_node("%damage_area").get_child(0)
+	bullet.can_damage = true
+	col_shape.shape.radius = 2.5
+	
 	bullet_scale_tween.tween_property(bullet, "scale", Vector3.ONE, 0.25).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 	bullet_scale_tween.tween_interval(1)
 	bullet_scale_tween.tween_property(bullet, "scale", Vector3.ZERO, 0.25).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN)
-	bullet_scale_tween.tween_callback(bullet.queue_free)
+	bullet_scale_tween.tween_callback(func():
+		col_shape.shape.radius = 0.75
+		bullet.queue_free())
 
 func _on_bomb_parried(bullet: AnimatedSprite3D, audio: AudioStreamPlayer3D) -> void:
 	if current_parry_callable.is_valid():

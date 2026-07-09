@@ -25,7 +25,7 @@ variation_transform = Transform2D(1, 0.2, 0, 1, 0, 0)
 base_font = ExtResource("3_hw2hc")
 variation_embolden = 0.75
 
-[node name="Control" type="Control" unique_id=265440457 node_paths=PackedStringArray("retry_button", "return_to_menu_button", "game_over_layer", "boss_quote_layer", "title", "quote_label", "boss_name")]
+[node name="Control" type="Control" unique_id=265440457 node_paths=PackedStringArray("retry_button", "world_selection_button", "main_menu_button", "game_over_layer", "boss_quote_layer", "title", "quote_label", "boss_name")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -36,12 +36,15 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("1_g6o4y")
 retry_button = NodePath("game_over/VBoxContainer/retry")
-return_to_menu_button = NodePath("game_over/VBoxContainer/return_to_menu")
+world_selection_button = NodePath("game_over/VBoxContainer/pick_world")
+main_menu_button = NodePath("game_over/VBoxContainer/main_menu")
 game_over_layer = NodePath("game_over")
 boss_quote_layer = NodePath("boss_quote/quote_group")
 title = NodePath("game_over/title")
 quote_label = NodePath("boss_quote/quote_group/boss_quote")
 boss_name = NodePath("boss_quote/quote_group/boss_name")
+main_menu_path = "uid://bj0vpm662j5bq"
+world_selection_path = "uid://yo1ornr2fnjs"
 
 [node name="Panel" type="Panel" parent="." unique_id=874334504]
 layout_mode = 1
@@ -56,7 +59,7 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 725.0
-offset_top = 410.0
+offset_top = 324.0
 offset_right = -125.0
 offset_bottom = -51.0
 grow_horizontal = 2
@@ -69,11 +72,17 @@ size_flags_vertical = 3
 theme = ExtResource("2_qxhjj")
 text = "Try Again"
 
-[node name="return_to_menu" type="Button" parent="game_over/VBoxContainer" unique_id=536127702]
+[node name="pick_world" type="Button" parent="game_over/VBoxContainer" unique_id=134010727]
 layout_mode = 2
 size_flags_vertical = 3
 theme = ExtResource("2_qxhjj")
-text = "Return to Menu"
+text = "World Selection"
+
+[node name="main_menu" type="Button" parent="game_over/VBoxContainer" unique_id=536127702]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("2_qxhjj")
+text = "Return to Main Menu"
 
 [node name="title" type="Label" parent="game_over" unique_id=158073978]
 offset_left = 650.0

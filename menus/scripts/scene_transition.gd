@@ -5,6 +5,8 @@ extends CanvasLayer
 @export var fade_duration: float = 0.5
 @export var color_rect: ColorRect
 
+var previous_scene_path: String
+
 func _ready() -> void:
 	color_rect.material.set_shader_parameter("progress", min_value)
 

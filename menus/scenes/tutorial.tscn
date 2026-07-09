@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://7eq1mke10pvw" path="res://menus/scenes/tutorial_menu.gd" id="1_05xg4"]
 [ext_resource type="Texture2D" uid="uid://b4gwfyhwsrp0u" path="res://menus/sprites/3D_basic_movement_tutorial.png" id="1_pli3f"]
 [ext_resource type="FontFile" uid="uid://dj858wkygbdbc" path="res://lowbudget.ttf" id="2_qca4w"]
+[ext_resource type="PackedScene" uid="uid://bj0vpm662j5bq" path="res://menus/scenes/main_menu.tscn" id="2_tnhf7"]
 [ext_resource type="Texture2D" uid="uid://chseefdun0j11" path="res://menus/sprites/special_action_tutorial.png" id="3_qca4w"]
 [ext_resource type="Theme" uid="uid://boqtjf88xcpu4" path="res://demo/assets/ui.theme" id="4_dvked"]
 
@@ -65,6 +66,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_05xg4")
+main_menu_scene = ExtResource("2_tnhf7")
 tutorials = [NodePath("basic_movement"), NodePath("special_action")]
 return_btn = NodePath("return_btn")
 previous_btn = NodePath("previous_btn")
@@ -125,6 +127,7 @@ label_settings = SubResource("LabelSettings_flqgm")
 vertical_alignment = 1
 
 [node name="special_action" type="Control" parent="." unique_id=703202993]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

@@ -1,6 +1,6 @@
 extends AnimatedSprite3D
 
-@onready var hit_box: Area3D = %Area3D
+@onready var hit_box: Area3D = %damage_area
 var player: CharacterBody3D
 
 var can_damage: bool = false

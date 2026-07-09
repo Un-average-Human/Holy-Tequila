@@ -422,15 +422,14 @@ unique_name_in_owner = true
 process_mode = 1
 transform = Transform3D(1, 0, 0, 0, 1, -5.9604645e-08, 0, 5.9604645e-08, 1, 0, 0, 0)
 cast_shadow = 0
-pixel_size = 0.5
+pixel_size = 0.0075
 billboard = 1
 texture_filter = 0
 render_priority = 1
 sprite_frames = SubResource("SpriteFrames_2b2rl")
-animation = &"funny_explosion"
-frame_progress = 0.27948347
+animation = &"explosion"
 script = ExtResource("5_b7duk")
-damage_collision = NodePath("Area3D/CollisionShape3D")
+damage_collision = NodePath("damage_area/CollisionShape3D")
 parry_collision = NodePath("parry_detector/CollisionShape3D")
 
 [node name="sfx" type="AudioStreamPlayer3D" parent="." unique_id=386763908]
@@ -438,11 +437,11 @@ unique_name_in_owner = true
 stream = ExtResource("17_5ct8v")
 panning_strength = 3.0
 
-[node name="Area3D" type="Area3D" parent="." unique_id=138555185]
+[node name="damage_area" type="Area3D" parent="." unique_id=138555185]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 0.8660254, 0.5, 0, -0.5, 0.8660254, 0, 0, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=292758182]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="damage_area" unique_id=292758182]
 shape = SubResource("SphereShape3D_t4vbm")
 debug_color = Color(0, 0.6, 0.69803923, 1)
 

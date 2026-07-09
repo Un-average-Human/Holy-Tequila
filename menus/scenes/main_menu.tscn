@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://bthyivxcv8rx5" path="res://menus/scenes/main_menu.gd" id="1_1ddq0"]
 [ext_resource type="PackedScene" uid="uid://cco88hukojaa0" path="res://menus/scenes/settings_menu.tscn" id="2_5um5d"]
 [ext_resource type="Theme" uid="uid://boqtjf88xcpu4" path="res://demo/assets/ui.theme" id="2_hhkev"]
-[ext_resource type="PackedScene" uid="uid://yo1ornr2fnjs" path="res://menus/scenes/world_pick.tscn" id="3_a2m5y"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_7vrkn"]
 font_size = 100
@@ -15,7 +14,7 @@ corner_radius_top_right = 20
 corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
 
-[node name="Control" type="Control" unique_id=784955104 node_paths=PackedStringArray("play_btn", "tutorial_btn", "settings_button", "quit_btn", "base_menu", "settings_menu")]
+[node name="Control" type="Control" unique_id=784955104 node_paths=PackedStringArray("play_btn", "tutorial_btn", "settings_button", "quit_btn")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -27,9 +26,9 @@ play_btn = NodePath("base_menu/button/play_btn")
 tutorial_btn = NodePath("base_menu/button/tutorial_btn")
 settings_button = NodePath("base_menu/button/settings_btn")
 quit_btn = NodePath("base_menu/button/quit_btn")
-base_menu = NodePath("base_menu")
-settings_menu = NodePath("settings")
-pick_world_menu = ExtResource("3_a2m5y")
+tutorial_menu_path = "uid://bf3m6xn0qhn1u"
+pick_world_menu_path = "uid://yo1ornr2fnjs"
+settings_menu_path = "uid://cco88hukojaa0"
 
 [node name="settings" parent="." unique_id=11976931 instance=ExtResource("2_5um5d")]
 visible = false

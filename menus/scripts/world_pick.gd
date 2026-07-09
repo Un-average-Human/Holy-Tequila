@@ -1,13 +1,17 @@
 extends Control
 
-@onready var planets: Control = %planets
-
 const BUTTON_HOVER_SFX = preload("uid://cyvupt6pdvih2")
 const BUTTON_PRESSED_SFX = preload("uid://b1ag55g30pycm")
-@onready var interactive_noises: AudioStreamPlayer = %interactive_noises
 var planet_scene
 
+@export var return_btn: Button
+@export_file("*.tscn") var main_menu_path: String
+
+@export var interactive_noises: AudioStreamPlayer
+@export var planets: Control
+
 func _ready() -> void:
+	return_btn.pressed.connect(SceneTransition.transition.bind(true, main_menu_path))
 	for planet: TextureButton in planets.get_children():
 		planet.pivot_offset = planet.size / 2
 		
@@ -18,8 +22,6 @@ func _ready() -> void:
 		planet.button_up.connect(_stopped_pressing.bind(planet))
 		
 		planet.pressed.connect(_world_selected.bind(planet))
-
-
 
 func _is_hovering(button: TextureButton):
 	var tween = create_tween()

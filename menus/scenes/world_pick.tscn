@@ -19,13 +19,14 @@
 [ext_resource type="Texture2D" uid="uid://cc5ekuutac162" path="res://planets/buttons/tequila/tequila_world_disabled.png" id="17_p5vp4"]
 [ext_resource type="AudioStream" uid="uid://cyvupt6pdvih2" path="res://sfx/interaction/button_hover_sfx.mp3" id="18_qr0nj"]
 [ext_resource type="FontFile" uid="uid://dj858wkygbdbc" path="res://lowbudget.ttf" id="19_3xe1t"]
+[ext_resource type="Theme" uid="uid://boqtjf88xcpu4" path="res://demo/assets/ui.theme" id="20_kkp1b"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_hpjpr"]
 font = ExtResource("19_3xe1t")
 font_size = 50
 outline_size = 3
 
-[node name="Node2D" type="Control" unique_id=829474174]
+[node name="Node2D" type="Control" unique_id=829474174 node_paths=PackedStringArray("return_btn", "interactive_noises", "planets")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -35,6 +36,10 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("1_mba7w")
+return_btn = NodePath("return_btn")
+main_menu_path = "uid://bj0vpm662j5bq"
+interactive_noises = NodePath("interactive_noises")
+planets = NodePath("planets")
 metadata/_edit_use_anchors_ = true
 
 [node name="planets" type="Control" parent="." unique_id=35887227]
@@ -183,3 +188,14 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
 metadata/_edit_use_anchors_ = true
+
+[node name="return_btn" type="Button" parent="." unique_id=405030402]
+texture_filter = 1
+layout_mode = 0
+offset_left = 30.0
+offset_top = 30.0
+offset_right = 129.0
+offset_bottom = 80.0
+theme = ExtResource("20_kkp1b")
+theme_override_font_sizes/font_size = 40
+text = "Return"
