@@ -25,7 +25,9 @@ func _fell_in_void(body: Node3D):
 			
 		body.global_position = spawn_point.global_position
 		body.take_damage()
-
+	
+	elif body is CharacterBody3D and body != player:
+		body.queue_free()
 	
 func _end_bossfight(has_player_won: bool):
 	player.unlock_mouse()

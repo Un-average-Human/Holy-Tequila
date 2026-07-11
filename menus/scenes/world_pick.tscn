@@ -77,59 +77,6 @@ texture_normal = ExtResource("4_4c2iq")
 texture_disabled = ExtResource("5_hdv20")
 metadata/_edit_use_anchors_ = true
 
-[node name="mars2" type="TextureButton" parent="planets" unique_id=1977889239]
-texture_filter = 1
-layout_mode = 0
-anchor_left = 0.8428819
-anchor_top = 0.66049385
-anchor_right = 0.9730903
-anchor_bottom = 0.8919753
-disabled = true
-texture_normal = ExtResource("2_kkp1b")
-texture_disabled = ExtResource("3_jvghj")
-ignore_texture_size = true
-metadata/_edit_use_anchors_ = true
-
-[node name="chezburger_planet2" type="TextureButton" parent="planets" unique_id=1202727575]
-texture_filter = 1
-layout_mode = 0
-anchor_left = 0.8064236
-anchor_top = 0.33796296
-anchor_right = 0.9366319
-anchor_bottom = 0.5694444
-offset_bottom = 3.0517578e-05
-disabled = true
-texture_normal = ExtResource("6_x8koh")
-texture_disabled = ExtResource("7_bc8qd")
-ignore_texture_size = true
-metadata/_edit_use_anchors_ = true
-
-[node name="mega_market" type="TextureButton" parent="planets" unique_id=815547783]
-texture_filter = 1
-layout_mode = 0
-anchor_left = 0.7170139
-anchor_top = 0.0787037
-anchor_right = 0.8472222
-anchor_bottom = 0.3101852
-disabled = true
-texture_normal = ExtResource("8_l4oky")
-texture_disabled = ExtResource("9_ax8ab")
-ignore_texture_size = true
-metadata/_edit_use_anchors_ = true
-
-[node name="water" type="TextureButton" parent="planets" unique_id=1433159796]
-texture_filter = 1
-layout_mode = 0
-anchor_left = 0.5329861
-anchor_top = 0.030864198
-anchor_right = 0.6631944
-anchor_bottom = 0.26234567
-disabled = true
-texture_normal = ExtResource("10_jvnvb")
-texture_disabled = ExtResource("11_mwyvg")
-ignore_texture_size = true
-metadata/_edit_use_anchors_ = true
-
 [node name="pirate" type="TextureButton" parent="planets" unique_id=1063286949]
 texture_filter = 1
 layout_mode = 0
@@ -153,6 +100,59 @@ anchor_bottom = 0.24691358
 disabled = true
 texture_normal = ExtResource("14_ccwmf")
 texture_disabled = ExtResource("15_lab5a")
+ignore_texture_size = true
+metadata/_edit_use_anchors_ = true
+
+[node name="water" type="TextureButton" parent="planets" unique_id=1433159796]
+texture_filter = 1
+layout_mode = 0
+anchor_left = 0.5329861
+anchor_top = 0.030864198
+anchor_right = 0.6631944
+anchor_bottom = 0.26234567
+disabled = true
+texture_normal = ExtResource("10_jvnvb")
+texture_disabled = ExtResource("11_mwyvg")
+ignore_texture_size = true
+metadata/_edit_use_anchors_ = true
+
+[node name="mega_market" type="TextureButton" parent="planets" unique_id=815547783]
+texture_filter = 1
+layout_mode = 0
+anchor_left = 0.7170139
+anchor_top = 0.0787037
+anchor_right = 0.8472222
+anchor_bottom = 0.3101852
+disabled = true
+texture_normal = ExtResource("8_l4oky")
+texture_disabled = ExtResource("9_ax8ab")
+ignore_texture_size = true
+metadata/_edit_use_anchors_ = true
+
+[node name="database_planet" type="TextureButton" parent="planets" unique_id=1202727575]
+texture_filter = 1
+layout_mode = 0
+anchor_left = 0.8064236
+anchor_top = 0.33796296
+anchor_right = 0.9366319
+anchor_bottom = 0.5694444
+offset_bottom = 3.0517578e-05
+disabled = true
+texture_normal = ExtResource("6_x8koh")
+texture_disabled = ExtResource("7_bc8qd")
+ignore_texture_size = true
+metadata/_edit_use_anchors_ = true
+
+[node name="mars2" type="TextureButton" parent="planets" unique_id=1977889239]
+texture_filter = 1
+layout_mode = 0
+anchor_left = 0.8428819
+anchor_top = 0.66049385
+anchor_right = 0.9730903
+anchor_bottom = 0.8919753
+disabled = true
+texture_normal = ExtResource("2_kkp1b")
+texture_disabled = ExtResource("3_jvghj")
 ignore_texture_size = true
 metadata/_edit_use_anchors_ = true
 

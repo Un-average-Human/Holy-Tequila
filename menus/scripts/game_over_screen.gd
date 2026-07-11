@@ -33,8 +33,16 @@ func _buttons(button: Button):
 			SceneTransition.transition(true, main_menu_path)
 		world_selection_button:
 			SceneTransition.transition(true, world_selection_path)
+			for connection in SignalBus.player_died.get_connections():
+				SignalBus.player_died.disconnect(connection["callable"])
+			for connection in SignalBus.boss_defeated.get_connections():
+				SignalBus.boss_defeated.disconnect(connection["callable"])
 		retry_button:
 			SceneTransition.transition(true, GeneralData.current_world)
+			for connection in SignalBus.player_died.get_connections():
+				SignalBus.player_died.disconnect(connection["callable"])
+			for connection in SignalBus.boss_defeated.get_connections():
+				SignalBus.boss_defeated.disconnect(connection["callable"])
 
 func _boss_quote_stuff(boss_key: String, has_won: bool):
 	var data = GeneralData.boss_data[boss_key]
