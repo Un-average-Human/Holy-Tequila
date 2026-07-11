@@ -12,12 +12,17 @@ Funni. And there's the fact I wanted to try out behaviour trees so I could get b
 Um, not a good one but yes! Don Ramon has stolen your Holy Tequila given by the alcohol Gods themselves. He plans on injecting himself with it and become godly, but for that he needs to make said drink safe to consume. Fight his goons and face off against him to recover the holy drink.
 
 ## How to play?
-Erm, I added a tutorial for a reason, BUT if you are one of those people that just SKIP the tutorial when you NEED it then yeah, I can tell you the controls.<br>
+Erm, I added a tutorial for a reason, BUT if you are one of those people that just SKIP the tutorial when you NEED it then yeah, I can tell you the controls.
+
+<br>
+
 <br>WASD to move
 <br>SPACE to jump
 <br>G to lock/unlock the mouse
 <br>ESC to open the menu ofc
 <br>F to use the special action
+
+<br> For those of you who haven't played or watched Cuphead gameplay before, you can only parry stuff that's pink, so you'll be able to parry <b>PINK</b> projectiles.
 
 ## How to install?
 Pretty simple actually! Go to the game's Itch.io page [here](https://un-average-human.itch.io/holy-tequila) and download the zip file corresponding to your OS.<br>
