@@ -1,6 +1,7 @@
 [gd_scene format=4 uid="uid://dh03uu603qdbw"]
 
 [ext_resource type="Script" uid="uid://c28ae2hrpjea4" path="res://planets/scripts/mars.gd" id="1_jo3wj"]
+[ext_resource type="FontFile" uid="uid://dj858wkygbdbc" path="res://lowbudget.ttf" id="2_53s2l"]
 [ext_resource type="Theme" uid="uid://boqtjf88xcpu4" path="res://demo/assets/ui.theme" id="2_cstp3"]
 [ext_resource type="Texture2D" uid="uid://bgw7lwxqggs1l" path="res://bosses/mars_boss/boss_sprites/mars_boss_angry.png" id="3_jbvca"]
 [ext_resource type="Texture2D" uid="uid://if5fln0vn8aj" path="res://bosses/mars_boss/boss_sprites/mars_boss_damage.png" id="3_pyjlk"]
@@ -602,6 +603,18 @@ roughness = 0.0
 script = ExtResource("1_jo3wj")
 special_action = "parry"
 
+[node name="explanation" type="Label3D" parent="." unique_id=1561750401]
+transform = Transform3D(0.8496996, 0, -0.52726716, 0, 1, 0, 0.52726716, 0, 0.8496996, 2.4747112, 1.87065, 15.764696)
+billboard = 2
+render_priority = 5
+outline_render_priority = 4
+text = "Your first special action will be the parry. You can only parry PINK objects."
+font = ExtResource("2_53s2l")
+font_size = 85
+outline_size = 25
+uppercase = true
+autowrap_mode = 3
+
 [node name="battle_island" type="StaticBody3D" parent="." unique_id=573910593]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, -0.5, 0)
 collision_layer = 3
@@ -628,7 +641,7 @@ shape = SubResource("BoxShape3D_gn52h")
 
 [node name="spawn_point" type="Marker3D" parent="." unique_id=1312936847]
 unique_name_in_owner = true
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 1, 13.842957)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 1, 18.842957)
 
 [node name="environment" type="Node" parent="." unique_id=1235068419]
 
@@ -693,10 +706,8 @@ pixel_size = 0.03
 billboard = 2
 texture_filter = 0
 sprite_frames = SubResource("SpriteFrames_4icgy")
-animation = &"explosion"
+animation = &"idle"
 autoplay = "idle"
-frame = 15
-frame_progress = 1.0
 
 [node name="boss_animation" type="AnimationPlayer" parent="bossfight/boss" unique_id=418906785]
 unique_name_in_owner = true

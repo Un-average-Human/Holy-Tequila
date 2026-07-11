@@ -6,6 +6,7 @@ var is_looping: bool = false
 
 @onready var enemy_spawn_points: Node3D = %enemy_spawn_points
 var spawn_points: Array[Vector3]
+@onready var explanation: Label3D = $"../explanation"
 
 @onready var boss_area_detector: Area3D = %boss_area_detector
 @onready var boss_sprite: AnimatedSprite3D = %boss
@@ -40,6 +41,7 @@ func _ready() -> void:
 
 func _on_boss_area_detector_body_entered(body: Node3D) -> void:
 	if body.is_in_group("player") and has_started == false:
+		explanation.queue_free()
 		has_started = true
 		player = body
 		boss_area_detector.set_deferred("monitoring", false)
