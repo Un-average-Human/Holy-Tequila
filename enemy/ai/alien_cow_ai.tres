@@ -1,5 +1,7 @@
 [gd_resource type="BehaviorTree" format=3 uid="uid://pgmkfl76hgfl"]
 
+[ext_resource type="Script" uid="uid://c62jrbfffr4s1" path="res://ai/tasks/navigation/navigate_to_target.gd" id="1_smvhu"]
+
 [sub_resource type="BlackboardPlan" id="BlackboardPlan_7dlxj"]
 var/is_moving/name = &"is_moving"
 var/is_moving/type = 1
@@ -25,68 +27,14 @@ resource_name = "true"
 property = &"can_navigate"
 value = SubResource("BBVariant_3xwtd")
 
-[sub_resource type="GDScript" id="GDScript_u5qru"]
-script/source = "@tool
-extends BTAction
-
-var npc: NPC
-
-@export_category(\"Movement Variables\")
-@export var rotation_speed: float = 10.0
-@export var target_key: String = \"target\"
-
-func _setup() -> void:
-	npc = agent
-
-func _tick(delta: float) -> Status:
-	var target = blackboard.get_var(target_key, null)
-	
-	if not blackboard.get_var(\"can_move\", false) or not is_instance_valid(target):
-		_apply_movement(Vector3.ZERO, delta, false)
-		return FAILURE
-
-	npc.nav_agent.target_position = target.global_position
-
-	if npc.nav_agent.is_navigation_finished():
-		_apply_movement(Vector3.ZERO, delta, false)
-		return SUCCESS
-	
-	var next_point = npc.nav_agent.get_next_path_position()
-	var desired_dir = (next_point - npc.global_position)
-	desired_dir.y = 0
-	
-	if desired_dir.is_zero_approx():
-		_apply_movement(Vector3.ZERO, delta, false)
-		return RUNNING
-	
-	_apply_movement(desired_dir.normalized(), delta, true)
-	return RUNNING
-
-func _apply_movement(move_dir: Vector3, delta: float, is_moving: bool) -> void:
-	var target_velocity = Vector3(move_dir.x * npc.speed, npc.velocity.y, move_dir.z * npc.speed)
-	
-	npc.nav_agent.set_velocity(target_velocity)
-	npc.velocity = target_velocity
-	
-	if npc.has_method(\"move_and_slide\"):
-		npc.move_and_slide()
-		
-	if is_moving and move_dir.length_squared() > 0.001:
-		var target_basis = Basis.looking_at(move_dir, Vector3.UP)
-		npc.transform.basis = npc.transform.basis.slerp(target_basis, delta * rotation_speed).orthonormalized()
-		
-	if blackboard:
-		blackboard.set_var(\"is_moving\", is_moving)
-"
-
-[sub_resource type="BTAction" id="BTAction_7dlxj"]
-script = SubResource("GDScript_u5qru")
+[sub_resource type="BTAction" id="BTAction_47ur4"]
+script = ExtResource("1_smvhu")
 
 [sub_resource type="BTSequence" id="BTSequence_du4l5"]
-children = [SubResource("BTAction_7dlxj")]
+children = [SubResource("BTCheckAgentProperty_7dlxj"), SubResource("BTAction_47ur4")]
 
 [sub_resource type="BTSelector" id="BTSelector_24us4"]
-children = [SubResource("BTCheckAgentProperty_7dlxj"), SubResource("BTSequence_du4l5")]
+children = [SubResource("BTSequence_du4l5")]
 
 [resource]
 blackboard_plan = SubResource("BlackboardPlan_7dlxj")

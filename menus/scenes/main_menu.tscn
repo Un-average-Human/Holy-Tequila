@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bthyivxcv8rx5" path="res://menus/scenes/main_menu.gd" id="1_1ddq0"]
 [ext_resource type="PackedScene" uid="uid://cco88hukojaa0" path="res://menus/scenes/settings_menu.tscn" id="2_5um5d"]
-[ext_resource type="Theme" uid="uid://boqtjf88xcpu4" path="res://demo/assets/ui.theme" id="2_hhkev"]
+[ext_resource type="Theme" uid="uid://bl2p5taqyov0l" path="res://ui.tres" id="3_hhkev"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_7vrkn"]
 font_size = 100
@@ -51,11 +51,12 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Label" type="Label" parent="base_menu" unique_id=57279602]
+texture_filter = 1
 layout_mode = 0
 offset_left = 30.0
 offset_right = 320.0
 offset_bottom = 205.0
-theme = ExtResource("2_hhkev")
+theme = ExtResource("3_hhkev")
 text = "HOLY TEQUILA"
 label_settings = SubResource("LabelSettings_7vrkn")
 horizontal_alignment = 1
@@ -69,27 +70,31 @@ offset_right = 296.0
 offset_bottom = 579.62756
 
 [node name="play_btn" type="Button" parent="base_menu/button" unique_id=1165018170]
+texture_filter = 1
 layout_mode = 2
 size_flags_vertical = 3
-theme = ExtResource("2_hhkev")
+theme = ExtResource("3_hhkev")
 text = "Play"
 
 [node name="tutorial_btn" type="Button" parent="base_menu/button" unique_id=1055499387]
+texture_filter = 1
 layout_mode = 2
 size_flags_vertical = 3
-theme = ExtResource("2_hhkev")
+theme = ExtResource("3_hhkev")
 text = "Tutorial"
 
 [node name="settings_btn" type="Button" parent="base_menu/button" unique_id=2128147972]
+texture_filter = 1
 layout_mode = 2
 size_flags_vertical = 3
-theme = ExtResource("2_hhkev")
+theme = ExtResource("3_hhkev")
 text = "Settings"
 
 [node name="quit_btn" type="Button" parent="base_menu/button" unique_id=808256549]
+texture_filter = 1
 layout_mode = 2
 size_flags_vertical = 3
-theme = ExtResource("2_hhkev")
+theme = ExtResource("3_hhkev")
 text = "Quit"
 
 [node name="ColorRect" type="Panel" parent="base_menu" unique_id=285267250]

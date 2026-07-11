@@ -19,14 +19,14 @@
 [ext_resource type="Texture2D" uid="uid://cc5ekuutac162" path="res://planets/buttons/tequila/tequila_world_disabled.png" id="17_p5vp4"]
 [ext_resource type="AudioStream" uid="uid://cyvupt6pdvih2" path="res://sfx/interaction/button_hover_sfx.mp3" id="18_qr0nj"]
 [ext_resource type="FontFile" uid="uid://dj858wkygbdbc" path="res://lowbudget.ttf" id="19_3xe1t"]
-[ext_resource type="Theme" uid="uid://boqtjf88xcpu4" path="res://demo/assets/ui.theme" id="20_kkp1b"]
+[ext_resource type="Theme" uid="uid://bl2p5taqyov0l" path="res://ui.tres" id="20_kkp1b"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_hpjpr"]
 font = ExtResource("19_3xe1t")
-font_size = 50
+font_size = 40
 outline_size = 3
 
-[node name="Node2D" type="Control" unique_id=829474174 node_paths=PackedStringArray("return_btn", "interactive_noises", "planets")]
+[node name="Node2D" type="Control" unique_id=829474174 node_paths=PackedStringArray("return_btn", "interactive_noises", "planet_list")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -39,7 +39,8 @@ script = ExtResource("1_mba7w")
 return_btn = NodePath("return_btn")
 main_menu_path = "uid://bj0vpm662j5bq"
 interactive_noises = NodePath("interactive_noises")
-planets = NodePath("planets")
+planet_list = NodePath("planets")
+mars = "uid://dh03uu603qdbw"
 metadata/_edit_use_anchors_ = true
 
 [node name="planets" type="Control" parent="." unique_id=35887227]
@@ -77,16 +78,17 @@ texture_normal = ExtResource("4_4c2iq")
 texture_disabled = ExtResource("5_hdv20")
 metadata/_edit_use_anchors_ = true
 
-[node name="pirate" type="TextureButton" parent="planets" unique_id=1063286949]
+[node name="mega_market" type="TextureButton" parent="planets" unique_id=815547783]
 texture_filter = 1
-layout_mode = 0
+layout_mode = 1
+anchors_preset = -1
 anchor_left = 0.1736111
 anchor_top = 0.0787037
 anchor_right = 0.30381945
 anchor_bottom = 0.3101852
 disabled = true
-texture_normal = ExtResource("12_llfse")
-texture_disabled = ExtResource("13_1gjib")
+texture_normal = ExtResource("8_l4oky")
+texture_disabled = ExtResource("9_ax8ab")
 ignore_texture_size = true
 metadata/_edit_use_anchors_ = true
 
@@ -103,33 +105,35 @@ texture_disabled = ExtResource("15_lab5a")
 ignore_texture_size = true
 metadata/_edit_use_anchors_ = true
 
-[node name="water" type="TextureButton" parent="planets" unique_id=1433159796]
+[node name="water" type="TextureButton" parent="planets" unique_id=1059394548]
 texture_filter = 1
-layout_mode = 0
+layout_mode = 1
+anchors_preset = -1
 anchor_left = 0.5329861
-anchor_top = 0.030864198
+anchor_top = 0.046296295
 anchor_right = 0.6631944
-anchor_bottom = 0.26234567
+anchor_bottom = 0.2777778
 disabled = true
 texture_normal = ExtResource("10_jvnvb")
 texture_disabled = ExtResource("11_mwyvg")
 ignore_texture_size = true
 metadata/_edit_use_anchors_ = true
 
-[node name="mega_market" type="TextureButton" parent="planets" unique_id=815547783]
+[node name="pirate" type="TextureButton" parent="planets" unique_id=1063286949]
 texture_filter = 1
-layout_mode = 0
+layout_mode = 1
+anchors_preset = -1
 anchor_left = 0.7170139
 anchor_top = 0.0787037
 anchor_right = 0.8472222
 anchor_bottom = 0.3101852
 disabled = true
-texture_normal = ExtResource("8_l4oky")
-texture_disabled = ExtResource("9_ax8ab")
+texture_normal = ExtResource("12_llfse")
+texture_disabled = ExtResource("13_1gjib")
 ignore_texture_size = true
 metadata/_edit_use_anchors_ = true
 
-[node name="database_planet" type="TextureButton" parent="planets" unique_id=1202727575]
+[node name="database" type="TextureButton" parent="planets" unique_id=1202727575]
 texture_filter = 1
 layout_mode = 0
 anchor_left = 0.8064236
@@ -156,7 +160,7 @@ texture_disabled = ExtResource("3_jvghj")
 ignore_texture_size = true
 metadata/_edit_use_anchors_ = true
 
-[node name="tequila_world" type="TextureButton" parent="planets" unique_id=718832945]
+[node name="tequila" type="TextureButton" parent="planets" unique_id=718832945]
 texture_filter = 1
 layout_mode = 1
 anchors_preset = -1
@@ -177,11 +181,12 @@ bus = &"SFX"
 
 [node name="Label" type="Label" parent="." unique_id=1883111888]
 texture_filter = 1
-layout_mode = 0
+layout_mode = 1
+anchors_preset = -1
 anchor_left = 0.16927083
-anchor_top = 0.8287037
+anchor_top = 0.86728394
 anchor_right = 0.8289931
-anchor_bottom = 0.9907407
+anchor_bottom = 0.9984568
 text = "Only mars is available right now. I still have to complete the other planets and it'll take a while"
 label_settings = SubResource("LabelSettings_hpjpr")
 horizontal_alignment = 1
@@ -197,5 +202,4 @@ offset_top = 30.0
 offset_right = 129.0
 offset_bottom = 80.0
 theme = ExtResource("20_kkp1b")
-theme_override_font_sizes/font_size = 40
 text = "Return"

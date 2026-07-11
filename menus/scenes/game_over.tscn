@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://ctaa2uxxlgoop"]
 
 [ext_resource type="Script" uid="uid://dyew2ky8w3jeu" path="res://menus/scripts/game_over_screen.gd" id="1_g6o4y"]
-[ext_resource type="Theme" uid="uid://boqtjf88xcpu4" path="res://demo/assets/ui.theme" id="2_qxhjj"]
+[ext_resource type="Theme" uid="uid://bl2p5taqyov0l" path="res://ui.tres" id="2_g6o4y"]
 [ext_resource type="FontFile" uid="uid://dj858wkygbdbc" path="res://lowbudget.ttf" id="3_hw2hc"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ftari"]
@@ -67,27 +67,32 @@ grow_vertical = 2
 theme_override_constants/separation = 10
 
 [node name="retry" type="Button" parent="game_over/VBoxContainer" unique_id=1684500364]
+texture_filter = 1
 layout_mode = 2
 size_flags_vertical = 3
-theme = ExtResource("2_qxhjj")
+theme = ExtResource("2_g6o4y")
 text = "Try Again"
 
 [node name="pick_world" type="Button" parent="game_over/VBoxContainer" unique_id=134010727]
+texture_filter = 1
 layout_mode = 2
 size_flags_vertical = 3
-theme = ExtResource("2_qxhjj")
+theme = ExtResource("2_g6o4y")
 text = "World Selection"
 
 [node name="main_menu" type="Button" parent="game_over/VBoxContainer" unique_id=536127702]
+texture_filter = 1
 layout_mode = 2
 size_flags_vertical = 3
-theme = ExtResource("2_qxhjj")
+theme = ExtResource("2_g6o4y")
 text = "Return to Main Menu"
 
 [node name="title" type="Label" parent="game_over" unique_id=158073978]
+texture_filter = 1
 offset_left = 650.0
 offset_right = 1102.0
 offset_bottom = 344.0
+theme = ExtResource("2_g6o4y")
 text = "Game Joever"
 label_settings = SubResource("LabelSettings_ftari")
 horizontal_alignment = 1
@@ -112,7 +117,6 @@ layout_mode = 0
 offset_top = 76.0
 offset_right = 349.07404
 offset_bottom = 348.0
-theme = ExtResource("2_qxhjj")
 theme_override_fonts/normal_font = ExtResource("3_hw2hc")
 theme_override_fonts/bold_font = SubResource("FontVariation_ccer4")
 theme_override_fonts/bold_italics_font = SubResource("FontVariation_8u835")

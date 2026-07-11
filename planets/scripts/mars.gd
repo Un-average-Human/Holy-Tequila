@@ -26,10 +26,12 @@ func _fell_in_void(body: Node3D):
 		body.global_position = spawn_point.global_position
 		body.take_damage()
 	
-	elif body is CharacterBody3D and body != player:
+	elif body is CharacterBody3D and body != player and body.can_navigate:
 		body.queue_free()
 	
 func _end_bossfight(has_player_won: bool):
+	if has_player_won:
+		GeneralData.world_beaten = "mars"
 	player.unlock_mouse()
 	SceneTransition.transition(true, "uid://ctaa2uxxlgoop")
 	GeneralData.player_won = has_player_won

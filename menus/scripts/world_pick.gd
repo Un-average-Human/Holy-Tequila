@@ -4,15 +4,31 @@ const BUTTON_HOVER_SFX = preload("uid://cyvupt6pdvih2")
 const BUTTON_PRESSED_SFX = preload("uid://b1ag55g30pycm")
 var planet_scene
 
+@export_category("Menu")
 @export var return_btn: Button
 @export_file("*.tscn") var main_menu_path: String
-
 @export var interactive_noises: AudioStreamPlayer
-@export var planets: Control
+
+@export_category("Planets")
+@export var planet_list: Control
+@export_file("*.tscn") var mars: String
+@export_file("*.tscn") var burger: String
+@export_file("*.tscn") var mega_market: String
+@export_file("*.tscn") var brainrot: String
+@export_file("*.tscn") var water: String
+@export_file("*.tscn") var pirate: String
+@export_file("*.tscn") var database: String
+@export_file("*.tscn") var l: String
+@export_file("*.tscn") var tequila: String
 
 func _ready() -> void:
+	for world in GeneralData.worlds_available:
+		if planet_list.has_node(world):
+			var world_button: TextureButton = planet_list.get_node(world)
+			world_button.disabled = false
+	
 	return_btn.pressed.connect(SceneTransition.transition.bind(true, main_menu_path))
-	for planet: TextureButton in planets.get_children():
+	for planet: TextureButton in planet_list.get_children():
 		planet.pivot_offset = planet.size / 2
 		
 		planet.mouse_entered.connect(_is_hovering.bind(planet))
@@ -50,7 +66,11 @@ func _stopped_pressing(button: TextureButton):
 func _world_selected(planet: TextureButton):
 	match planet.name:
 		"mars":
-			GeneralData.current_world = "uid://dh03uu603qdbw"
-			
+			GeneralData.current_world = mars
+		"burger":
+			GeneralData.current_world = burger
+		_:
+			print("no world found")
+
 	if GeneralData.current_world != "":
 		SceneTransition.transition(true, GeneralData.current_world)

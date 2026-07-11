@@ -1,0 +1,9 @@
+[gd_resource type="Theme" format=3 uid="uid://bl2p5taqyov0l"]
+
+[ext_resource type="FontFile" uid="uid://dj858wkygbdbc" path="res://lowbudget.ttf" id="1_i6sfk"]
+
+[resource]
+Button/font_sizes/font_size = 30
+Button/fonts/font = ExtResource("1_i6sfk")
+Label/font_sizes/font_size = 30
+Label/fonts/font = ExtResource("1_i6sfk")

@@ -27,10 +27,6 @@ func _tick(delta: float) -> Status:
 	var desired_dir = (next_point - npc.global_position)
 	desired_dir.y = 0
 	
-	# FIX 1: Flatten both vectors to 2D space (X and Z) so height differences 
-	# never cause the NPC to lean or flip uncontrollably
-	# Check if we are close enough to the next waypoint to skip calculation jitter
-	# FIX 2: Safe guard check against an empty vector
 	if desired_dir.is_zero_approx():
 		_apply_movement(Vector3.ZERO, delta, false)
 		return RUNNING
@@ -38,14 +34,12 @@ func _tick(delta: float) -> Status:
 	_apply_movement(desired_dir.normalized(), delta, true)
 	return RUNNING
 
-	# Keep moving directions clean on the X/Z plane
 func _apply_movement(move_dir: Vector3, delta: float, is_moving: bool) -> void:
 	var target_velocity = Vector3(move_dir.x * npc.speed, npc.velocity.y, move_dir.z * npc.speed)
 	
 	npc.nav_agent.set_velocity(target_velocity)
 	npc.velocity = target_velocity
 	
-	# Smoothly slerp rotation strictly toward the 2D direction
 	if npc.has_method("move_and_slide"):
 		npc.move_and_slide()
 		
@@ -54,5 +48,4 @@ func _apply_movement(move_dir: Vector3, delta: float, is_moving: bool) -> void:
 		npc.transform.basis = npc.transform.basis.slerp(target_basis, delta * rotation_speed).orthonormalized()
 		
 	if blackboard:
-	# Check horizontal speed specifically
 		blackboard.set_var("is_moving", is_moving)

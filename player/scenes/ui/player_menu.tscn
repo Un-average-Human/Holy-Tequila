@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://du6p1clay1guf"]
 
+[ext_resource type="Theme" uid="uid://bl2p5taqyov0l" path="res://ui.tres" id="1_0whq1"]
 [ext_resource type="Script" uid="uid://bvq6hhe6vc4xo" path="res://player/scripts/ui/player_menu.gd" id="1_lc8v8"]
 [ext_resource type="PackedScene" uid="uid://yo1ornr2fnjs" path="res://menus/scenes/world_pick.tscn" id="2_0whq1"]
 [ext_resource type="FontFile" uid="uid://dj858wkygbdbc" path="res://lowbudget.ttf" id="2_es14f"]
-[ext_resource type="Theme" uid="uid://boqtjf88xcpu4" path="res://demo/assets/ui.theme" id="3_0whq1"]
 [ext_resource type="PackedScene" uid="uid://bj0vpm662j5bq" path="res://menus/scenes/main_menu.tscn" id="3_tmto2"]
 [ext_resource type="PackedScene" uid="uid://cco88hukojaa0" path="res://menus/scenes/settings_menu.tscn" id="4_tmto2"]
 
@@ -20,12 +20,14 @@ corner_radius_bottom_left = 20
 
 [node name="menus" type="Control" unique_id=946525344 node_paths=PackedStringArray("resume_btn", "settings_btn", "return_to_world_selection_btn", "return_to_main_menu_btn", "base_menu", "settings_menu")]
 process_mode = 3
+texture_filter = 1
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_0whq1")
 script = ExtResource("1_lc8v8")
 resume_btn = NodePath("base_menu/VBoxContainer/resume_btn")
 settings_btn = NodePath("base_menu/VBoxContainer/settings_btn")
@@ -85,25 +87,21 @@ metadata/_edit_use_anchors_ = true
 [node name="resume_btn" type="Button" parent="base_menu/VBoxContainer" unique_id=533068655]
 layout_mode = 2
 size_flags_vertical = 3
-theme = ExtResource("3_0whq1")
 text = "Resume"
 
 [node name="settings_btn" type="Button" parent="base_menu/VBoxContainer" unique_id=1444438056]
 layout_mode = 2
 size_flags_vertical = 3
-theme = ExtResource("3_0whq1")
 text = "Settings"
 
 [node name="return_to_world_selection_btn" type="Button" parent="base_menu/VBoxContainer" unique_id=127577036]
 layout_mode = 2
 size_flags_vertical = 3
-theme = ExtResource("3_0whq1")
 text = "Return to World Selection"
 
 [node name="return_to_main_menu_btn" type="Button" parent="base_menu/VBoxContainer" unique_id=1403285503]
 layout_mode = 2
 size_flags_vertical = 3
-theme = ExtResource("3_0whq1")
 text = "Return to Main Menu"
 
 [node name="settings" parent="." unique_id=11976931 instance=ExtResource("4_tmto2")]

@@ -2,10 +2,10 @@
 
 [ext_resource type="Script" uid="uid://7eq1mke10pvw" path="res://menus/scenes/tutorial_menu.gd" id="1_05xg4"]
 [ext_resource type="Texture2D" uid="uid://b4gwfyhwsrp0u" path="res://menus/sprites/3D_basic_movement_tutorial.png" id="1_pli3f"]
+[ext_resource type="Theme" uid="uid://bl2p5taqyov0l" path="res://ui.tres" id="1_tnhf7"]
 [ext_resource type="FontFile" uid="uid://dj858wkygbdbc" path="res://lowbudget.ttf" id="2_qca4w"]
 [ext_resource type="PackedScene" uid="uid://bj0vpm662j5bq" path="res://menus/scenes/main_menu.tscn" id="2_tnhf7"]
 [ext_resource type="Texture2D" uid="uid://chseefdun0j11" path="res://menus/sprites/special_action_tutorial.png" id="3_qca4w"]
-[ext_resource type="Theme" uid="uid://boqtjf88xcpu4" path="res://demo/assets/ui.theme" id="4_dvked"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dvked"]
 atlas = ExtResource("1_pli3f")
@@ -59,12 +59,14 @@ animations = [{
 }]
 
 [node name="Control" type="Control" unique_id=2050223252 node_paths=PackedStringArray("tutorials", "return_btn", "previous_btn", "next_button")]
+texture_filter = 1
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_tnhf7")
 script = ExtResource("1_05xg4")
 main_menu_scene = ExtResource("2_tnhf7")
 tutorials = [NodePath("basic_movement"), NodePath("special_action")]
@@ -127,7 +129,6 @@ label_settings = SubResource("LabelSettings_flqgm")
 vertical_alignment = 1
 
 [node name="special_action" type="Control" parent="." unique_id=703202993]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -157,7 +158,7 @@ offset_bottom = -51.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "F - Special Action
-(You get one every in every bossfight)"
+(You get one in every bossfight)"
 label_settings = SubResource("LabelSettings_flqgm")
 vertical_alignment = 1
 autowrap_mode = 3
@@ -170,7 +171,6 @@ offset_left = 14.0
 offset_top = 587.0
 offset_right = 113.0
 offset_bottom = 637.0
-theme = ExtResource("4_dvked")
 theme_override_font_sizes/font_size = 40
 text = "Return"
 
@@ -181,7 +181,6 @@ offset_left = 14.0
 offset_top = 21.0
 offset_right = 113.0
 offset_bottom = 71.0
-theme = ExtResource("4_dvked")
 theme_override_font_sizes/font_size = 40
 text = "Previous"
 
@@ -192,6 +191,5 @@ offset_left = 1039.0
 offset_top = 21.0
 offset_right = 1138.0
 offset_bottom = 71.0
-theme = ExtResource("4_dvked")
 theme_override_font_sizes/font_size = 40
 text = "Next"
