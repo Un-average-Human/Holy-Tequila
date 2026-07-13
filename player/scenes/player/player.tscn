@@ -247,11 +247,12 @@ margin = 0.1
 [node name="player_cam" type="Camera3D" parent="cam_pivot/SpringArm3D" unique_id=394059071]
 unique_name_in_owner = true
 
-[node name="parry_area" type="Area3D" parent="." unique_id=412720686]
+[node name="parry_area" type="Area3D" parent="cam_pivot" unique_id=412720686]
+visible = false
 collision_layer = 0
 collision_mask = 4
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="parry_area" unique_id=538210318]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="cam_pivot/parry_area" unique_id=538210318]
 shape = SubResource("CylinderShape3D_i3pqv")
 
 [node name="audio" type="AudioStreamPlayer" parent="." unique_id=899686412]
@@ -261,7 +262,7 @@ bus = &"SFX"
 
 [node name="parry" type="Node" parent="." unique_id=1156471812 node_paths=PackedStringArray("parry_area", "audio", "ability_cooldown_bar", "ability_label", "impact_frame", "sprite")]
 script = ExtResource("6_2hs0m")
-parry_area = NodePath("../parry_area")
+parry_area = NodePath("../cam_pivot/parry_area")
 audio = NodePath("../audio")
 ability_cooldown_bar = NodePath("../ui/ability_cooldown")
 ability_label = NodePath("../ui/ability_cooldown/Label")

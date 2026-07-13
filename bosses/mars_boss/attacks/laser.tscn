@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://t24j68g7nre2"]
 
 [ext_resource type="Texture2D" uid="uid://c4t6hbh8ferwm" path="res://bullet/sprites/laser.png" id="1_fn5yt"]
-[ext_resource type="Script" uid="uid://b8bmqnrb84k72" path="res://laser.gd" id="2_6vqwg"]
+[ext_resource type="Script" uid="uid://b8bmqnrb84k72" path="res://bosses/mars_boss/attacks/laser.gd" id="2_6vqwg"]
 [ext_resource type="Texture2D" uid="uid://dax4e07b70jm1" path="res://enemy/sprite/laser_orb.png" id="2_g6b45"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7vci3"]

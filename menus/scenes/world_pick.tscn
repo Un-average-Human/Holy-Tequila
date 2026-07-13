@@ -65,7 +65,7 @@ texture_disabled = ExtResource("3_jvghj")
 ignore_texture_size = true
 metadata/_edit_use_anchors_ = true
 
-[node name="burger" type="TextureButton" parent="planets" unique_id=1878684180]
+[node name="food" type="TextureButton" parent="planets" unique_id=1878684180]
 texture_filter = 1
 layout_mode = 0
 anchor_left = 0.07638889

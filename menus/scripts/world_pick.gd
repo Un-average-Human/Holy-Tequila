@@ -12,7 +12,7 @@ var planet_scene
 @export_category("Planets")
 @export var planet_list: Control
 @export_file("*.tscn") var mars: String
-@export_file("*.tscn") var burger: String
+@export_file("*.tscn") var food	: String
 @export_file("*.tscn") var mega_market: String
 @export_file("*.tscn") var brainrot: String
 @export_file("*.tscn") var water: String
@@ -67,8 +67,8 @@ func _world_selected(planet: TextureButton):
 	match planet.name:
 		"mars":
 			GeneralData.current_world = mars
-		"burger":
-			GeneralData.current_world = burger
+		"food":
+			GeneralData.current_world = food
 		_:
 			print("no world found")
 
