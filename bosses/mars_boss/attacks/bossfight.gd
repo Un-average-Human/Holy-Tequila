@@ -42,9 +42,9 @@ func _ready() -> void:
 func _on_boss_area_detector_body_entered(body: Node3D) -> void:
 	if body.is_in_group("player") and has_started == false:
 		explanation.queue_free()
+		boss_area_detector.queue_free()
 		has_started = true
 		player = body
-		boss_area_detector.set_deferred("monitoring", false)
 		_start_bossfight()
 
 func _start_bossfight():

@@ -20,9 +20,12 @@ func _ready() -> void:
 
 func _fell_in_void(body: Node3D):
 	if body == player:
+		if player.global_position.y >= spawn_point.global_position.y - 2.0:
+			return
 		if player.is_on_floor():
 			return
-			
+		
+		print("something fell in the void")
 		body.global_position = spawn_point.global_position
 		body.take_damage()
 	
