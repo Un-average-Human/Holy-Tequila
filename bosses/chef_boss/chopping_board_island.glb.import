@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://htrjqe1qp38c"
-path="res://.godot/imported/chopping_board_island.glb-f5a17bb36a804792409f7bbc475e1b19.scn"
+path="res://.godot/imported/chopping_board_island.glb-7757496cd28093422c987bf5c44c8d8e.scn"
 
 [deps]
 
-source_file="res://bosses/burger_boss/chopping_board_island.glb"
-dest_files=["res://.godot/imported/chopping_board_island.glb-f5a17bb36a804792409f7bbc475e1b19.scn"]
+source_file="res://bosses/chef_boss/chopping_board_island.glb"
+dest_files=["res://.godot/imported/chopping_board_island.glb-7757496cd28093422c987bf5c44c8d8e.scn"]
 
 [params]
 

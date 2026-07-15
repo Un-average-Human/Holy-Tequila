@@ -148,6 +148,7 @@ animation = &"parrying"
 autoplay = "idle"
 
 [node name="ui" type="CanvasLayer" parent="." unique_id=383149491]
+layer = 2
 
 [node name="damage_vignette" type="Panel" parent="ui" unique_id=1636105890]
 self_modulate = Color(1, 0, 0, 1)
@@ -225,7 +226,7 @@ vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="menu" type="CanvasLayer" parent="." unique_id=531039352]
-layer = 2
+layer = 3
 
 [node name="menus" parent="menu" unique_id=946525344 instance=ExtResource("7_1jxqw")]
 visible = false

@@ -1,6 +1,6 @@
 [gd_scene format=4 uid="uid://b4r44xw8nurpo"]
 
-[ext_resource type="PackedScene" uid="uid://ckudr8chj1kgo" path="res://player/scenes/player/player.tscn" id="1_bdmdc"]
+[ext_resource type="Texture2D" uid="uid://cradxnvwr3qb3" path="res://bosses/chef_boss/boss_sprites/burger_mini_boss/borger_spritesheet.png" id="1_x5qx4"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_qwtjy"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -350,6 +350,210 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_an3wi")
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x6hyb"]
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_t03qq"]
+_surfaces = [{
+"aabb": AABB(-15, 0, -7.5, 29.633263, 1, 15),
+"format": 34896613377,
+"index_count": 180,
+"index_data": PackedByteArray("CQARAAoACgALAAkACQASABEACwASAAkAEQABAAoACgABAAsAEwALAAEAEwABABQAAQACABQAEQACAAEAAAATABQAAAALABMAAAAUAAIACwAVABIAFgAAAAIABAALAAAABAAAABYAFgACABAAEAAEABYAAgAGABAAEAAGAAQAAgAXAAYAEQAXAAIABgAYAAQABgAZABgABgAXABkAGQAaABgAGgAEABgAGQAXABoADAALAAQADAAEABoACwAMABUAFwAPABoADAAaAA8AFwAOAA8ADgAMAA8AFwANAA4ADgANAAwAGwAMAA0AFwAcAA0AFwARABwAGwANAB0ADQAcAB0AHgAMABsAHgAbAB0AHgAdABwAFQAMAB4ABwAeABwAFQAeAAcABwAcAAgACAAVAAcAHAAfAAgACAAfABUAHAARAB8ABQAVAB8AEgAVAAUAHwARAAMAEgADABEABQAfAAMAEgAFAAMA"),
+"lods": [2.0465014, PackedByteArray("CQAFAAoACgALAAkACwAFAAkABQADAAoACAADAAUACAAKAAMACAAFAAcABQAMAAcABwAMAAgACwAMAAUADAANAAgADgAIAA0ADgANAAwADgAKAAgACgABAAsACgACAAEACwABAAIACgAOAAIAAAALAAIADgAMAA8ADAALAAQADAAEAA8ADgAPAAQABAALAAAAAgAOAAYABgAOAAQAAgAGABAAEAAGAAQAAAACABAAEAAEAAAA"), 4.4255047, PackedByteArray("AAABAAIAAwACAAEAAwABAAAAAgAEAAAAAwAAAAUAAgAGAAQAAwAGAAIABwAAAAQAAAAHAAUABgAHAAQACAADAAUABgADAAgACAAFAAcABgAIAAcA")],
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 32,
+"vertex_data": PackedByteArray("iwP//+ABAAAAAAAAAA4AAIsDAADgAQAAiwMAAB7+AADo+P//AAAAAIsD//8e/gAA6PgAAAAAAADo+P////8AAOj4AAD//wAAAAD///7xAAAAAAAA/vEAAAAA//8ADgAA//////7xAAD//wAA/vEAAP//AAAADgAA/////wAOAAAWBwAAAAAAAPMAAAD++AAA8wD///74AADzAP//AAcAAPMAAAAABwAAFgf/////AAAWB///AAAAAAv/AAAABwAAc/z//+ABAABz/AAA4AEAAAv///8ABwAAC/////74AABz/AAAHv4AAAv/AAD++AAAc/z//x7+AAAWBwAA//8AAA==")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_45une"]
+resource_name = "chopping_board_island_Cube_001"
+_surfaces = [{
+"aabb": AABB(-15, 0, -7.5, 29.633263, 1, 15),
+"attribute_data": PackedByteArray("/59ltpkpf3z5KcR/+Sk7QAXWO0D/X2W2wKCCgT5fgoHAoHw+Pl98Pv+fmQn/X5kJ/59ltsCgfD7/n5kJwKCCgf9fmQn5KcR/mSl/fD5fgoE+X3w+adR7RZkpf0P5ouuv/V/ntLxf9nxCoPZ8QqAJQ7xfCUP5ouuvadR7RUKgCUNCoPZ8/V/ntLxf9nyZKX9DvF8JQ6opv0FW1b1CfKEos6opP34BoOe0gaDbgH1f24BToL1+q1+9flOgQUGrX0FBgaAkP31fJD8BoBcL/V8XC1bVvUIBoBcLgaAkP1OgQUF8oSizAaDntFOgvX6BoNuAqim/QaopP36rX71+fV/bgP1fFwt9XyQ/q19BQQ=="),
+"format": 34896613399,
+"index_count": 180,
+"index_data": PackedByteArray("FQAlABYAFQAmACUAJgADACUAJgAEAAMAFgAXABUAFgABABcAJwAXAAEAJwABACgAAAAnACgAAAAoAAIAKQAAAAUAKQAFABgAGAAGACkAGAAHAAYABwAqAAYABwArACoAKwAsACoAKwAtACwALQAaACwALQAZABoAGQAbABoAGQAcABsALgAbABwALgAcAC8AMAAuAC8AMAAvADEACAAwADEACAAxAAkACQAyAAgACQAzADIACgAyADMACgAzAAsAHQA0AB4ANAA1AA4AHQA1ADQANQA2AA0ANQAfADYAHQAfADUANgAfADcADAAdADgADwAdAAwAHwAdAA8ADwAMADkAHwAPADoAOgAPADsAHwA6ACAAPAASACMAEgARAD0APAARABIAEQATACEAEQA+ABMAPAA+ABEAEwA+AD8AQAA8ABAAQQA8AEAAPgA8AEEAQQBAABQAPgBBACQAJABBAEIAPgAkACIA"),
+"lods": [2.0465014, PackedByteArray("FQAEABYABAADABYAFgAXABUAFgABABcAFwABAAIAAAAXAAIAAAAFABgAGAAGAAAAGAAHAAYABwAZAAYAGQAaAAYAGQAbABoAGQAcABsAGwAcAAkACAAbAAkACQAKAAgACQALAAoAHQAOAB4AHQAfAA4ADgAfAA0AHwAdAA8ADwAdAAwAHwAPACAAEQATACEAEQAiABMAIwAiABEAIwARABIAIgAjABQAFAAjABAAIgAUACQA"), 4.4255047, PackedByteArray("AAABAAIAAwABAAAAAwAAAAQABQAGAAAABQAHAAYABwAIAAYABwAJAAgACQAKAAgACQALAAoADAANAA4ADQAMAA8AEAARABIAEAATABEAEwAQABQA")],
+"material": SubResource("StandardMaterial3D_x6hyb"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 67,
+"vertex_data": PackedByteArray("iwP//+ABSRUAAAAAAA6YOosDAADgAVIViwMAAB7+ukSLA///Hv5EPYsDAADgAf/w6Pj//wAAOvzo+AAAAAA6/Oj4/////yvA6PgAAP//K8CLA///Hv66wosDAAAe/rrCiwP//+ABgPvo+P////8jH4sD//8e/hn46Pj//wAA1PaLAwAAHv7CwIsDAADgAQbAAAAAAAAONcDo+AAAAAD/v+j4AAD//4Q0AAD///7xazMAAAAA/vF+NgAA//8ADn46FgcAAAAAOvz//wAAAA552P////8ADnnY//////7xUtL//wAA/vFS0gAA//8ADrf+AAD///7xgfD//////vFD+f////8ADv//FgcAAAAA/7///wAAAA7/vwAAAAD+8f+///8AAP7xGMLzAAAA/vg3P/MA///++AM58wD//wAHjCrzAAAAAAefKhYH//8AADr8c/z//+AB//Bz/AAA4AH/8Av///8AB4ziC/8AAAAHjOIL/////vhKygv/AAD++ErKc/z//x7+usJz/AAAHv66whYH/////yvAFgcAAP//K8DzAP///vjU3RYH/////xL2c/z//x7+Yz0L/////vhH6PMA//8AB//wFgf//wAAt8AL////AAfn+HP8///gAXD+8wAAAP74AcDzAAAAAAe0wAv/AAAAB/+/c/wAAOABBsAWBwAA//8CwHP8AAAe/kvAC/8AAP74vcagiWb49Imw+kOF1/vE5X3qqumq6Y7Hjsf3Pfc99z33PWoHagdqB2oHqumq6arpqunQhJa9UJ7WsCHERQiFiTy73Q25mzUDaYYXCC6QmwA2geRGjVxs0GvaIsxs3NiOFvgHwgfCfSx9LH0sfSzCKMIowijCKGeBS7/Kx5UPGYdyvADAAgB6AMJ/BwAOgA4A+H9YFLCoJ9XT4Pfas97ZjNj39Yfz+gfCB8JwOHA4cDhwOKkxqTGpMakxSyJLIksiSyJUFlQWVBZUFpT4lPiU+JT4U6FVr0OK3boG1PuVoMtBF47HHw/p5IqNdodDvNnAtQHXAa+DdQ3pmnMA5oBIA5CGFAIohFoJtJIaHjS8")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_t03qq")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qwtjy"]
+albedo_color = Color(0.34901962, 0.16470589, 0, 1)
+metallic_specular = 0.0
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_bdmdc"]
+points = PackedVector3Array(-14.182011, 0, -7.5, -14.591005, 0, -7.391347, -14.182011, 1, -7.5, 13.812372, 0, -7.5, -14.591005, 1, -7.391347, -14.892675, 0, -7.0903482, 13.812372, 1, -7.5, 14.221367, 0, -7.391347, -14.892675, 1, -7.0903482, -15, 0, -6.680697, 14.221367, 1, -7.391347, 14.520136, 0, -7.0903482, -15, 1, -6.680697, -15, 0, 6.679228, 14.520136, 1, -7.0903482, 14.633263, 0, -6.680697, -15, 1, 6.679228, -14.892675, 0, 7.0888796, 14.633263, 1, -6.680697, 14.633263, 0, 6.679228, -14.892675, 1, 7.0888796, -14.591005, 0, 7.3898783, 14.633263, 1, 6.679228, 14.520136, 0, 7.0888796, -14.591005, 1, 7.3898783, -14.182011, 0, 7.499999, 14.520136, 1, 7.0888796, 14.221367, 0, 7.3898783, -14.182011, 1, 7.499999, 13.812372, 0, 7.499999, 14.221367, 1, 7.3898783, 13.812372, 1, 7.499999)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_86c51"]
+atlas = ExtResource("1_x5qx4")
+region = Rect2(3240, 2160, 1080, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uhpk4"]
+atlas = ExtResource("1_x5qx4")
+region = Rect2(4320, 2160, 1080, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qw1bu"]
+atlas = ExtResource("1_x5qx4")
+region = Rect2(0, 3240, 1080, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hqmdd"]
+atlas = ExtResource("1_x5qx4")
+region = Rect2(1080, 3240, 1080, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mp5y1"]
+atlas = ExtResource("1_x5qx4")
+region = Rect2(2160, 3240, 1080, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8dygh"]
+atlas = ExtResource("1_x5qx4")
+region = Rect2(3240, 3240, 1080, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4hwrx"]
+atlas = ExtResource("1_x5qx4")
+region = Rect2(4320, 3240, 1080, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tfjrn"]
+atlas = ExtResource("1_x5qx4")
+region = Rect2(0, 1080, 1080, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8cq3n"]
+atlas = ExtResource("1_x5qx4")
+region = Rect2(1080, 1080, 1080, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ihadp"]
+atlas = ExtResource("1_x5qx4")
+region = Rect2(2160, 1080, 1080, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_77h12"]
+atlas = ExtResource("1_x5qx4")
+region = Rect2(3240, 1080, 1080, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6fyxq"]
+atlas = ExtResource("1_x5qx4")
+region = Rect2(4320, 1080, 1080, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4phrl"]
+atlas = ExtResource("1_x5qx4")
+region = Rect2(0, 2160, 1080, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vsvnu"]
+atlas = ExtResource("1_x5qx4")
+region = Rect2(1080, 2160, 1080, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uox3v"]
+atlas = ExtResource("1_x5qx4")
+region = Rect2(2160, 2160, 1080, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a8o3s"]
+atlas = ExtResource("1_x5qx4")
+region = Rect2(0, 0, 1080, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lmf7v"]
+atlas = ExtResource("1_x5qx4")
+region = Rect2(1080, 0, 1080, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rt4g2"]
+atlas = ExtResource("1_x5qx4")
+region = Rect2(2160, 0, 1080, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6vlee"]
+atlas = ExtResource("1_x5qx4")
+region = Rect2(3240, 0, 1080, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p6erx"]
+atlas = ExtResource("1_x5qx4")
+region = Rect2(4320, 0, 1080, 1080)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_a8o3s"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_86c51")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uhpk4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qw1bu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hqmdd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mp5y1")
+}],
+"loop": true,
+"name": &"burger_attack",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8dygh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4hwrx")
+}],
+"loop": true,
+"name": &"burger_attack_idle",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tfjrn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8cq3n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ihadp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_77h12")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6fyxq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4phrl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vsvnu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uox3v")
+}],
+"loop": true,
+"name": &"burger_idle",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a8o3s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lmf7v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rt4g2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6vlee")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p6erx")
+}],
+"loop": true,
+"name": &"burger_prepare_attack",
+"speed": 8.0
+}]
+
 [node name="Node" type="Node" unique_id=478003106]
 
 [node name="Node3D" type="Node3D" parent="." unique_id=871431128]
@@ -413,5 +617,32 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5.6, 0)
 mesh = SubResource("ArrayMesh_ul5l3")
 surface_material_override/0 = SubResource("StandardMaterial3D_bdmdc")
 
-[node name="player" parent="Node3D" unique_id=1185616285 instance=ExtResource("1_bdmdc")]
+[node name="island" type="StaticBody3D" parent="Node3D" unique_id=2006563272]
+collision_layer = 3
+
+[node name="Cube_001" type="MeshInstance3D" parent="Node3D/island" unique_id=834807766]
+mesh = SubResource("ArrayMesh_45une")
+surface_material_override/0 = SubResource("StandardMaterial3D_qwtjy")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Node3D/island" unique_id=1956089023]
+shape = SubResource("ConvexPolygonShape3D_bdmdc")
+
+[node name="spawn" type="Marker3D" parent="Node3D" unique_id=580897132]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+
+[node name="Node2D" type="Node2D" parent="." unique_id=1034128626]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Node2D" unique_id=2090227194]
+texture_filter = 1
+position = Vector2(579, 337)
+scale = Vector2(0.59999996, 0.59999985)
+sprite_frames = SubResource("SpriteFrames_a8o3s")
+animation = &"burger_prepare_attack"
+frame_progress = 0.36921757
+
+[node name="Polygon2D" type="Polygon2D" parent="Node2D" unique_id=2122551009]
+position = Vector2(540.152, 567.93036)
+scale = Vector2(4.6750937, 0.5903186)
+color = Color(0.34901962, 0.16470589, 0, 1)
+polygon = PackedVector2Array(-115.20001, 5.2000046, 131.20001, 5.2000046, 131.30176, 135.638, -115.53824, 135.638)
+uv = PackedVector2Array(-115.20001, 5.2000046, 131.20001, 5.2000046, 131.30176, 135.638, -113.602234, 135.638)

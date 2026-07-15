@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://c3fcppi3p4lcu"
-path="res://.godot/imported/burger_island.glb-005a2e671d2ab0cdde3195d0acb1f314.scn"
+path="res://.godot/imported/burger_island.glb-c4dd56f27639a0957b5dca08d755a35c.scn"
 
 [deps]
 
-source_file="res://bosses/burger_boss/burger_island.glb"
-dest_files=["res://.godot/imported/burger_island.glb-005a2e671d2ab0cdde3195d0acb1f314.scn"]
+source_file="res://bosses/chef_boss/burger_island.glb"
+dest_files=["res://.godot/imported/burger_island.glb-c4dd56f27639a0957b5dca08d755a35c.scn"]
 
 [params]
 
