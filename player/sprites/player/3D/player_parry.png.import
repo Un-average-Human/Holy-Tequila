@@ -3,8 +3,8 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bjc00u4f5o2xm"
-path.s3tc="res://.godot/imported/player_parry.png-4f208a58a2e15595aecfe5dfef999c14.s3tc.ctex"
-path.etc2="res://.godot/imported/player_parry.png-4f208a58a2e15595aecfe5dfef999c14.etc2.ctex"
+path.s3tc="res://.godot/imported/player_parry.png-9316f48adaa97877874d81952ae7c910.s3tc.ctex"
+path.etc2="res://.godot/imported/player_parry.png-9316f48adaa97877874d81952ae7c910.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
@@ -12,8 +12,8 @@ metadata={
 
 [deps]
 
-source_file="res://player/sprites/player/player_parry.png"
-dest_files=["res://.godot/imported/player_parry.png-4f208a58a2e15595aecfe5dfef999c14.s3tc.ctex", "res://.godot/imported/player_parry.png-4f208a58a2e15595aecfe5dfef999c14.etc2.ctex"]
+source_file="res://player/sprites/player/3D/player_parry.png"
+dest_files=["res://.godot/imported/player_parry.png-9316f48adaa97877874d81952ae7c910.s3tc.ctex", "res://.godot/imported/player_parry.png-9316f48adaa97877874d81952ae7c910.etc2.ctex"]
 
 [params]
 

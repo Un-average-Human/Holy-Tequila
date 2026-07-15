@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://ckudr8chj1kgo"]
 
 [ext_resource type="Script" uid="uid://b0gd8hrqpvtbb" path="res://player/scripts/player/player.gd" id="1_4flbx"]
-[ext_resource type="Texture2D" uid="uid://7krcx658l6x4" path="res://player/sprites/player/player.png" id="2_hqtel"]
+[ext_resource type="Texture2D" uid="uid://7krcx658l6x4" path="res://player/sprites/player/3D/player.png" id="2_hqtel"]
 [ext_resource type="Texture2D" uid="uid://dha7gw82f6qfq" path="res://player/sprites/ui/heart_idle.png" id="2_onrkg"]
-[ext_resource type="Texture2D" uid="uid://bjc00u4f5o2xm" path="res://player/sprites/player/player_parry.png" id="3_8q143"]
+[ext_resource type="Texture2D" uid="uid://bjc00u4f5o2xm" path="res://player/sprites/player/3D/player_parry.png" id="3_8q143"]
 [ext_resource type="Texture2D" uid="uid://bfqx1j8kjgxa5" path="res://player/sprites/ui/heart_pumping.png" id="3_i3pqv"]
 [ext_resource type="AudioStream" uid="uid://cquk2o6tbfumc" path="res://sfx/interaction/parry.mp3" id="5_sweqy"]
 [ext_resource type="Script" uid="uid://bdvo6bq4h1oyu" path="res://player/abilities/parry.gd" id="6_2hs0m"]

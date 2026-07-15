@@ -554,6 +554,20 @@ animations = [{
 "speed": 8.0
 }]
 
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_x5qx4"]
+normal = Vector2(1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_86c51"]
+normal = Vector2(-1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_uhpk4"]
+normal = Vector2(0, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_qw1bu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hqmdd"]
+size = Vector2(1152, 66)
+
 [node name="Node" type="Node" unique_id=478003106]
 
 [node name="Node3D" type="Node3D" parent="." unique_id=871431128]
@@ -632,17 +646,37 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 
 [node name="Node2D" type="Node2D" parent="." unique_id=1034128626]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Node2D" unique_id=2090227194]
+[node name="burger" type="AnimatedSprite2D" parent="Node2D" unique_id=2090227194]
 texture_filter = 1
 position = Vector2(579, 337)
 scale = Vector2(0.59999996, 0.59999985)
 sprite_frames = SubResource("SpriteFrames_a8o3s")
 animation = &"burger_prepare_attack"
-frame_progress = 0.36921757
+frame_progress = 0.61374927
 
-[node name="Polygon2D" type="Polygon2D" parent="Node2D" unique_id=2122551009]
-position = Vector2(540.152, 567.93036)
-scale = Vector2(4.6750937, 0.5903186)
-color = Color(0.34901962, 0.16470589, 0, 1)
-polygon = PackedVector2Array(-115.20001, 5.2000046, 131.20001, 5.2000046, 131.30176, 135.638, -115.53824, 135.638)
-uv = PackedVector2Array(-115.20001, 5.2000046, 131.20001, 5.2000046, 131.30176, 135.638, -113.602234, 135.638)
+[node name="border" type="StaticBody2D" parent="Node2D" unique_id=1746486933]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/border" unique_id=130007658]
+position = Vector2(0, 324)
+shape = SubResource("WorldBoundaryShape2D_x5qx4")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Node2D/border" unique_id=1020492950]
+position = Vector2(1152, 324)
+shape = SubResource("WorldBoundaryShape2D_86c51")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Node2D/border" unique_id=92252002]
+position = Vector2(576, 0)
+shape = SubResource("WorldBoundaryShape2D_uhpk4")
+
+[node name="chopping_board" type="StaticBody2D" parent="Node2D" unique_id=260709905]
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Node2D/chopping_board" unique_id=1313323439]
+modulate = Color(0.34901962, 0.16470589, 0, 1)
+texture_filter = 1
+position = Vector2(576.00006, 615)
+scale = Vector2(1152, 66.000015)
+mesh = SubResource("QuadMesh_qw1bu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/chopping_board" unique_id=440007730]
+position = Vector2(576, 615)
+shape = SubResource("RectangleShape2D_hqmdd")
