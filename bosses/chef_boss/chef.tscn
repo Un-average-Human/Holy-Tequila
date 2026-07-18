@@ -1,6 +1,8 @@
 [gd_scene format=4 uid="uid://b4r44xw8nurpo"]
 
 [ext_resource type="Texture2D" uid="uid://cradxnvwr3qb3" path="res://bosses/chef_boss/boss_sprites/burger_mini_boss/borger_spritesheet.png" id="1_x5qx4"]
+[ext_resource type="PackedScene" uid="uid://6uerk7ux082i" path="res://player/scenes/player/2D_player.tscn" id="2_86c51"]
+[ext_resource type="BehaviorTree" uid="uid://cch7ocwgo13jj" path="res://bosses/chef_boss/burger_boss.tres" id="2_uhpk4"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_qwtjy"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -554,6 +556,8 @@ animations = [{
 "speed": 8.0
 }]
 
+[sub_resource type="BlackboardPlan" id="BlackboardPlan_qw1bu"]
+
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_x5qx4"]
 normal = Vector2(1, 0)
 
@@ -646,13 +650,19 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 
 [node name="Node2D" type="Node2D" parent="." unique_id=1034128626]
 
-[node name="burger" type="AnimatedSprite2D" parent="Node2D" unique_id=2090227194]
+[node name="boss" type="Node2D" parent="Node2D" unique_id=1706741864]
+
+[node name="burger_boss" type="AnimatedSprite2D" parent="Node2D/boss" unique_id=2090227194]
 texture_filter = 1
 position = Vector2(579, 337)
 scale = Vector2(0.59999996, 0.59999985)
 sprite_frames = SubResource("SpriteFrames_a8o3s")
 animation = &"burger_prepare_attack"
 frame_progress = 0.61374927
+
+[node name="BTState" type="BTPlayer" parent="Node2D/boss" unique_id=448342528]
+behavior_tree = ExtResource("2_uhpk4")
+blackboard_plan = SubResource("BlackboardPlan_qw1bu")
 
 [node name="border" type="StaticBody2D" parent="Node2D" unique_id=1746486933]
 
@@ -680,3 +690,6 @@ mesh = SubResource("QuadMesh_qw1bu")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/chopping_board" unique_id=440007730]
 position = Vector2(576, 615)
 shape = SubResource("RectangleShape2D_hqmdd")
+
+[node name="CharacterBody2D" parent="Node2D" unique_id=369724669 instance=ExtResource("2_86c51")]
+position = Vector2(237, 535)

@@ -9,7 +9,7 @@
 [ext_resource type="Script" uid="uid://bdvo6bq4h1oyu" path="res://player/abilities/parry.gd" id="6_2hs0m"]
 [ext_resource type="Theme" uid="uid://bl2p5taqyov0l" path="res://ui.tres" id="6_8q143"]
 [ext_resource type="PackedScene" uid="uid://du6p1clay1guf" path="res://player/scenes/ui/player_menu.tscn" id="7_1jxqw"]
-[ext_resource type="Shader" uid="uid://dyk1bhab1vxh8" path="res://player/scenes/player/impact_frame.gdshader" id="9_lrqc5"]
+[ext_resource type="Shader" uid="uid://dyk1bhab1vxh8" path="res://player/scripts/ui/impact_frame.gdshader" id="9_lrqc5"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_onrkg"]
 
@@ -125,7 +125,7 @@ shader_parameter/fg_color = Color(1, 1, 1, 1)
 shader_parameter/invert = false
 shader_parameter/intensity = 1.0
 
-[node name="player" type="CharacterBody3D" unique_id=1185616285 node_paths=PackedStringArray("damage_vignette", "cam_pivot", "player_cam", "audio", "menu", "animated_sprite") groups=["player"]]
+[node name="3D_player" type="CharacterBody3D" unique_id=1185616285 node_paths=PackedStringArray("damage_vignette", "cam_pivot", "player_cam", "audio", "menu", "animated_sprite") groups=["player"]]
 script = ExtResource("1_4flbx")
 damage_vignette = NodePath("ui/damage_vignette")
 cam_pivot = NodePath("cam_pivot")
