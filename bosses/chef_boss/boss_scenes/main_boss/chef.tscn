@@ -1,12 +1,5 @@
 [gd_scene format=4 uid="uid://b4r44xw8nurpo"]
 
-[ext_resource type="Script" uid="uid://cxic8ot62q16v" path="res://bosses/chef_boss/mini_boss.gd" id="1_0gd2n"]
-[ext_resource type="Texture2D" uid="uid://cradxnvwr3qb3" path="res://bosses/chef_boss/boss_sprites/burger_mini_boss/borger_spritesheet.png" id="2_xiagq"]
-[ext_resource type="BehaviorTree" uid="uid://cch7ocwgo13jj" path="res://bosses/chef_boss/burger_boss.tres" id="3_2pgj0"]
-[ext_resource type="Script" uid="uid://cp0n70qy3ce4o" path="res://bosses/chef_boss/boss_scenes/burger_attack.gd" id="3_xiagq"]
-[ext_resource type="PackedScene" uid="uid://bseq6hdhssiqa" path="res://bullet/scenes/2d_bullet.tscn" id="4_2pgj0"]
-[ext_resource type="PackedScene" uid="uid://6uerk7ux082i" path="res://player/scenes/player/2D_player.tscn" id="4_ip0f1"]
-
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_qwtjy"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
 ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -396,336 +389,78 @@ metallic_specular = 0.0
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_bdmdc"]
 points = PackedVector3Array(-14.182011, 0, -7.5, -14.591005, 0, -7.391347, -14.182011, 1, -7.5, 13.812372, 0, -7.5, -14.591005, 1, -7.391347, -14.892675, 0, -7.0903482, 13.812372, 1, -7.5, 14.221367, 0, -7.391347, -14.892675, 1, -7.0903482, -15, 0, -6.680697, 14.221367, 1, -7.391347, 14.520136, 0, -7.0903482, -15, 1, -6.680697, -15, 0, 6.679228, 14.520136, 1, -7.0903482, 14.633263, 0, -6.680697, -15, 1, 6.679228, -14.892675, 0, 7.0888796, 14.633263, 1, -6.680697, 14.633263, 0, 6.679228, -14.892675, 1, 7.0888796, -14.591005, 0, 7.3898783, 14.633263, 1, 6.679228, 14.520136, 0, 7.0888796, -14.591005, 1, 7.3898783, -14.182011, 0, 7.499999, 14.520136, 1, 7.0888796, 14.221367, 0, 7.3898783, -14.182011, 1, 7.499999, 13.812372, 0, 7.499999, 14.221367, 1, 7.3898783, 13.812372, 1, 7.499999)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_86c51"]
-atlas = ExtResource("2_xiagq")
-region = Rect2(3240, 2160, 1080, 1080)
+[node name="Node3D" type="Node3D" unique_id=871431128]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_uhpk4"]
-atlas = ExtResource("2_xiagq")
-region = Rect2(4320, 2160, 1080, 1080)
+[node name="environment" type="Node" parent="." unique_id=1297041193]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_qw1bu"]
-atlas = ExtResource("2_xiagq")
-region = Rect2(0, 3240, 1080, 1080)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_hqmdd"]
-atlas = ExtResource("2_xiagq")
-region = Rect2(1080, 3240, 1080, 1080)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_8dygh"]
-atlas = ExtResource("2_xiagq")
-region = Rect2(3240, 3240, 1080, 1080)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_4hwrx"]
-atlas = ExtResource("2_xiagq")
-region = Rect2(4320, 3240, 1080, 1080)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_tfjrn"]
-atlas = ExtResource("2_xiagq")
-region = Rect2(0, 1080, 1080, 1080)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_8cq3n"]
-atlas = ExtResource("2_xiagq")
-region = Rect2(1080, 1080, 1080, 1080)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ihadp"]
-atlas = ExtResource("2_xiagq")
-region = Rect2(2160, 1080, 1080, 1080)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_77h12"]
-atlas = ExtResource("2_xiagq")
-region = Rect2(3240, 1080, 1080, 1080)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_6fyxq"]
-atlas = ExtResource("2_xiagq")
-region = Rect2(4320, 1080, 1080, 1080)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_4phrl"]
-atlas = ExtResource("2_xiagq")
-region = Rect2(0, 2160, 1080, 1080)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_vsvnu"]
-atlas = ExtResource("2_xiagq")
-region = Rect2(1080, 2160, 1080, 1080)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_uox3v"]
-atlas = ExtResource("2_xiagq")
-region = Rect2(2160, 2160, 1080, 1080)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_a8o3s"]
-atlas = ExtResource("2_xiagq")
-region = Rect2(0, 0, 1080, 1080)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_lmf7v"]
-atlas = ExtResource("2_xiagq")
-region = Rect2(1080, 0, 1080, 1080)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_rt4g2"]
-atlas = ExtResource("2_xiagq")
-region = Rect2(2160, 0, 1080, 1080)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_6vlee"]
-atlas = ExtResource("2_xiagq")
-region = Rect2(3240, 0, 1080, 1080)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_a8o3s"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_86c51")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_uhpk4")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_qw1bu")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_hqmdd")
-}],
-"loop": false,
-"name": &"attack",
-"speed": 8.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_8dygh")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_4hwrx")
-}],
-"loop": true,
-"name": &"attack_idle",
-"speed": 8.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_tfjrn")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_8cq3n")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ihadp")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_77h12")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_6fyxq")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_4phrl")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_vsvnu")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_uox3v")
-}],
-"loop": true,
-"name": &"idle",
-"speed": 8.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_a8o3s")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_lmf7v")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_rt4g2")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_6vlee")
-}],
-"loop": false,
-"name": &"prepare_attack",
-"speed": 8.0
-}]
-
-[sub_resource type="BlackboardPlan" id="BlackboardPlan_qw1bu"]
-
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_x5qx4"]
-normal = Vector2(1, 0)
-
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_86c51"]
-normal = Vector2(-1, 0)
-
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_uhpk4"]
-normal = Vector2(0, 1)
-
-[sub_resource type="QuadMesh" id="QuadMesh_qw1bu"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_hqmdd"]
-size = Vector2(1152, 66)
-
-[node name="Node" type="Node" unique_id=478003106]
-
-[node name="Node3D" type="Node3D" parent="." unique_id=871431128]
-
-[node name="environment" type="Node" parent="Node3D" unique_id=1297041193]
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Node3D/environment" unique_id=1722064894]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="environment" unique_id=1722064894]
 transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
 shadow_enabled = true
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="Node3D/environment" unique_id=1331780703]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="environment" unique_id=1331780703]
 environment = SubResource("Environment_chyxy")
 
-[node name="food_items" type="Node" parent="Node3D" unique_id=282987962]
+[node name="food_items" type="Node" parent="." unique_id=282987962]
 
-[node name="burger" type="Node3D" parent="Node3D/food_items" unique_id=1255035151]
+[node name="burger" type="Node3D" parent="food_items" unique_id=1255035151]
 visible = false
 
-[node name="top_bun" type="MeshInstance3D" parent="Node3D/food_items/burger" unique_id=248000347]
+[node name="top_bun" type="MeshInstance3D" parent="food_items/burger" unique_id=248000347]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
 mesh = SubResource("ArrayMesh_lwsat")
 surface_material_override/0 = SubResource("StandardMaterial3D_bdmdc")
 
-[node name="onion" type="MeshInstance3D" parent="Node3D/food_items/burger" unique_id=499070451]
+[node name="onion" type="MeshInstance3D" parent="food_items/burger" unique_id=499070451]
 transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 1, 0, -0.59999996, 0)
 mesh = SubResource("ArrayMesh_6gxsk")
 surface_material_override/0 = SubResource("StandardMaterial3D_gy2fh")
 
-[node name="lettuce" type="MeshInstance3D" parent="Node3D/food_items/burger" unique_id=600484359]
+[node name="lettuce" type="MeshInstance3D" parent="food_items/burger" unique_id=600484359]
 transform = Transform3D(7.999439, 0.09475984, 0.00020675064, 0.09475365, -7.998677, -0.11041629, -0.0011011622, 0.110410996, -7.999238, 0, -0.70574296, 1.0666671)
 mesh = SubResource("ArrayMesh_lyl4k")
 surface_material_override/0 = SubResource("StandardMaterial3D_6cws7")
 
-[node name="tomato" type="MeshInstance3D" parent="Node3D/food_items/burger" unique_id=1804304622]
+[node name="tomato" type="MeshInstance3D" parent="food_items/burger" unique_id=1804304622]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.4, 0)
 mesh = SubResource("ArrayMesh_bmhwa")
 surface_material_override/0 = SubResource("StandardMaterial3D_d3lvi")
 
-[node name="tomato_core" type="MeshInstance3D" parent="Node3D/food_items/burger/tomato" unique_id=1587843184]
+[node name="tomato_core" type="MeshInstance3D" parent="food_items/burger/tomato" unique_id=1587843184]
 transform = Transform3D(0.59994763, 0, 0, 0, 1, 0, 0, 0, 0.59994763, 0, 0, 0)
 mesh = SubResource("ArrayMesh_vg1qg")
 surface_material_override/0 = SubResource("StandardMaterial3D_gsquv")
 
-[node name="cheese" type="MeshInstance3D" parent="Node3D/food_items/burger" unique_id=1024945921]
+[node name="cheese" type="MeshInstance3D" parent="food_items/burger" unique_id=1024945921]
 transform = Transform3D(8.8, 0, 0, 0, 8.8, 0, 0, 0, 8.8, 0, -2.6, 0)
 mesh = SubResource("ArrayMesh_2rtvs")
 surface_material_override/0 = SubResource("StandardMaterial3D_jucaa")
 
-[node name="patty" type="MeshInstance3D" parent="Node3D/food_items/burger" unique_id=556192274]
+[node name="patty" type="MeshInstance3D" parent="food_items/burger" unique_id=556192274]
 transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 1, 0, -3.5999997, 0)
 mesh = SubResource("ArrayMesh_1vems")
 surface_material_override/0 = SubResource("StandardMaterial3D_hp6uf")
 
-[node name="grill_marks" type="MeshInstance3D" parent="Node3D/food_items/burger/patty" unique_id=46384211]
+[node name="grill_marks" type="MeshInstance3D" parent="food_items/burger/patty" unique_id=46384211]
 transform = Transform3D(1, 0, 0, 0, 1.0000001, 0, 0, 0, 1, 0, -2.3841858e-07, 0)
 mesh = SubResource("ArrayMesh_uxhel")
 surface_material_override/0 = SubResource("StandardMaterial3D_433rq")
 
-[node name="bottom_bun" type="MeshInstance3D" parent="Node3D/food_items/burger" unique_id=1963903298]
+[node name="bottom_bun" type="MeshInstance3D" parent="food_items/burger" unique_id=1963903298]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5.6, 0)
 mesh = SubResource("ArrayMesh_ul5l3")
 surface_material_override/0 = SubResource("StandardMaterial3D_bdmdc")
 
-[node name="island" type="StaticBody3D" parent="Node3D" unique_id=2006563272]
+[node name="island" type="StaticBody3D" parent="." unique_id=2006563272]
 collision_layer = 3
 
-[node name="Cube_001" type="MeshInstance3D" parent="Node3D/island" unique_id=834807766]
+[node name="Cube_001" type="MeshInstance3D" parent="island" unique_id=834807766]
 mesh = SubResource("ArrayMesh_45une")
 surface_material_override/0 = SubResource("StandardMaterial3D_qwtjy")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Node3D/island" unique_id=1956089023]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="island" unique_id=1956089023]
 shape = SubResource("ConvexPolygonShape3D_bdmdc")
 
-[node name="spawn" type="Marker3D" parent="Node3D" unique_id=580897132]
+[node name="spawn" type="Marker3D" parent="." unique_id=580897132]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 
-[node name="Node2D" type="Node2D" parent="." unique_id=1034128626]
-
-[node name="boss" type="Node2D" parent="Node2D" unique_id=1706741864 node_paths=PackedStringArray("mini_bosses_available", "burger_attack", "bt_player")]
-script = ExtResource("1_0gd2n")
-mini_bosses_available = [NodePath("burger")]
-burger_attack = NodePath("burger/burger_attack")
-bt_player = NodePath("BTState")
-
-[node name="burger" type="AnimatedSprite2D" parent="Node2D/boss" unique_id=2090227194]
-texture_filter = 1
-position = Vector2(579, 337)
-scale = Vector2(0.59999996, 0.59999985)
-sprite_frames = SubResource("SpriteFrames_a8o3s")
-animation = &"attack"
-frame = 1
-
-[node name="point1" type="Marker2D" parent="Node2D/boss/burger" unique_id=1672337065]
-position = Vector2(-840.00006, -728.3335)
-scale = Vector2(1.6666667, 1.6666671)
-
-[node name="point2" type="Marker2D" parent="Node2D/boss/burger" unique_id=606442788]
-position = Vector2(-561.66675, -721.6668)
-scale = Vector2(1.6666667, 1.6666671)
-
-[node name="point3" type="Marker2D" parent="Node2D/boss/burger" unique_id=1152268732]
-position = Vector2(-283.33334, -721.6669)
-scale = Vector2(1.6666667, 1.6666671)
-
-[node name="point4" type="Marker2D" parent="Node2D/boss/burger" unique_id=313279005]
-position = Vector2(-5, -721.6669)
-scale = Vector2(1.6666667, 1.6666671)
-
-[node name="point5" type="Marker2D" parent="Node2D/boss/burger" unique_id=1786585539]
-position = Vector2(273.33334, -721.6669)
-scale = Vector2(1.6666667, 1.6666671)
-
-[node name="point6" type="Marker2D" parent="Node2D/boss/burger" unique_id=743228508]
-position = Vector2(551.6667, -721.6669)
-scale = Vector2(1.6666667, 1.6666671)
-
-[node name="point7" type="Marker2D" parent="Node2D/boss/burger" unique_id=1741201941]
-position = Vector2(830.00006, -728.3335)
-scale = Vector2(1.6666667, 1.6666671)
-
-[node name="point8" type="Marker2D" parent="Node2D/boss/burger" unique_id=1997902450]
-position = Vector2(-5, 191.66675)
-
-[node name="burger_attack" type="Node" parent="Node2D/boss/burger" unique_id=1883259415 node_paths=PackedStringArray("projectile_spawn", "fall_point_array")]
-script = ExtResource("3_xiagq")
-projectile_scene = ExtResource("4_2pgj0")
-projectile_spawn = NodePath("../point8")
-fall_point_array = [NodePath("../point1"), NodePath("../point2"), NodePath("../point3"), NodePath("../point4"), NodePath("../point5"), NodePath("../point6"), NodePath("../point7"), NodePath("../point8")]
-point_height = Vector2(0, -721.667)
-
-[node name="BTState" type="BTPlayer" parent="Node2D/boss" unique_id=448342528]
-behavior_tree = ExtResource("3_2pgj0")
-blackboard_plan = SubResource("BlackboardPlan_qw1bu")
-
-[node name="border" type="StaticBody2D" parent="Node2D" unique_id=1746486933]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/border" unique_id=130007658]
-position = Vector2(0, 324)
-shape = SubResource("WorldBoundaryShape2D_x5qx4")
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Node2D/border" unique_id=1020492950]
-position = Vector2(1152, 324)
-shape = SubResource("WorldBoundaryShape2D_86c51")
-
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="Node2D/border" unique_id=92252002]
-position = Vector2(576, 0)
-shape = SubResource("WorldBoundaryShape2D_uhpk4")
-
-[node name="chopping_board" type="StaticBody2D" parent="Node2D" unique_id=260709905 groups=["floor"]]
-
-[node name="MeshInstance2D" type="MeshInstance2D" parent="Node2D/chopping_board" unique_id=1313323439]
-modulate = Color(0.34901962, 0.16470589, 0, 1)
-z_index = 1
-texture_filter = 1
-position = Vector2(576.00006, 615)
-scale = Vector2(1152, 66.000015)
-mesh = SubResource("QuadMesh_qw1bu")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/chopping_board" unique_id=440007730]
-z_index = 1
-position = Vector2(576, 615)
-shape = SubResource("RectangleShape2D_hqmdd")
-
-[node name="CharacterBody2D" parent="Node2D" unique_id=369724669 instance=ExtResource("4_ip0f1")]
-position = Vector2(237, 535)
-
-[node name="spawn_point" type="Marker2D" parent="Node2D" unique_id=1449445761]
-position = Vector2(576, 535)
+[node name="Node" type="Node" parent="." unique_id=478003106]

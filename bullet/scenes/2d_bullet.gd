@@ -11,7 +11,7 @@ func _bullet_collided(body: Node2D):
 	if !can_collide:
 		return
 	if body.is_in_group("player"):
-		body.take_damage()
+		body.main_player.take_damage()
 	elif body.is_in_group("floor"):
 		match animation:
 			var current_anim when current_anim.begins_with("burger"):
