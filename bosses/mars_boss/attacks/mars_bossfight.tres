@@ -25,7 +25,7 @@ resource_name = "true"
 [sub_resource type="BTCheckAgentProperty" id="BTCheckAgentProperty_73gob"]
 property = &"can_attack"
 value = SubResource("BBVariant_hdq62")
-custom_name = "Is can_pick_attack True?"
+custom_name = "Is can_attack True?"
 
 [sub_resource type="BTWait" id="BTWait_hdq62"]
 

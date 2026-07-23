@@ -1,8 +1,46 @@
 [gd_resource type="BehaviorTree" format=3 uid="uid://cch7ocwgo13jj"]
 
 [sub_resource type="BlackboardPlan" id="BlackboardPlan_86c51"]
+var/is_attacking/name = &"is_attacking"
+var/is_attacking/type = 1
+var/is_attacking/value = false
+var/is_attacking/hint = 0
+var/is_attacking/hint_string = ""
+
+[sub_resource type="BBVariant" id="BBVariant_o385p"]
+type = 1
+saved_value = false
+resource_name = "false"
+
+[sub_resource type="BTCheckVar" id="BTCheckVar_e1m7o"]
+variable = &"is_attacking"
+value = SubResource("BBVariant_o385p")
+custom_name = "Is is_attacking True?"
+
+[sub_resource type="BBNode" id="BBNode_o385p"]
+saved_value = NodePath("Node2D/boss")
+resource_name = "Node2D/boss"
+
+[sub_resource type="BTCallMethod" id="BTCallMethod_e1m7o"]
+node = SubResource("BBNode_o385p")
+method = &"idle"
+custom_name = "Start Idling"
+
+[sub_resource type="BTWait" id="BTWait_o385p"]
+duration = 2.0
+
+[sub_resource type="BBNode" id="BBNode_qbdgu"]
+saved_value = NodePath("Node2D/boss")
+resource_name = "Node2D/boss"
+
+[sub_resource type="BTCallMethod" id="BTCallMethod_nwa7h"]
+node = SubResource("BBNode_qbdgu")
+method = &"attack"
+custom_name = "Start Attacking"
 
 [sub_resource type="BTSequence" id="BTSequence_o385p"]
+custom_name = "Attack"
+children = [SubResource("BTCheckVar_e1m7o"), SubResource("BTCallMethod_e1m7o"), SubResource("BTWait_o385p"), SubResource("BTCallMethod_nwa7h")]
 
 [sub_resource type="BTSelector" id="BTSelector_e1m7o"]
 children = [SubResource("BTSequence_o385p")]

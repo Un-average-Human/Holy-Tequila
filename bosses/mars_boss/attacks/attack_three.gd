@@ -293,5 +293,5 @@ func _on_bomb_parried(bullet: AnimatedSprite3D, audio: AudioStreamPlayer3D) -> v
 
 func _apply_boss_damage_pipeline() -> void:
 	boss.blackboard.set_var("is_attacking", true)
-	boss._hurt(1.0, boss.boss_healthbar)
+	boss._hurt(1.0)
 	boss.death(BOMB_EXPLOSION)

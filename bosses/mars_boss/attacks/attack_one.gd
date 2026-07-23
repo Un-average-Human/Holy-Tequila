@@ -172,7 +172,7 @@ func _on_bullet_parried(bullet: Node3D):
 	)
 
 func _apply_boss_damage_pipeline() -> void:
-	boss._hurt(1.0, boss.boss_healthbar)
+	boss._hurt(1.0)
 	boss.boss_sprite.play("hurt")
 	
 	await boss.get_tree().create_timer(0.75, false).timeout

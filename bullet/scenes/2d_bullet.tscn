@@ -1,0 +1,106 @@
+[gd_scene format=3 uid="uid://bseq6hdhssiqa"]
+
+[ext_resource type="Texture2D" uid="uid://btortt1vb5ht4" path="res://bullet/sprites/burger_projectile.png" id="1_mrgpq"]
+[ext_resource type="Script" uid="uid://c4wh4w8k7qwqr" path="res://bullet/scenes/2d_bullet.gd" id="2_i255j"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i255j"]
+atlas = ExtResource("1_mrgpq")
+region = Rect2(0, 0, 540, 540)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iay1k"]
+atlas = ExtResource("1_mrgpq")
+region = Rect2(540, 0, 540, 540)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yah2a"]
+atlas = ExtResource("1_mrgpq")
+region = Rect2(1080, 0, 540, 540)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f6487"]
+atlas = ExtResource("1_mrgpq")
+region = Rect2(1620, 0, 540, 540)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w382c"]
+atlas = ExtResource("1_mrgpq")
+region = Rect2(2160, 0, 540, 540)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8yudd"]
+atlas = ExtResource("1_mrgpq")
+region = Rect2(0, 540, 540, 540)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_11wk6"]
+atlas = ExtResource("1_mrgpq")
+region = Rect2(540, 540, 540, 540)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6etik"]
+atlas = ExtResource("1_mrgpq")
+region = Rect2(1080, 540, 540, 540)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_827ya"]
+atlas = ExtResource("1_mrgpq")
+region = Rect2(1620, 540, 540, 540)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v1kop"]
+atlas = ExtResource("1_mrgpq")
+region = Rect2(2160, 540, 540, 540)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_n6vy0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i255j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iay1k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yah2a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f6487")
+}],
+"loop": true,
+"name": &"burger_falling",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w382c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8yudd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_11wk6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6etik")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_827ya")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v1kop")
+}],
+"loop": false,
+"name": &"burger_splash",
+"speed": 8.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mrgpq"]
+radius = 96.0
+height = 384.0
+
+[node name="Node2D" type="AnimatedSprite2D" unique_id=32769433 node_paths=PackedStringArray("area")]
+scale = Vector2(0.25, 0.25)
+sprite_frames = SubResource("SpriteFrames_n6vy0")
+animation = &"burger_splash"
+autoplay = "burger_falling"
+frame = 5
+frame_progress = 0.51377857
+script = ExtResource("2_i255j")
+area = NodePath("area")
+
+[node name="area" type="Area2D" parent="." unique_id=711441991]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="area" unique_id=1605855784]
+shape = SubResource("CapsuleShape2D_mrgpq")
