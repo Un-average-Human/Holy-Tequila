@@ -36,6 +36,7 @@ func execute(mini_boss: AnimatedSprite2D):
 
 func _shoot() -> void:
 	var projectile_instance: AnimatedSprite2D = projectile_scene.instantiate()
+	projectile_instance.can_collide = false
 	projectile_instance.scale.y = 0.001
 	get_tree().current_scene.add_child(projectile_instance)
 	projectile_instance.global_position = projectile_spawn.global_position
@@ -51,6 +52,7 @@ func _shoot() -> void:
 	.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
 	
 	projectile_tween.chain().tween_callback(func():
+		projectile_instance.can_collide = true
 		var fall_point = _pick_fall_point()
 		projectile_instance.global_position = fall_point.global_position
 		projectile_instance.flip_v = false
@@ -77,7 +79,7 @@ func _pick_sauce() -> Color:
 		"ketchup":
 			sauce_color = Color.DARK_RED
 		"mayo":
-			sauce_color = Color.CORNSILK
+			sauce_color = Color.BLANCHED_ALMOND
 
 	return sauce_color
 

@@ -1,6 +1,5 @@
 extends CharacterBody3D
 
-var health: int = 3
 var heart_list: Array
 @onready var heart_container: HBoxContainer = %heart_container
 var can_take_damage: bool = true
@@ -56,8 +55,8 @@ func _input(event: InputEvent) -> void:
 func take_damage():
 	if not can_take_damage:
 		return
-	if health > 0:
-		health -= 1
+	if GeneralData.health > 0:
+		GeneralData.health -= 1
 		_update_hearts()
 		
 		var damage_vignette_tween = create_tween()
@@ -81,10 +80,10 @@ func invincibility_frame():
 
 func _update_hearts():
 	for heart in heart_list.size():
-		heart_list[heart].visible = heart < health
-	if health == 1:
+		heart_list[heart].visible = heart < GeneralData.health
+	if GeneralData.health == 1:
 		heart_container.get_child(0).get_child(0).play("pumping")
-	if health == 0:
+	if GeneralData.health == 0:
 		queue_free()
 		SignalBus.player_died.emit()
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)

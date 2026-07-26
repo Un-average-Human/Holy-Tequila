@@ -1,7 +1,7 @@
 extends Node
 
 var player_won: bool = false
-
+var health: int = 3
 var rng = RandomNumberGenerator.new()
 
 var worlds: Dictionary[String, String] = { 

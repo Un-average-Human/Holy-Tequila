@@ -18,8 +18,8 @@ value = SubResource("BBVariant_o385p")
 custom_name = "Is is_attacking True?"
 
 [sub_resource type="BBNode" id="BBNode_o385p"]
-saved_value = NodePath("Node2D/boss")
-resource_name = "Node2D/boss"
+saved_value = NodePath("boss")
+resource_name = "boss"
 
 [sub_resource type="BTCallMethod" id="BTCallMethod_e1m7o"]
 node = SubResource("BBNode_o385p")
@@ -29,12 +29,12 @@ custom_name = "Start Idling"
 [sub_resource type="BTWait" id="BTWait_o385p"]
 duration = 2.0
 
-[sub_resource type="BBNode" id="BBNode_qbdgu"]
-saved_value = NodePath("Node2D/boss")
-resource_name = "Node2D/boss"
+[sub_resource type="BBNode" id="BBNode_e1m7o"]
+saved_value = NodePath("boss")
+resource_name = "boss"
 
 [sub_resource type="BTCallMethod" id="BTCallMethod_nwa7h"]
-node = SubResource("BBNode_qbdgu")
+node = SubResource("BBNode_e1m7o")
 method = &"attack"
 custom_name = "Start Attacking"
 
