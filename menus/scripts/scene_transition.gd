@@ -10,7 +10,14 @@ var previous_scene_path: String
 func _ready() -> void:
 	color_rect.material.set_shader_parameter("progress", min_value)
 
-func transition(fade_in: bool, target_scene_path: String = "") -> void:
+func transition(fade_in: bool, target_scene_path: String = "", transition_type: String = "") -> void:
+	match transition_type:
+		"rolling_pin":
+			pass
+		_:
+			_default_transition(fade_in, target_scene_path)
+
+func _default_transition(fade_in: bool, target_scene_path: String = ""):
 	var tween = create_tween()
 	var target_material = color_rect.material
 	

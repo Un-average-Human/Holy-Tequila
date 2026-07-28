@@ -34,7 +34,6 @@ func _ready() -> void:
 		heart_list.append(heart)
 		heart.get_child(0).play("idle")
 		
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func _input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("UnlockMouse"):
@@ -153,7 +152,7 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 
-	var direction := Input.get_axis("Left", "Right")
+	var direction := Input.get_axis("Left2D", "Right2D")
 	if direction:
 		velocity.x = direction * SPEED
 		

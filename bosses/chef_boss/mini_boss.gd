@@ -32,6 +32,8 @@ func attack():
 			burger_attack.execute(mini_boss)
 
 func _hurt(damage: float):
+	if !mini_boss:
+		return
 	mini_boss.self_modulate = _impact_frame(true)
 	
 	health -= damage
@@ -40,8 +42,8 @@ func _hurt(damage: float):
 	mini_boss.self_modulate = _impact_frame(false)
 	
 	if health <= 0:
-		mini_boss.scale = Vector2(2, 2)
 		mini_boss.play("explosion")
+		mini_boss.scale = Vector2(2, 2)
 		
 		mini_bosses_available.erase(mini_boss)
 		await mini_boss.animation_finished

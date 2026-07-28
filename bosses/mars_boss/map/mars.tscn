@@ -593,8 +593,8 @@ special_action = "parry"
 [node name="explanation" type="Label3D" parent="." unique_id=1561750401]
 transform = Transform3D(0.8496996, 0, -0.52726716, 0, 1, 0, 0.52726716, 0, 0.8496996, 2.4747112, 1.87065, 15.764696)
 billboard = 2
-render_priority = 5
-outline_render_priority = 4
+render_priority = 2
+outline_render_priority = 1
 text = "Your first special action will be the parry. You can only parry PINK objects."
 font = ExtResource("2_53s2l")
 font_size = 85
