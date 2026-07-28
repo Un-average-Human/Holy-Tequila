@@ -1,6 +1,20 @@
 extends Control
 
-enum ACTIONS {Forward, Backward, Left, Right, SpecialAction, Jump, OpenMenu, UnlockMouse}
+enum ACTIONS {
+Forward, 
+Backward, 
+Left, 
+Right, 
+SpecialAction, 
+Jump, 
+OpenMenu, 
+UnlockMouse, 
+LookUp, 
+LookLeft, 
+LookRight, 
+Left2D,
+Right2D
+}
 
 @export_category("Sub-Menus")
 @export var graphic_settings: VBoxContainer
@@ -146,7 +160,9 @@ func _change_action_key(new_key: InputEvent):
 	_update_keys()
 
 func _update_keys():
-	for node_name in ACTIONS.keys(): 
+	for node_name in ACTIONS.keys():
+		if not available_actions.has_node(node_name) or available_actions.get_node(node_name).get_child_count() == 0:
+			return
 		var input_button: Button = available_actions.get_node(node_name).get_child(0)
 		input_button.set_pressed(false)
 		

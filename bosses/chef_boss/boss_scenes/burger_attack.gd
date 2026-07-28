@@ -2,9 +2,9 @@ extends Node
 
 @export_category("Burger")
 @export var projectile_scene: PackedScene
-@export var min_projectile_amount: int = 2
-@export var max_projectile_amount: int = 5
-@export var fire_rate: float = 1.5 #the pause AFTER the attack animation played
+@export var min_projectile_amount: int = 4
+@export var max_projectile_amount: int = 8
+@export var fire_rate: float = 0.5 #the pause AFTER the attack animation played
 
 @export var projectile_spawn: Marker2D
 var last_fall_point_indexes: Array[int] = []
@@ -45,13 +45,14 @@ func _shoot() -> void:
 	projectile_instance.modulate = _pick_sauce()
 	
 	var projectile_tween = create_tween().set_parallel()
-	projectile_tween.tween_property(projectile_instance, "scale:y", 0.25, 0.05)\
+	projectile_tween.tween_property(projectile_instance, "scale", Vector2(0.15, 0.15), 0.05)\
 	.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
 	
-	projectile_tween.tween_property(projectile_instance, "global_position:y", point_height.y, fire_rate)\
+	projectile_tween.tween_property(projectile_instance, "global_position:y", point_height.y, 1)\
 	.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
 	
 	projectile_tween.chain().tween_callback(func():
+		projectile_instance.scale = Vector2(0.25, 0.25)
 		projectile_instance.can_collide = true
 		var fall_point = _pick_fall_point()
 		projectile_instance.global_position = fall_point.global_position

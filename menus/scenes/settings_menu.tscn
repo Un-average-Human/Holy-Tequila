@@ -25,6 +25,10 @@ outline_size = 1
 font_size = 35
 outline_size = 1
 
+[sub_resource type="LabelSettings" id="LabelSettings_ux87g"]
+font = ExtResource("2_5icng")
+font_size = 50
+
 [sub_resource type="ButtonGroup" id="ButtonGroup_mlw3h"]
 allow_unpress = true
 
@@ -44,7 +48,7 @@ controls_settings = NodePath("menus/controls_settings")
 menu_tabs = NodePath("menu_tabs")
 menu_title = NodePath("Label")
 available_actions = NodePath("menus/controls_settings/HBoxContainer/keybinds/available_actions/VBoxContainer")
-rebind_key_button_list = [NodePath("menus/controls_settings/HBoxContainer/keybinds/available_actions/VBoxContainer/SpecialAction/special_action_btn"), NodePath("menus/controls_settings/HBoxContainer/keybinds/available_actions/VBoxContainer/Forward/forward_btn"), NodePath("menus/controls_settings/HBoxContainer/keybinds/available_actions/VBoxContainer/Backward/backward_btn"), NodePath("menus/controls_settings/HBoxContainer/keybinds/available_actions/VBoxContainer/Right/right_btn"), NodePath("menus/controls_settings/HBoxContainer/keybinds/available_actions/VBoxContainer/Left/left_btn"), NodePath("menus/controls_settings/HBoxContainer/keybinds/available_actions/VBoxContainer/Jump/jump_btn"), NodePath("menus/controls_settings/HBoxContainer/keybinds/available_actions/VBoxContainer/OpenMenu/open_menu_btn"), NodePath("menus/controls_settings/HBoxContainer/keybinds/available_actions/VBoxContainer/UnlockMouse/unlock_mouse_btn")]
+rebind_key_button_list = [NodePath("menus/controls_settings/HBoxContainer/keybinds/available_actions/VBoxContainer/SpecialAction/special_action_btn"), NodePath("menus/controls_settings/HBoxContainer/keybinds/available_actions/VBoxContainer/Forward/forward_btn"), NodePath("menus/controls_settings/HBoxContainer/keybinds/available_actions/VBoxContainer/Backward/backward_btn"), NodePath("menus/controls_settings/HBoxContainer/keybinds/available_actions/VBoxContainer/Right/right_btn"), NodePath("menus/controls_settings/HBoxContainer/keybinds/available_actions/VBoxContainer/Left/left_btn"), NodePath("menus/controls_settings/HBoxContainer/keybinds/available_actions/VBoxContainer/Jump/jump_btn"), NodePath("menus/controls_settings/HBoxContainer/keybinds/available_actions/VBoxContainer/OpenMenu/open_menu_btn"), NodePath("menus/controls_settings/HBoxContainer/keybinds/available_actions/VBoxContainer/UnlockMouse/unlock_mouse_btn"), NodePath("menus/controls_settings/HBoxContainer/keybinds/available_actions/VBoxContainer/Left2D/2D_left"), NodePath("menus/controls_settings/HBoxContainer/keybinds/available_actions/VBoxContainer/Right2D/2D_right"), NodePath("menus/controls_settings/HBoxContainer/keybinds/available_actions/VBoxContainer/LookUp/look_up"), NodePath("menus/controls_settings/HBoxContainer/keybinds/available_actions/VBoxContainer/LookLeft/look_left"), NodePath("menus/controls_settings/HBoxContainer/keybinds/available_actions/VBoxContainer/LookRight/look_right")]
 vsync_toggle = NodePath("menus/graphic_settings/vsync/CheckButton")
 fps_limit_picker = NodePath("menus/graphic_settings/fps_limit/fps_limit_picker")
 window_mode_picker = NodePath("menus/graphic_settings/window_mode/window_mode_picker")
@@ -201,11 +205,11 @@ script = ExtResource("4_xtyl5")
 bus_name = "SFX"
 
 [node name="controls_settings" type="VBoxContainer" parent="menus" unique_id=464197822]
-visible = false
 layout_mode = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="menus/controls_settings" unique_id=1189706619]
 layout_mode = 2
+theme_override_constants/separation = 4
 
 [node name="keybinds" type="Label" parent="menus/controls_settings/HBoxContainer" unique_id=544763650]
 layout_mode = 2
@@ -227,27 +231,6 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 30
-
-[node name="SpecialAction" type="Label" parent="menus/controls_settings/HBoxContainer/keybinds/available_actions/VBoxContainer" unique_id=1280164652]
-layout_mode = 2
-size_flags_vertical = 6
-theme = ExtResource("1_5icng")
-text = "Special action:"
-
-[node name="special_action_btn" type="Button" parent="menus/controls_settings/HBoxContainer/keybinds/available_actions/VBoxContainer/SpecialAction" unique_id=1405654597]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -8.172424
-offset_top = -15.0
-offset_right = 113.827576
-offset_bottom = 18.0
-grow_horizontal = 2
-grow_vertical = 2
-toggle_mode = true
 
 [node name="Forward" type="Label" parent="menus/controls_settings/HBoxContainer/keybinds/available_actions/VBoxContainer" unique_id=1223017953]
 layout_mode = 2
@@ -349,6 +332,139 @@ grow_horizontal = 2
 grow_vertical = 2
 toggle_mode = true
 
+[node name="2D_category" type="Label" parent="menus/controls_settings/HBoxContainer/keybinds/available_actions/VBoxContainer" unique_id=232012353]
+layout_mode = 2
+size_flags_vertical = 6
+text = "2D Controls"
+label_settings = SubResource("LabelSettings_ux87g")
+
+[node name="Left2D" type="Label" parent="menus/controls_settings/HBoxContainer/keybinds/available_actions/VBoxContainer" unique_id=1828281609]
+layout_mode = 2
+size_flags_vertical = 6
+text = "Left:"
+
+[node name="2D_left" type="Button" parent="menus/controls_settings/HBoxContainer/keybinds/available_actions/VBoxContainer/Left2D" unique_id=2013062493]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -8.172424
+offset_top = -15.0
+offset_right = 113.827576
+offset_bottom = 21.0
+grow_horizontal = 2
+grow_vertical = 2
+toggle_mode = true
+
+[node name="Right2D" type="Label" parent="menus/controls_settings/HBoxContainer/keybinds/available_actions/VBoxContainer" unique_id=1661498272]
+layout_mode = 2
+size_flags_vertical = 6
+text = "Right:"
+
+[node name="2D_right" type="Button" parent="menus/controls_settings/HBoxContainer/keybinds/available_actions/VBoxContainer/Right2D" unique_id=1359050983]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -8.172424
+offset_top = -15.0
+offset_right = 113.827576
+offset_bottom = 21.0
+grow_horizontal = 2
+grow_vertical = 2
+toggle_mode = true
+
+[node name="LookUp" type="Label" parent="menus/controls_settings/HBoxContainer/keybinds/available_actions/VBoxContainer" unique_id=1609608814]
+layout_mode = 2
+size_flags_vertical = 6
+text = "Look Up:"
+
+[node name="look_up" type="Button" parent="menus/controls_settings/HBoxContainer/keybinds/available_actions/VBoxContainer/LookUp" unique_id=347176150]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -8.172424
+offset_top = -15.0
+offset_right = 113.827576
+offset_bottom = 21.0
+grow_horizontal = 2
+grow_vertical = 2
+toggle_mode = true
+
+[node name="LookLeft" type="Label" parent="menus/controls_settings/HBoxContainer/keybinds/available_actions/VBoxContainer" unique_id=961147253]
+layout_mode = 2
+size_flags_vertical = 6
+text = "Look Left:"
+
+[node name="look_left" type="Button" parent="menus/controls_settings/HBoxContainer/keybinds/available_actions/VBoxContainer/LookLeft" unique_id=803867373]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -8.172424
+offset_top = -15.0
+offset_right = 113.827576
+offset_bottom = 21.0
+grow_horizontal = 2
+grow_vertical = 2
+toggle_mode = true
+
+[node name="LookRight" type="Label" parent="menus/controls_settings/HBoxContainer/keybinds/available_actions/VBoxContainer" unique_id=107530219]
+layout_mode = 2
+size_flags_vertical = 6
+text = "Look Right:"
+
+[node name="look_right" type="Button" parent="menus/controls_settings/HBoxContainer/keybinds/available_actions/VBoxContainer/LookRight" unique_id=970403154]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -8.172424
+offset_top = -15.0
+offset_right = 113.827576
+offset_bottom = 21.0
+grow_horizontal = 2
+grow_vertical = 2
+toggle_mode = true
+
+[node name="misc_category" type="Label" parent="menus/controls_settings/HBoxContainer/keybinds/available_actions/VBoxContainer" unique_id=2002656653]
+layout_mode = 2
+size_flags_vertical = 6
+text = "Misc"
+label_settings = SubResource("LabelSettings_ux87g")
+
+[node name="UnlockMouse" type="Label" parent="menus/controls_settings/HBoxContainer/keybinds/available_actions/VBoxContainer" unique_id=283111892]
+layout_mode = 2
+size_flags_vertical = 6
+text = "Lock/Unlock 
+Mouse:"
+
+[node name="unlock_mouse_btn" type="Button" parent="menus/controls_settings/HBoxContainer/keybinds/available_actions/VBoxContainer/UnlockMouse" unique_id=1077973646]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -8.172424
+offset_top = -15.0
+offset_right = 113.827576
+offset_bottom = 21.0
+grow_horizontal = 2
+grow_vertical = 2
+toggle_mode = true
+
 [node name="OpenMenu" type="Label" parent="menus/controls_settings/HBoxContainer/keybinds/available_actions/VBoxContainer" unique_id=174435634]
 layout_mode = 2
 size_flags_vertical = 6
@@ -369,12 +485,13 @@ grow_horizontal = 2
 grow_vertical = 2
 toggle_mode = true
 
-[node name="UnlockMouse" type="Label" parent="menus/controls_settings/HBoxContainer/keybinds/available_actions/VBoxContainer" unique_id=283111892]
+[node name="SpecialAction" type="Label" parent="menus/controls_settings/HBoxContainer/keybinds/available_actions/VBoxContainer" unique_id=1280164652]
 layout_mode = 2
 size_flags_vertical = 6
-text = "Lock/Unlock Mouse:"
+theme = ExtResource("1_5icng")
+text = "Special action:"
 
-[node name="unlock_mouse_btn" type="Button" parent="menus/controls_settings/HBoxContainer/keybinds/available_actions/VBoxContainer/UnlockMouse" unique_id=1077973646]
+[node name="special_action_btn" type="Button" parent="menus/controls_settings/HBoxContainer/keybinds/available_actions/VBoxContainer/SpecialAction" unique_id=1405654597]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -384,7 +501,7 @@ anchor_bottom = 0.5
 offset_left = -8.172424
 offset_top = -15.0
 offset_right = 113.827576
-offset_bottom = 21.0
+offset_bottom = 18.0
 grow_horizontal = 2
 grow_vertical = 2
 toggle_mode = true
@@ -402,7 +519,6 @@ anchor_top = 1.3333334
 anchor_right = 0.59770113
 anchor_bottom = 6.4333334
 offset_right = -11.0
-metadata/_edit_use_anchors_ = true
 
 [node name="x_axis" type="Label" parent="menus/controls_settings/HBoxContainer/camera/VBoxContainer" unique_id=513890257]
 layout_mode = 2

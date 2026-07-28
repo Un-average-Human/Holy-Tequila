@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://6uerk7ux082i"]
 
 [ext_resource type="Script" uid="uid://dsik3uuexewbo" path="res://character_body_2d.gd" id="1_ryrji"]
+[ext_resource type="PackedScene" uid="uid://bseq6hdhssiqa" path="res://bullet/scenes/2d_bullet.tscn" id="2_dydyg"]
 [ext_resource type="Texture2D" uid="uid://c16ew73v8cpc1" path="res://player/sprites/player/2D/2d_player.png" id="2_wftrj"]
 [ext_resource type="Texture2D" uid="uid://hrk2wcj4yqei" path="res://player/sprites/player/2D/player_gun.png" id="3_qe4qx"]
 [ext_resource type="Texture2D" uid="uid://dha7gw82f6qfq" path="res://player/sprites/ui/heart_idle.png" id="4_hlh52"]
@@ -218,11 +219,15 @@ font_size = 30
 stacked_outline_count = 1
 stacked_outline_0/size = 5
 
-[node name="CharacterBody2D" type="CharacterBody2D" unique_id=369724669 node_paths=PackedStringArray("player_animated_sprite", "gun_animated_sprite", "gun_orbit", "damage_vignette", "audio", "menu") groups=["player"]]
+[node name="CharacterBody2D" type="CharacterBody2D" unique_id=369724669 node_paths=PackedStringArray("player_animated_sprite", "gun_animated_sprite", "gun_cast", "gun_orbit", "heart_container", "damage_vignette", "audio", "menu") groups=["player"]]
 script = ExtResource("1_ryrji")
 player_animated_sprite = NodePath("player")
 gun_animated_sprite = NodePath("gun_orbit/gun")
+bullet_scene = ExtResource("2_dydyg")
+bullet_speed = 1500
+gun_cast = NodePath("gun_orbit/gun_cast")
 gun_orbit = NodePath("gun_orbit")
+heart_container = NodePath("ui/heart_container")
 damage_vignette = NodePath("ui/damage_vignette")
 audio = NodePath("audio")
 menu = NodePath("menu/menus")
@@ -244,8 +249,12 @@ position = Vector2(20.000002, -8.999999)
 scale = Vector2(0.1, 0.1)
 sprite_frames = SubResource("SpriteFrames_ajocy")
 animation = &"shooting"
-frame = 2
-frame_progress = 1.0
+
+[node name="gun_cast" type="RayCast2D" parent="gun_orbit" unique_id=612428029]
+position = Vector2(50, -11)
+target_position = Vector2(1200, 0)
+collision_mask = 2
+collide_with_areas = true
 
 [node name="ui" type="CanvasLayer" parent="." unique_id=1588551723]
 layer = 2

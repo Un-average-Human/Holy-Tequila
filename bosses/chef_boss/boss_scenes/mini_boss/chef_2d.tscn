@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://cxic8ot62q16v" path="res://bosses/chef_boss/mini_boss.gd" id="1_2at6i"]
 [ext_resource type="Texture2D" uid="uid://cradxnvwr3qb3" path="res://bosses/chef_boss/boss_sprites/burger_mini_boss/borger_spritesheet.png" id="2_urwqr"]
 [ext_resource type="Script" uid="uid://cp0n70qy3ce4o" path="res://bosses/chef_boss/boss_scenes/burger_attack.gd" id="3_rfj0l"]
+[ext_resource type="Texture2D" uid="uid://coclkixcchksq" path="res://bullet/sprites/funny_explosion.png" id="3_urwqr"]
 [ext_resource type="PackedScene" uid="uid://bseq6hdhssiqa" path="res://bullet/scenes/2d_bullet.tscn" id="4_5n2hg"]
 [ext_resource type="BehaviorTree" uid="uid://cch7ocwgo13jj" path="res://bosses/chef_boss/burger_boss.tres" id="5_l62rj"]
 [ext_resource type="PackedScene" uid="uid://6uerk7ux082i" path="res://player/scenes/player/2D_player.tscn" id="6_2ygan"]
@@ -30,6 +31,62 @@ region = Rect2(3240, 3240, 1080, 1080)
 [sub_resource type="AtlasTexture" id="AtlasTexture_4hwrx"]
 atlas = ExtResource("2_urwqr")
 region = Rect2(4320, 3240, 1080, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rfj0l"]
+atlas = ExtResource("3_urwqr")
+region = Rect2(426, 200, 142, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5n2hg"]
+atlas = ExtResource("3_urwqr")
+region = Rect2(568, 200, 142, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l62rj"]
+atlas = ExtResource("3_urwqr")
+region = Rect2(0, 400, 142, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ygan"]
+atlas = ExtResource("3_urwqr")
+region = Rect2(142, 400, 142, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c8kok"]
+atlas = ExtResource("3_urwqr")
+region = Rect2(284, 400, 142, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i5h3c"]
+atlas = ExtResource("3_urwqr")
+region = Rect2(426, 400, 142, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0o2l4"]
+atlas = ExtResource("3_urwqr")
+region = Rect2(0, 600, 142, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_khguc"]
+atlas = ExtResource("3_urwqr")
+region = Rect2(0, 0, 142, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3dak4"]
+atlas = ExtResource("3_urwqr")
+region = Rect2(142, 0, 142, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hfkfo"]
+atlas = ExtResource("3_urwqr")
+region = Rect2(284, 0, 142, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ccwk0"]
+atlas = ExtResource("3_urwqr")
+region = Rect2(426, 0, 142, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xbyen"]
+atlas = ExtResource("3_urwqr")
+region = Rect2(0, 200, 142, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b5a1n"]
+atlas = ExtResource("3_urwqr")
+region = Rect2(142, 200, 142, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c06x8"]
+atlas = ExtResource("3_urwqr")
+region = Rect2(284, 200, 142, 200)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tfjrn"]
 atlas = ExtResource("2_urwqr")
@@ -111,6 +168,53 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_rfj0l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5n2hg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l62rj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2ygan")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c8kok")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i5h3c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0o2l4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_khguc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3dak4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hfkfo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ccwk0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xbyen")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b5a1n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c06x8")
+}],
+"loop": false,
+"name": &"explosion",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_tfjrn")
 }, {
 "duration": 1.0,
@@ -158,6 +262,9 @@ animations = [{
 
 [sub_resource type="BlackboardPlan" id="BlackboardPlan_c8kok"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2at6i"]
+size = Vector2(311, 310)
+
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_x5qx4"]
 normal = Vector2(1, 0)
 
@@ -174,8 +281,9 @@ size = Vector2(1152, 66)
 
 [node name="Node2D" type="Node2D" unique_id=1619152881]
 
-[node name="boss" type="Node2D" parent="." unique_id=287727894 node_paths=PackedStringArray("mini_bosses_available", "burger_attack", "bt_player")]
+[node name="boss" type="Area2D" parent="." unique_id=1882780013 node_paths=PackedStringArray("boss_hit_box", "mini_bosses_available", "burger_attack", "bt_player") groups=["boss_hitbox"]]
 script = ExtResource("1_2at6i")
+boss_hit_box = NodePath(".")
 mini_bosses_available = [NodePath("burger")]
 burger_attack = NodePath("burger/burger_attack")
 bt_player = NodePath("BTState")
@@ -183,10 +291,11 @@ bt_player = NodePath("BTState")
 [node name="burger" type="AnimatedSprite2D" parent="boss" unique_id=1951785262]
 texture_filter = 1
 position = Vector2(579, 337)
-scale = Vector2(0.59999996, 0.59999985)
+scale = Vector2(0.6, 0.6)
 sprite_frames = SubResource("SpriteFrames_a8o3s")
-animation = &"attack"
-frame = 1
+animation = &"explosion"
+frame = 4
+frame_progress = 0.6859943
 
 [node name="point1" type="Marker2D" parent="boss/burger" unique_id=1953071078]
 position = Vector2(-840.00006, -728.3335)
@@ -219,16 +328,44 @@ scale = Vector2(1.6666667, 1.6666671)
 [node name="point8" type="Marker2D" parent="boss/burger" unique_id=763429276]
 position = Vector2(-5, 191.66675)
 
+[node name="point9" type="Marker2D" parent="boss/burger" unique_id=89698168]
+position = Vector2(-418.33337, -721.6668)
+scale = Vector2(1.6666667, 1.6666671)
+
+[node name="point10" type="Marker2D" parent="boss/burger" unique_id=973387377]
+position = Vector2(-140, -721.6669)
+scale = Vector2(1.6666667, 1.6666671)
+
+[node name="point11" type="Marker2D" parent="boss/burger" unique_id=347021524]
+position = Vector2(138.33331, -721.6669)
+scale = Vector2(1.6666667, 1.6666671)
+
+[node name="point12" type="Marker2D" parent="boss/burger" unique_id=1174881591]
+position = Vector2(416.6667, -721.6669)
+scale = Vector2(1.6666667, 1.6666671)
+
+[node name="point13" type="Marker2D" parent="boss/burger" unique_id=11508668]
+position = Vector2(695.00006, -721.6669)
+scale = Vector2(1.6666667, 1.6666671)
+
+[node name="point14" type="Marker2D" parent="boss/burger" unique_id=274182846]
+position = Vector2(-701.66675, -721.6668)
+scale = Vector2(1.6666667, 1.6666671)
+
 [node name="burger_attack" type="Node" parent="boss/burger" unique_id=1981235820 node_paths=PackedStringArray("projectile_spawn", "fall_point_array")]
 script = ExtResource("3_rfj0l")
 projectile_scene = ExtResource("4_5n2hg")
 projectile_spawn = NodePath("../point8")
-fall_point_array = [NodePath("../point1"), NodePath("../point2"), NodePath("../point3"), NodePath("../point4"), NodePath("../point5"), NodePath("../point6"), NodePath("../point7"), NodePath("../point8")]
+fall_point_array = [NodePath("../point1"), NodePath("../point2"), NodePath("../point3"), NodePath("../point4"), NodePath("../point5"), NodePath("../point6"), NodePath("../point7"), NodePath("../point8"), NodePath("../point9"), NodePath("../point10"), NodePath("../point11"), NodePath("../point12"), NodePath("../point13"), NodePath("../point14")]
 point_height = Vector2(0, -721.667)
 
 [node name="BTState" type="BTPlayer" parent="boss" unique_id=1542784193]
 behavior_tree = ExtResource("5_l62rj")
 blackboard_plan = SubResource("BlackboardPlan_c8kok")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="boss" unique_id=1822554302]
+position = Vector2(572.5, 417)
+shape = SubResource("RectangleShape2D_2at6i")
 
 [node name="border" type="StaticBody2D" parent="." unique_id=2110720380]
 

@@ -20,3 +20,10 @@ func _bullet_collided(body: Node2D):
 				play("burger_splash")
 				await animation_finished
 				queue_free()
+
+func _process(delta: float) -> void:
+	if player_bullet:
+		var areas_colliding = area.get_overlapping_areas()
+		for area_colliding in areas_colliding:
+			if area_colliding.is_in_group("boss_hitbox"):
+				area_colliding._hurt(40)

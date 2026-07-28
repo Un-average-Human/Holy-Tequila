@@ -8,14 +8,17 @@ const JUMP_VELOCITY = -400.0
 @export var player_animated_sprite: AnimatedSprite2D
 @export var gun_animated_sprite: AnimatedSprite2D
 
+@export var bullet_scene: PackedScene
+@export var bullet_speed: int
+@export var gun_cast: RayCast2D
 @export var gun_orbit: Node2D
-var is_shooting: bool = false
 @export var fire_rate: float = 0.2
 var fire_cooldown: float = 0.0
+var is_shooting: bool = false
 
 var heart_list: Array
-@onready var heart_container: HBoxContainer = %heart_container
 var can_take_damage: bool = true
+@export var heart_container: HBoxContainer
 @export var damage_vignette: Panel
 
 var in_bossfight: bool = false
@@ -94,14 +97,42 @@ func unlock_mouse():
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 func shoot() -> void:
+	if is_shooting:
+		return
 	is_shooting = true
 	fire_cooldown = fire_rate
 	
 	gun_animated_sprite.play("shooting")
+	var bullet_dict: Dictionary = _bullet()
+	
+	var bullet: AnimatedSprite2D = bullet_dict.keys()[0]
+	var target_pos: Vector2 = bullet_dict.values()[0]
+	
+	var distance = bullet.global_position.distance_to(target_pos)
+	var duration = distance / bullet_speed
+	
+	var bullet_tween = create_tween()
+	bullet_tween.tween_property(bullet, "global_position", target_pos, duration)
 	
 	await gun_animated_sprite.animation_finished
+	
 	is_shooting = false
+	
 
+func _bullet() -> Dictionary[AnimatedSprite2D, Vector2]:
+	var bullet: AnimatedSprite2D = bullet_scene.instantiate()
+	bullet.play("player_bullet")
+	get_tree().current_scene.add_child(bullet)
+	
+	bullet.rotation = gun_orbit.rotation
+	bullet.global_position = gun_cast.global_position
+	bullet.player_bullet = true
+	
+	var target_pos: Vector2 = gun_cast.to_global(gun_cast.target_position)
+	
+	var dict: Dictionary[AnimatedSprite2D, Vector2] = {bullet: target_pos}
+	
+	return dict
 func _process(delta: float) -> void:
 	gun_orbit.look_at(get_global_mouse_position())
 	
@@ -112,7 +143,6 @@ func _process(delta: float) -> void:
 
 	if fire_cooldown > 0:
 		fire_cooldown -= delta
-
 	if Input.is_action_pressed("SpecialAction") and fire_cooldown <= 0:
 		shoot()
 
