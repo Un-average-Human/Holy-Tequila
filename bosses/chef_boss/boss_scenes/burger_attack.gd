@@ -4,35 +4,49 @@ extends Node
 @export var projectile_scene: PackedScene
 @export var min_projectile_amount: int = 4
 @export var max_projectile_amount: int = 8
-@export var fire_rate: float = 0.5 #the pause AFTER the attack animation played
+@export var fire_rate: float = 0.5
 
 @export var projectile_spawn: Marker2D
 var last_fall_point_indexes: Array[int] = []
 @export var fall_point_array: Array[Marker2D]
 @export var point_height: Vector2
 
-func execute(mini_boss: AnimatedSprite2D):
+func execute(mini_boss: AnimatedSprite2D, boss: Boss):
+	if boss.health <= 0 or not is_instance_valid(mini_boss):
+		return
+		
 	mini_boss.play("prepare_attack")
 	await mini_boss.animation_finished
+	
+	if boss.health <= 0 or not is_instance_valid(mini_boss): return
 	mini_boss.play("attack_idle")
 			
-	var projectile_amount = GeneralData.rng.randi_range(
-	min_projectile_amount, max_projectile_amount)
+	var projectile_amount = GeneralData.rng.randi_range(min_projectile_amount, max_projectile_amount)
 			
 	for i in range(projectile_amount):
+		if boss.health <= 0 or not is_instance_valid(mini_boss): return
 		mini_boss.play("attack")
-		while mini_boss.frame != 2:
+		
+		while is_instance_valid(mini_boss) and mini_boss.frame != 2 and boss.health > 0:
 			await mini_boss.frame_changed
+		
+		if boss.health <= 0 or not is_instance_valid(mini_boss): return
 		_shoot()
+		
 		await mini_boss.animation_finished
+		
+		if boss.health <= 0 or not is_instance_valid(mini_boss): return
 		mini_boss.play("attack_idle")
 				
 		await get_tree().create_timer(fire_rate).timeout
 				
+	if boss.health <= 0 or not is_instance_valid(mini_boss): return
 	last_fall_point_indexes.clear()
 	mini_boss.play_backwards("prepare_attack")
 	await mini_boss.animation_finished
-	mini_boss.get_parent().blackboard.set_var("is_attacking", false)
+	
+	if is_instance_valid(mini_boss) and mini_boss.get_parent():
+		mini_boss.get_parent().blackboard.set_var("is_attacking", false)
 
 func _shoot() -> void:
 	var projectile_instance: AnimatedSprite2D = projectile_scene.instantiate()
@@ -42,6 +56,7 @@ func _shoot() -> void:
 	projectile_instance.global_position = projectile_spawn.global_position
 	projectile_instance.flip_v = true
 	
+	projectile_instance.play("burger_falling")
 	projectile_instance.modulate = _pick_sauce()
 	
 	var projectile_tween = create_tween().set_parallel()
@@ -52,11 +67,12 @@ func _shoot() -> void:
 	.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
 	
 	projectile_tween.chain().tween_callback(func():
-		projectile_instance.scale = Vector2(0.25, 0.25)
-		projectile_instance.can_collide = true
-		var fall_point = _pick_fall_point()
-		projectile_instance.global_position = fall_point.global_position
-		projectile_instance.flip_v = false
+		if is_instance_valid(projectile_instance):
+			projectile_instance.scale = Vector2(0.25, 0.25)
+			projectile_instance.can_collide = true
+			var fall_point = _pick_fall_point()
+			projectile_instance.global_position = fall_point.global_position
+			projectile_instance.flip_v = false
 	)
 	
 	projectile_tween.tween_property(projectile_instance, "global_position:y", 900, 3)

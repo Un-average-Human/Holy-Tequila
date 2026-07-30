@@ -464,3 +464,5 @@ shape = SubResource("ConvexPolygonShape3D_bdmdc")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 
 [node name="Node" type="Node" parent="." unique_id=478003106]
+
+[node name="boss" type="Node3D" parent="." unique_id=640654191]

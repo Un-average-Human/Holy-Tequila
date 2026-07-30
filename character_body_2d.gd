@@ -123,23 +123,31 @@ func _bullet() -> Dictionary[AnimatedSprite2D, Vector2]:
 	bullet.play("player_bullet")
 	get_tree().current_scene.add_child(bullet)
 	
-	bullet.rotation = gun_orbit.rotation
+	bullet.scale = Vector2(0.15, 0.15)
+	bullet.global_rotation = gun_cast.global_rotation
 	bullet.global_position = gun_cast.global_position
 	bullet.player_bullet = true
 	
-	var target_pos: Vector2 = gun_cast.to_global(gun_cast.target_position)
+	var target_pos: Vector2 = gun_cast.global_position + (Vector2.RIGHT.rotated(gun_cast.global_rotation) * gun_cast.target_position.x)
 	
 	var dict: Dictionary[AnimatedSprite2D, Vector2] = {bullet: target_pos}
 	
 	return dict
-func _process(delta: float) -> void:
-	gun_orbit.look_at(get_global_mouse_position())
-	
-	if get_global_mouse_position().x < global_position.x:
-		gun_orbit.scale.y = -1
-	else:
-		gun_orbit.scale.y = 1
 
+func _process(delta: float) -> void:
+	if Input.is_action_pressed("LookUp"):
+		if player_animated_sprite.flip_h:
+			gun_orbit.rotation_degrees = 90
+		else:
+			gun_orbit.rotation_degrees = -90
+	elif Input.is_action_pressed("LookDown"):
+		if player_animated_sprite.flip_h:
+			gun_orbit.rotation_degrees = -90
+		else:
+			gun_orbit.rotation_degrees = 90
+	else:
+		gun_orbit.rotation = 0
+		
 	if fire_cooldown > 0:
 		fire_cooldown -= delta
 	if Input.is_action_pressed("SpecialAction") and fire_cooldown <= 0:
@@ -161,6 +169,11 @@ func _physics_process(delta: float) -> void:
 			gun_animated_sprite.play("running")
 			
 		player_animated_sprite.flip_h = velocity.x < 0
+		
+		if player_animated_sprite.flip_h:
+			gun_orbit.scale.x = -1
+		else:
+			gun_orbit.scale.x = 1
 
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)

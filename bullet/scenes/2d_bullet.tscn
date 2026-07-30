@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://btortt1vb5ht4" path="res://bullet/sprites/burger_projectile.png" id="1_mrgpq"]
 [ext_resource type="Script" uid="uid://c4wh4w8k7qwqr" path="res://bullet/scenes/2d_bullet.gd" id="2_i255j"]
-[ext_resource type="Texture2D" uid="uid://4q335xxs2p" path="res://icon.svg" id="2_iay1k"]
+[ext_resource type="Texture2D" uid="uid://cjj3xmcx0cujk" path="res://bullet/sprites/player_bullet.png" id="2_iay1k"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i255j"]
 atlas = ExtResource("1_mrgpq")
@@ -43,6 +43,22 @@ region = Rect2(1620, 540, 540, 540)
 [sub_resource type="AtlasTexture" id="AtlasTexture_v1kop"]
 atlas = ExtResource("1_mrgpq")
 region = Rect2(2160, 540, 540, 540)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n6vy0"]
+atlas = ExtResource("2_iay1k")
+region = Rect2(0, 0, 540, 540)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kgvfk"]
+atlas = ExtResource("2_iay1k")
+region = Rect2(540, 0, 540, 540)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bv756"]
+atlas = ExtResource("2_iay1k")
+region = Rect2(1080, 0, 540, 540)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ng00u"]
+atlas = ExtResource("2_iay1k")
+region = Rect2(1620, 0, 540, 540)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_n6vy0"]
 animations = [{
@@ -88,7 +104,16 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_iay1k")
+"texture": SubResource("AtlasTexture_n6vy0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kgvfk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bv756")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ng00u")
 }],
 "loop": true,
 "name": &"player_bullet",

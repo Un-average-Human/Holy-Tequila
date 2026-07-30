@@ -6,7 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://hrk2wcj4yqei" path="res://player/sprites/player/2D/player_gun.png" id="3_qe4qx"]
 [ext_resource type="Texture2D" uid="uid://dha7gw82f6qfq" path="res://player/sprites/ui/heart_idle.png" id="4_hlh52"]
 [ext_resource type="Texture2D" uid="uid://bfqx1j8kjgxa5" path="res://player/sprites/ui/heart_pumping.png" id="5_dydyg"]
-[ext_resource type="Theme" uid="uid://bl2p5taqyov0l" path="res://ui.tres" id="6_uvw5r"]
 [ext_resource type="PackedScene" uid="uid://du6p1clay1guf" path="res://player/scenes/ui/player_menu.tscn" id="7_ec1r4"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_owagi"]
@@ -214,11 +213,6 @@ animations = [{
 "speed": 3.0
 }]
 
-[sub_resource type="LabelSettings" id="LabelSettings_knttp"]
-font_size = 30
-stacked_outline_count = 1
-stacked_outline_0/size = 5
-
 [node name="CharacterBody2D" type="CharacterBody2D" unique_id=369724669 node_paths=PackedStringArray("player_animated_sprite", "gun_animated_sprite", "gun_cast", "gun_orbit", "heart_container", "damage_vignette", "audio", "menu") groups=["player"]]
 script = ExtResource("1_ryrji")
 player_animated_sprite = NodePath("player")
@@ -308,31 +302,6 @@ scale = Vector2(0.333, 0.333)
 sprite_frames = SubResource("SpriteFrames_c1vyp")
 animation = &"pumping"
 centered = false
-
-[node name="ability_cooldown" type="ProgressBar" parent="ui" unique_id=980117078]
-texture_filter = 1
-offset_left = 702.0
-offset_top = 595.0
-offset_right = 1104.0
-offset_bottom = 625.0
-step = 0.0
-value = 100.0
-show_percentage = false
-metadata/_edit_use_anchors_ = true
-
-[node name="Label" type="Label" parent="ui/ability_cooldown" unique_id=589144778]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("6_uvw5r")
-text = "Ability Cooldown"
-label_settings = SubResource("LabelSettings_knttp")
-horizontal_alignment = 1
-vertical_alignment = 1
-metadata/_edit_use_anchors_ = true
 
 [node name="menu" type="CanvasLayer" parent="." unique_id=1106807070]
 layer = 3

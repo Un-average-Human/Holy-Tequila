@@ -23,34 +23,45 @@ func _start_mini_bossfight():
 	mini_boss = mini_bosses_available[boss_index]
 
 func idle():
-	mini_boss.play("idle")
+	if is_instance_valid(mini_boss) and health > 0:
+		mini_boss.play("idle")
 
 func attack():
+	if !mini_boss or health <= 0:
+		return
 	blackboard.set_var("is_attacking", true)
 	match mini_boss.name:
 		"burger":
-			burger_attack.execute(mini_boss)
+			burger_attack.execute(mini_boss, self)
 
 func _hurt(damage: float):
-	if !mini_boss:
+	if !is_instance_valid(mini_boss) or health <= 0:
 		return
+		
 	mini_boss.self_modulate = _impact_frame(true)
-	
 	health -= damage
-	await get_tree().create_timer(0.1).timeout
 	
-	mini_boss.self_modulate = _impact_frame(false)
+	await get_tree().create_timer(0.1).timeout
+	if !is_instance_valid(mini_boss):
+		return
+		
+	if health > 0:
+		mini_boss.self_modulate = _impact_frame(false)
 	
 	if health <= 0:
-		mini_boss.play("explosion")
+		blackboard.set_var("is_attacking", true)
+		
+		mini_boss.self_modulate = Color.WHITE 
 		mini_boss.scale = Vector2(2, 2)
+		mini_boss.play("explosion")
 		
 		mini_bosses_available.erase(mini_boss)
 		await mini_boss.animation_finished
 		mini_boss.queue_free()
 		
-	
 func _impact_frame(start: bool) -> Color:
+	if !is_instance_valid(mini_boss): return Color.WHITE
+	
 	var intensity = 1.5
 	var base_color: Color = mini_boss.self_modulate
 	
