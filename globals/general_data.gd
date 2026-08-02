@@ -4,6 +4,9 @@ var player_won: bool = false
 var health: int = 3
 var rng = RandomNumberGenerator.new()
 
+var mini_bosses_available: Array[String] = ["burger"]
+var selected_mini_boss_name: String = ""
+
 var worlds: Dictionary[String, String] = { 
 	"burger" : "mars", 
 	"mega_market" : "burger",

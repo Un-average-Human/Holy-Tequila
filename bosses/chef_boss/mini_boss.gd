@@ -13,14 +13,20 @@ func _ready() -> void:
 	health = 1000
 	
 	boss_hit_box.area_entered.connect(_bullet_hit)
-	_start_mini_bossfight()
-
-func _start_mini_bossfight():
-	if can_attack: return
-	can_attack = true
 	
-	var boss_index = GeneralData.rng.randi_range(0, mini_bosses_available.size() - 1)
-	mini_boss = mini_bosses_available[boss_index]
+	_load_selected_mini_boss()
+
+func _load_selected_mini_boss():
+	var target_name = GeneralData.selected_mini_boss_name
+	
+	for sprite in mini_bosses_available:
+		if is_instance_valid(sprite) and sprite.name == target_name:
+			mini_boss = sprite
+			can_attack = true
+			break
+			
+	if not mini_boss:
+		print("Error: No matching AnimatedSprite2D found for ", target_name)
 
 func idle():
 	if is_instance_valid(mini_boss) and health > 0:
@@ -55,26 +61,17 @@ func _hurt(damage: float):
 		mini_boss.scale = Vector2(2, 2)
 		mini_boss.play("explosion")
 		
-		mini_bosses_available.erase(mini_boss)
+		GeneralData.mini_bosses_available.erase(mini_boss.name)
+		
 		await mini_boss.animation_finished
 		mini_boss.queue_free()
 		
 func _impact_frame(start: bool) -> Color:
 	if !is_instance_valid(mini_boss): return Color.WHITE
-	
-	var intensity = 1.5
-	var base_color: Color = mini_boss.self_modulate
-	
 	if start:
-		base_color.srgb_to_linear()
-		base_color *= intensity
-		base_color.linear_to_srgb()
+		return Color(5.0, 5.0, 5.0, 1.0)
 	else:
-		base_color.srgb_to_linear()
-		base_color = Color.WHITE
-		base_color.linear_to_srgb()
-	
-	return base_color
+		return Color.WHITE
 
 func _bullet_hit(bullet_area: Area2D):
 	var bullet = bullet_area.get_parent()
