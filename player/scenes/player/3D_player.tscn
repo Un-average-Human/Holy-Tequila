@@ -54,6 +54,8 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_bnu6f"]
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7illk"]
 bg_color = Color(1, 0, 0, 0)
 border_width_left = 150
@@ -146,6 +148,10 @@ render_priority = 1
 sprite_frames = SubResource("SpriteFrames_b26j0")
 animation = &"parrying"
 autoplay = "idle"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D" unique_id=1697843055]
+cast_shadow = 3
+mesh = SubResource("CapsuleMesh_bnu6f")
 
 [node name="ui" type="CanvasLayer" parent="." unique_id=383149491]
 layer = 2

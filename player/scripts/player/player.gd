@@ -8,6 +8,7 @@ var can_take_damage: bool = true
 var current_speed: float = 5.0
 var jump_force: float = 4.5
 
+var using_map_camera: bool = false
 @export var cam_pivot: Node3D
 var mouse_sens: float = 0.005
 @export var player_cam: Camera3D
@@ -30,10 +31,10 @@ func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func _input(event: InputEvent) -> void:
-	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
-			rotate_y(-event.relative.x * mouse_sens)
-			cam_pivot.rotation.x += -event.relative.y * mouse_sens
-			cam_pivot.rotation.x = clamp(cam_pivot.rotation.x, deg_to_rad(-60), deg_to_rad(60))
+	#if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED and !using_map_camera:
+			#rotate_y(-event.relative.x * mouse_sens)
+			#cam_pivot.rotation.x += -event.relative.y * mouse_sens
+			#cam_pivot.rotation.x = clamp(cam_pivot.rotation.x, deg_to_rad(-60), deg_to_rad(60))
 
 
 		

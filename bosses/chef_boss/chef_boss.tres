@@ -1,0 +1,36 @@
+[gd_resource type="BehaviorTree" format=3 uid="uid://botbw5ihl6r20"]
+
+[sub_resource type="BlackboardPlan" id="BlackboardPlan_i0j1x"]
+var/is_attacking/name = &"is_attacking"
+var/is_attacking/type = 1
+var/is_attacking/value = false
+var/is_attacking/hint = 0
+var/is_attacking/hint_string = ""
+
+[sub_resource type="BBVariant" id="BBVariant_i0j1x"]
+type = 1
+saved_value = true
+resource_name = "true"
+
+[sub_resource type="BTCheckAgentProperty" id="BTCheckAgentProperty_o2k44"]
+property = &"can_attack"
+value = SubResource("BBVariant_i0j1x")
+custom_name = "Is can_attack True?"
+
+[sub_resource type="BBNode" id="BBNode_i0j1x"]
+saved_value = NodePath("boss")
+resource_name = "boss"
+
+[sub_resource type="BTCallMethod" id="BTCallMethod_o2k44"]
+node = SubResource("BBNode_i0j1x")
+method = &"idle"
+
+[sub_resource type="BTSequence" id="BTSequence_7ua8e"]
+children = [SubResource("BTCheckAgentProperty_o2k44"), SubResource("BTCallMethod_o2k44")]
+
+[sub_resource type="BTSelector" id="BTSelector_tioj0"]
+children = [SubResource("BTSequence_7ua8e")]
+
+[resource]
+blackboard_plan = SubResource("BlackboardPlan_i0j1x")
+root_task = SubResource("BTSelector_tioj0")

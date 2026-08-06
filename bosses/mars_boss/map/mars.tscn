@@ -591,7 +591,7 @@ script = ExtResource("1_jo3wj")
 special_action = "parry"
 
 [node name="explanation" type="Label3D" parent="." unique_id=1561750401]
-transform = Transform3D(0.8496996, 0, -0.52726716, 0, 1, 0, 0.52726716, 0, 0.8496996, 2.4747112, 1.87065, 15.764696)
+transform = Transform3D(0.8496996, 0, -0.52726716, 0, 1, 0, 0.52726716, 0, 0.8496996, 2.4747112, 1.87065, 3.7646961)
 billboard = 2
 render_priority = 2
 outline_render_priority = 1
@@ -607,8 +607,7 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, -
 collision_layer = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="battle_island" unique_id=734364744]
-transform = Transform3D(20, 0, 0, 0, 2, 0, 0, 0, 20, 0, -1.5, 0)
-visible = false
+transform = Transform3D(10, 0, 0, 0, 1.1, 0, 0, 0, 10, 0, -0.7750001, 0)
 shape = SubResource("ConcavePolygonShape3D_vhqvn")
 
 [node name="void_detector" type="Area3D" parent="." unique_id=1842554380]
@@ -622,16 +621,15 @@ shape = SubResource("CylinderShape3D_53s2l")
 [node name="boss_area_detector" type="Area3D" parent="." unique_id=1128781379]
 unique_name_in_owner = true
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, -0.5, 0)
-visible = false
 monitorable = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="boss_area_detector" unique_id=1343230211]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.480713, 4.9000006, 0)
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 5.480713, 4.9000006, 0)
 shape = SubResource("BoxShape3D_gn52h")
 
 [node name="spawn_point" type="Marker3D" parent="." unique_id=1312936847]
 unique_name_in_owner = true
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 1, 18.842957)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 1, 7.8429565)
 
 [node name="environment" type="Node" parent="." unique_id=1235068419]
 
@@ -748,7 +746,7 @@ vertical_top_laser = NodePath("../../laser_spawn_points/vertical_top")
 vertical_bottom_laser = NodePath("../../laser_spawn_points/vertical_bottom")
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=1546936284]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+transform = Transform3D(0.5, 0, 0, 0, 0.55, 0, 0, 0, 0.5, 0, -0.42499995, 0)
 navigation_mesh = SubResource("NavigationMesh_b464i")
 
 [node name="Cube" type="MeshInstance3D" parent="NavigationRegion3D" unique_id=38010769]
@@ -758,7 +756,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_fqkmi")
 
 [node name="enemy_spawn_points" type="Node3D" parent="." unique_id=557216354]
 unique_name_in_owner = true
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, -0.5, 0)
+transform = Transform3D(-2.1855694e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.1855694e-08, 0, -0.5, 0)
 visible = false
 
 [node name="Marker3D" type="Marker3D" parent="enemy_spawn_points" unique_id=635930369]
@@ -795,6 +793,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.2204204, 1.5, 12.943588)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5482721, 1.5, 1.1147498)
 
 [node name="laser_spawn_points" type="Node3D" parent="." unique_id=1211744748]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 
 [node name="vertical_top" type="Marker3D" parent="laser_spawn_points" unique_id=1649965936]
 transform = Transform3D(4.371139e-08, 3.821371e-15, 1, 0, 1, -3.821371e-15, -1, 0, 4.371139e-08, 0, 0.57, -24)
@@ -809,7 +808,11 @@ transform = Transform3D(1, -1.7484555e-07, 0, 1.7484555e-07, 1, 0, 0, 0, 1, -24,
 transform = Transform3D(1, -1.7484555e-07, 0, 1.7484555e-07, 1, 0, 0, 0, 1, 24, 0.5, 0)
 
 [node name="inspecting_point" type="Marker3D" parent="." unique_id=436470088]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.5, -27)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, -14)
 
 [node name="normal_point" type="Marker3D" parent="." unique_id=496536603]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.5, -35)
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=571874939]
+transform = Transform3D(1, 0, 0, 0, 0.9659259, 0.25881907, 0, -0.25881907, 0.9659258, 0, 5, 13)
+fov = 90.0
