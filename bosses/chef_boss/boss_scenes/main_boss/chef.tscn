@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://btbwvpee4p571" path="res://bosses/chef_boss/boss_scenes/main_boss/food_world.gd" id="1_14uva"]
 [ext_resource type="Texture2D" uid="uid://c4fso23ys6a6q" path="res://bosses/chef_boss/boss_sprites/chef.png" id="2_4u6kh"]
 [ext_resource type="BehaviorTree" uid="uid://botbw5ihl6r20" path="res://bosses/chef_boss/chef_boss.tres" id="4_q0qwj"]
+[ext_resource type="Theme" uid="uid://bl2p5taqyov0l" path="res://ui.tres" id="5_w5q7o"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_qwtjy"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -580,6 +581,9 @@ animations = [{
 
 [sub_resource type="BlackboardPlan" id="BlackboardPlan_w5q7o"]
 
+[sub_resource type="LabelSettings" id="LabelSettings_ef5ew"]
+font_size = 75
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_14uva"]
 size = Vector3(56.774414, 51.208984, 39.45703)
 
@@ -668,9 +672,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 
 [node name="Node" type="Node" parent="." unique_id=478003106]
 
-[node name="boss" type="Node3D" parent="." unique_id=640654191 node_paths=PackedStringArray("chef_sprite", "bt_player")]
+[node name="boss" type="Node3D" parent="." unique_id=640654191 node_paths=PackedStringArray("boss_name", "chef_sprite", "start_bossfight_area", "bt_player")]
 script = ExtResource("1_8bqa2")
+boss_name = NodePath("boss_name")
 chef_sprite = NodePath("AnimatedSprite3D")
+start_bossfight_area = NodePath("../start_bossfight")
 mini_boss_scene = "res://bosses/chef_boss/boss_scenes/mini_boss/chef_2d.tscn"
 bt_player = NodePath("BTPlayer")
 
@@ -680,11 +686,25 @@ pixel_size = 0.085
 billboard = 2
 texture_filter = 0
 sprite_frames = SubResource("SpriteFrames_7vuwa")
-animation = &"attack"
+animation = &"idle"
 
 [node name="BTPlayer" type="BTPlayer" parent="boss" unique_id=147084169]
 behavior_tree = ExtResource("4_q0qwj")
 blackboard_plan = SubResource("BlackboardPlan_w5q7o")
+
+[node name="boss_name" type="Label" parent="boss" unique_id=1107504151]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0)
+anchors_preset = -1
+anchor_top = 0.7623457
+anchor_right = 1.0
+anchor_bottom = 0.9228395
+theme = ExtResource("5_w5q7o")
+text = "Chef Doe Nut-holl"
+label_settings = SubResource("LabelSettings_ef5ew")
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="void_area" type="Area3D" parent="." unique_id=457075771]
 
@@ -710,6 +730,6 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -8.4
 shape = SubResource("BoxShape3D_w5q7o")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=2120666730]
-transform = Transform3D(1, 0, 0, 0, 0.9659259, 0.25881907, 0, -0.25881907, 0.9659258, 0, 11.639263, 14.609962)
+transform = Transform3D(1, 0, 0, 0, 0.9659259, 0.25881907, 0, -0.25881907, 0.9659258, 0, 11.639263, 14.135361)
 current = true
 fov = 90.0

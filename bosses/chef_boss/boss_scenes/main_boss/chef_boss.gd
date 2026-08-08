@@ -1,14 +1,39 @@
 extends Boss
 
+@export var boss_name: Label
 @export var chef_sprite: AnimatedSprite3D
 @export var start_bossfight_area: Area3D
 @export_file_path("*.tscn") var mini_boss_scene: String
 
 func _ready() -> void:
 	Engine.set_meta("chef_boss", health)
+	start_bossfight_area.body_entered.connect(_start_bossfight_area_entered)
+	chef_sprite.global_position.y = -60
 
-func _start_bossfight(body: Node3D):
-	pass
+func _start_bossfight_area_entered(body: Node3D):
+	if body.is_in_group("player") and has_started == false:
+		#explanation.queue_free()
+		start_bossfight_area.queue_free()
+		has_started = true
+		player = body
+		_start_bossfight()
+
+func _start_bossfight():
+	
+	if can_attack: return
+	var tween = create_tween()
+	tween.tween_property(boss_name, "modulate:a", 1.0, 1.0)
+	
+	tween.tween_interval(1.0)
+	var start_bossfight_tween = create_tween()
+	start_bossfight_tween.tween_property(chef_sprite, "global_position:y", 0.0, 1.5)\
+	.set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_BACK)
+	start_bossfight_tween.tween_callback(func():
+		idle())
+	
+	tween.tween_property(boss_name, "modulate:a", 0, 1.0)
+	await tween.finished
+	can_attack = true
 
 func idle() -> void:
 	chef_sprite.play("idle")
@@ -16,7 +41,8 @@ func idle() -> void:
 func attack():
 	pass
 
-func _miniboss_animation():
+func start_miniboss():
+	blackboard.set_var("miniboss_alive", true)
 	_choose_miniboss()
 	SceneTransition.transition(true, mini_boss_scene)
 

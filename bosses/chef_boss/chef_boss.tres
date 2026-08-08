@@ -6,6 +6,11 @@ var/is_attacking/type = 1
 var/is_attacking/value = false
 var/is_attacking/hint = 0
 var/is_attacking/hint_string = ""
+var/miniboss_alive/name = &"miniboss_alive"
+var/miniboss_alive/type = 1
+var/miniboss_alive/value = false
+var/miniboss_alive/hint = 0
+var/miniboss_alive/hint_string = ""
 
 [sub_resource type="BBVariant" id="BBVariant_i0j1x"]
 type = 1
@@ -25,12 +30,44 @@ resource_name = "boss"
 node = SubResource("BBNode_i0j1x")
 method = &"idle"
 
-[sub_resource type="BTSequence" id="BTSequence_7ua8e"]
-children = [SubResource("BTCheckAgentProperty_o2k44"), SubResource("BTCallMethod_o2k44")]
+[sub_resource type="BTConsolePrint" id="BTConsolePrint_i0j1x"]
+text = "very strong attack frfr"
 
-[sub_resource type="BTSelector" id="BTSelector_tioj0"]
+[sub_resource type="BTProbability" id="BTProbability_o2k44"]
+custom_name = "Will attack?"
+children = [SubResource("BTConsolePrint_i0j1x")]
+
+[sub_resource type="BBVariant" id="BBVariant_o2k44"]
+type = 1
+saved_value = false
+resource_name = "false"
+
+[sub_resource type="BTCheckVar" id="BTCheckVar_3dw6m"]
+variable = &"miniboss_alive"
+value = SubResource("BBVariant_o2k44")
+custom_name = "If there isn't a miniboss alive:"
+
+[sub_resource type="BBNode" id="BBNode_o2k44"]
+saved_value = NodePath("bossfight")
+resource_name = "bossfight"
+
+[sub_resource type="BTCallMethod" id="BTCallMethod_i0j1x"]
+node = SubResource("BBNode_o2k44")
+method = &"start_miniboss"
+
+[sub_resource type="BTConsolePrint" id="BTConsolePrint_o2k44"]
+text = "Where is the miniboss"
+
+[sub_resource type="BTSelector" id="BTSelector_o2k44"]
+custom_name = "Pick a Miniboss"
+children = [SubResource("BTCheckVar_3dw6m"), SubResource("BTCallMethod_i0j1x"), SubResource("BTConsolePrint_o2k44")]
+
+[sub_resource type="BTSequence" id="BTSequence_7ua8e"]
+children = [SubResource("BTCheckAgentProperty_o2k44"), SubResource("BTCallMethod_o2k44"), SubResource("BTProbability_o2k44"), SubResource("BTSelector_o2k44")]
+
+[sub_resource type="BTSequence" id="BTSequence_i0j1x"]
 children = [SubResource("BTSequence_7ua8e")]
 
 [resource]
 blackboard_plan = SubResource("BlackboardPlan_i0j1x")
-root_task = SubResource("BTSelector_tioj0")
+root_task = SubResource("BTSequence_i0j1x")

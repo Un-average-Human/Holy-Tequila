@@ -10,9 +10,9 @@ var player
 
 func _ready() -> void:
 	player = player_scene.instantiate()
-	player.global_position = spawn_point.global_position
 	add_child(player)
-	player.special_action = player.get_node(special_action.to_lower())
+	player.global_position = spawn_point.global_position
+	#player.special_action = player.get_node(special_action.to_lower())
 	
 	void_detector.body_exited.connect(_fell_in_void)
 	SignalBus.player_died.connect(_end_bossfight.bind(false))
