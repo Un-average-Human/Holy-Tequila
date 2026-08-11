@@ -23,6 +23,7 @@ var in_bossfight: bool = false
 @export var knockback_vel: Vector3 = Vector3.ZERO
 
 func _ready() -> void:
+	GeneralData.health = 3 
 	damage_vignette.self_modulate.a = 0.0
 	for heart in heart_container.get_children():
 		heart_list.append(heart)

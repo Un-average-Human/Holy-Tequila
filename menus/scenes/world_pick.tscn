@@ -1,6 +1,6 @@
-[gd_scene format=3 uid="uid://yo1ornr2fnjs"]
+[gd_scene format=3 uid="uid://5s50dqtqbo3l"]
 
-[ext_resource type="Script" uid="uid://bs8i3f42tjwe5" path="res://menus/scripts/world_pick.gd" id="1_mba7w"]
+[ext_resource type="Script" uid="uid://cxlc02q4jjhtn" path="res://menus/pick_world.gd" id="1_kkp1b"]
 [ext_resource type="Texture2D" uid="uid://dkpvif4bvs30b" path="res://planets/buttons/mars/mars.png" id="2_kkp1b"]
 [ext_resource type="Texture2D" uid="uid://dti4cx6kuv2a8" path="res://planets/buttons/mars/mars_disabled.png" id="3_jvghj"]
 [ext_resource type="Texture2D" uid="uid://dvjc0xrb6hp2p" path="res://planets/buttons/chezburger/chezburger_planet.png" id="4_4c2iq"]
@@ -35,12 +35,13 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-script = ExtResource("1_mba7w")
+script = ExtResource("1_kkp1b")
 return_btn = NodePath("return_btn")
 main_menu_path = "uid://bj0vpm662j5bq"
 interactive_noises = NodePath("interactive_noises")
 planet_list = NodePath("planets")
 mars = "uid://dh03uu603qdbw"
+food = "uid://b4r44xw8nurpo"
 metadata/_edit_use_anchors_ = true
 
 [node name="planets" type="Control" parent="." unique_id=35887227]

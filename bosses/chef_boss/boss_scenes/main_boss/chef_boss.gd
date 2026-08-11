@@ -1,11 +1,14 @@
 extends Boss
 
-@export var boss_name: Label
 @export var chef_sprite: AnimatedSprite3D
+@export var weapon_animations: AnimationPlayer
+
+@export var boss_name: Label
 @export var start_bossfight_area: Area3D
 @export_file_path("*.tscn") var mini_boss_scene: String
 
 func _ready() -> void:
+	blackboard = bt_player.blackboard
 	Engine.set_meta("chef_boss", health)
 	start_bossfight_area.body_entered.connect(_start_bossfight_area_entered)
 	chef_sprite.global_position.y = -60
@@ -19,7 +22,6 @@ func _start_bossfight_area_entered(body: Node3D):
 		_start_bossfight()
 
 func _start_bossfight():
-	
 	if can_attack: return
 	var tween = create_tween()
 	tween.tween_property(boss_name, "modulate:a", 1.0, 1.0)
@@ -29,8 +31,8 @@ func _start_bossfight():
 	start_bossfight_tween.tween_property(chef_sprite, "global_position:y", 0.0, 1.5)\
 	.set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_BACK)
 	start_bossfight_tween.tween_callback(func():
-		idle())
 	
+		idle())
 	tween.tween_property(boss_name, "modulate:a", 0, 1.0)
 	await tween.finished
 	can_attack = true
@@ -39,7 +41,13 @@ func idle() -> void:
 	chef_sprite.play("idle")
 
 func attack():
-	pass
+	chef_sprite.play("attack")
+	weapon_animations.play("knife")
+	
+	await chef_sprite.animation_finished
+	await get_tree().create_timer(0.125).timeout 
+	
+	idle()
 
 func start_miniboss():
 	blackboard.set_var("miniboss_alive", true)

@@ -1,8 +1,43 @@
-[gd_scene format=3 uid="uid://bj0vpm662j5bq"]
+[gd_scene format=3 uid="uid://iykoaw3qbw24"]
 
-[ext_resource type="Script" uid="uid://bthyivxcv8rx5" path="res://menus/scenes/main_menu.gd" id="1_1ddq0"]
-[ext_resource type="PackedScene" uid="uid://cco88hukojaa0" path="res://menus/scenes/settings_menu.tscn" id="2_5um5d"]
+[ext_resource type="PackedScene" uid="uid://bqw4khqeb60hs" path="res://menus/scenes/settings_menu.tscn" id="2_5um5d"]
 [ext_resource type="Theme" uid="uid://bl2p5taqyov0l" path="res://ui.tres" id="3_hhkev"]
+
+[sub_resource type="GDScript" id="GDScript_1ddq0"]
+script/source = "extends Control
+
+@export_category(\"Buttons\")
+@export var play_btn: Button
+@export var tutorial_btn: Button
+@export var settings_button: Button
+@export var quit_btn: Button
+
+@export_category(\"Menu Scenes\")
+@export_file(\"*.tscn\") var tutorial_menu_path: String
+@export_file(\"*.tscn\") var pick_world_menu_path: String
+@export_file(\"*.tscn\") var settings_menu_path: String
+
+func _ready() -> void:
+	
+	SignalBus.back_pressed.connect(_buttons.bind(settings_button))
+	
+	play_btn.pressed.connect(_buttons.bind(play_btn))
+	tutorial_btn.pressed.connect(_buttons.bind(tutorial_btn))
+	settings_button.pressed.connect(_buttons.bind(settings_button))
+	quit_btn.pressed.connect(_buttons.bind(quit_btn))
+
+func _buttons(button: Button):
+	match button:
+		play_btn:
+			SceneTransition.transition(true, pick_world_menu_path)
+		tutorial_btn:
+			SceneTransition.transition(true, tutorial_menu_path)
+		settings_button:
+			SceneTransition.previous_scene_path = get_tree().current_scene.scene_file_path
+			SceneTransition.transition(true, settings_menu_path)
+		quit_btn:
+			get_tree().quit()
+"
 
 [sub_resource type="LabelSettings" id="LabelSettings_7vrkn"]
 font_size = 100
@@ -21,7 +56,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_1ddq0")
+script = SubResource("GDScript_1ddq0")
 play_btn = NodePath("base_menu/button/play_btn")
 tutorial_btn = NodePath("base_menu/button/tutorial_btn")
 settings_button = NodePath("base_menu/button/settings_btn")

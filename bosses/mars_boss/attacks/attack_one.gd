@@ -42,6 +42,8 @@ func execute(max_bullets: int, delay: float) -> void:
 		execute(max_bullets, delay)
 
 func _spawn_boomerang(sfx: AudioStream, make_parryable: bool):
+	if !boss.player:
+		return
 	var gun_point: Marker3D = boss.get_node("%gun_point")
 	var dir_to_player = gun_point.global_position.direction_to(boss.player.global_position)
 	var target_pos = boss.player.global_position + (dir_to_player * 2.5)

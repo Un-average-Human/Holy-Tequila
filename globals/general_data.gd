@@ -8,8 +8,8 @@ var mini_bosses_available: Array[String] = ["burger"]
 var selected_mini_boss_name: String = ""
 
 var worlds: Dictionary[String, String] = { 
-	"burger" : "mars", 
-	"mega_market" : "burger",
+	"food" : "mars", 
+	"mega_market" : "food",
 	"brainrot" : "mega_market",
 	"water" : "brainrot",
 	"pirate" : "water",
