@@ -24,9 +24,6 @@ func _load_selected_mini_boss():
 			mini_boss = sprite
 			can_attack = true
 			break
-			
-	if not mini_boss:
-		print("Error: No matching AnimatedSprite2D found for ", target_name)
 
 func idle():
 	if is_instance_valid(mini_boss) and health > 0:
@@ -69,7 +66,7 @@ func _hurt(damage: float):
 func _impact_frame(start: bool) -> Color:
 	if !is_instance_valid(mini_boss): return Color.WHITE
 	if start:
-		return Color(5.0, 5.0, 5.0, 1.0)
+		return Color(1.5, 1.5, 1.5, 1.0)
 	else:
 		return Color.WHITE
 

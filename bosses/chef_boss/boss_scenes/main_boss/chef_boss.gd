@@ -44,9 +44,9 @@ func attack():
 	chef_sprite.play("wind_up_attack")
 	weapon_animations.play("knife")
 	
-	await get_tree().create_timer(0.375).timeout
+	await chef_sprite.animation_finished
 	weapon_animations.pause()
-	await get_tree().create_timer(1).timeout
+	await get_tree().create_timer(2).timeout
 	
 	chef_sprite.play("finish_attack")
 	weapon_animations.play("knife")

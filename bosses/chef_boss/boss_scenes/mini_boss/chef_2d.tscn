@@ -293,9 +293,7 @@ texture_filter = 1
 position = Vector2(579, 337)
 scale = Vector2(0.6, 0.6)
 sprite_frames = SubResource("SpriteFrames_a8o3s")
-animation = &"explosion"
-frame = 4
-frame_progress = 0.6859943
+animation = &"attack"
 
 [node name="point1" type="Marker2D" parent="boss/burger" unique_id=1953071078]
 position = Vector2(-840.00006, -728.3335)
