@@ -41,13 +41,21 @@ func idle() -> void:
 	chef_sprite.play("idle")
 
 func attack():
-	chef_sprite.play("attack")
+	chef_sprite.play("wind_up_attack")
+	weapon_animations.play("knife")
+	
+	await get_tree().create_timer(0.375).timeout
+	weapon_animations.pause()
+	await get_tree().create_timer(1).timeout
+	
+	chef_sprite.play("finish_attack")
 	weapon_animations.play("knife")
 	
 	await chef_sprite.animation_finished
 	await get_tree().create_timer(0.125).timeout 
-	
 	idle()
+	await weapon_animations.animation_finished
+	weapon_animations.get_parent().get_parent().hide()
 
 func start_miniboss():
 	blackboard.set_var("miniboss_alive", true)

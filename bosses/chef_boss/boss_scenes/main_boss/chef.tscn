@@ -395,22 +395,6 @@ metallic_specular = 0.0
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_bdmdc"]
 points = PackedVector3Array(-14.182011, 0, -7.5, -14.591005, 0, -7.391347, -14.182011, 1, -7.5, 13.812372, 0, -7.5, -14.591005, 1, -7.391347, -14.892675, 0, -7.0903482, 13.812372, 1, -7.5, 14.221367, 0, -7.391347, -14.892675, 1, -7.0903482, -15, 0, -6.680697, 14.221367, 1, -7.391347, 14.520136, 0, -7.0903482, -15, 1, -6.680697, -15, 0, 6.679228, 14.520136, 1, -7.0903482, 14.633263, 0, -6.680697, -15, 1, 6.679228, -14.892675, 0, 7.0888796, 14.633263, 1, -6.680697, 14.633263, 0, 6.679228, -14.892675, 1, 7.0888796, -14.591005, 0, 7.3898783, 14.633263, 1, 6.679228, 14.520136, 0, 7.0888796, -14.591005, 1, 7.3898783, -14.182011, 0, 7.499999, 14.520136, 1, 7.0888796, 14.221367, 0, 7.3898783, -14.182011, 1, 7.499999, 13.812372, 0, 7.499999, 14.221367, 1, 7.3898783, 13.812372, 1, 7.499999)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_14uva"]
-atlas = ExtResource("2_4u6kh")
-region = Rect2(4320, 0, 1080, 1080)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_q0qwj"]
-atlas = ExtResource("2_4u6kh")
-region = Rect2(0, 1080, 1080, 1080)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_w5q7o"]
-atlas = ExtResource("2_4u6kh")
-region = Rect2(1080, 1080, 1080, 1080)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ef5ew"]
-atlas = ExtResource("2_4u6kh")
-region = Rect2(2160, 1080, 1080, 1080)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_xqpuk"]
 atlas = ExtResource("2_4u6kh")
 region = Rect2(3240, 1080, 1080, 1080)
@@ -487,21 +471,25 @@ region = Rect2(2160, 3240, 1080, 1080)
 atlas = ExtResource("2_4u6kh")
 region = Rect2(3240, 3240, 1080, 1080)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_14uva"]
+atlas = ExtResource("2_4u6kh")
+region = Rect2(4320, 0, 1080, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q0qwj"]
+atlas = ExtResource("2_4u6kh")
+region = Rect2(0, 1080, 1080, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w5q7o"]
+atlas = ExtResource("2_4u6kh")
+region = Rect2(1080, 1080, 1080, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ef5ew"]
+atlas = ExtResource("2_4u6kh")
+region = Rect2(2160, 1080, 1080, 1080)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_7vuwa"]
 animations = [{
 "frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_14uva")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_q0qwj")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_w5q7o")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ef5ew")
-}, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_xqpuk")
 }, {
@@ -509,8 +497,8 @@ animations = [{
 "texture": SubResource("AtlasTexture_w5x60")
 }],
 "loop": false,
-"name": &"attack",
-"speed": 8.0
+"name": &"finish_attack",
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -577,6 +565,23 @@ animations = [{
 "loop": false,
 "name": &"turn_around",
 "speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_14uva")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q0qwj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w5q7o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ef5ew")
+}],
+"loop": false,
+"name": &"wind_up_attack",
+"speed": 8.0
 }]
 
 [sub_resource type="BlackboardPlan" id="BlackboardPlan_w5q7o"]
@@ -592,45 +597,6 @@ size = Vector3(29.668457, 51.208984, 7.32666)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_w5q7o"]
 size = Vector3(17.866333, 51.208984, 13)
-
-[sub_resource type="BoxMesh" id="BoxMesh_w5q7o"]
-
-[sub_resource type="Animation" id="Animation_ef5ew"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(7.9570827, 12, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_xqpuk"]
-resource_name = "knife"
-step = 0.125
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 0
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.125, 0.25, 0.375, 0.5, 0.625, 0.75, 0.875, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(7.9570827, 12, 0), Vector3(7.1596327, 13.467327, 0), Vector3(4.672857, 15.932286, 0), Vector3(4.9150248, 16.340157, 0), Vector3(7.0258627, 12.097255, 0), Vector3(16.473322, 11.917551, 0), Vector3(26.473322, 11.917551, 0), Vector3(36.473324, 11.917551, 0), Vector3(41, 11.918, 0)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_w5x60"]
-_data = {
-&"RESET": SubResource("Animation_ef5ew"),
-&"knife": SubResource("Animation_xqpuk")
-}
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_780y2"]
 
@@ -699,6 +665,91 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_eqyhu")
+
+[sub_resource type="Animation" id="Animation_ef5ew"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../cleaver:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(5.9570827, 7.5, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../cleaver:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -3.1415927, -1.5707964)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(6.572653, 7.3853016, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_xqpuk"]
+resource_name = "knife"
+step = 0.125
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.125, 0.25, 0.375, 0.5, 0.625, 0.75, 0.875, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(6.572653, 7.3853016, 0), Vector3(3.730525, 13.467327, 0), Vector3(2.0355806, 24.249866, 0), Vector3(3.4949427, 26.280682, 0), Vector3(4.185721, 12.097255, 0), Vector3(16.473322, 11.917551, 0), Vector3(26.473322, 11.917551, 0), Vector3(36.473324, 11.917551, 0), Vector3(41, 11.918, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../cleaver:position")
+tracks/1/interp = 0
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.125, 0.25, 0.375, 0.5, 0.625, 0.75, 0.875, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(6.488198, 7.709628, 0), Vector3(4.1810923, 13.078721, 0), Vector3(2.1548014, 24.488476, 0), Vector3(3.2903967, 26.388474, 0), Vector3(4.506, 12.267, 0), Vector3(12.488197, 7.709628, 0), Vector3(20.488197, 7.709628, 0), Vector3(28.488197, 7.709628, 0), Vector3(36.488197, 7.709628, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../cleaver:rotation")
+tracks/2/interp = 0
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.125, 0.25, 0.375, 0.5, 0.625, 0.75, 0.875, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 3.1415925, -1.5707964), Vector3(0.34906584, 3.1415925, 0), Vector3(1.1584275, 3.1415918, -7.03318e-07), Vector3(1.420227, 3.1415904, -2.2099266e-06), Vector3(0.42760566, 3.1415927, -0.7853982), Vector3(8.8817784e-16, -2.8797932, -1.5707964), Vector3(3.6712763e-15, -1.5707963, -1.5707964), Vector3(1.4529209e-15, -1.3089969, -1.5707964), Vector3(3.0076798e-16, -0.26179934, -1.5707964)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_w5x60"]
+_data = {
+&"RESET": SubResource("Animation_ef5ew"),
+&"knife": SubResource("Animation_xqpuk")
+}
 
 [node name="Node3D" type="Node3D" unique_id=871431128 node_paths=PackedStringArray("void_detector", "spawn_point")]
 script = ExtResource("1_14uva")
@@ -782,7 +833,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 [node name="boss" type="Node3D" parent="." unique_id=640654191 node_paths=PackedStringArray("chef_sprite", "weapon_animations", "boss_name", "start_bossfight_area", "bt_player")]
 script = ExtResource("1_8bqa2")
 chef_sprite = NodePath("AnimatedSprite3D")
-weapon_animations = NodePath("../knife_point/knife_point/AnimationPlayer")
+weapon_animations = NodePath("../knife_point/cleaver/AnimationPlayer")
 boss_name = NodePath("boss_name")
 start_bossfight_area = NodePath("../start_bossfight")
 mini_boss_scene = "res://bosses/chef_boss/boss_scenes/mini_boss/chef_2d.tscn"
@@ -794,7 +845,8 @@ pixel_size = 0.085
 billboard = 2
 texture_filter = 0
 sprite_frames = SubResource("SpriteFrames_7vuwa")
-animation = &"attack"
+animation = &"finish_attack"
+frame_progress = 0.43558794
 
 [node name="BTPlayer" type="BTPlayer" parent="boss" unique_id=147084169]
 behavior_tree = ExtResource("4_q0qwj")
@@ -845,20 +897,16 @@ fov = 90.0
 [node name="knife_point" type="Node3D" parent="." unique_id=1092391944]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.7, -5.7, 0)
 
-[node name="knife_point" type="MeshInstance3D" parent="knife_point" unique_id=816497405]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.9570827, 12, 0)
-mesh = SubResource("BoxMesh_w5q7o")
+[node name="cleaver" type="Node3D" parent="knife_point" unique_id=1185594384]
+transform = Transform3D(2.1855692e-08, -0.4999996, 4.3711353e-08, -0.49999994, -2.1855676e-08, 0, 1.9106853e-15, -4.3711353e-08, -0.4999996, 6.572653, 7.3853016, 0)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="knife_point/knife_point" unique_id=84935923]
-libraries/ = SubResource("AnimationLibrary_w5x60")
-
-[node name="cleaver" type="Node3D" parent="knife_point/knife_point" unique_id=1185594384]
-transform = Transform3D(-0.7071067, -0.7071068, 1.2363448e-07, -0.7071068, 0.7071067, 0, -8.742277e-08, -8.7422784e-08, -1, 0, 0, 0)
-
-[node name="Cube_001" type="MeshInstance3D" parent="knife_point/knife_point/cleaver" unique_id=89897645]
+[node name="Cube_001" type="MeshInstance3D" parent="knife_point/cleaver" unique_id=89897645]
 transform = Transform3D(0.4000001, 0, 0, 0, 4, 0, 0, 0, 8, 0, 0, 0)
 mesh = SubResource("ArrayMesh_tsddd")
 
-[node name="Cube" type="MeshInstance3D" parent="knife_point/knife_point/cleaver" unique_id=1124494543]
+[node name="Cube" type="MeshInstance3D" parent="knife_point/cleaver" unique_id=1124494543]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.1921673, 7.9)
 mesh = SubResource("ArrayMesh_todxk")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="knife_point/cleaver" unique_id=84935923]
+libraries/ = SubResource("AnimationLibrary_w5x60")
