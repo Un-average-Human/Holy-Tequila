@@ -1,0 +1,148 @@
+[gd_scene format=3 uid="uid://ctaa2uxxlgoop"]
+
+[ext_resource type="Script" uid="uid://dyew2ky8w3jeu" path="res://menus/scripts/game_over_screen.gd" id="1_g6o4y"]
+[ext_resource type="Theme" uid="uid://bl2p5taqyov0l" path="res://ui.tres" id="2_g6o4y"]
+[ext_resource type="FontFile" uid="uid://dj858wkygbdbc" path="res://lowbudget.ttf" id="3_hw2hc"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ftari"]
+font = ExtResource("3_hw2hc")
+font_size = 128
+
+[sub_resource type="FontVariation" id="FontVariation_ccer4"]
+base_font = ExtResource("3_hw2hc")
+variation_embolden = 0.75
+
+[sub_resource type="FontVariation" id="FontVariation_8u835"]
+base_font = ExtResource("3_hw2hc")
+variation_embolden = 0.75
+variation_transform = Transform2D(1, 0.2, 0, 1, 0, 0)
+
+[sub_resource type="FontVariation" id="FontVariation_ftari"]
+base_font = ExtResource("3_hw2hc")
+variation_transform = Transform2D(1, 0.2, 0, 1, 0, 0)
+
+[sub_resource type="FontVariation" id="FontVariation_28vn7"]
+base_font = ExtResource("3_hw2hc")
+variation_embolden = 0.75
+
+[node name="Control" type="Control" unique_id=265440457 node_paths=PackedStringArray("retry_button", "world_selection_button", "main_menu_button", "game_over_layer", "boss_quote_layer", "title", "quote_label", "boss_name")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_g6o4y")
+retry_button = NodePath("game_over/VBoxContainer/retry")
+world_selection_button = NodePath("game_over/VBoxContainer/pick_world")
+main_menu_button = NodePath("game_over/VBoxContainer/main_menu")
+game_over_layer = NodePath("game_over")
+boss_quote_layer = NodePath("boss_quote/quote_group")
+title = NodePath("game_over/title")
+quote_label = NodePath("boss_quote/quote_group/boss_quote")
+boss_name = NodePath("boss_quote/quote_group/boss_name")
+main_menu_path = "uid://bj0vpm662j5bq"
+world_selection_path = "uid://yo1ornr2fnjs"
+
+[node name="Panel" type="Panel" parent="." unique_id=874334504]
+layout_mode = 1
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="game_over" type="CanvasLayer" parent="." unique_id=1074039067]
+layer = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="game_over" unique_id=1556369901]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 725.0
+offset_top = 324.0
+offset_right = -125.0
+offset_bottom = -51.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+
+[node name="retry" type="Button" parent="game_over/VBoxContainer" unique_id=1684500364]
+texture_filter = 1
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("2_g6o4y")
+text = "Try Again"
+
+[node name="pick_world" type="Button" parent="game_over/VBoxContainer" unique_id=134010727]
+texture_filter = 1
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("2_g6o4y")
+text = "World Selection"
+
+[node name="main_menu" type="Button" parent="game_over/VBoxContainer" unique_id=536127702]
+texture_filter = 1
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("2_g6o4y")
+text = "Return to Main Menu"
+
+[node name="title" type="Label" parent="game_over" unique_id=158073978]
+texture_filter = 1
+offset_left = 650.0
+offset_right = 1102.0
+offset_bottom = 344.0
+theme = ExtResource("2_g6o4y")
+text = "Game Joever"
+label_settings = SubResource("LabelSettings_ftari")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="boss_quote" type="CanvasLayer" parent="." unique_id=1404370382]
+
+[node name="quote_group" type="Control" parent="boss_quote" unique_id=147221568]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -350.0
+offset_top = 150.0
+offset_right = -1153.9999
+offset_bottom = -150.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="boss_quote" type="RichTextLabel" parent="boss_quote/quote_group" unique_id=601135561]
+layout_mode = 0
+offset_top = 76.0
+offset_right = 349.07404
+offset_bottom = 348.0
+theme_override_fonts/normal_font = ExtResource("3_hw2hc")
+theme_override_fonts/bold_font = SubResource("FontVariation_ccer4")
+theme_override_fonts/bold_italics_font = SubResource("FontVariation_8u835")
+theme_override_fonts/italics_font = SubResource("FontVariation_ftari")
+theme_override_font_sizes/normal_font_size = 30
+theme_override_font_sizes/bold_font_size = 30
+theme_override_font_sizes/bold_italics_font_size = 30
+theme_override_font_sizes/italics_font_size = 30
+theme_override_font_sizes/mono_font_size = 30
+bbcode_enabled = true
+text = "test"
+
+[node name="boss_name" type="RichTextLabel" parent="boss_quote/quote_group" unique_id=141616034]
+layout_mode = 0
+offset_right = 349.07404
+offset_bottom = 76.0
+theme_override_fonts/normal_font = ExtResource("3_hw2hc")
+theme_override_fonts/bold_font = SubResource("FontVariation_28vn7")
+theme_override_fonts/bold_italics_font = SubResource("FontVariation_8u835")
+theme_override_fonts/italics_font = SubResource("FontVariation_ftari")
+theme_override_font_sizes/normal_font_size = 30
+theme_override_font_sizes/bold_font_size = 30
+theme_override_font_sizes/bold_italics_font_size = 30
+theme_override_font_sizes/italics_font_size = 30
+theme_override_font_sizes/mono_font_size = 30
+bbcode_enabled = true
+text = "Boss Name"
+horizontal_alignment = 1
+vertical_alignment = 1
