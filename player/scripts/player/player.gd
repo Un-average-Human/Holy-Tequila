@@ -29,6 +29,7 @@ func _ready() -> void:
 		heart.get_child(0).play("idle")
 		
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	take_damage()
 
 func _input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("UnlockMouse"):

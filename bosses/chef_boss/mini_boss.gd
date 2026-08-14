@@ -6,11 +6,13 @@ extends Boss
 var mini_boss: AnimatedSprite2D
 @export var burger_attack: Node
 
+@export_file_path("*.tscn") var chef_scene: String
+
 func _ready() -> void:
 	blackboard = bt_player.blackboard
 	blackboard.set_var("is_attacking", false)
 	can_attack = false
-	health = 1000
+	health = 2
 	
 	boss_hit_box.area_entered.connect(_bullet_hit)
 	
@@ -52,16 +54,7 @@ func _hurt(damage: float):
 		mini_boss.self_modulate = _impact_frame(false)
 	
 	if health <= 0:
-		blackboard.set_var("is_attacking", true)
-		
-		mini_boss.self_modulate = Color.WHITE 
-		mini_boss.scale = Vector2(2, 2)
-		mini_boss.play("explosion")
-		
-		GeneralData.mini_bosses_available.erase(mini_boss.name)
-		
-		await mini_boss.animation_finished
-		mini_boss.queue_free()
+		_death_pipeline()
 		
 func _impact_frame(start: bool) -> Color:
 	if !is_instance_valid(mini_boss): return Color.WHITE
@@ -75,3 +68,18 @@ func _bullet_hit(bullet_area: Area2D):
 	if bullet.is_in_group("projectile") and bullet.player_bullet:
 		bullet.queue_free()
 		_hurt(20.0)
+
+func _death_pipeline():
+	Engine.set_meta("chef_boss_started", true)
+	blackboard.set_var("is_attacking", true)
+	
+	mini_boss.self_modulate = Color.WHITE 
+	mini_boss.scale = Vector2(2, 2)
+	mini_boss.play("explosion")
+	
+	GeneralData.mini_bosses_available.erase(mini_boss.name)
+	
+	await mini_boss.animation_finished
+	mini_boss.queue_free()
+	
+	SceneTransition.transition(true, chef_scene)

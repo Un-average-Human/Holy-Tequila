@@ -60,6 +60,7 @@ func attack():
 func start_miniboss():
 	blackboard.set_var("miniboss_alive", true)
 	_choose_miniboss()
+	
 	SceneTransition.transition(true, mini_boss_scene)
 
 func _choose_miniboss():

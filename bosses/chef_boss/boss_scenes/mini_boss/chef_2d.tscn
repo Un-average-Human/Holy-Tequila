@@ -286,6 +286,7 @@ script = ExtResource("1_2at6i")
 boss_hit_box = NodePath(".")
 mini_bosses_available = [NodePath("burger")]
 burger_attack = NodePath("burger/burger_attack")
+chef_scene = "res://bosses/chef_boss/boss_scenes/main_boss/chef.tscn"
 bt_player = NodePath("BTState")
 
 [node name="burger" type="AnimatedSprite2D" parent="boss" unique_id=1951785262]

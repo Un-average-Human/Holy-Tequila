@@ -774,25 +774,26 @@ environment = SubResource("Environment_chyxy")
 [node name="food_items" type="Node" parent="." unique_id=282987962]
 
 [node name="burger" type="Node3D" parent="food_items" unique_id=1255035151]
+transform = Transform3D(0.502, 0, 0, 0, 0.502, 0, 0, 0, 0.502, 0, 3, 0)
 visible = false
 
 [node name="top_bun" type="MeshInstance3D" parent="food_items/burger" unique_id=248000347]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.8, 0)
 mesh = SubResource("ArrayMesh_lwsat")
 surface_material_override/0 = SubResource("StandardMaterial3D_bdmdc")
 
 [node name="onion" type="MeshInstance3D" parent="food_items/burger" unique_id=499070451]
-transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 1, 0, -0.59999996, 0)
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 1, 0, 2.4, 0)
 mesh = SubResource("ArrayMesh_6gxsk")
 surface_material_override/0 = SubResource("StandardMaterial3D_gy2fh")
 
 [node name="lettuce" type="MeshInstance3D" parent="food_items/burger" unique_id=600484359]
-transform = Transform3D(7.999439, 0.09475984, 0.00020675064, 0.09475365, -7.998677, -0.11041629, -0.0011011622, 0.110410996, -7.999238, 0, -0.70574296, 1.0666671)
+transform = Transform3D(7.999439, 0.094758935, 0.00020718189, 0.09475277, -7.998677, -0.11041629, -0.0011007187, 0.110410996, -7.999238, 0, 2.2942572, 1.0666671)
 mesh = SubResource("ArrayMesh_lyl4k")
 surface_material_override/0 = SubResource("StandardMaterial3D_6cws7")
 
 [node name="tomato" type="MeshInstance3D" parent="food_items/burger" unique_id=1804304622]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.4, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
 mesh = SubResource("ArrayMesh_bmhwa")
 surface_material_override/0 = SubResource("StandardMaterial3D_d3lvi")
 
@@ -802,12 +803,12 @@ mesh = SubResource("ArrayMesh_vg1qg")
 surface_material_override/0 = SubResource("StandardMaterial3D_gsquv")
 
 [node name="cheese" type="MeshInstance3D" parent="food_items/burger" unique_id=1024945921]
-transform = Transform3D(8.8, 0, 0, 0, 8.8, 0, 0, 0, 8.8, 0, -2.6, 0)
+transform = Transform3D(8.8, 0, 0, 0, 8.8, 0, 0, 0, 8.8, 0, 0.4000001, 0)
 mesh = SubResource("ArrayMesh_2rtvs")
 surface_material_override/0 = SubResource("StandardMaterial3D_jucaa")
 
 [node name="patty" type="MeshInstance3D" parent="food_items/burger" unique_id=556192274]
-transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 1, 0, -3.5999997, 0)
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 1, 0, -0.59999967, 0)
 mesh = SubResource("ArrayMesh_1vems")
 surface_material_override/0 = SubResource("StandardMaterial3D_hp6uf")
 
@@ -817,7 +818,7 @@ mesh = SubResource("ArrayMesh_uxhel")
 surface_material_override/0 = SubResource("StandardMaterial3D_433rq")
 
 [node name="bottom_bun" type="MeshInstance3D" parent="food_items/burger" unique_id=1963903298]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5.6, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.6, 0)
 mesh = SubResource("ArrayMesh_ul5l3")
 surface_material_override/0 = SubResource("StandardMaterial3D_bdmdc")
 
