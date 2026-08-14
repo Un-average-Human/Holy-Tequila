@@ -95,7 +95,6 @@ func _spawn_boomerang(sfx: AudioStream, make_parryable: bool):
 		boss.audio.stream = boss.PLASMA
 		boss.audio.play()
 		
-		if current_parry_callable.is_valid(): SignalBus.parried.disconnect(current_parry_callable)
 		current_parry_callable = func(parried_bullet: Node3D): if parried_bullet == bullet: _on_bullet_parried(bullet)
 		SignalBus.parried.connect(current_parry_callable)
 	else:
@@ -180,9 +179,5 @@ func _apply_boss_damage_pipeline() -> void:
 	await boss.get_tree().create_timer(0.75, false).timeout
 	boss.boss_sprite.play("angry_last_phase" if float(boss.health) <= 1.0 else "idle")
 	
-	if float(boss.health) <= 1.0:
-		await boss.get_tree().create_timer(1, false).timeout
-		boss.boss_sprite.play("idle_last_phase")
-		
 	await boss.get_tree().create_timer(0.5, false).timeout
 	boss.can_attack = true

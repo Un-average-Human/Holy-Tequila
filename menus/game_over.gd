@@ -38,6 +38,7 @@ func _buttons(button: Button):
 			for connection in SignalBus.boss_defeated.get_connections():
 				SignalBus.boss_defeated.disconnect(connection["callable"])
 		retry_button:
+			GeneralData.health = 3
 			SceneTransition.transition(true, GeneralData.current_world)
 			for connection in SignalBus.player_died.get_connections():
 				SignalBus.player_died.disconnect(connection["callable"])

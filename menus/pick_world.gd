@@ -64,6 +64,7 @@ func _stopped_pressing(button: TextureButton):
 	tween.tween_property(button, "scale", Vector2.ONE * 1.25, 0.1).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 
 func _world_selected(planet: TextureButton):
+	GeneralData.health = 3
 	match planet.name:
 		"mars":
 			GeneralData.current_world = mars

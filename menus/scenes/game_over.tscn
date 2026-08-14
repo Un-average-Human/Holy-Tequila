@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://ctaa2uxxlgoop"]
 
-[ext_resource type="Script" uid="uid://dyew2ky8w3jeu" path="res://menus/scripts/game_over_screen.gd" id="1_g6o4y"]
+[ext_resource type="Script" uid="uid://dnqphcytrlpbp" path="res://menus/game_over.gd" id="1_g6o4y"]
 [ext_resource type="Theme" uid="uid://bl2p5taqyov0l" path="res://ui.tres" id="2_g6o4y"]
 [ext_resource type="FontFile" uid="uid://dj858wkygbdbc" path="res://lowbudget.ttf" id="3_hw2hc"]
 
@@ -43,8 +43,8 @@ boss_quote_layer = NodePath("boss_quote/quote_group")
 title = NodePath("game_over/title")
 quote_label = NodePath("boss_quote/quote_group/boss_quote")
 boss_name = NodePath("boss_quote/quote_group/boss_name")
-main_menu_path = "uid://bj0vpm662j5bq"
-world_selection_path = "uid://yo1ornr2fnjs"
+main_menu_path = "uid://iykoaw3qbw24"
+world_selection_path = "uid://5s50dqtqbo3l"
 
 [node name="Panel" type="Panel" parent="." unique_id=874334504]
 layout_mode = 1
