@@ -592,11 +592,17 @@ font_size = 75
 [sub_resource type="BoxShape3D" id="BoxShape3D_14uva"]
 size = Vector3(56.774414, 51.208984, 39.45703)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_ef5ew"]
+size = Vector3(26.95044, 51.208984, 8.1)
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_q0qwj"]
-size = Vector3(29.668457, 51.208984, 7.32666)
+size = Vector3(29.668457, 51.208984, 8.3)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_w5q7o"]
-size = Vector3(17.866333, 51.208984, 13)
+size = Vector3(17.866333, 51.208984, 14)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xqpuk"]
+size = Vector3(17.866333, 51.208984, 14.2)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_780y2"]
 
@@ -874,20 +880,20 @@ shape = SubResource("BoxShape3D_14uva")
 [node name="start_bossfight" type="Area3D" parent="." unique_id=818572578]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="start_bossfight" unique_id=950178119]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5.0861816)
-shape = SubResource("BoxShape3D_q0qwj")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3590088, 0, -4.7995114)
+shape = SubResource("BoxShape3D_ef5ew")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="start_bossfight" unique_id=303290153]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.14196777, 0, 5.4138184)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.14196777, 0, 4.9271483)
 shape = SubResource("BoxShape3D_q0qwj")
 
 [node name="CollisionShape3D3" type="CollisionShape3D" parent="start_bossfight" unique_id=1138031137]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 8.194702, 0, 0.18963611)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 7.694702, 0, 0.18963613)
 shape = SubResource("BoxShape3D_w5q7o")
 
 [node name="CollisionShape3D4" type="CollisionShape3D" parent="start_bossfight" unique_id=865933945]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -8.405299, 0, 0.18963611)
-shape = SubResource("BoxShape3D_w5q7o")
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -7.8052993, 0, 0.1896361)
+shape = SubResource("BoxShape3D_xqpuk")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=2120666730]
 transform = Transform3D(1, 0, 0, 0, 0.9659259, 0.25881907, 0, -0.25881907, 0.9659258, 0, 11.639263, 14.135361)

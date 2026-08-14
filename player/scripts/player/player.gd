@@ -32,13 +32,6 @@ func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func _input(event: InputEvent) -> void:
-	#if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED and !using_map_camera:
-			#rotate_y(-event.relative.x * mouse_sens)
-			#cam_pivot.rotation.x += -event.relative.y * mouse_sens
-			#cam_pivot.rotation.x = clamp(cam_pivot.rotation.x, deg_to_rad(-60), deg_to_rad(60))
-
-
-		
 	if Input.is_action_just_pressed("UnlockMouse"):
 		match Input.mouse_mode:
 			Input.MOUSE_MODE_CAPTURED:

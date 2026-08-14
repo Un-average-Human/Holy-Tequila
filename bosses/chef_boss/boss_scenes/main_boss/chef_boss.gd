@@ -28,8 +28,8 @@ func _start_bossfight():
 	
 	tween.tween_interval(1.0)
 	var start_bossfight_tween = create_tween()
-	start_bossfight_tween.tween_property(chef_sprite, "global_position:y", 0.0, 1.5)\
-	.set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_BACK)
+	start_bossfight_tween.tween_property(chef_sprite, "global_position:y", 0.0, 1)\
+	.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BACK)
 	start_bossfight_tween.tween_callback(func():
 	
 		idle())

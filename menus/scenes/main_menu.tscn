@@ -62,8 +62,8 @@ tutorial_btn = NodePath("base_menu/button/tutorial_btn")
 settings_button = NodePath("base_menu/button/settings_btn")
 quit_btn = NodePath("base_menu/button/quit_btn")
 tutorial_menu_path = "uid://bf3m6xn0qhn1u"
-pick_world_menu_path = "uid://yo1ornr2fnjs"
-settings_menu_path = "uid://cco88hukojaa0"
+pick_world_menu_path = "uid://5s50dqtqbo3l"
+settings_menu_path = "uid://bqw4khqeb60hs"
 
 [node name="settings" parent="." unique_id=11976931 instance=ExtResource("2_5um5d")]
 visible = false

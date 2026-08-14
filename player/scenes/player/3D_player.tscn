@@ -112,12 +112,6 @@ font_size = 30
 stacked_outline_count = 1
 stacked_outline_0/size = 5
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_i3pqv"]
-
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_i3pqv"]
-height = 5.0
-radius = 8.0
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8q143"]
 shader = ExtResource("9_lrqc5")
 shader_parameter/threshold = 0.5
@@ -127,11 +121,15 @@ shader_parameter/fg_color = Color(1, 1, 1, 1)
 shader_parameter/invert = false
 shader_parameter/intensity = 1.0
 
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_i3pqv"]
+height = 5.0
+radius = 8.0
+
 [node name="3D_player" type="CharacterBody3D" unique_id=1185616285 node_paths=PackedStringArray("damage_vignette", "cam_pivot", "player_cam", "audio", "menu", "animated_sprite") groups=["player"]]
 script = ExtResource("1_4flbx")
 damage_vignette = NodePath("ui/damage_vignette")
-cam_pivot = NodePath("cam_pivot")
-player_cam = NodePath("cam_pivot/SpringArm3D/player_cam")
+cam_pivot = NodePath("")
+player_cam = NodePath("")
 audio = NodePath("audio")
 menu = NodePath("menu/menus")
 animated_sprite = NodePath("CollisionShape3D/sprites")
@@ -241,27 +239,6 @@ visible = false
 unique_name_in_owner = true
 transform = Transform3D(-4.304732e-08, 0.17364815, -0.9848076, 7.590406e-09, 0.9848077, 0.17364816, 1.0000001, 0, -4.3711392e-08, 0.8, 0.099999964, -0.8000001)
 
-[node name="cam_pivot" type="Node3D" parent="." unique_id=1374839627]
-unique_name_in_owner = true
-
-[node name="SpringArm3D" type="SpringArm3D" parent="cam_pivot" unique_id=875577173]
-transform = Transform3D(1, 0, 0, 0, 0.96592593, 0.25881907, 0, -0.25881907, 0.96592593, 0, 0, 0)
-collision_mask = 2
-shape = SubResource("SphereShape3D_i3pqv")
-spring_length = 5.0
-margin = 0.1
-
-[node name="player_cam" type="Camera3D" parent="cam_pivot/SpringArm3D" unique_id=394059071]
-unique_name_in_owner = true
-
-[node name="parry_area" type="Area3D" parent="cam_pivot" unique_id=412720686]
-visible = false
-collision_layer = 0
-collision_mask = 4
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="cam_pivot/parry_area" unique_id=538210318]
-shape = SubResource("CylinderShape3D_i3pqv")
-
 [node name="audio" type="AudioStreamPlayer" parent="." unique_id=899686412]
 unique_name_in_owner = true
 stream = ExtResource("5_sweqy")
@@ -269,7 +246,7 @@ bus = &"SFX"
 
 [node name="parry" type="Node" parent="." unique_id=1156471812 node_paths=PackedStringArray("parry_area", "audio", "ability_cooldown_bar", "ability_label", "impact_frame", "sprite")]
 script = ExtResource("6_2hs0m")
-parry_area = NodePath("../cam_pivot/parry_area")
+parry_area = NodePath("../parry_area")
 audio = NodePath("../audio")
 ability_cooldown_bar = NodePath("../ui/ability_cooldown")
 ability_label = NodePath("../ui/ability_cooldown/Label")
@@ -286,3 +263,11 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="dash" type="Node" parent="." unique_id=1511424969]
+
+[node name="parry_area" type="Area3D" parent="." unique_id=412720686]
+visible = false
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="parry_area" unique_id=538210318]
+shape = SubResource("CylinderShape3D_i3pqv")
