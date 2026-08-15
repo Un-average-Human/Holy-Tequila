@@ -638,6 +638,11 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_bw5ys")
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w5q7o"]
+albedo_color = Color(0.2743786, 0.32547262, 0.36991912, 1)
+metallic_specular = 1.0
+roughness = 0.18
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p0fmi"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_eqyhu"]
@@ -671,6 +676,11 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_eqyhu")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ef5ew"]
+albedo_color = Color(0.2401262, 0.12808833, 1.2032688e-08, 1)
+metallic_specular = 0.0
+roughness = 0.53
 
 [sub_resource type="Animation" id="Animation_ef5ew"]
 length = 0.001
@@ -910,10 +920,12 @@ transform = Transform3D(2.1855692e-08, -0.4999996, 4.3711353e-08, -0.49999994, -
 [node name="Cube_001" type="MeshInstance3D" parent="knife_point/cleaver" unique_id=89897645]
 transform = Transform3D(0.4000001, 0, 0, 0, 4, 0, 0, 0, 8, 0, 0, 0)
 mesh = SubResource("ArrayMesh_tsddd")
+surface_material_override/0 = SubResource("StandardMaterial3D_w5q7o")
 
 [node name="Cube" type="MeshInstance3D" parent="knife_point/cleaver" unique_id=1124494543]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.1921673, 7.9)
 mesh = SubResource("ArrayMesh_todxk")
+surface_material_override/0 = SubResource("StandardMaterial3D_ef5ew")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="knife_point/cleaver" unique_id=84935923]
 libraries/ = SubResource("AnimationLibrary_w5x60")

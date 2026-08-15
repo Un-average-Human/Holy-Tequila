@@ -45,7 +45,8 @@ func _input(event: InputEvent) -> void:
 			menu._menu_handler(true)
 	
 	if Input.is_action_just_pressed("SpecialAction"):
-		special_action.execute()
+		pass
+		#special_action.execute()
 
 func take_damage():
 	if not can_take_damage:

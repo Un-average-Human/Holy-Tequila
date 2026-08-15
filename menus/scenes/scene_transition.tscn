@@ -1,44 +1,8 @@
 [gd_scene format=3 uid="uid://3ok0qkpljmdl"]
 
+[ext_resource type="Script" uid="uid://csdyjeonr5fxb" path="res://menus/scene_transition.gd" id="1_3kfcu"]
 [ext_resource type="Shader" uid="uid://buk6dlic7rlo2" path="res://transition.gdshader" id="2_7uw5p"]
-
-[sub_resource type="GDScript" id="GDScript_jl1tx"]
-script/source = "extends CanvasLayer
-
-@export var min_value: float = 0.0
-@export var max_value: float = 2.0
-@export var fade_duration: float = 0.5
-@export var color_rect: ColorRect
-
-var previous_scene_path: String
-
-func _ready() -> void:
-	color_rect.material.set_shader_parameter(\"progress\", min_value)
-
-func transition(fade_in: bool, target_scene_path: String = \"\", transition_type: String = \"\") -> void:
-	match transition_type:
-		\"rolling_pin\":
-			pass
-		_:
-			_default_transition(fade_in, target_scene_path)
-
-func _default_transition(fade_in: bool, target_scene_path: String = \"\"):
-	var tween = create_tween()
-	var target_material = color_rect.material
-	
-	if fade_in:
-		tween.tween_property(target_material, \"shader_parameter/progress\", max_value, fade_duration)\\
-		.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
-		await tween.finished
-		
-		get_tree().change_scene_to_file(target_scene_path)
-		await get_tree().process_frame
-		
-		transition(false)
-	else:
-		tween.tween_property(target_material, \"shader_parameter/progress\", min_value, fade_duration)\\
-		.set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_QUAD)
-"
+[ext_resource type="Texture2D" uid="uid://boq2xl847ed0s" path="res://menus/sprites/chef_transition.png" id="3_7uw5p"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gbkcp"]
 shader = ExtResource("2_7uw5p")
@@ -68,10 +32,87 @@ shader_parameter/clock_feather = 0.0
 shader_parameter/progress = 0.0
 shader_parameter/progress_bias = Vector2(0, 0)
 
-[node name="SceneTransition" type="CanvasLayer" unique_id=1833535979 node_paths=PackedStringArray("color_rect")]
+[sub_resource type="AtlasTexture" id="AtlasTexture_3kfcu"]
+atlas = ExtResource("3_7uw5p")
+region = Rect2(0, 0, 1080, 720)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_okv77"]
+atlas = ExtResource("3_7uw5p")
+region = Rect2(1080, 0, 1080, 720)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_soc7e"]
+atlas = ExtResource("3_7uw5p")
+region = Rect2(2160, 0, 1080, 720)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6wchc"]
+atlas = ExtResource("3_7uw5p")
+region = Rect2(0, 720, 1080, 720)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k63p6"]
+atlas = ExtResource("3_7uw5p")
+region = Rect2(1080, 720, 1080, 720)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3ou3m"]
+atlas = ExtResource("3_7uw5p")
+region = Rect2(2160, 720, 1080, 720)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3e0al"]
+atlas = ExtResource("3_7uw5p")
+region = Rect2(0, 1440, 1080, 720)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3dp1x"]
+atlas = ExtResource("3_7uw5p")
+region = Rect2(1080, 1440, 1080, 720)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4s3ok"]
+atlas = ExtResource("3_7uw5p")
+region = Rect2(2160, 1440, 1080, 720)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qvxhf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3kfcu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_okv77")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_soc7e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6wchc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k63p6")
+}],
+"loop": false,
+"name": &"rolling_pin_fade_in",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3ou3m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3e0al")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3dp1x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4s3ok")
+}],
+"loop": false,
+"name": &"rolling_pin_fade_out",
+"speed": 8.0
+}]
+
+[node name="SceneTransition" type="CanvasLayer" unique_id=1833535979 node_paths=PackedStringArray("color_rect", "animated_sprite")]
 layer = 100
-script = SubResource("GDScript_jl1tx")
+script = ExtResource("1_3kfcu")
 color_rect = NodePath("ColorRect")
+animated_sprite = NodePath("AnimatedSprite2D")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1829870024]
 z_index = 100
@@ -84,3 +125,9 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
 metadata/_edit_use_anchors_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=114712766]
+position = Vector2(576, 324.00006)
+scale = Vector2(1.0666666, 0.9000001)
+sprite_frames = SubResource("SpriteFrames_qvxhf")
+animation = &"rolling_pin_fade_out"

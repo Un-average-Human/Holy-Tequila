@@ -82,4 +82,4 @@ func _death_pipeline():
 	await mini_boss.animation_finished
 	mini_boss.queue_free()
 	
-	SceneTransition.transition(true, chef_scene)
+	SceneTransition.transition(true, chef_scene, "rolling_pin")
