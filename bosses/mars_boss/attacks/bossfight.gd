@@ -25,7 +25,6 @@ const SHUFFLING = preload("uid://7qn3fg1ifae1")
 const BOOMERANG_WHOOSH = preload("uid://ccgwbqeyfist4")
 
 func _ready() -> void:
-	GeneralData.current_boss = "Spaceship Boss"
 	
 	boss_area_detector.body_entered.connect(_on_boss_area_detector_body_entered)
 	blackboard = bt_player.blackboard

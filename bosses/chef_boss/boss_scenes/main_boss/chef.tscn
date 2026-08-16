@@ -731,10 +731,10 @@ tracks/0/path = NodePath(".:position")
 tracks/0/interp = 0
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.125, 0.25, 0.375, 0.5, 0.625, 0.75, 0.875, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.125, 0.25, 0.375, 0.5, 0.625, 0.63, 0.75, 0.875, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(6.572653, 7.3853016, 0), Vector3(3.730525, 13.467327, 0), Vector3(2.0355806, 24.249866, 0), Vector3(3.4949427, 26.280682, 0), Vector3(4.185721, 12.097255, 0), Vector3(16.473322, 11.917551, 0), Vector3(26.473322, 11.917551, 0), Vector3(36.473324, 11.917551, 0), Vector3(41, 11.918, 0)]
+"values": [Vector3(6.572653, 7.3853016, 0), Vector3(3.730525, 13.467327, 0), Vector3(2.0355806, 24.249866, 0), Vector3(3.4949427, 26.280682, 0), Vector3(4.185721, 12.097255, 0), Vector3(16.473, 8, 0), Vector3(16.473, 8, 0), Vector3(26.473, 8, 0), Vector3(36.473, 8, 0), Vector3(41, 8, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -766,6 +766,9 @@ _data = {
 &"RESET": SubResource("Animation_ef5ew"),
 &"knife": SubResource("Animation_xqpuk")
 }
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_w5x60"]
+size = Vector3(1, 11, 31)
 
 [node name="Node3D" type="Node3D" unique_id=871431128 node_paths=PackedStringArray("void_detector", "spawn_point")]
 script = ExtResource("1_14uva")
@@ -847,10 +850,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 
 [node name="Node" type="Node" parent="." unique_id=478003106]
 
-[node name="boss" type="Node3D" parent="." unique_id=640654191 node_paths=PackedStringArray("chef_sprite", "weapon_animations", "boss_name", "start_bossfight_area", "bt_player")]
+[node name="boss" type="Node3D" parent="." unique_id=640654191 node_paths=PackedStringArray("chef_sprite", "weapon_animations", "cleaver", "cleaver_damage_area", "boss_name", "start_bossfight_area", "bt_player")]
 script = ExtResource("1_8bqa2")
 chef_sprite = NodePath("AnimatedSprite3D")
 weapon_animations = NodePath("../knife_point/cleaver/AnimationPlayer")
+cleaver = NodePath("../knife_point")
+cleaver_damage_area = NodePath("../knife_point/cleaver/Area3D")
 boss_name = NodePath("boss_name")
 start_bossfight_area = NodePath("../start_bossfight")
 mini_boss_scene = "res://bosses/chef_boss/boss_scenes/mini_boss/chef_2d.tscn"
@@ -863,7 +868,7 @@ billboard = 2
 texture_filter = 0
 sprite_frames = SubResource("SpriteFrames_7vuwa")
 animation = &"finish_attack"
-frame_progress = 0.43558794
+frame = 1
 
 [node name="BTPlayer" type="BTPlayer" parent="boss" unique_id=147084169]
 behavior_tree = ExtResource("4_q0qwj")
@@ -915,10 +920,10 @@ fov = 90.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.7, -5.7, 0)
 
 [node name="cleaver" type="Node3D" parent="knife_point" unique_id=1185594384]
-transform = Transform3D(2.1855692e-08, -0.4999996, 4.3711353e-08, -0.49999994, -2.1855676e-08, 0, 1.9106853e-15, -4.3711353e-08, -0.4999996, 6.572653, 7.3853016, 0)
+transform = Transform3D(2.1855692e-08, -0.49999958, 4.3711353e-08, -0.49999994, -2.1855676e-08, 0, 1.9106853e-15, -4.3711353e-08, -0.49999958, 6.572653, 7.3853016, 0)
 
 [node name="Cube_001" type="MeshInstance3D" parent="knife_point/cleaver" unique_id=89897645]
-transform = Transform3D(0.4000001, 0, 0, 0, 4, 0, 0, 0, 8, 0, 0, 0)
+transform = Transform3D(0.4000001, -2.8421713e-14, 0, -3.9864342e-22, 3.999999, 7.9580786e-13, 1.0587912e-21, -2.842171e-13, 10.259995, 0, 0, -3.0000014)
 mesh = SubResource("ArrayMesh_tsddd")
 surface_material_override/0 = SubResource("StandardMaterial3D_w5q7o")
 
@@ -929,3 +934,10 @@ surface_material_override/0 = SubResource("StandardMaterial3D_ef5ew")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="knife_point/cleaver" unique_id=84935923]
 libraries/ = SubResource("AnimationLibrary_w5x60")
+
+[node name="Area3D" type="Area3D" parent="knife_point/cleaver" unique_id=623289105]
+monitoring = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="knife_point/cleaver/Area3D" unique_id=2075292837]
+transform = Transform3D(1, -8.4199314e-13, -1.9439623e-19, 8.4199314e-13, 1, 2.586412e-12, 1.9439406e-19, -2.586412e-12, 1, 4.7683716e-07, -5.722046e-06, -1.823903e-05)
+shape = SubResource("BoxShape3D_w5x60")

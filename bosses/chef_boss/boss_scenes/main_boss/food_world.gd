@@ -9,6 +9,7 @@ var player
 @export var special_action: String
 
 func _ready() -> void:
+	GeneralData.current_boss = "Chef Doe Nut-Holl"
 	player = player_scene.instantiate()
 	add_child(player)
 	player.global_position = spawn_point.global_position

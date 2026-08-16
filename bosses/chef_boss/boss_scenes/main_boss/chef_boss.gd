@@ -2,6 +2,8 @@ extends Boss
 
 @export var chef_sprite: AnimatedSprite3D
 @export var weapon_animations: AnimationPlayer
+@export var cleaver: Node3D
+@export var cleaver_damage_area: Area3D
 
 @export var boss_name: Label
 @export var start_bossfight_area: Area3D
@@ -9,9 +11,13 @@ extends Boss
 
 func _ready() -> void:
 	blackboard = bt_player.blackboard
-	Engine.set_meta("chef_boss", health)
+	
 	start_bossfight_area.body_entered.connect(_start_bossfight_area_entered)
 	chef_sprite.global_position.y = -60
+	
+	Engine.set_meta("chef_boss", health)
+	cleaver.hide()
+	cleaver_damage_area.body_entered.connect(_cleaver_damage)
 
 func _start_bossfight_area_entered(body: Node3D):
 	if body.is_in_group("player") and has_started == false:
@@ -41,6 +47,7 @@ func idle() -> void:
 	chef_sprite.play("idle")
 
 func attack():
+	cleaver.show()
 	chef_sprite.play("wind_up_attack")
 	weapon_animations.play("knife")
 	
@@ -50,12 +57,19 @@ func attack():
 	
 	chef_sprite.play("finish_attack")
 	weapon_animations.play("knife")
+	cleaver_damage_area.monitoring = true
 	
 	await chef_sprite.animation_finished
 	await get_tree().create_timer(0.125).timeout 
 	idle()
 	await weapon_animations.animation_finished
 	weapon_animations.get_parent().get_parent().hide()
+	cleaver_damage_area.monitoring = false
+
+func _cleaver_damage(body: Node3D):
+	if body == player:
+		body.take_damage()
+		cleaver_damage_area.monitoring = false
 
 func start_miniboss():
 	blackboard.set_var("miniboss_alive", true)
