@@ -21,32 +21,46 @@ func _ready() -> void:
 
 func _start_bossfight_area_entered(body: Node3D):
 	if body.is_in_group("player") and has_started == false:
-		#explanation.queue_free()
 		start_bossfight_area.queue_free()
 		has_started = true
 		player = body
 		_start_bossfight()
 
+#this func manages the tween at the beginning
 func _start_bossfight():
 	if can_attack: return
 	var tween = create_tween()
 	tween.tween_property(boss_name, "modulate:a", 1.0, 1.0)
-	
 	tween.tween_interval(1.0)
+	
 	var start_bossfight_tween = create_tween()
 	start_bossfight_tween.tween_property(chef_sprite, "global_position:y", 0.0, 1)\
 	.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BACK)
-	start_bossfight_tween.tween_callback(func():
 	
-		idle())
+	start_bossfight_tween.tween_callback(func(): idle())
 	tween.tween_property(boss_name, "modulate:a", 0, 1.0)
+	
 	await tween.finished
 	can_attack = true
 
+#idk why i did ts
 func idle() -> void:
 	chef_sprite.play("idle")
 
+
+## TO DO:
+#add animation for the left slash
+#few more fixes to the animation, mostly positioning
+#somehow flip the sprite depending on what side its supposed to swing
+
 func attack():
+	var side = _pick_attack_side()
+	match side:
+		"right":
+			print("will attack from the right")
+		"left":
+			print("will attack from the left")
+	
 	cleaver.show()
 	chef_sprite.play("wind_up_attack")
 	weapon_animations.play("knife")
@@ -61,10 +75,27 @@ func attack():
 	
 	await chef_sprite.animation_finished
 	await get_tree().create_timer(0.125).timeout 
+	
 	idle()
+	
 	await weapon_animations.animation_finished
 	weapon_animations.get_parent().get_parent().hide()
 	cleaver_damage_area.monitoring = false
+
+func _pick_attack_side() -> String:
+	var sides: Array[String] = ["left", "right"]
+	var last_side_index: int = -1
+	var current_side_index: int = GeneralData.rng.randi_range(0, sides.size() - 1)
+	
+	while current_side_index == last_side_index:
+		current_side_index = GeneralData.rng.randi_range(0, sides.size() - 1)
+	last_side_index = current_side_index
+	Engine.set_meta("chef_attack_side", sides[last_side_index])
+	
+	if sides[current_side_index] == "right":
+		return "right"
+	else:
+		return "left"
 
 func _cleaver_damage(body: Node3D):
 	if body == player:
@@ -80,7 +111,5 @@ func start_miniboss():
 func _choose_miniboss():
 	if GeneralData.mini_bosses_available.is_empty():
 		return
-		
 	var boss_index = GeneralData.rng.randi_range(0, GeneralData.mini_bosses_available.size() - 1)
-	
 	GeneralData.selected_mini_boss_name = GeneralData.mini_bosses_available[boss_index]

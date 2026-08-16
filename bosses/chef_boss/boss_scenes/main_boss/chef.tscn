@@ -918,6 +918,7 @@ fov = 90.0
 
 [node name="knife_point" type="Node3D" parent="." unique_id=1092391944]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.7, -5.7, 0)
+visible = false
 
 [node name="cleaver" type="Node3D" parent="knife_point" unique_id=1185594384]
 transform = Transform3D(2.1855692e-08, -0.49999958, 4.3711353e-08, -0.49999994, -2.1855676e-08, 0, 1.9106853e-15, -4.3711353e-08, -0.49999958, 6.572653, 7.3853016, 0)
