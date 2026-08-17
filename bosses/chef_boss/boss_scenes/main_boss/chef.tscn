@@ -687,42 +687,43 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../cleaver:position")
+tracks/0/path = NodePath(".:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(5.9570827, 7.5, 0)]
+"values": [Vector3(0, -3.1415927, -1.5707964)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("../cleaver:rotation")
+tracks/1/path = NodePath(".:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(0, -3.1415927, -1.5707964)]
+"values": [Vector3(6.572653, 7.3853016, 0)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath(".:position")
+tracks/2/path = NodePath(".:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(6.572653, 7.3853016, 0)]
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_xqpuk"]
 resource_name = "knife"
+length = 1.375
 step = 0.125
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -731,34 +732,34 @@ tracks/0/path = NodePath(".:position")
 tracks/0/interp = 0
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.125, 0.25, 0.375, 0.5, 0.625, 0.63, 0.75, 0.875, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.125, 0.25, 0.375, 0.5, 0.625, 0.75, 0.875, 1, 1.125, 1.25),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(6.572653, 7.3853016, 0), Vector3(3.730525, 13.467327, 0), Vector3(2.0355806, 24.249866, 0), Vector3(3.4949427, 26.280682, 0), Vector3(4.185721, 12.097255, 0), Vector3(16.473, 8, 0), Vector3(16.473, 8, 0), Vector3(26.473, 8, 0), Vector3(36.473, 8, 0), Vector3(41, 8, 0)]
+"values": [Vector3(-4.896232, 1.5949297, 0), Vector3(-7.819, 7.079, 0), Vector3(-9.845, 18.488, 0), Vector3(-8.71, 20.388, 0), Vector3(-7.494, 6.267, 0), Vector3(0.488, 1.71, 0), Vector3(8.488, 1.71, 0), Vector3(16.488, 1.71, 0), Vector3(24.488, 1.71, 0), Vector3(30.313, 1.71, 0), Vector3(37, 1.71, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("../cleaver:position")
+tracks/1/path = NodePath(".:rotation")
 tracks/1/interp = 0
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.125, 0.25, 0.375, 0.5, 0.625, 0.75, 0.875, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.125, 0.25, 0.375, 0.5, 0.625, 0.75, 0.875, 1, 1.125, 1.25),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(6.488198, 7.709628, 0), Vector3(4.1810923, 13.078721, 0), Vector3(2.1548014, 24.488476, 0), Vector3(3.2903967, 26.388474, 0), Vector3(4.506, 12.267, 0), Vector3(12.488197, 7.709628, 0), Vector3(20.488197, 7.709628, 0), Vector3(28.488197, 7.709628, 0), Vector3(36.488197, 7.709628, 0)]
+"values": [Vector3(0, 3.1415925, -1.5707964), Vector3(0.34906584, 3.1415925, 0), Vector3(1.1584275, 3.1415918, -7.03318e-07), Vector3(1.420227, 3.1415904, -2.2099266e-06), Vector3(0.42760566, 3.1415927, -0.7853982), Vector3(8.8817784e-16, -2.8797932, -1.5707964), Vector3(3.6712763e-15, -1.5707963, -1.5707964), Vector3(1.4529209e-15, -1.3089969, -1.5707964), Vector3(3.0076798e-16, -0.26179934, -1.5707964), Vector3(0, 0.38397244, -1.5707964), Vector3(0, 1.9792033, -1.5707964)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("../cleaver:rotation")
-tracks/2/interp = 0
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.125, 0.25, 0.375, 0.5, 0.625, 0.75, 0.875, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(0, 3.1415925, -1.5707964), Vector3(0.34906584, 3.1415925, 0), Vector3(1.1584275, 3.1415918, -7.03318e-07), Vector3(1.420227, 3.1415904, -2.2099266e-06), Vector3(0.42760566, 3.1415927, -0.7853982), Vector3(8.8817784e-16, -2.8797932, -1.5707964), Vector3(3.6712763e-15, -1.5707963, -1.5707964), Vector3(1.4529209e-15, -1.3089969, -1.5707964), Vector3(3.0076798e-16, -0.26179934, -1.5707964)]
+"times": PackedFloat32Array(1, 1.375),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_w5x60"]
@@ -768,7 +769,7 @@ _data = {
 }
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_w5x60"]
-size = Vector3(1, 11, 31)
+size = Vector3(1, 36, 31)
 
 [node name="Node3D" type="Node3D" unique_id=871431128 node_paths=PackedStringArray("void_detector", "spawn_point")]
 script = ExtResource("1_14uva")
@@ -850,12 +851,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 
 [node name="Node" type="Node" parent="." unique_id=478003106]
 
-[node name="boss" type="Node3D" parent="." unique_id=640654191 node_paths=PackedStringArray("chef_sprite", "weapon_animations", "cleaver", "cleaver_damage_area", "boss_name", "start_bossfight_area", "bt_player")]
+[node name="boss" type="Node3D" parent="." unique_id=640654191 node_paths=PackedStringArray("chef_sprite", "weapon_animations", "cleaver", "cleaver_damage_area", "controller", "boss_name", "start_bossfight_area", "bt_player")]
 script = ExtResource("1_8bqa2")
 chef_sprite = NodePath("AnimatedSprite3D")
-weapon_animations = NodePath("../knife_point/cleaver/AnimationPlayer")
-cleaver = NodePath("../knife_point")
-cleaver_damage_area = NodePath("../knife_point/cleaver/Area3D")
+weapon_animations = NodePath("../controller/cleaver/AnimationPlayer")
+cleaver = NodePath("../controller")
+cleaver_damage_area = NodePath("../controller/Area3D")
+controller = NodePath("../controller")
 boss_name = NodePath("boss_name")
 start_bossfight_area = NodePath("../start_bossfight")
 mini_boss_scene = "res://bosses/chef_boss/boss_scenes/mini_boss/chef_2d.tscn"
@@ -867,8 +869,7 @@ pixel_size = 0.085
 billboard = 2
 texture_filter = 0
 sprite_frames = SubResource("SpriteFrames_7vuwa")
-animation = &"finish_attack"
-frame = 1
+animation = &"wind_up_attack"
 
 [node name="BTPlayer" type="BTPlayer" parent="boss" unique_id=147084169]
 behavior_tree = ExtResource("4_q0qwj")
@@ -889,11 +890,13 @@ vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="void_area" type="Area3D" parent="." unique_id=457075771]
+visible = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="void_area" unique_id=988297134]
 shape = SubResource("BoxShape3D_14uva")
 
 [node name="start_bossfight" type="Area3D" parent="." unique_id=818572578]
+visible = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="start_bossfight" unique_id=950178119]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3590088, 0, -4.7995114)
@@ -916,29 +919,28 @@ transform = Transform3D(1, 0, 0, 0, 0.9659259, 0.25881907, 0, -0.25881907, 0.965
 current = true
 fov = 90.0
 
-[node name="knife_point" type="Node3D" parent="." unique_id=1092391944]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.7, -5.7, 0)
-visible = false
+[node name="controller" type="Node3D" parent="." unique_id=617081525]
 
-[node name="cleaver" type="Node3D" parent="knife_point" unique_id=1185594384]
-transform = Transform3D(2.1855692e-08, -0.49999958, 4.3711353e-08, -0.49999994, -2.1855676e-08, 0, 1.9106853e-15, -4.3711353e-08, -0.49999958, 6.572653, 7.3853016, 0)
+[node name="cleaver" type="Node3D" parent="controller" unique_id=1185594384]
+transform = Transform3D(2.1855692e-08, -0.49999955, 4.371135e-08, -0.49999994, -2.1855675e-08, 0, 1.9106853e-15, -4.371135e-08, -0.49999955, 6.572653, 7.3853016, 0)
 
-[node name="Cube_001" type="MeshInstance3D" parent="knife_point/cleaver" unique_id=89897645]
+[node name="Cube_001" type="MeshInstance3D" parent="controller/cleaver" unique_id=89897645]
 transform = Transform3D(0.4000001, -2.8421713e-14, 0, -3.9864342e-22, 3.999999, 7.9580786e-13, 1.0587912e-21, -2.842171e-13, 10.259995, 0, 0, -3.0000014)
 mesh = SubResource("ArrayMesh_tsddd")
 surface_material_override/0 = SubResource("StandardMaterial3D_w5q7o")
 
-[node name="Cube" type="MeshInstance3D" parent="knife_point/cleaver" unique_id=1124494543]
+[node name="Cube" type="MeshInstance3D" parent="controller/cleaver" unique_id=1124494543]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.1921673, 7.9)
 mesh = SubResource("ArrayMesh_todxk")
 surface_material_override/0 = SubResource("StandardMaterial3D_ef5ew")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="knife_point/cleaver" unique_id=84935923]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="controller/cleaver" unique_id=84935923]
 libraries/ = SubResource("AnimationLibrary_w5x60")
 
-[node name="Area3D" type="Area3D" parent="knife_point/cleaver" unique_id=623289105]
+[node name="Area3D" type="Area3D" parent="controller" unique_id=623289105]
+transform = Transform3D(2.1855692e-08, -0.49999955, 1.9470701e-07, -0.49999994, -2.1855675e-08, 0, 8.51092e-15, -1.9470701e-07, -0.49999955, -4.8962326, 1.5949297, 0)
 monitoring = false
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="knife_point/cleaver/Area3D" unique_id=2075292837]
-transform = Transform3D(1, -8.4199314e-13, -1.9439623e-19, 8.4199314e-13, 1, 2.586412e-12, 1.9439406e-19, -2.586412e-12, 1, 4.7683716e-07, -5.722046e-06, -1.823903e-05)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="controller/Area3D" unique_id=2075292837]
+transform = Transform3D(1, -1.6200374e-12, -3.320487e-19, 1.6200374e-12, 1, 7.276053e-12, 3.3203692e-19, -7.276053e-12, 1, 1.4305115e-06, -23.49997, -1.8238956e-05)
 shape = SubResource("BoxShape3D_w5x60")
