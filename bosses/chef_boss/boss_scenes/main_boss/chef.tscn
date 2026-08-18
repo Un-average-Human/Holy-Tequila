@@ -435,26 +435,6 @@ region = Rect2(5400, 3240, 1080, 1080)
 atlas = ExtResource("2_4u6kh")
 region = Rect2(6480, 3240, 1080, 1080)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_jp7lr"]
-atlas = ExtResource("2_4u6kh")
-region = Rect2(2160, 0, 1080, 1080)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_vtt3e"]
-atlas = ExtResource("2_4u6kh")
-region = Rect2(7560, 2160, 1080, 1080)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_balmj"]
-atlas = ExtResource("2_4u6kh")
-region = Rect2(0, 3240, 1080, 1080)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ix74q"]
-atlas = ExtResource("2_4u6kh")
-region = Rect2(1080, 3240, 1080, 1080)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_8p7ik"]
-atlas = ExtResource("2_4u6kh")
-region = Rect2(2160, 3240, 1080, 1080)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_7vuwa"]
 atlas = ExtResource("2_4u6kh")
 region = Rect2(0, 2160, 1080, 1080)
@@ -466,14 +446,6 @@ region = Rect2(1080, 2160, 1080, 1080)
 [sub_resource type="AtlasTexture" id="AtlasTexture_rovsf"]
 atlas = ExtResource("2_4u6kh")
 region = Rect2(2160, 2160, 1080, 1080)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_odjrt"]
-atlas = ExtResource("2_4u6kh")
-region = Rect2(0, 2160, 1080, 1080)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_l16qt"]
-atlas = ExtResource("2_4u6kh")
-region = Rect2(1080, 2160, 1080, 1080)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3c1d7"]
 atlas = ExtResource("2_4u6kh")
@@ -498,10 +470,6 @@ region = Rect2(1080, 3240, 1080, 1080)
 [sub_resource type="AtlasTexture" id="AtlasTexture_504sy"]
 atlas = ExtResource("2_4u6kh")
 region = Rect2(2160, 3240, 1080, 1080)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_yblme"]
-atlas = ExtResource("2_4u6kh")
-region = Rect2(3240, 3240, 1080, 1080)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_14uva"]
 atlas = ExtResource("2_4u6kh")
@@ -588,26 +556,6 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_jp7lr")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_vtt3e")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_balmj")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ix74q")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_8p7ik")
-}],
-"loop": false,
-"name": &"prepare_to_prepare_food",
-"speed": 8.0
-}, {
-"frames": [{
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_7vuwa")
 }, {
 "duration": 1.0,
@@ -621,12 +569,6 @@ animations = [{
 "speed": 8.0
 }, {
 "frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_odjrt")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_l16qt")
-}, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_3c1d7")
 }, {
@@ -644,9 +586,6 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_504sy")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_yblme")
 }],
 "loop": false,
 "name": &"turn_around",
@@ -1005,6 +944,8 @@ billboard = 2
 texture_filter = 0
 sprite_frames = SubResource("SpriteFrames_7vuwa")
 animation = &"turn_around"
+frame = 5
+frame_progress = 1.0
 
 [node name="BTPlayer" type="BTPlayer" parent="boss" unique_id=147084169]
 behavior_tree = ExtResource("4_q0qwj")

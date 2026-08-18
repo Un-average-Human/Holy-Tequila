@@ -16,6 +16,11 @@ var/has_attacked_once/type = 1
 var/has_attacked_once/value = false
 var/has_attacked_once/hint = 0
 var/has_attacked_once/hint_string = ""
+var/can_pick_miniboss/name = &"can_pick_miniboss"
+var/can_pick_miniboss/type = 1
+var/can_pick_miniboss/value = false
+var/can_pick_miniboss/hint = 0
+var/can_pick_miniboss/hint_string = ""
 
 [sub_resource type="BBVariant" id="BBVariant_i0j1x"]
 type = 1
@@ -46,8 +51,25 @@ resource_name = "boss"
 node = SubResource("BBNode_3dw6m")
 method = &"cleaver_slam_attack"
 
-[sub_resource type="BTWait" id="BTWait_i0j1x"]
-duration = 5.0
+[sub_resource type="BBNode" id="BBNode_7ua8e"]
+saved_value = NodePath("boss")
+resource_name = "boss"
+
+[sub_resource type="BTCallMethod" id="BTCallMethod_tioj0"]
+node = SubResource("BBNode_7ua8e")
+method = &"prepare_miniboss"
+
+[sub_resource type="BBVariant" id="BBVariant_3dw6m"]
+type = 1
+saved_value = true
+resource_name = "true"
+
+[sub_resource type="BTCheckVar" id="BTCheckVar_7ua8e"]
+variable = &"can_pick_miniboss"
+value = SubResource("BBVariant_3dw6m")
+
+[sub_resource type="BTRepeatUntilSuccess" id="BTRepeatUntilSuccess_i0j1x"]
+children = [SubResource("BTCheckVar_7ua8e")]
 
 [sub_resource type="BBVariant" id="BBVariant_o2k44"]
 type = 1
@@ -74,7 +96,7 @@ custom_name = "Pick a Miniboss"
 children = [SubResource("BTCheckVar_3dw6m"), SubResource("BTCallMethod_i0j1x"), SubResource("BTConsolePrint_o2k44")]
 
 [sub_resource type="BTSequence" id="BTSequence_7ua8e"]
-children = [SubResource("BTCheckAgentProperty_o2k44"), SubResource("BTCallMethod_o2k44"), SubResource("BTWait_o2k44"), SubResource("BTCallMethod_7ua8e"), SubResource("BTWait_i0j1x"), SubResource("BTSequence_o2k44")]
+children = [SubResource("BTCheckAgentProperty_o2k44"), SubResource("BTCallMethod_o2k44"), SubResource("BTWait_o2k44"), SubResource("BTCallMethod_7ua8e"), SubResource("BTCallMethod_tioj0"), SubResource("BTRepeatUntilSuccess_i0j1x"), SubResource("BTSequence_o2k44")]
 
 [sub_resource type="BTSequence" id="BTSequence_i0j1x"]
 children = [SubResource("BTSequence_7ua8e")]

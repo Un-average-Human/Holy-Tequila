@@ -25,6 +25,7 @@ func _ready() -> void:
 	Engine.set_meta("chef_boss", health)
 	
 	blackboard = bt_player.blackboard
+	blackboard.set_var("can_pick_miniboss", false)
 	
 	cleaver.hide()
 	cleaver_damage_area.body_entered.connect(_cleaver_damage)
@@ -87,7 +88,6 @@ func cleaver_slam_attack():
 	idle()
 	
 	await weapon_animations.animation_finished
-	
 
 func slash_attack():
 	var side = _pick_attack_side()
@@ -118,6 +118,21 @@ func slash_attack():
 	
 	await weapon_animations.animation_finished
 	cleaver_damage_area.monitoring = false
+
+func prepare_miniboss():
+	await weapon_animations.animation_finished
+	await get_tree().create_timer(2).timeout
+	
+	chef_sprite.play("turn_around")
+	
+	await chef_sprite.animation_finished
+	chef_sprite.play("prepare_food")
+	await get_tree().create_timer(3).timeout
+	
+	chef_sprite.play_backwards("turn_around")
+	
+	await chef_sprite.animation_finished
+	blackboard.set_var("can_pick_miniboss", true)
 
 func _pick_attack_side() -> String:
 	var sides: Array[String] = ["left", "right"]
