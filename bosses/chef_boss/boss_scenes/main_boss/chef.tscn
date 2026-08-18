@@ -421,19 +421,51 @@ region = Rect2(3240, 0, 1080, 1080)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dec08"]
 atlas = ExtResource("2_4u6kh")
-region = Rect2(4320, 3240, 1080, 1080)
+region = Rect2(3240, 3240, 1080, 1080)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_keaxl"]
 atlas = ExtResource("2_4u6kh")
-region = Rect2(0, 4320, 1080, 1080)
+region = Rect2(4320, 3240, 1080, 1080)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_v7p52"]
 atlas = ExtResource("2_4u6kh")
-region = Rect2(1080, 4320, 1080, 1080)
+region = Rect2(5400, 3240, 1080, 1080)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3xgmm"]
 atlas = ExtResource("2_4u6kh")
-region = Rect2(2160, 4320, 1080, 1080)
+region = Rect2(6480, 3240, 1080, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jp7lr"]
+atlas = ExtResource("2_4u6kh")
+region = Rect2(2160, 0, 1080, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vtt3e"]
+atlas = ExtResource("2_4u6kh")
+region = Rect2(7560, 2160, 1080, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_balmj"]
+atlas = ExtResource("2_4u6kh")
+region = Rect2(0, 3240, 1080, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ix74q"]
+atlas = ExtResource("2_4u6kh")
+region = Rect2(1080, 3240, 1080, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8p7ik"]
+atlas = ExtResource("2_4u6kh")
+region = Rect2(2160, 3240, 1080, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7vuwa"]
+atlas = ExtResource("2_4u6kh")
+region = Rect2(0, 2160, 1080, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eyp86"]
+atlas = ExtResource("2_4u6kh")
+region = Rect2(1080, 2160, 1080, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rovsf"]
+atlas = ExtResource("2_4u6kh")
+region = Rect2(2160, 2160, 1080, 1080)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_odjrt"]
 atlas = ExtResource("2_4u6kh")
@@ -487,6 +519,26 @@ region = Rect2(1080, 1080, 1080, 1080)
 atlas = ExtResource("2_4u6kh")
 region = Rect2(2160, 1080, 1080, 1080)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_a557x"]
+atlas = ExtResource("2_4u6kh")
+region = Rect2(3240, 1080, 1080, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p60s2"]
+atlas = ExtResource("2_4u6kh")
+region = Rect2(4320, 1080, 1080, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rwjj7"]
+atlas = ExtResource("2_4u6kh")
+region = Rect2(5400, 1080, 1080, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jovr3"]
+atlas = ExtResource("2_4u6kh")
+region = Rect2(6480, 1080, 1080, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_40uo0"]
+atlas = ExtResource("2_4u6kh")
+region = Rect2(7560, 1080, 1080, 1080)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_7vuwa"]
 animations = [{
 "frames": [{
@@ -532,6 +584,40 @@ animations = [{
 }],
 "loop": true,
 "name": &"prepare_food",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jp7lr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vtt3e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_balmj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ix74q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8p7ik")
+}],
+"loop": false,
+"name": &"prepare_to_prepare_food",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7vuwa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eyp86")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rovsf")
+}],
+"loop": false,
+"name": &"slam",
 "speed": 8.0
 }, {
 "frames": [{
@@ -581,6 +667,26 @@ animations = [{
 }],
 "loop": false,
 "name": &"wind_up_attack",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a557x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p60s2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rwjj7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jovr3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_40uo0")
+}],
+"loop": false,
+"name": &"wind_up_slam",
 "speed": 8.0
 }]
 
@@ -762,10 +868,39 @@ tracks/2/keys = {
 "values": [true, false]
 }
 
+[sub_resource type="Animation" id="Animation_w5q7o"]
+resource_name = "slam"
+length = 1.1333368
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.125, 0.25, 0.375, 0.5, 0.625, 0.75, 0.875, 1, 1.0666666, 1.1, 1.1333368),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-6.68, 5, 0), Vector3(-7.45, 10.52, 0), Vector3(-6.54, 17.15, 0), Vector3(-6.655, 20.19, 0), Vector3(-6.08, 23.985, 0), Vector3(-6.115, 24.48, 0), Vector3(-6.535, 16.21, 0), Vector3(-7.235, 4.555, 0), Vector3(-6.09, 3.215, 0), Vector3(-6.09, 3.2150002, 0), Vector3(-6.09, 3.2150002, 0), Vector3(-6.09, 3.2150002, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 0
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.125, 0.25, 0.375, 0.5, 0.625, 0.75, 0.875, 1, 1.0666666, 1.1, 1.1333368),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0.34906584, -3.1415927, 0), Vector3(0.61086524, -3.1415927, 0), Vector3(0.7853982, -3.1415927, -0.17453292), Vector3(0.7853982, -3.1415927, -0.43633235), Vector3(0.7853982, -3.1415927, -0.2617994), Vector3(0.7853982, -3.1415927, -0.26179945), Vector3(0.7853982, -3.1415927, -0.43633232), Vector3(0.2617994, -3.1415927, -0.43633232), Vector3(0.17453292, -3.1415927, -0.43633232), Vector3(0.17453292, -3.1415927, -0.41887903), Vector3(0.17453292, -3.1415927, -0.43633232), Vector3(0.17453292, -3.1415927, -0.4537856)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_w5x60"]
 _data = {
 &"RESET": SubResource("Animation_ef5ew"),
-&"knife": SubResource("Animation_xqpuk")
+&"knife": SubResource("Animation_xqpuk"),
+&"slam": SubResource("Animation_w5q7o")
 }
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_w5x60"]
@@ -869,7 +1004,7 @@ pixel_size = 0.085
 billboard = 2
 texture_filter = 0
 sprite_frames = SubResource("SpriteFrames_7vuwa")
-animation = &"wind_up_attack"
+animation = &"turn_around"
 
 [node name="BTPlayer" type="BTPlayer" parent="boss" unique_id=147084169]
 behavior_tree = ExtResource("4_q0qwj")

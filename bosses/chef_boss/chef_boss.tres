@@ -44,7 +44,7 @@ resource_name = "boss"
 
 [sub_resource type="BTCallMethod" id="BTCallMethod_7ua8e"]
 node = SubResource("BBNode_3dw6m")
-method = &"slash_attack"
+method = &"cleaver_slam_attack"
 
 [sub_resource type="BTWait" id="BTWait_i0j1x"]
 duration = 5.0

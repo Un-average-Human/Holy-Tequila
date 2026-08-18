@@ -12,7 +12,7 @@ func _ready() -> void:
 	blackboard = bt_player.blackboard
 	blackboard.set_var("is_attacking", false)
 	can_attack = false
-	health = 2000
+	health = 2
 	
 	boss_hit_box.area_entered.connect(_bullet_hit)
 	
@@ -38,6 +38,8 @@ func attack():
 	match mini_boss.name:
 		"burger":
 			burger_attack.execute(mini_boss, self)
+
+	Engine.set_meta("chef_miniboss", mini_boss.name)
 
 func _hurt(damage: float):
 	if !is_instance_valid(mini_boss) or health <= 0:

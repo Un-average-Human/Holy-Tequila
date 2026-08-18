@@ -11,7 +11,7 @@ var player
 func _ready() -> void:
 	GeneralData.current_boss = "Spaceship Boss"
 	player = player_scene.instantiate()
-	player.global_position = spawn_point.global_position
+	#player.global_position = spawn_point.global_position
 	add_child(player)
 	player.special_action = player.get_node(special_action.to_lower())
 	

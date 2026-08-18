@@ -61,28 +61,40 @@ func idle() -> void:
 #few more fixes to the animation, mostly positioning
 #somehow flip the sprite depending on what side its supposed to swing
 func cleaver_slam_attack():
-	match health:
-		3:
-			chef_sprite.play("slam")
-			print("slam once")
-		2:
-			for i in 2:
-				chef_sprite.play("slam")
-				print("slam twice")
-				
-				await chef_sprite.animation_finished
-		1:
-			for i in 3:
-				chef_sprite.play("slam")
-				print("slam thrice")
-				
-				await chef_sprite.animation_finished
+	var side = _pick_attack_side()
+	match side:
+		"left":
+			controller.scale.x = 1
+			chef_sprite.flip_h = false
+		"right":
+			controller.scale.x = -1
+			chef_sprite.flip_h = true
+	
+	cleaver.show()
+	chef_sprite.play("wind_up_slam")
+	weapon_animations.play("slam")
+	
+	await chef_sprite.animation_finished
+	weapon_animations.pause()
+	await get_tree().create_timer(2).timeout
+	
+	chef_sprite.play("slam")
+	weapon_animations.play("slam")
+	
+	await chef_sprite.animation_finished
+	
+	chef_sprite.flip_h = false
+	idle()
+	
+	await weapon_animations.animation_finished
+	
 
 func slash_attack():
 	var side = _pick_attack_side()
 	match side:
 		"right":
-			pass
+			controller.scale.x = 1
+			chef_sprite.flip_h = false
 		"left":
 			controller.scale.x = -1
 			chef_sprite.flip_h = true
@@ -106,8 +118,6 @@ func slash_attack():
 	
 	await weapon_animations.animation_finished
 	cleaver_damage_area.monitoring = false
-	
-	controller.scale.x = 1
 
 func _pick_attack_side() -> String:
 	var sides: Array[String] = ["left", "right"]
