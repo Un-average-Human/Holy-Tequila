@@ -354,6 +354,43 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_an3wi")
 
+[sub_resource type="Animation" id="Animation_w5x60"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("burger:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 2, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_4xhcb"]
+resource_name = "food_falling"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("burger:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(3, 1),
+"update": 0,
+"values": [Vector3(0, 17, 0), Vector3(0, 2, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lj7j7"]
+_data = {
+&"RESET": SubResource("Animation_w5x60"),
+&"food_falling": SubResource("Animation_4xhcb")
+}
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x6hyb"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_t03qq"]
@@ -859,10 +896,10 @@ shadow_enabled = true
 [node name="WorldEnvironment" type="WorldEnvironment" parent="environment" unique_id=1331780703]
 environment = SubResource("Environment_chyxy")
 
-[node name="food_items" type="Node" parent="." unique_id=282987962]
+[node name="food_items" type="Marker3D" parent="." unique_id=22006356]
 
 [node name="burger" type="Node3D" parent="food_items" unique_id=1255035151]
-transform = Transform3D(0.502, 0, 0, 0, 0.502, 0, 0, 0, 0.502, 0, 3, 0)
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 2, 0)
 visible = false
 
 [node name="top_bun" type="MeshInstance3D" parent="food_items/burger" unique_id=248000347]
@@ -910,6 +947,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.6, 0)
 mesh = SubResource("ArrayMesh_ul5l3")
 surface_material_override/0 = SubResource("StandardMaterial3D_bdmdc")
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="food_items" unique_id=1726810163]
+libraries/ = SubResource("AnimationLibrary_lj7j7")
+
 [node name="island" type="StaticBody3D" parent="." unique_id=2006563272]
 collision_layer = 3
 
@@ -925,7 +965,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 
 [node name="Node" type="Node" parent="." unique_id=478003106]
 
-[node name="boss" type="Node3D" parent="." unique_id=640654191 node_paths=PackedStringArray("chef_sprite", "weapon_animations", "cleaver", "cleaver_damage_area", "controller", "boss_name", "start_bossfight_area", "bt_player")]
+[node name="boss" type="Node3D" parent="." unique_id=640654191 node_paths=PackedStringArray("chef_sprite", "weapon_animations", "cleaver", "cleaver_damage_area", "controller", "boss_name", "start_bossfight_area", "food_items", "food_animation", "bt_player")]
 script = ExtResource("1_8bqa2")
 chef_sprite = NodePath("AnimatedSprite3D")
 weapon_animations = NodePath("../controller/cleaver/AnimationPlayer")
@@ -935,6 +975,8 @@ controller = NodePath("../controller")
 boss_name = NodePath("boss_name")
 start_bossfight_area = NodePath("../start_bossfight")
 mini_boss_scene = "res://bosses/chef_boss/boss_scenes/mini_boss/chef_2d.tscn"
+food_items = NodePath("../food_items")
+food_animation = NodePath("../food_items/AnimationPlayer")
 bt_player = NodePath("BTPlayer")
 
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="boss" unique_id=673767534]
@@ -943,9 +985,7 @@ pixel_size = 0.085
 billboard = 2
 texture_filter = 0
 sprite_frames = SubResource("SpriteFrames_7vuwa")
-animation = &"turn_around"
-frame = 5
-frame_progress = 1.0
+animation = &"idle"
 
 [node name="BTPlayer" type="BTPlayer" parent="boss" unique_id=147084169]
 behavior_tree = ExtResource("4_q0qwj")

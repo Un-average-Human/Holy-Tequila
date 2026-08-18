@@ -11,6 +11,9 @@ extends Boss
 @export var start_bossfight_area: Area3D
 @export_file_path("*.tscn") var mini_boss_scene: String
 
+@export var food_items: Marker3D
+@export var food_animation: AnimationPlayer
+
 func _ready() -> void:
 	if !Engine.get_meta("chef_bossfight_started"):
 		Engine.set_meta("chef_bossfight_started", true)
@@ -132,6 +135,12 @@ func prepare_miniboss():
 	chef_sprite.play_backwards("turn_around")
 	
 	await chef_sprite.animation_finished
+	
+	_choose_miniboss()
+	food_items.get_node(GeneralData.selected_mini_boss_name).show()
+	food_animation.play("food_falling")
+	await food_animation.animation_finished
+	
 	blackboard.set_var("can_pick_miniboss", true)
 
 func _pick_attack_side() -> String:
