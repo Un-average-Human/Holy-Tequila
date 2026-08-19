@@ -27,7 +27,8 @@ func _ready() -> void:
 	for heart in heart_container.get_children():
 		heart_list.append(heart)
 		heart.get_child(0).play("idle")
-		
+	
+	_update_hearts()
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func _input(event: InputEvent) -> void:

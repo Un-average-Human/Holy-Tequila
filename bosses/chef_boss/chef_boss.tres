@@ -21,6 +21,11 @@ var/can_pick_miniboss/type = 1
 var/can_pick_miniboss/value = false
 var/can_pick_miniboss/hint = 0
 var/can_pick_miniboss/hint_string = ""
+var/attack_times/name = &"attack_times"
+var/attack_times/type = 2
+var/attack_times/value = 0
+var/attack_times/hint = 0
+var/attack_times/hint_string = ""
 
 [sub_resource type="BBVariant" id="BBVariant_i0j1x"]
 type = 1
@@ -43,13 +48,101 @@ method = &"idle"
 [sub_resource type="BTWait" id="BTWait_o2k44"]
 duration = 3.0
 
-[sub_resource type="BBNode" id="BBNode_3dw6m"]
+[sub_resource type="BBVariant" id="BBVariant_7ua8e"]
+type = 2
+saved_value = 1
+resource_name = "1"
+
+[sub_resource type="BTCheckAgentProperty" id="BTCheckAgentProperty_tioj0"]
+property = &"health"
+value = SubResource("BBVariant_7ua8e")
+
+[sub_resource type="BBNode" id="BBNode_rotxm"]
 saved_value = NodePath("boss")
 resource_name = "boss"
 
-[sub_resource type="BTCallMethod" id="BTCallMethod_7ua8e"]
-node = SubResource("BBNode_3dw6m")
-method = &"cleaver_slam_attack"
+[sub_resource type="BTCallMethod" id="BTCallMethod_dpuih"]
+node = SubResource("BBNode_rotxm")
+method = &"slam_attack"
+
+[sub_resource type="BBNode" id="BBNode_dgluc"]
+saved_value = NodePath("boss")
+resource_name = "boss"
+
+[sub_resource type="BTCallMethod" id="BTCallMethod_tcflo"]
+node = SubResource("BBNode_dgluc")
+method = &"slash_attack"
+
+[sub_resource type="BTProbabilitySelector" id="BTProbabilitySelector_fmd32"]
+children = [SubResource("BTCallMethod_dpuih"), SubResource("BTCallMethod_tcflo")]
+
+[sub_resource type="BBVariant" id="BBVariant_a06dt"]
+type = 1
+saved_value = false
+resource_name = "<null>"
+
+[sub_resource type="BTCheckVar" id="BTCheckVar_ika8p"]
+variable = &"is_attacking"
+value = SubResource("BBVariant_a06dt")
+
+[sub_resource type="BTRepeatUntilSuccess" id="BTRepeatUntilSuccess_tq7bc"]
+children = [SubResource("BTCheckVar_ika8p")]
+
+[sub_resource type="BBNode" id="BBNode_3gyvx"]
+saved_value = NodePath("boss")
+resource_name = "boss"
+
+[sub_resource type="BTCallMethod" id="BTCallMethod_dgj1q"]
+node = SubResource("BBNode_3gyvx")
+method = &"slam_attack"
+
+[sub_resource type="BBNode" id="BBNode_y43lu"]
+saved_value = NodePath("boss")
+resource_name = "boss"
+
+[sub_resource type="BTCallMethod" id="BTCallMethod_jv10j"]
+node = SubResource("BBNode_y43lu")
+method = &"slash_attack"
+
+[sub_resource type="BTProbabilitySelector" id="BTProbabilitySelector_j4hsl"]
+children = [SubResource("BTCallMethod_dgj1q"), SubResource("BTCallMethod_jv10j")]
+
+[sub_resource type="BBVariant" id="BBVariant_b2gar"]
+type = 1
+saved_value = false
+resource_name = "<null>"
+
+[sub_resource type="BTCheckVar" id="BTCheckVar_jbxyx"]
+variable = &"is_attacking"
+value = SubResource("BBVariant_b2gar")
+
+[sub_resource type="BTRepeatUntilSuccess" id="BTRepeatUntilSuccess_02gtj"]
+children = [SubResource("BTCheckVar_jbxyx")]
+
+[sub_resource type="BBNode" id="BBNode_ylknf"]
+saved_value = NodePath("boss")
+resource_name = "boss"
+
+[sub_resource type="BTCallMethod" id="BTCallMethod_sy84m"]
+node = SubResource("BBNode_ylknf")
+method = &"slam_attack"
+
+[sub_resource type="BBNode" id="BBNode_jmf80"]
+saved_value = NodePath("boss")
+resource_name = "boss"
+
+[sub_resource type="BTCallMethod" id="BTCallMethod_ucvyg"]
+node = SubResource("BBNode_jmf80")
+method = &"slash_attack"
+
+[sub_resource type="BTProbabilitySelector" id="BTProbabilitySelector_bf6re"]
+children = [SubResource("BTCallMethod_sy84m"), SubResource("BTCallMethod_ucvyg")]
+
+[sub_resource type="BTSequence" id="BTSequence_3dw6m"]
+children = [SubResource("BTCheckAgentProperty_tioj0"), SubResource("BTProbabilitySelector_fmd32"), SubResource("BTRepeatUntilSuccess_tq7bc"), SubResource("BTProbabilitySelector_j4hsl"), SubResource("BTRepeatUntilSuccess_02gtj"), SubResource("BTProbabilitySelector_bf6re")]
+
+[sub_resource type="BTSelector" id="BTSelector_l4ars"]
+children = [SubResource("BTSequence_3dw6m")]
 
 [sub_resource type="BBNode" id="BBNode_7ua8e"]
 saved_value = NodePath("boss")
@@ -95,11 +188,11 @@ text = "Where is the miniboss"
 custom_name = "Pick a Miniboss"
 children = [SubResource("BTCheckVar_3dw6m"), SubResource("BTCallMethod_i0j1x"), SubResource("BTConsolePrint_o2k44")]
 
-[sub_resource type="BTSequence" id="BTSequence_7ua8e"]
-children = [SubResource("BTCheckAgentProperty_o2k44"), SubResource("BTCallMethod_o2k44"), SubResource("BTWait_o2k44"), SubResource("BTCallMethod_7ua8e"), SubResource("BTCallMethod_tioj0"), SubResource("BTRepeatUntilSuccess_i0j1x"), SubResource("BTSequence_o2k44")]
+[sub_resource type="BTSequence" id="BTSequence_dpuih"]
+children = [SubResource("BTCheckAgentProperty_o2k44"), SubResource("BTCallMethod_o2k44"), SubResource("BTWait_o2k44"), SubResource("BTSelector_l4ars"), SubResource("BTCallMethod_tioj0"), SubResource("BTRepeatUntilSuccess_i0j1x"), SubResource("BTSequence_o2k44")]
 
 [sub_resource type="BTSequence" id="BTSequence_i0j1x"]
-children = [SubResource("BTSequence_7ua8e")]
+children = [SubResource("BTSequence_dpuih")]
 
 [resource]
 blackboard_plan = SubResource("BlackboardPlan_i0j1x")

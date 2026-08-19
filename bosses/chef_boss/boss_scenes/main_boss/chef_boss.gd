@@ -1,20 +1,27 @@
 extends Boss
 
-@export var chef_sprite: AnimatedSprite3D
-@export var weapon_animations: AnimationPlayer
-
+@export_category("Cleaver")
 @export var cleaver: Node3D
 @export var cleaver_damage_area: Area3D
+@export var cleaver_blade_area: ShapeCast3D
 @export var controller: Node3D
+@export var weapon_animations: AnimationPlayer
 
+@export_category("Boss Data")
+@export var chef_sprite: AnimatedSprite3D
 @export var boss_name: Label
 @export var start_bossfight_area: Area3D
 @export_file_path("*.tscn") var mini_boss_scene: String
 
+@export_category("Food")
 @export var food_items: Marker3D
 @export var food_animation: AnimationPlayer
 
 func _ready() -> void:
+	for food in food_items.get_children():
+		if food is Node3D:
+			food.hide()
+	
 	if !Engine.get_meta("chef_bossfight_started"):
 		Engine.set_meta("chef_bossfight_started", true)
 		
@@ -59,12 +66,8 @@ func _start_bossfight():
 func idle() -> void:
 	chef_sprite.play("idle")
 
-
-## TO DO:
-#add animation for the left slash
-#few more fixes to the animation, mostly positioning
-#somehow flip the sprite depending on what side its supposed to swing
-func cleaver_slam_attack():
+func slam_attack():
+	blackboard.set_var("is_attacking", true)
 	var side = _pick_attack_side()
 	match side:
 		"left":
@@ -74,16 +77,20 @@ func cleaver_slam_attack():
 			controller.scale.x = -1
 			chef_sprite.flip_h = true
 	
-	cleaver.show()
+	_manage_cleaver_visibility(true)
+	await get_tree().create_timer(0.25).timeout
+	
 	chef_sprite.play("wind_up_slam")
 	weapon_animations.play("slam")
 	
-	await chef_sprite.animation_finished
+	if chef_sprite.sprite_frames.has_animation("wind_up_slam"):
+		await chef_sprite.animation_finished
+		
 	weapon_animations.pause()
-	await get_tree().create_timer(2).timeout
+	await get_tree().create_timer(2.0).timeout
 	
 	chef_sprite.play("slam")
-	weapon_animations.play("slam")
+	weapon_animations.play("slam") 
 	
 	await chef_sprite.animation_finished
 	
@@ -91,8 +98,18 @@ func cleaver_slam_attack():
 	idle()
 	
 	await weapon_animations.animation_finished
+	await get_tree().create_timer(1).timeout
+	
+	_manage_cleaver_visibility(false)
+	await get_tree().create_timer(0.25).timeout
+	cleaver.global_position.y = -60
+	
+	await get_tree().create_timer(1).timeout
+	blackboard.set_var("is_attacking", false)
+
 
 func slash_attack():
+	blackboard.set_var("is_attacking", true)
 	var side = _pick_attack_side()
 	match side:
 		"right":
@@ -102,11 +119,15 @@ func slash_attack():
 			controller.scale.x = -1
 			chef_sprite.flip_h = true
 	
-	cleaver.show()
+	_manage_cleaver_visibility(true)
+	await get_tree().create_timer(0.25).timeout
+	
 	chef_sprite.play("wind_up_attack")
 	weapon_animations.play("knife")
 	
-	await chef_sprite.animation_finished
+	if chef_sprite.sprite_frames.has_animation("wind_up_attack"):
+		await chef_sprite.animation_finished
+		
 	weapon_animations.pause()
 	await get_tree().create_timer(2).timeout
 	
@@ -121,6 +142,31 @@ func slash_attack():
 	
 	await weapon_animations.animation_finished
 	cleaver_damage_area.monitoring = false
+	await get_tree().create_timer(1).timeout
+	
+	_manage_cleaver_visibility(false)
+	await get_tree().create_timer(0.25).timeout
+	cleaver.global_position.y = -60
+	
+	await get_tree().create_timer(1).timeout
+	blackboard.set_var("is_attacking", false)
+
+func _manage_cleaver_visibility(show: bool):
+	if show:
+		cleaver.scale = Vector3(0.001, 0.001, 0.001)
+		cleaver.show()
+		
+		var cleaver_tween = create_tween()
+		cleaver_tween.tween_property(cleaver, "scale", Vector3(0.5, 0.5, 0.5), 0.25)\
+		.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BACK)
+	else:
+		cleaver.scale = Vector3(0.5, 0.5, 0.5)
+		
+		var cleaver_tween = create_tween()
+		cleaver_tween.tween_property(cleaver, "scale", Vector3(0.001, 0.001, 0.001), 0.25)\
+		.set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_BACK)
+		await cleaver_tween.finished
+		cleaver.hide()
 
 func prepare_miniboss():
 	await weapon_animations.animation_finished
@@ -137,9 +183,21 @@ func prepare_miniboss():
 	await chef_sprite.animation_finished
 	
 	_choose_miniboss()
-	food_items.get_node(GeneralData.selected_mini_boss_name).show()
+	
+	var food_item = food_items.get_node(GeneralData.selected_mini_boss_name)
+	var current_scale: Vector3 = food_item.scale
+	food_item.scale = Vector3(0.001, 0.001, 0.001)
+	food_item.show()
+	
+	var food_tween = create_tween()
+	food_tween.tween_property(food_item, "scale", current_scale, 1)\
+	.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BACK)
+	
+	await food_tween.finished
+	
 	food_animation.play("food_falling")
 	await food_animation.animation_finished
+	await get_tree().create_timer(1).timeout
 	
 	blackboard.set_var("can_pick_miniboss", true)
 
@@ -169,8 +227,6 @@ func _cleaver_damage(body: Node3D):
 
 func start_miniboss():
 	blackboard.set_var("miniboss_alive", true)
-	_choose_miniboss()
-	
 	SceneTransition.transition(true, mini_boss_scene, "rolling_pin")
 
 func _choose_miniboss():
