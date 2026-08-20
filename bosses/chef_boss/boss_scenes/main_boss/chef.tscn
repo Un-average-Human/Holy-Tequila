@@ -18,6 +18,43 @@ background_mode = 2
 sky = SubResource("Sky_gy2fh")
 tonemap_mode = 2
 
+[sub_resource type="Animation" id="Animation_w5x60"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 16, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_4xhcb"]
+resource_name = "food_falling"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.125, 0.25, 0.375, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 16, 0), Vector3(0, 15.5, 0), Vector3(0, 14.5, 0), Vector3(0, 8, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lj7j7"]
+_data = {
+&"RESET": SubResource("Animation_w5x60"),
+&"food_falling": SubResource("Animation_4xhcb")
+}
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ctqcq"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_vmvuc"]
@@ -354,42 +391,9 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_an3wi")
 
-[sub_resource type="Animation" id="Animation_w5x60"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 16, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_4xhcb"]
-resource_name = "food_falling"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 0
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.125, 0.25, 0.375, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(0, 16, 0), Vector3(0, 15.5, 0), Vector3(0, 14.5, 0), Vector3(0, 8, 0), Vector3(0, 0, 0)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_lj7j7"]
-_data = {
-&"RESET": SubResource("Animation_w5x60"),
-&"food_falling": SubResource("Animation_4xhcb")
-}
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_w5q7o"]
+height = 2.7
+radius = 2.4077148
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x6hyb"]
 
@@ -916,59 +920,67 @@ environment = SubResource("Environment_chyxy")
 [node name="food_items" type="Marker3D" parent="." unique_id=22006356]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 16, 0)
 
-[node name="burger" type="Node3D" parent="food_items" unique_id=1255035151]
-transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 2, 0)
-visible = false
+[node name="AnimationPlayer" type="AnimationPlayer" parent="food_items" unique_id=1726810163]
+libraries/ = SubResource("AnimationLibrary_lj7j7")
 
-[node name="top_bun" type="MeshInstance3D" parent="food_items/burger" unique_id=248000347]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.8, 0)
+[node name="burger" type="RigidBody3D" parent="food_items" unique_id=706693130]
+sleeping = true
+can_sleep = false
+
+[node name="burger" type="Node3D" parent="food_items/burger" unique_id=1255035151]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 1, 0)
+
+[node name="top_bun" type="MeshInstance3D" parent="food_items/burger/burger" unique_id=248000347]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.8, 0)
 mesh = SubResource("ArrayMesh_lwsat")
 surface_material_override/0 = SubResource("StandardMaterial3D_bdmdc")
 
-[node name="onion" type="MeshInstance3D" parent="food_items/burger" unique_id=499070451]
-transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 1, 0, 2.4, 0)
+[node name="onion" type="MeshInstance3D" parent="food_items/burger/burger" unique_id=499070451]
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 1, 0, 6.3999996, 0)
 mesh = SubResource("ArrayMesh_6gxsk")
 surface_material_override/0 = SubResource("StandardMaterial3D_gy2fh")
 
-[node name="lettuce" type="MeshInstance3D" parent="food_items/burger" unique_id=600484359]
-transform = Transform3D(7.999439, 0.094758935, 0.00020718189, 0.09475277, -7.998677, -0.11041629, -0.0011007187, 0.110410996, -7.999238, 0, 2.2942572, 1.0666671)
+[node name="lettuce" type="MeshInstance3D" parent="food_items/burger/burger" unique_id=600484359]
+transform = Transform3D(7.999439, 0.094758935, 0.00020718189, 0.09475277, -7.998677, -0.11041629, -0.0011007187, 0.110410996, -7.999238, 0, 6.294257, 1.0666671)
 mesh = SubResource("ArrayMesh_lyl4k")
 surface_material_override/0 = SubResource("StandardMaterial3D_6cws7")
 
-[node name="tomato" type="MeshInstance3D" parent="food_items/burger" unique_id=1804304622]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
+[node name="tomato" type="MeshInstance3D" parent="food_items/burger/burger" unique_id=1804304622]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.6000004, 0)
 mesh = SubResource("ArrayMesh_bmhwa")
 surface_material_override/0 = SubResource("StandardMaterial3D_d3lvi")
 
-[node name="tomato_core" type="MeshInstance3D" parent="food_items/burger/tomato" unique_id=1587843184]
+[node name="tomato_core" type="MeshInstance3D" parent="food_items/burger/burger/tomato" unique_id=1587843184]
 transform = Transform3D(0.59994763, 0, 0, 0, 1, 0, 0, 0, 0.59994763, 0, 0, 0)
 mesh = SubResource("ArrayMesh_vg1qg")
 surface_material_override/0 = SubResource("StandardMaterial3D_gsquv")
 
-[node name="cheese" type="MeshInstance3D" parent="food_items/burger" unique_id=1024945921]
-transform = Transform3D(8.8, 0, 0, 0, 8.8, 0, 0, 0, 8.8, 0, 0.4000001, 0)
+[node name="cheese" type="MeshInstance3D" parent="food_items/burger/burger" unique_id=1024945921]
+transform = Transform3D(8.8, 0, 0, 0, 8.8, 0, 0, 0, 8.8, 0, 4.3999996, 0)
 mesh = SubResource("ArrayMesh_2rtvs")
 surface_material_override/0 = SubResource("StandardMaterial3D_jucaa")
 
-[node name="patty" type="MeshInstance3D" parent="food_items/burger" unique_id=556192274]
-transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 1, 0, -0.59999967, 0)
+[node name="patty" type="MeshInstance3D" parent="food_items/burger/burger" unique_id=556192274]
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 1, 0, 3.4000006, 0)
 mesh = SubResource("ArrayMesh_1vems")
 surface_material_override/0 = SubResource("StandardMaterial3D_hp6uf")
 
-[node name="grill_marks" type="MeshInstance3D" parent="food_items/burger/patty" unique_id=46384211]
+[node name="grill_marks" type="MeshInstance3D" parent="food_items/burger/burger/patty" unique_id=46384211]
 transform = Transform3D(1, 0, 0, 0, 1.0000001, 0, 0, 0, 1, 0, -2.3841858e-07, 0)
 mesh = SubResource("ArrayMesh_uxhel")
 surface_material_override/0 = SubResource("StandardMaterial3D_433rq")
 
-[node name="bottom_bun" type="MeshInstance3D" parent="food_items/burger" unique_id=1963903298]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.6, 0)
+[node name="bottom_bun" type="MeshInstance3D" parent="food_items/burger/burger" unique_id=1963903298]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4000001, 0)
 mesh = SubResource("ArrayMesh_ul5l3")
 surface_material_override/0 = SubResource("StandardMaterial3D_bdmdc")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="food_items" unique_id=1726810163]
-libraries/ = SubResource("AnimationLibrary_lj7j7")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="food_items/burger" unique_id=641665609]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.35, 0)
+shape = SubResource("CylinderShape3D_w5q7o")
+debug_color = Color(0, 0.6, 0.69803923, 1)
 
-[node name="island" type="StaticBody3D" parent="." unique_id=2006563272]
+[node name="island" type="StaticBody3D" parent="." unique_id=2006563272 groups=["grabbable"]]
 collision_layer = 3
 
 [node name="Cube_001" type="MeshInstance3D" parent="island" unique_id=834807766]

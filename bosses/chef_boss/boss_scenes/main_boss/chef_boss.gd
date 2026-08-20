@@ -188,8 +188,13 @@ func prepare_miniboss():
 	
 	_choose_miniboss()
 	
-	var food_item = food_items.get_node(GeneralData.selected_mini_boss_name)
+	var main_food_item = food_items.get_node(GeneralData.selected_mini_boss_name)
+	var food_item = main_food_item.duplicate()
 	var current_scale: Vector3 = food_item.scale
+	
+	food_items.add_child(food_item)
+	food_item.global_transform = main_food_item.global_transform
+	food_item.add_to_group("grabbable")
 	food_item.scale = Vector3(0.001, 0.001, 0.001)
 	food_item.show()
 	
@@ -199,11 +204,12 @@ func prepare_miniboss():
 	
 	await food_tween.finished
 	
-	food_animation.play("food_falling")
-	await food_animation.animation_finished
+	#food_animation.play("food_falling")
+	#await food_animation.animation_finished
+	food_item.can_sleep = false
 	await get_tree().create_timer(1).timeout
 	
-	blackboard.set_var("can_pick_miniboss", true)
+	#blackboard.set_var("can_pick_miniboss", true)
 
 func _pick_attack_side() -> String:
 	var sides: Array[String] = ["left", "right"]
