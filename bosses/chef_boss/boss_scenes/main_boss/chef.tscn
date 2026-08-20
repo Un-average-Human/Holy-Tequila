@@ -983,11 +983,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 
 [node name="Node" type="Node" parent="." unique_id=478003106]
 
-[node name="boss" type="Node3D" parent="." unique_id=640654191 node_paths=PackedStringArray("cleaver", "cleaver_damage_area", "cleaver_blade_area", "controller", "weapon_animations", "chef_sprite", "boss_name", "start_bossfight_area", "food_items", "food_animation", "bt_player")]
+[node name="boss" type="Node3D" parent="." unique_id=640654191 node_paths=PackedStringArray("cleaver", "cleaver_damage_area", "controller", "weapon_animations", "chef_sprite", "boss_name", "start_bossfight_area", "food_items", "food_animation", "bt_player")]
 script = ExtResource("1_8bqa2")
 cleaver = NodePath("../controller/cleaver")
 cleaver_damage_area = NodePath("../controller/Area3D")
-cleaver_blade_area = NodePath("")
 controller = NodePath("../controller")
 weapon_animations = NodePath("../controller/cleaver/AnimationPlayer")
 chef_sprite = NodePath("AnimatedSprite3D")

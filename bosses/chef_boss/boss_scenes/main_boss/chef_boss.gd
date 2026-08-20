@@ -71,12 +71,14 @@ func slam_attack():
 	var side = _pick_attack_side()
 	match side:
 		"left":
-			controller.scale.x = 1
-			chef_sprite.flip_h = false
-		"right":
 			controller.scale.x = -1
 			chef_sprite.flip_h = true
+		"right":
+			controller.scale.x = 1
+			chef_sprite.flip_h = false
 	
+	weapon_animations.play("slam")
+	weapon_animations.stop()
 	_manage_cleaver_visibility(true)
 	await get_tree().create_timer(0.25).timeout
 	
@@ -119,6 +121,8 @@ func slash_attack():
 			controller.scale.x = -1
 			chef_sprite.flip_h = true
 	
+	weapon_animations.play("knife")
+	weapon_animations.stop()
 	_manage_cleaver_visibility(true)
 	await get_tree().create_timer(0.25).timeout
 	

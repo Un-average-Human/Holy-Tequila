@@ -10,6 +10,7 @@
 [ext_resource type="Theme" uid="uid://bl2p5taqyov0l" path="res://ui.tres" id="6_8q143"]
 [ext_resource type="PackedScene" uid="uid://du6p1clay1guf" path="res://player/scenes/ui/player_menu.tscn" id="7_1jxqw"]
 [ext_resource type="Shader" uid="uid://dyk1bhab1vxh8" path="res://player/scripts/ui/impact_frame.gdshader" id="9_lrqc5"]
+[ext_resource type="Script" uid="uid://cb766oyh22nmi" path="res://player/scenes/player/grab.gd" id="11_yviux"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_onrkg"]
 
@@ -125,11 +126,12 @@ shader_parameter/intensity = 1.0
 height = 5.0
 radius = 8.0
 
-[node name="3D_player" type="CharacterBody3D" unique_id=1185616285 node_paths=PackedStringArray("damage_vignette", "cam_pivot", "player_cam", "audio", "menu", "animated_sprite") groups=["player"]]
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_ub8af"]
+radius = 2.0
+
+[node name="3D_player" type="CharacterBody3D" unique_id=1185616285 node_paths=PackedStringArray("damage_vignette", "audio", "menu", "animated_sprite") groups=["player"]]
 script = ExtResource("1_4flbx")
 damage_vignette = NodePath("ui/damage_vignette")
-cam_pivot = NodePath("")
-player_cam = NodePath("")
 audio = NodePath("audio")
 menu = NodePath("menu/menus")
 animated_sprite = NodePath("CollisionShape3D/sprites")
@@ -246,7 +248,7 @@ bus = &"SFX"
 
 [node name="parry" type="Node" parent="." unique_id=1156471812 node_paths=PackedStringArray("parry_area", "audio", "ability_cooldown_bar", "ability_label", "impact_frame", "sprite")]
 script = ExtResource("6_2hs0m")
-parry_area = NodePath("../parry_area")
+parry_area = NodePath("parry_area")
 audio = NodePath("../audio")
 ability_cooldown_bar = NodePath("../ui/ability_cooldown")
 ability_label = NodePath("../ui/ability_cooldown/Label")
@@ -262,12 +264,23 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="dash" type="Node" parent="." unique_id=1511424969]
-
-[node name="parry_area" type="Area3D" parent="." unique_id=412720686]
+[node name="parry_area" type="Area3D" parent="parry" unique_id=412720686]
 visible = false
 collision_layer = 0
 collision_mask = 4
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="parry_area" unique_id=538210318]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="parry/parry_area" unique_id=538210318]
 shape = SubResource("CylinderShape3D_i3pqv")
+
+[node name="grab" type="Node" parent="." unique_id=1511424969 node_paths=PackedStringArray("grab_area", "grabbed_obj_marker")]
+script = ExtResource("11_yviux")
+grab_area = NodePath("grab_area")
+grabbed_obj_marker = NodePath("Marker3D")
+
+[node name="Marker3D" type="Marker3D" parent="grab" unique_id=1455700439]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+
+[node name="grab_area" type="Area3D" parent="grab" unique_id=708947197]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="grab/grab_area" unique_id=926203407]
+shape = SubResource("CylinderShape3D_ub8af")
