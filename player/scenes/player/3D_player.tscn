@@ -1,402 +1,286 @@
 [gd_scene format=3 uid="uid://ckudr8chj1kgo"]
 
-[ext_resource type="Script" uid="uid://cxic8ot62q16v" path="res://bosses/chef_boss/mini_boss.gd" id="1_2p58h"]
-[ext_resource type="Texture2D" uid="uid://cradxnvwr3qb3" path="res://bosses/chef_boss/boss_sprites/burger_mini_boss/borger_spritesheet.png" id="2_tgj58"]
-[ext_resource type="Texture2D" uid="uid://coclkixcchksq" path="res://bullet/sprites/funny_explosion.png" id="3_3786w"]
-[ext_resource type="Script" uid="uid://cp0n70qy3ce4o" path="res://bosses/chef_boss/boss_scenes/burger_attack.gd" id="4_bnu6f"]
-[ext_resource type="PackedScene" uid="uid://bseq6hdhssiqa" path="res://bullet/scenes/2d_bullet.tscn" id="5_yviux"]
-[ext_resource type="BehaviorTree" uid="uid://cch7ocwgo13jj" path="res://bosses/chef_boss/burger_boss.tres" id="6_ub8af"]
-[ext_resource type="PackedScene" uid="uid://6uerk7ux082i" path="res://player/scenes/player/2D_player.tscn" id="7_g0okl"]
+[ext_resource type="Script" uid="uid://b0gd8hrqpvtbb" path="res://player/scripts/player/player.gd" id="1_4flbx"]
+[ext_resource type="Texture2D" uid="uid://7krcx658l6x4" path="res://player/sprites/player/3D/player.png" id="2_hqtel"]
+[ext_resource type="Texture2D" uid="uid://dha7gw82f6qfq" path="res://player/sprites/ui/heart_idle.png" id="2_onrkg"]
+[ext_resource type="Texture2D" uid="uid://bjc00u4f5o2xm" path="res://player/sprites/player/3D/player_parry.png" id="3_8q143"]
+[ext_resource type="Texture2D" uid="uid://bfqx1j8kjgxa5" path="res://player/sprites/ui/heart_pumping.png" id="3_i3pqv"]
+[ext_resource type="AudioStream" uid="uid://cquk2o6tbfumc" path="res://sfx/interaction/parry.mp3" id="5_sweqy"]
+[ext_resource type="Script" uid="uid://bdvo6bq4h1oyu" path="res://player/abilities/parry.gd" id="6_2hs0m"]
+[ext_resource type="Theme" uid="uid://bl2p5taqyov0l" path="res://ui.tres" id="6_8q143"]
+[ext_resource type="PackedScene" uid="uid://du6p1clay1guf" path="res://player/scenes/ui/player_menu.tscn" id="7_1jxqw"]
+[ext_resource type="Shader" uid="uid://dyk1bhab1vxh8" path="res://player/scripts/ui/impact_frame.gdshader" id="9_lrqc5"]
+[ext_resource type="Script" uid="uid://cb766oyh22nmi" path="res://player/scenes/player/grab.gd" id="11_yviux"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_86c51"]
-atlas = ExtResource("2_tgj58")
-region = Rect2(3240, 2160, 1080, 1080)
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_onrkg"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_uhpk4"]
-atlas = ExtResource("2_tgj58")
-region = Rect2(4320, 2160, 1080, 1080)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_qw1bu"]
-atlas = ExtResource("2_tgj58")
-region = Rect2(0, 3240, 1080, 1080)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_hqmdd"]
-atlas = ExtResource("2_tgj58")
-region = Rect2(1080, 3240, 1080, 1080)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_8dygh"]
-atlas = ExtResource("2_tgj58")
-region = Rect2(3240, 3240, 1080, 1080)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_4hwrx"]
-atlas = ExtResource("2_tgj58")
-region = Rect2(4320, 3240, 1080, 1080)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_rfj0l"]
-atlas = ExtResource("3_3786w")
-region = Rect2(426, 200, 142, 200)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_5n2hg"]
-atlas = ExtResource("3_3786w")
-region = Rect2(568, 200, 142, 200)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_l62rj"]
-atlas = ExtResource("3_3786w")
-region = Rect2(0, 400, 142, 200)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_2ygan"]
-atlas = ExtResource("3_3786w")
-region = Rect2(142, 400, 142, 200)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_c8kok"]
-atlas = ExtResource("3_3786w")
-region = Rect2(284, 400, 142, 200)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_i5h3c"]
-atlas = ExtResource("3_3786w")
-region = Rect2(426, 400, 142, 200)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_0o2l4"]
-atlas = ExtResource("3_3786w")
-region = Rect2(0, 600, 142, 200)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_khguc"]
-atlas = ExtResource("3_3786w")
-region = Rect2(0, 0, 142, 200)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_3dak4"]
-atlas = ExtResource("3_3786w")
-region = Rect2(142, 0, 142, 200)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_hfkfo"]
-atlas = ExtResource("3_3786w")
-region = Rect2(284, 0, 142, 200)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ccwk0"]
-atlas = ExtResource("3_3786w")
-region = Rect2(426, 0, 142, 200)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_xbyen"]
-atlas = ExtResource("3_3786w")
-region = Rect2(0, 200, 142, 200)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_b5a1n"]
-atlas = ExtResource("3_3786w")
-region = Rect2(142, 200, 142, 200)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_c06x8"]
-atlas = ExtResource("3_3786w")
-region = Rect2(284, 200, 142, 200)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_tfjrn"]
-atlas = ExtResource("2_tgj58")
-region = Rect2(0, 1080, 1080, 1080)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_8cq3n"]
-atlas = ExtResource("2_tgj58")
-region = Rect2(1080, 1080, 1080, 1080)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ihadp"]
-atlas = ExtResource("2_tgj58")
-region = Rect2(2160, 1080, 1080, 1080)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_77h12"]
-atlas = ExtResource("2_tgj58")
-region = Rect2(3240, 1080, 1080, 1080)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_6fyxq"]
-atlas = ExtResource("2_tgj58")
-region = Rect2(4320, 1080, 1080, 1080)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_4phrl"]
-atlas = ExtResource("2_tgj58")
-region = Rect2(0, 2160, 1080, 1080)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_vsvnu"]
-atlas = ExtResource("2_tgj58")
-region = Rect2(1080, 2160, 1080, 1080)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_uox3v"]
-atlas = ExtResource("2_tgj58")
-region = Rect2(2160, 2160, 1080, 1080)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_a8o3s"]
-atlas = ExtResource("2_tgj58")
+[sub_resource type="AtlasTexture" id="AtlasTexture_1jxqw"]
+atlas = ExtResource("2_hqtel")
 region = Rect2(0, 0, 1080, 1080)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_lmf7v"]
-atlas = ExtResource("2_tgj58")
+[sub_resource type="AtlasTexture" id="AtlasTexture_dw050"]
+atlas = ExtResource("2_hqtel")
 region = Rect2(1080, 0, 1080, 1080)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_rt4g2"]
-atlas = ExtResource("2_tgj58")
-region = Rect2(2160, 0, 1080, 1080)
+[sub_resource type="AtlasTexture" id="AtlasTexture_534hv"]
+atlas = ExtResource("3_8q143")
+region = Rect2(0, 0, 1080, 1080)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_6vlee"]
-atlas = ExtResource("2_tgj58")
-region = Rect2(3240, 0, 1080, 1080)
+[sub_resource type="AtlasTexture" id="AtlasTexture_nl2mh"]
+atlas = ExtResource("3_8q143")
+region = Rect2(1080, 0, 1080, 1080)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_a8o3s"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_b26j0"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_86c51")
+"texture": SubResource("AtlasTexture_1jxqw")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_uhpk4")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_qw1bu")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_hqmdd")
-}],
-"loop": false,
-"name": &"attack",
-"speed": 8.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_8dygh")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_4hwrx")
-}],
-"loop": true,
-"name": &"attack_idle",
-"speed": 8.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_rfj0l")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_5n2hg")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_l62rj")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_2ygan")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_c8kok")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_i5h3c")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_0o2l4")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_khguc")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_3dak4")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_hfkfo")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ccwk0")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_xbyen")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_b5a1n")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_c06x8")
-}],
-"loop": false,
-"name": &"explosion",
-"speed": 12.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_tfjrn")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_8cq3n")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ihadp")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_77h12")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_6fyxq")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_4phrl")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_vsvnu")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_uox3v")
+"texture": SubResource("AtlasTexture_dw050")
 }],
 "loop": true,
 "name": &"idle",
-"speed": 8.0
+"speed": 3.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_a8o3s")
+"texture": SubResource("AtlasTexture_534hv")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_lmf7v")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_rt4g2")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_6vlee")
+"texture": SubResource("AtlasTexture_nl2mh")
 }],
-"loop": false,
-"name": &"prepare_attack",
-"speed": 8.0
+"loop": true,
+"name": &"parrying",
+"speed": 5.0
 }]
 
-[sub_resource type="BlackboardPlan" id="BlackboardPlan_c8kok"]
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_bnu6f"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_2at6i"]
-size = Vector2(311, 310)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7illk"]
+bg_color = Color(1, 0, 0, 0)
+border_width_left = 150
+border_width_top = 150
+border_width_right = 150
+border_width_bottom = 150
+border_color = Color(1, 0, 0, 0.2784314)
+border_blend = true
+shadow_color = Color(1, 1, 1, 0.6)
 
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_x5qx4"]
-normal = Vector2(1, 0)
+[sub_resource type="AtlasTexture" id="AtlasTexture_i3pqv"]
+atlas = ExtResource("2_onrkg")
+region = Rect2(0, 0, 150, 150)
 
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_86c51"]
-normal = Vector2(-1, 0)
+[sub_resource type="AtlasTexture" id="AtlasTexture_hqtel"]
+atlas = ExtResource("2_onrkg")
+region = Rect2(150, 0, 150, 150)
 
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_uhpk4"]
-normal = Vector2(0, 1)
+[sub_resource type="AtlasTexture" id="AtlasTexture_sweqy"]
+atlas = ExtResource("3_i3pqv")
+region = Rect2(0, 0, 150, 150)
 
-[sub_resource type="QuadMesh" id="QuadMesh_qw1bu"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_2hs0m"]
+atlas = ExtResource("3_i3pqv")
+region = Rect2(150, 0, 150, 150)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_hqmdd"]
-size = Vector2(1152, 66)
+[sub_resource type="SpriteFrames" id="SpriteFrames_sweqy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i3pqv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hqtel")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sweqy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2hs0m")
+}],
+"loop": true,
+"name": &"pumping",
+"speed": 3.0
+}]
 
-[node name="Node2D" type="Node2D" unique_id=1619152881]
+[sub_resource type="LabelSettings" id="LabelSettings_lrqc5"]
+font_size = 30
+stacked_outline_count = 1
+stacked_outline_0/size = 5
 
-[node name="boss" type="Area2D" parent="." unique_id=1882780013 node_paths=PackedStringArray("boss_hit_box", "mini_bosses_available", "burger_attack", "bt_player") groups=["boss_hitbox"]]
-script = ExtResource("1_2p58h")
-boss_hit_box = NodePath(".")
-mini_bosses_available = [NodePath("burger")]
-burger_attack = NodePath("burger/burger_attack")
-chef_scene = "res://bosses/chef_boss/boss_scenes/main_boss/chef.tscn"
-bt_player = NodePath("BTState")
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8q143"]
+shader = ExtResource("9_lrqc5")
+shader_parameter/threshold = 0.5
+shader_parameter/smoothness = 0.05
+shader_parameter/bg_color = Color(0, 0, 0, 1)
+shader_parameter/fg_color = Color(1, 1, 1, 1)
+shader_parameter/invert = false
+shader_parameter/intensity = 1.0
 
-[node name="burger" type="AnimatedSprite2D" parent="boss" unique_id=1951785262]
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_i3pqv"]
+height = 5.0
+radius = 8.0
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_ub8af"]
+radius = 2.0
+
+[node name="3D_player" type="CharacterBody3D" unique_id=1185616285 node_paths=PackedStringArray("damage_vignette", "audio", "menu", "animated_sprite") groups=["player"]]
+script = ExtResource("1_4flbx")
+damage_vignette = NodePath("ui/damage_vignette")
+audio = NodePath("audio")
+menu = NodePath("menu/menus")
+animated_sprite = NodePath("CollisionShape3D/sprites")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2115076140]
+shape = SubResource("CapsuleShape3D_onrkg")
+
+[node name="sprites" type="AnimatedSprite3D" parent="CollisionShape3D" unique_id=422786133]
+cast_shadow = 0
+pixel_size = 0.00185
+billboard = 2
+texture_filter = 0
+render_priority = 1
+sprite_frames = SubResource("SpriteFrames_b26j0")
+animation = &"parrying"
+autoplay = "idle"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D" unique_id=1697843055]
+cast_shadow = 3
+mesh = SubResource("CapsuleMesh_bnu6f")
+
+[node name="ui" type="CanvasLayer" parent="." unique_id=383149491]
+layer = 2
+
+[node name="damage_vignette" type="Panel" parent="ui" unique_id=1636105890]
+self_modulate = Color(1, 0, 0, 1)
+offset_right = 1152.0
+offset_bottom = 648.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_7illk")
+metadata/_edit_use_anchors_ = true
+
+[node name="heart_container" type="HBoxContainer" parent="ui" unique_id=281727399]
+unique_name_in_owner = true
+texture_repeat = 2
+custom_minimum_size = Vector2(150, 50)
+offset_left = 50.0
+offset_top = 585.0
+offset_right = 208.0
+offset_bottom = 635.0
+metadata/_edit_use_anchors_ = true
+
+[node name="heart1" type="TextureRect" parent="ui/heart_container" unique_id=1391252628]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="heart_anim" type="AnimatedSprite2D" parent="ui/heart_container/heart1" unique_id=803082292]
 texture_filter = 1
-position = Vector2(579, 337)
-scale = Vector2(0.6, 0.6)
-sprite_frames = SubResource("SpriteFrames_a8o3s")
-animation = &"attack"
+scale = Vector2(0.333, 0.333)
+sprite_frames = SubResource("SpriteFrames_sweqy")
+animation = &"pumping"
+centered = false
 
-[node name="point1" type="Marker2D" parent="boss/burger" unique_id=1953071078]
-position = Vector2(-840.00006, -728.3335)
-scale = Vector2(1.6666667, 1.6666671)
+[node name="heart2" type="TextureRect" parent="ui/heart_container" unique_id=1938991878]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
 
-[node name="point2" type="Marker2D" parent="boss/burger" unique_id=687093130]
-position = Vector2(-561.66675, -721.6668)
-scale = Vector2(1.6666667, 1.6666671)
-
-[node name="point3" type="Marker2D" parent="boss/burger" unique_id=224160729]
-position = Vector2(-283.33334, -721.6669)
-scale = Vector2(1.6666667, 1.6666671)
-
-[node name="point4" type="Marker2D" parent="boss/burger" unique_id=836273731]
-position = Vector2(-5, -721.6669)
-scale = Vector2(1.6666667, 1.6666671)
-
-[node name="point5" type="Marker2D" parent="boss/burger" unique_id=763058435]
-position = Vector2(273.33334, -721.6669)
-scale = Vector2(1.6666667, 1.6666671)
-
-[node name="point6" type="Marker2D" parent="boss/burger" unique_id=1655544880]
-position = Vector2(551.6667, -721.6669)
-scale = Vector2(1.6666667, 1.6666671)
-
-[node name="point7" type="Marker2D" parent="boss/burger" unique_id=843825415]
-position = Vector2(830.00006, -728.3335)
-scale = Vector2(1.6666667, 1.6666671)
-
-[node name="point8" type="Marker2D" parent="boss/burger" unique_id=763429276]
-position = Vector2(-5, 191.66675)
-
-[node name="point9" type="Marker2D" parent="boss/burger" unique_id=89698168]
-position = Vector2(-418.33337, -721.6668)
-scale = Vector2(1.6666667, 1.6666671)
-
-[node name="point10" type="Marker2D" parent="boss/burger" unique_id=973387377]
-position = Vector2(-140, -721.6669)
-scale = Vector2(1.6666667, 1.6666671)
-
-[node name="point11" type="Marker2D" parent="boss/burger" unique_id=347021524]
-position = Vector2(138.33331, -721.6669)
-scale = Vector2(1.6666667, 1.6666671)
-
-[node name="point12" type="Marker2D" parent="boss/burger" unique_id=1174881591]
-position = Vector2(416.6667, -721.6669)
-scale = Vector2(1.6666667, 1.6666671)
-
-[node name="point13" type="Marker2D" parent="boss/burger" unique_id=11508668]
-position = Vector2(695.00006, -721.6669)
-scale = Vector2(1.6666667, 1.6666671)
-
-[node name="point14" type="Marker2D" parent="boss/burger" unique_id=274182846]
-position = Vector2(-701.66675, -721.6668)
-scale = Vector2(1.6666667, 1.6666671)
-
-[node name="burger_attack" type="Node" parent="boss/burger" unique_id=1981235820 node_paths=PackedStringArray("projectile_spawn", "fall_point_array")]
-script = ExtResource("4_bnu6f")
-projectile_scene = ExtResource("5_yviux")
-projectile_spawn = NodePath("../point8")
-fall_point_array = [NodePath("../point1"), NodePath("../point2"), NodePath("../point3"), NodePath("../point4"), NodePath("../point5"), NodePath("../point6"), NodePath("../point7"), NodePath("../point8"), NodePath("../point9"), NodePath("../point10"), NodePath("../point11"), NodePath("../point12"), NodePath("../point13"), NodePath("../point14")]
-point_height = Vector2(0, -721.667)
-
-[node name="BTState" type="BTPlayer" parent="boss" unique_id=1542784193]
-behavior_tree = ExtResource("6_ub8af")
-blackboard_plan = SubResource("BlackboardPlan_c8kok")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="boss" unique_id=1822554302]
-position = Vector2(572.5, 417)
-shape = SubResource("RectangleShape2D_2at6i")
-
-[node name="border" type="StaticBody2D" parent="." unique_id=2110720380]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="border" unique_id=422950583]
-position = Vector2(0, 324)
-shape = SubResource("WorldBoundaryShape2D_x5qx4")
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="border" unique_id=543069956]
-position = Vector2(1152, 324)
-shape = SubResource("WorldBoundaryShape2D_86c51")
-
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="border" unique_id=1793174901]
-position = Vector2(576, 0)
-shape = SubResource("WorldBoundaryShape2D_uhpk4")
-
-[node name="chopping_board" type="StaticBody2D" parent="." unique_id=64541930 groups=["floor"]]
-
-[node name="MeshInstance2D" type="MeshInstance2D" parent="chopping_board" unique_id=133942285]
-modulate = Color(0.34901962, 0.16470589, 0, 1)
-z_index = 1
+[node name="heart_anim" type="AnimatedSprite2D" parent="ui/heart_container/heart2" unique_id=1910239772]
 texture_filter = 1
-position = Vector2(576.00006, 615)
-scale = Vector2(1152, 66.000015)
-mesh = SubResource("QuadMesh_qw1bu")
+scale = Vector2(0.333, 0.333)
+sprite_frames = SubResource("SpriteFrames_sweqy")
+animation = &"idle"
+centered = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="chopping_board" unique_id=239494159]
-z_index = 1
-position = Vector2(576, 615)
-shape = SubResource("RectangleShape2D_hqmdd")
+[node name="heart3" type="TextureRect" parent="ui/heart_container" unique_id=472175068]
+texture_filter = 1
+layout_mode = 2
 
-[node name="CharacterBody2D" parent="." unique_id=369724669 instance=ExtResource("7_g0okl")]
-position = Vector2(237, 535)
+[node name="heart_anim" type="AnimatedSprite2D" parent="ui/heart_container/heart3" unique_id=1808288230]
+texture_filter = 1
+scale = Vector2(0.333, 0.333)
+sprite_frames = SubResource("SpriteFrames_sweqy")
+animation = &"pumping"
+centered = false
 
-[node name="spawn_point" type="Marker2D" parent="." unique_id=1269625403]
-position = Vector2(576, 535)
+[node name="ability_cooldown" type="ProgressBar" parent="ui" unique_id=865429901]
+texture_filter = 1
+offset_left = 702.0
+offset_top = 595.0
+offset_right = 1104.0
+offset_bottom = 625.0
+step = 0.0
+value = 100.0
+show_percentage = false
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="ui/ability_cooldown" unique_id=512107829]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("6_8q143")
+text = "Ability Cooldown"
+label_settings = SubResource("LabelSettings_lrqc5")
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="menu" type="CanvasLayer" parent="." unique_id=531039352]
+layer = 3
+
+[node name="menus" parent="menu" unique_id=946525344 instance=ExtResource("7_1jxqw")]
+visible = false
+
+[node name="hand" type="Marker3D" parent="." unique_id=886960652]
+unique_name_in_owner = true
+transform = Transform3D(-4.304732e-08, 0.17364815, -0.9848076, 7.590406e-09, 0.9848077, 0.17364816, 1.0000001, 0, -4.3711392e-08, 0.8, 0.099999964, -0.8000001)
+
+[node name="audio" type="AudioStreamPlayer" parent="." unique_id=899686412]
+unique_name_in_owner = true
+stream = ExtResource("5_sweqy")
+bus = &"SFX"
+
+[node name="parry" type="Node3D" parent="." unique_id=1215202199 node_paths=PackedStringArray("parry_area", "audio", "ability_cooldown_bar", "ability_label", "impact_frame", "sprite")]
+script = ExtResource("6_2hs0m")
+parry_area = NodePath("parry_area")
+audio = NodePath("../audio")
+ability_cooldown_bar = NodePath("../ui/ability_cooldown")
+ability_label = NodePath("../ui/ability_cooldown/Label")
+impact_frame = NodePath("impact_frame")
+sprite = NodePath("../CollisionShape3D/sprites")
+
+[node name="impact_frame" type="ColorRect" parent="parry" unique_id=526881555]
+visible = false
+material = SubResource("ShaderMaterial_8q143")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="parry_area" type="Area3D" parent="parry" unique_id=412720686]
+visible = false
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="parry/parry_area" unique_id=538210318]
+shape = SubResource("CylinderShape3D_i3pqv")
+
+[node name="grab" type="Node3D" parent="." unique_id=1832223388 node_paths=PackedStringArray("grab_area", "grabbed_obj_marker")]
+script = ExtResource("11_yviux")
+grab_area = NodePath("grab_area")
+grabbed_obj_marker = NodePath("Marker3D")
+
+[node name="Marker3D" type="Marker3D" parent="grab" unique_id=1455700439]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+
+[node name="grab_area" type="Area3D" parent="grab" unique_id=708947197]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="grab/grab_area" unique_id=926203407]
+shape = SubResource("CylinderShape3D_ub8af")

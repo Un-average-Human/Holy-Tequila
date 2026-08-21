@@ -22,7 +22,7 @@ func _ready() -> void:
 		if food is Node3D:
 			food.hide()
 	
-	if Engine.get_meta("chef_bossfight_started"):
+	if !Engine.get_meta("chef_bossfight_started"):
 		Engine.set_meta("chef_bossfight_started", true)
 		
 		start_bossfight_area.body_entered.connect(_start_bossfight_area_entered)
@@ -46,6 +46,8 @@ func _start_bossfight_area_entered(body: Node3D):
 		start_bossfight_area.queue_free()
 		has_started = true
 		player = body
+		print(player.special_action.boss)
+		player.special_action.boss = chef_sprite
 		_start_bossfight()
 
 func _start_bossfight():
@@ -248,6 +250,9 @@ func _choose_miniboss():
 		return
 	var boss_index = GeneralData.rng.randi_range(0, GeneralData.mini_bosses_available.size() - 1)
 	GeneralData.selected_mini_boss_name = GeneralData.mini_bosses_available[boss_index]
+
+func take_damage():
+	chef_sprite.modulate
 
 func death():
 	can_attack = false

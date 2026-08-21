@@ -8,7 +8,10 @@ extends Node
 
 @export var player_body: CharacterBody3D 
 
+@export var throw_speed: float = 5.0
+
 var obj_carried: RigidBody3D
+var boss: Node3D
 
 func _ready() -> void:
 	set_process(false)
@@ -19,10 +22,20 @@ func execute():
 		
 		if player_body:
 			player_body.remove_collision_exception_with(obj_carried)
+		
+		if boss:
+			var dist = obj_carried.global_position.distance_to(boss.global_position)
+			var duration: float = dist / throw_speed
 			
-		obj_carried.global_position = drop_marker.global_position
-		obj_carried.linear_velocity = Vector3.ZERO
-		obj_carried = null
+			obj_carried.add_to_group("projectile")
+			
+			var boss_tween = create_tween()
+			boss_tween.tween_property(obj_carried, "global_position", boss.global_position, duration)
+			boss_tween.tween_callback(func():
+				obj_carried.queue_free())
+		else:
+			obj_carried.linear_velocity = Vector3.ZERO
+		#obj_carried = null
 
 	for body in grab_area.get_overlapping_bodies():
 		if body is RigidBody3D and body.is_in_group("grabbable"):
