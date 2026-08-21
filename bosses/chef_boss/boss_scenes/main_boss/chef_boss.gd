@@ -3,7 +3,7 @@ extends Boss
 @export_category("Cleaver")
 @export var cleaver: Node3D
 @export var cleaver_damage_area: Area3D
-@export var cleaver_blade_area: ShapeCast3D
+@export var cleaver_blade_area: Area3D
 @export var controller: Node3D
 @export var weapon_animations: AnimationPlayer
 
@@ -22,7 +22,7 @@ func _ready() -> void:
 		if food is Node3D:
 			food.hide()
 	
-	if !Engine.get_meta("chef_bossfight_started"):
+	if Engine.get_meta("chef_bossfight_started"):
 		Engine.set_meta("chef_bossfight_started", true)
 		
 		start_bossfight_area.body_entered.connect(_start_bossfight_area_entered)
@@ -31,7 +31,8 @@ func _ready() -> void:
 	else:
 		start_bossfight_area.monitoring = false
 		can_attack = true
-		
+	
+	health = 1
 	Engine.set_meta("chef_boss", health)
 	
 	blackboard = bt_player.blackboard
@@ -108,7 +109,6 @@ func slam_attack():
 	
 	await get_tree().create_timer(1).timeout
 	blackboard.set_var("is_attacking", false)
-
 
 func slash_attack():
 	blackboard.set_var("is_attacking", true)
@@ -188,6 +188,11 @@ func prepare_miniboss():
 	
 	_choose_miniboss()
 	
+	_spawn_food()
+	
+	#blackboard.set_var("can_pick_miniboss", true)
+
+func _spawn_food():
 	var main_food_item = food_items.get_node(GeneralData.selected_mini_boss_name)
 	var food_item = main_food_item.duplicate()
 	var current_scale: Vector3 = food_item.scale
@@ -206,10 +211,9 @@ func prepare_miniboss():
 	
 	#food_animation.play("food_falling")
 	#await food_animation.animation_finished
-	food_item.can_sleep = false
+	food_item.freeze = false
+	food_item.get_child(0).disabled = false
 	await get_tree().create_timer(1).timeout
-	
-	#blackboard.set_var("can_pick_miniboss", true)
 
 func _pick_attack_side() -> String:
 	var sides: Array[String] = ["left", "right"]
@@ -233,7 +237,7 @@ func _pick_attack_side() -> String:
 func _cleaver_damage(body: Node3D):
 	if body == player:
 		body.take_damage()
-		cleaver_damage_area.monitoring = false
+		cleaver_damage_area.set_deferred("monitoring", false)
 
 func start_miniboss():
 	blackboard.set_var("miniboss_alive", true)
@@ -244,3 +248,18 @@ func _choose_miniboss():
 		return
 	var boss_index = GeneralData.rng.randi_range(0, GeneralData.mini_bosses_available.size() - 1)
 	GeneralData.selected_mini_boss_name = GeneralData.mini_bosses_available[boss_index]
+
+func death():
+	can_attack = false
+	
+	bt_player.active = false
+	
+	chef_sprite.play("explosion")
+	chef_sprite.pixel_size = 0.5
+	
+	await chef_sprite.animation_finished
+	self.visible = false
+	
+	await get_tree().create_timer(1).timeout
+	SignalBus.boss_defeated.emit()
+	queue_free()

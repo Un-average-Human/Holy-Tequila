@@ -74,7 +74,6 @@ anchor_top = 0.33796296
 anchor_right = 0.20659722
 anchor_bottom = 0.5694444
 offset_bottom = 3.0517578e-05
-disabled = true
 texture_normal = ExtResource("4_4c2iq")
 texture_disabled = ExtResource("5_hdv20")
 metadata/_edit_use_anchors_ = true

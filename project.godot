@@ -48,6 +48,7 @@ boss_hitbox=""
 projectile=""
 alien_cows=""
 floor=""
+grabbable=""
 
 [input]
 
