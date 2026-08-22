@@ -272,10 +272,12 @@ collision_mask = 4
 [node name="CollisionShape3D" type="CollisionShape3D" parent="parry/parry_area" unique_id=538210318]
 shape = SubResource("CylinderShape3D_i3pqv")
 
-[node name="grab" type="Node3D" parent="." unique_id=1832223388 node_paths=PackedStringArray("grab_area", "grabbed_obj_marker")]
+[node name="grab" type="Node3D" parent="." unique_id=1832223388 node_paths=PackedStringArray("grab_area", "grabbed_obj_marker", "player_body")]
 script = ExtResource("11_yviux")
 grab_area = NodePath("grab_area")
 grabbed_obj_marker = NodePath("Marker3D")
+player_body = NodePath("..")
+throw_speed = 25.0
 
 [node name="Marker3D" type="Marker3D" parent="grab" unique_id=1455700439]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)

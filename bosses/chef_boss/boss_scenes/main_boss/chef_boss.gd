@@ -6,6 +6,7 @@ extends Boss
 @export var cleaver_blade_area: Area3D
 @export var controller: Node3D
 @export var weapon_animations: AnimationPlayer
+@export var slash_preview: Node3D
 
 @export_category("Boss Data")
 @export var chef_sprite: AnimatedSprite3D
@@ -38,6 +39,7 @@ func _ready() -> void:
 	blackboard = bt_player.blackboard
 	blackboard.set_var("can_pick_miniboss", false)
 	
+	slash_preview.hide()
 	cleaver.hide()
 	cleaver_damage_area.body_entered.connect(_cleaver_damage)
 
@@ -123,6 +125,12 @@ func slash_attack():
 			controller.scale.x = -1
 			chef_sprite.flip_h = true
 	
+	slash_preview.scale.x = 0.001
+	slash_preview.show()
+	var start_slash_preview_tween = create_tween()
+	start_slash_preview_tween.tween_property(slash_preview, "scale:x", 1, 1)\
+	.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
+	
 	weapon_animations.play("knife")
 	weapon_animations.stop()
 	_manage_cleaver_visibility(true)
@@ -147,6 +155,13 @@ func slash_attack():
 	idle()
 	
 	await weapon_animations.animation_finished
+	
+	var end_slash_preview_tween = create_tween()
+	end_slash_preview_tween.tween_property(slash_preview, "scale:x", 0.001, 1)\
+	.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
+	await end_slash_preview_tween.finished
+	slash_preview.hide()
+	
 	cleaver_damage_area.monitoring = false
 	await get_tree().create_timer(1).timeout
 	
@@ -211,8 +226,6 @@ func _spawn_food():
 	
 	await food_tween.finished
 	
-	#food_animation.play("food_falling")
-	#await food_animation.animation_finished
 	food_item.freeze = false
 	food_item.get_child(0).disabled = false
 	await get_tree().create_timer(1).timeout
@@ -251,8 +264,19 @@ func _choose_miniboss():
 	var boss_index = GeneralData.rng.randi_range(0, GeneralData.mini_bosses_available.size() - 1)
 	GeneralData.selected_mini_boss_name = GeneralData.mini_bosses_available[boss_index]
 
-func take_damage():
-	chef_sprite.modulate
+func damage_boss():
+	chef_sprite.pause()
+	
+	chef_sprite.modulate = Color("#ffb5a9")
+	await get_tree().create_timer(0.25).timeout
+	chef_sprite.modulate = Color.WHITE
+	
+	chef_sprite.play()
+	
+	_hurt(1.0)
+	
+	if health <= 0:
+		death()
 
 func death():
 	can_attack = false

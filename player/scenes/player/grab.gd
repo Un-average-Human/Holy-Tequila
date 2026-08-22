@@ -3,12 +3,10 @@ extends Node
 @export var grab_area: Area3D
 @export var grabbed_obj_marker: Marker3D
 
-@export var drop_raycast: RayCast3D
-@export var drop_marker: Marker3D
-
 @export var player_body: CharacterBody3D 
 
 @export var throw_speed: float = 5.0
+@export var throw_height: float = 20.0
 
 var obj_carried: RigidBody3D
 var boss: Node3D
@@ -29,13 +27,26 @@ func execute():
 			
 			obj_carried.add_to_group("projectile")
 			
-			var boss_tween = create_tween()
-			boss_tween.tween_property(obj_carried, "global_position", boss.global_position, duration)
-			boss_tween.tween_callback(func():
-				obj_carried.queue_free())
+			var boss_tween = create_tween().set_parallel()
+			boss_tween.tween_property(obj_carried, "global_position:x", boss.global_position.x, duration)
+			boss_tween.tween_property(obj_carried, "global_position:z", boss.global_position.z, duration)
+			
+			throw_height += boss.global_position.y
+			 
+			var vertical_boss_tween = create_tween()
+			vertical_boss_tween.tween_property(obj_carried, "global_position:y", throw_height, duration/2)\
+			.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
+			vertical_boss_tween.tween_property(obj_carried, "global_position:y", boss.global_position.y, duration/2)\
+			.set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_QUAD)
+			
+			await boss_tween.finished
+			if obj_carried:
+				obj_carried.queue_free()
+			boss.get_parent().damage_boss()
+			obj_carried = null
 		else:
 			obj_carried.linear_velocity = Vector3.ZERO
-		#obj_carried = null
+			obj_carried = null
 
 	for body in grab_area.get_overlapping_bodies():
 		if body is RigidBody3D and body.is_in_group("grabbable"):

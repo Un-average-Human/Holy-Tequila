@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://dwqu3mxt7teej" path="res://bosses/chef_boss/boss_scenes/main_boss/chef_boss.gd" id="1_8bqa2"]
 [ext_resource type="Script" uid="uid://btbwvpee4p571" path="res://bosses/chef_boss/boss_scenes/main_boss/food_world.gd" id="1_14uva"]
 [ext_resource type="Texture2D" uid="uid://c4fso23ys6a6q" path="res://bosses/chef_boss/boss_sprites/chef.png" id="2_4u6kh"]
+[ext_resource type="Texture2D" uid="uid://coclkixcchksq" path="res://bullet/sprites/funny_explosion.png" id="3_ef5ew"]
 [ext_resource type="BehaviorTree" uid="uid://botbw5ihl6r20" path="res://bosses/chef_boss/chef_boss.tres" id="4_q0qwj"]
 [ext_resource type="Theme" uid="uid://bl2p5taqyov0l" path="res://ui.tres" id="5_w5q7o"]
 
@@ -436,6 +437,74 @@ metallic_specular = 0.0
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_bdmdc"]
 points = PackedVector3Array(-14.182011, 0, -7.5, -14.591005, 0, -7.391347, -14.182011, 1, -7.5, 13.812372, 0, -7.5, -14.591005, 1, -7.391347, -14.892675, 0, -7.0903482, 13.812372, 1, -7.5, 14.221367, 0, -7.391347, -14.892675, 1, -7.0903482, -15, 0, -6.680697, 14.221367, 1, -7.391347, 14.520136, 0, -7.0903482, -15, 1, -6.680697, -15, 0, 6.679228, 14.520136, 1, -7.0903482, 14.633263, 0, -6.680697, -15, 1, 6.679228, -14.892675, 0, 7.0888796, 14.633263, 1, -6.680697, 14.633263, 0, 6.679228, -14.892675, 1, 7.0888796, -14.591005, 0, 7.3898783, 14.633263, 1, 6.679228, 14.520136, 0, 7.0888796, -14.591005, 1, 7.3898783, -14.182011, 0, 7.499999, 14.520136, 1, 7.0888796, 14.221367, 0, 7.3898783, -14.182011, 1, 7.499999, 13.812372, 0, 7.499999, 14.221367, 1, 7.3898783, 13.812372, 1, 7.499999)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_vtt3e"]
+atlas = ExtResource("3_ef5ew")
+region = Rect2(426, 200, 142, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_balmj"]
+atlas = ExtResource("3_ef5ew")
+region = Rect2(568, 200, 142, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ix74q"]
+atlas = ExtResource("3_ef5ew")
+region = Rect2(0, 400, 142, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8p7ik"]
+atlas = ExtResource("3_ef5ew")
+region = Rect2(142, 400, 142, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fxk28"]
+atlas = ExtResource("3_ef5ew")
+region = Rect2(284, 400, 142, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nlkoh"]
+atlas = ExtResource("3_ef5ew")
+region = Rect2(426, 400, 142, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_81hjw"]
+atlas = ExtResource("3_ef5ew")
+region = Rect2(568, 400, 142, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3nbni"]
+atlas = ExtResource("3_ef5ew")
+region = Rect2(0, 600, 142, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bhl4r"]
+atlas = ExtResource("3_ef5ew")
+region = Rect2(142, 600, 142, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1j1jp"]
+atlas = ExtResource("3_ef5ew")
+region = Rect2(0, 0, 142, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o8w88"]
+atlas = ExtResource("3_ef5ew")
+region = Rect2(142, 0, 142, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2kdvf"]
+atlas = ExtResource("3_ef5ew")
+region = Rect2(284, 0, 142, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oqjsj"]
+atlas = ExtResource("3_ef5ew")
+region = Rect2(426, 0, 142, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_deh2w"]
+atlas = ExtResource("3_ef5ew")
+region = Rect2(568, 0, 142, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2xw5i"]
+atlas = ExtResource("3_ef5ew")
+region = Rect2(0, 200, 142, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t7748"]
+atlas = ExtResource("3_ef5ew")
+region = Rect2(142, 200, 142, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rm1we"]
+atlas = ExtResource("3_ef5ew")
+region = Rect2(284, 200, 142, 200)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_w5q7o"]
 atlas = ExtResource("2_4u6kh")
 region = Rect2(0, 1080, 1080, 1080)
@@ -558,6 +627,62 @@ region = Rect2(7560, 1080, 1080, 1080)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_7vuwa"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vtt3e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_balmj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ix74q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8p7ik")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fxk28")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nlkoh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_81hjw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3nbni")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bhl4r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1j1jp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o8w88")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2kdvf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oqjsj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_deh2w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2xw5i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t7748")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rm1we")
+}],
+"loop": false,
+"name": &"explosion",
+"speed": 24.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_w5q7o")
@@ -901,11 +1026,13 @@ _data = {
 size = Vector3(1, 10, 20.5)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_w5x60"]
-size = Vector3(1, 36, 31)
+size = Vector3(0.8, 30, 31)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_lj7j7"]
+[sub_resource type="PlaneMesh" id="PlaneMesh_ef5ew"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_2wtrv"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xqpuk"]
+transparency = 1
+albedo_color = Color(1, 0, 0, 0.45200002)
 
 [node name="Node3D" type="Node3D" unique_id=871431128 node_paths=PackedStringArray("void_detector", "spawn_point")]
 script = ExtResource("1_14uva")
@@ -1001,13 +1128,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 
 [node name="Node" type="Node" parent="." unique_id=478003106]
 
-[node name="boss" type="Node3D" parent="." unique_id=640654191 node_paths=PackedStringArray("cleaver", "cleaver_damage_area", "cleaver_blade_area", "controller", "weapon_animations", "chef_sprite", "boss_name", "start_bossfight_area", "food_items", "food_animation", "bt_player")]
+[node name="boss" type="Node3D" parent="." unique_id=640654191 node_paths=PackedStringArray("cleaver", "cleaver_damage_area", "cleaver_blade_area", "controller", "weapon_animations", "slash_preview", "chef_sprite", "boss_name", "start_bossfight_area", "food_items", "food_animation", "bt_player")]
 script = ExtResource("1_8bqa2")
 cleaver = NodePath("../controller/cleaver")
 cleaver_damage_area = NodePath("../controller/Area3D")
 cleaver_blade_area = NodePath("../controller/cleaver/Area3D")
 controller = NodePath("../controller")
 weapon_animations = NodePath("../controller/cleaver/AnimationPlayer")
+slash_preview = NodePath("../controller/preview")
 chef_sprite = NodePath("AnimatedSprite3D")
 boss_name = NodePath("boss_name")
 start_bossfight_area = NodePath("../start_bossfight")
@@ -1022,9 +1150,7 @@ pixel_size = 0.085
 billboard = 2
 texture_filter = 0
 sprite_frames = SubResource("SpriteFrames_7vuwa")
-animation = &"finish_attack"
-frame = 2
-frame_progress = 1.0
+animation = &"idle"
 
 [node name="BTPlayer" type="BTPlayer" parent="boss" unique_id=147084169]
 behavior_tree = ExtResource("4_q0qwj")
@@ -1103,20 +1229,17 @@ transform = Transform3D(1, 6.501466e-13, 7.7503515e-20, -3.3408184e-22, 1, 0, -7
 shape = SubResource("BoxShape3D_4xhcb")
 
 [node name="Area3D" type="Area3D" parent="controller" unique_id=623289105]
-transform = Transform3D(2.1855692e-08, -0.49999955, 1.9470701e-07, -0.49999994, -2.1855675e-08, 0, 8.51092e-15, -1.9470701e-07, -0.49999955, -4.8962326, 1.5949297, 0)
+transform = Transform3D(0.49999994, 0, 0, 0, 0.49999955, 0, 0, 0, 0.49999955, -4.8962326, 1.5949297, 0)
 monitoring = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="controller/Area3D" unique_id=2075292837]
-transform = Transform3D(1, -1.6200374e-12, -3.320487e-19, 1.6200374e-12, 1, 7.276053e-12, 3.3203692e-19, -7.276053e-12, 1, 1.4305115e-06, -23.49997, -1.8238956e-05)
+transform = Transform3D(4.371139e-08, -0.9999992, 3.8941408e-07, -1.0000007, -4.3711385e-08, 1.6940673e-21, 1.7021852e-14, -3.8941434e-07, -0.99999994, 25.4999, -0.8000033, 2.8168952e-05)
 shape = SubResource("BoxShape3D_w5x60")
 
-[node name="RigidBody3D" type="RigidBody3D" parent="." unique_id=1776529907 groups=["grabbable"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.589318, 0)
-can_sleep = false
+[node name="preview" type="Node3D" parent="controller" unique_id=2108302106]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4, 1, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D" unique_id=1864838503]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.49999952, 0)
-shape = SubResource("BoxShape3D_lj7j7")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D/CollisionShape3D" unique_id=1793956134]
-mesh = SubResource("BoxMesh_2wtrv")
+[node name="preview" type="MeshInstance3D" parent="controller/preview" unique_id=1733887302]
+transform = Transform3D(24.999996, 0, 0, 0, 7.499993, 0, 0, 0, 7.499993, 25.005255, 0.019856691, 0)
+mesh = SubResource("PlaneMesh_ef5ew")
+surface_material_override/0 = SubResource("StandardMaterial3D_xqpuk")

@@ -169,10 +169,10 @@ func _on_bullet_parried(bullet: Node3D):
 	parry_tween.tween_property(bullet, "global_position", boss.global_position, 0.5)
 	parry_tween.tween_callback(func():
 		if is_instance_valid(bullet): bullet.queue_free()
-		_apply_boss_damage_pipeline()
+		_damage_boss()
 	)
 
-func _apply_boss_damage_pipeline() -> void:
+func _damage_boss() -> void:
 	boss._hurt(1.0)
 	boss.boss_sprite.play("hurt")
 	
