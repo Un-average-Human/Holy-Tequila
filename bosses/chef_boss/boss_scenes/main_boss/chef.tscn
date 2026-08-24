@@ -1026,17 +1026,28 @@ _data = {
 size = Vector3(1, 10, 20.5)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_w5x60"]
-size = Vector3(0.8, 30, 31)
+size = Vector3(0.8, 28.5, 30)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_ef5ew"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xqpuk"]
 transparency = 1
-albedo_color = Color(1, 0, 0, 0.45200002)
+albedo_color = Color(1, 0, 0, 0.5)
 
-[node name="Node3D" type="Node3D" unique_id=871431128 node_paths=PackedStringArray("void_detector", "spawn_point")]
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_ef5ew"]
+height = 0.5
+radius = 5.0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_xqpuk"]
+top_radius = 5.0
+bottom_radius = 5.0
+height = 0.5
+radial_segments = 32
+
+[node name="Node3D" type="Node3D" unique_id=871431128 node_paths=PackedStringArray("void_detector", "boss", "spawn_point")]
 script = ExtResource("1_14uva")
 void_detector = NodePath("void_area")
+boss = NodePath("boss")
 spawn_point = NodePath("spawn")
 special_action = "grab"
 
@@ -1128,14 +1139,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 
 [node name="Node" type="Node" parent="." unique_id=478003106]
 
-[node name="boss" type="Node3D" parent="." unique_id=640654191 node_paths=PackedStringArray("cleaver", "cleaver_damage_area", "cleaver_blade_area", "controller", "weapon_animations", "slash_preview", "chef_sprite", "boss_name", "start_bossfight_area", "food_items", "food_animation", "bt_player")]
+[node name="boss" type="Node3D" parent="." unique_id=640654191 node_paths=PackedStringArray("cleaver", "controller", "weapon_animations", "cleaver_damage_area", "cleaver_blade_area", "slam_damage_area", "slash_preview", "slam_preview", "chef_sprite", "boss_name", "start_bossfight_area", "food_items", "food_animation", "bt_player")]
 script = ExtResource("1_8bqa2")
 cleaver = NodePath("../controller/cleaver")
-cleaver_damage_area = NodePath("../controller/Area3D")
-cleaver_blade_area = NodePath("../controller/cleaver/Area3D")
 controller = NodePath("../controller")
 weapon_animations = NodePath("../controller/cleaver/AnimationPlayer")
+cleaver_damage_area = NodePath("../controller/Area3D")
+cleaver_blade_area = NodePath("../controller/cleaver/blade_area")
+slam_damage_area = NodePath("../controller/slam_damage_area")
 slash_preview = NodePath("../controller/preview")
+slam_preview = NodePath("../controller/slam_damage_area/CollisionShape3D/MeshInstance3D")
 chef_sprite = NodePath("AnimatedSprite3D")
 boss_name = NodePath("boss_name")
 start_bossfight_area = NodePath("../start_bossfight")
@@ -1222,9 +1235,10 @@ libraries/ = SubResource("AnimationLibrary_w5x60")
 transform = Transform3D(1, 6.501466e-13, 7.7503515e-20, -3.3408184e-22, 1, 0, -7.7503515e-20, 0, 1, 0, -0.85000134, -3.0000029)
 shape = SubResource("BoxShape3D_4xhcb")
 
-[node name="Area3D" type="Area3D" parent="controller/cleaver" unique_id=466372534]
+[node name="blade_area" type="Area3D" parent="controller/cleaver" unique_id=466372534]
+monitoring = false
 
-[node name="knife_blade" type="CollisionShape3D" parent="controller/cleaver/Area3D" unique_id=2140278988]
+[node name="knife_blade" type="CollisionShape3D" parent="controller/cleaver/blade_area" unique_id=2140278988]
 transform = Transform3D(1, 6.501466e-13, 7.7503515e-20, -3.3408184e-22, 1, 0, -7.7503515e-20, 0, 1, 0, -0.85000134, -3.0000029)
 shape = SubResource("BoxShape3D_4xhcb")
 
@@ -1233,13 +1247,27 @@ transform = Transform3D(0.49999994, 0, 0, 0, 0.49999955, 0, 0, 0, 0.49999955, -4
 monitoring = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="controller/Area3D" unique_id=2075292837]
-transform = Transform3D(4.371139e-08, -0.9999992, 3.8941408e-07, -1.0000007, -4.3711385e-08, 1.6940673e-21, 1.7021852e-14, -3.8941434e-07, -0.99999994, 25.4999, -0.8000033, 2.8168952e-05)
+transform = Transform3D(4.371139e-08, -1, 3.8941437e-07, -0.99999493, -4.3711086e-08, 3.552969e-19, 1.7021342e-14, -3.8941195e-07, -0.99999493, 24.8499, -0.8000033, 2.791583e-05)
 shape = SubResource("BoxShape3D_w5x60")
+debug_color = Color(0, 0.60038817, 0.70000815, 1)
 
 [node name="preview" type="Node3D" parent="controller" unique_id=2108302106]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4, 1, 0)
 
 [node name="preview" type="MeshInstance3D" parent="controller/preview" unique_id=1733887302]
-transform = Transform3D(24.999996, 0, 0, 0, 7.499993, 0, 0, 0, 7.499993, 25.005255, 0.019856691, 0)
+transform = Transform3D(24.999996, 0, 0, 0, 7.499993, 0, 0, 0, 7.499993, 25.005, 0.001, 0)
 mesh = SubResource("PlaneMesh_ef5ew")
 surface_material_override/0 = SubResource("StandardMaterial3D_xqpuk")
+
+[node name="slam_damage_area" type="Area3D" parent="controller" unique_id=614821458]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.2000003, 1, 0)
+monitoring = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="controller/slam_damage_area" unique_id=749203788]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+shape = SubResource("CylinderShape3D_ef5ew")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="controller/slam_damage_area/CollisionShape3D" unique_id=1338938308]
+transform = Transform3D(1, 0, 0, 0, 0.0014175177, 0, 0, 0, 1, 0, -0.249, 0)
+material_override = SubResource("StandardMaterial3D_xqpuk")
+mesh = SubResource("CylinderMesh_xqpuk")

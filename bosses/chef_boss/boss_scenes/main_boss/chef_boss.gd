@@ -2,11 +2,15 @@ extends Boss
 
 @export_category("Cleaver")
 @export var cleaver: Node3D
-@export var cleaver_damage_area: Area3D
-@export var cleaver_blade_area: Area3D
 @export var controller: Node3D
 @export var weapon_animations: AnimationPlayer
+
+@export var cleaver_damage_area: Area3D
+@export var cleaver_blade_area: Area3D
+@export var slam_damage_area: Area3D
+
 @export var slash_preview: Node3D
+@export var slam_preview: Node3D
 
 @export_category("Boss Data")
 @export var chef_sprite: AnimatedSprite3D
@@ -19,6 +23,20 @@ extends Boss
 @export var food_animation: AnimationPlayer
 
 func _ready() -> void:
+	health = 1
+	Engine.set_meta("chef_boss", health)
+	
+	blackboard = bt_player.blackboard
+	blackboard.set_var("can_pick_miniboss", false)
+	
+	slam_preview.hide()
+	slash_preview.hide()
+	
+	cleaver.hide()
+	slam_damage_area.body_entered.connect(_cleaver_damage)
+	cleaver_damage_area.body_entered.connect(_cleaver_damage)
+	cleaver_blade_area.body_entered.connect(_cleaver_damage)
+	
 	for food in food_items.get_children():
 		if food is Node3D:
 			food.hide()
@@ -31,25 +49,16 @@ func _ready() -> void:
 		
 	else:
 		start_bossfight_area.monitoring = false
+		await get_tree().physics_frame
+		player.special_action.boss = chef_sprite
+		await get_tree().create_timer(2).timeout
+		_spawn_food()
 		can_attack = true
-	
-	health = 1
-	Engine.set_meta("chef_boss", health)
-	
-	blackboard = bt_player.blackboard
-	blackboard.set_var("can_pick_miniboss", false)
-	
-	slash_preview.hide()
-	cleaver.hide()
-	cleaver_damage_area.body_entered.connect(_cleaver_damage)
 
 func _start_bossfight_area_entered(body: Node3D):
 	if body.is_in_group("player") and has_started == false:
 		start_bossfight_area.queue_free()
 		has_started = true
-		player = body
-		print(player.special_action.boss)
-		player.special_action.boss = chef_sprite
 		_start_bossfight()
 
 func _start_bossfight():
@@ -82,6 +91,13 @@ func slam_attack():
 			controller.scale.x = 1
 			chef_sprite.flip_h = false
 	
+	slam_preview.scale.x = 0.001
+	slam_preview.scale.z = 0.001
+	slam_preview.show()
+	var start_slam_preview_tween = create_tween().set_parallel().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
+	start_slam_preview_tween.tween_property(slam_preview, "scale:x", 1, 1)
+	start_slam_preview_tween.tween_property(slam_preview, "scale:z", 1, 1)
+	
 	weapon_animations.play("slam")
 	weapon_animations.stop()
 	_manage_cleaver_visibility(true)
@@ -96,23 +112,34 @@ func slam_attack():
 	weapon_animations.pause()
 	await get_tree().create_timer(2.0).timeout
 	
+	cleaver_blade_area.monitoring = true
 	chef_sprite.play("slam")
 	weapon_animations.play("slam") 
 	
+	slam_damage_area.monitoring = true
 	await chef_sprite.animation_finished
+	slam_damage_area.monitoring = false
 	
+	var end_slam_preview_tween = create_tween().set_parallel().set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_QUAD)
+	end_slam_preview_tween.tween_property(slam_preview, "scale:x", 0.001, 1)
+	end_slam_preview_tween.tween_property(slam_preview, "scale:z", 0.001, 1)
+	
+	await end_slam_preview_tween.finished
+	slam_preview.hide()
+	
+	cleaver_blade_area.monitoring = false
 	chef_sprite.flip_h = false
 	idle()
 	
-	await weapon_animations.animation_finished
-	await get_tree().create_timer(1).timeout
+	await get_tree().create_timer(1.0).timeout
 	
 	_manage_cleaver_visibility(false)
 	await get_tree().create_timer(0.25).timeout
 	cleaver.global_position.y = -60
 	
-	await get_tree().create_timer(1).timeout
+	await get_tree().create_timer(1.0).timeout
 	blackboard.set_var("is_attacking", false)
+
 
 func slash_attack():
 	blackboard.set_var("is_attacking", true)
@@ -125,10 +152,10 @@ func slash_attack():
 			controller.scale.x = -1
 			chef_sprite.flip_h = true
 	
-	slash_preview.scale.x = 0.001
+	slash_preview.scale.z = 0.001
 	slash_preview.show()
 	var start_slash_preview_tween = create_tween()
-	start_slash_preview_tween.tween_property(slash_preview, "scale:x", 1, 1)\
+	start_slash_preview_tween.tween_property(slash_preview, "scale:z", 1, 1)\
 	.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
 	
 	weapon_animations.play("knife")
@@ -157,7 +184,7 @@ func slash_attack():
 	await weapon_animations.animation_finished
 	
 	var end_slash_preview_tween = create_tween()
-	end_slash_preview_tween.tween_property(slash_preview, "scale:x", 0.001, 1)\
+	end_slash_preview_tween.tween_property(slash_preview, "scale:z", 0.001, 1)\
 	.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
 	await end_slash_preview_tween.finished
 	slash_preview.hide()
@@ -205,11 +232,11 @@ func prepare_miniboss():
 	
 	_choose_miniboss()
 	
-	_spawn_food()
-	
-	#blackboard.set_var("can_pick_miniboss", true)
+	blackboard.set_var("can_pick_miniboss", true)
 
 func _spawn_food():
+	blackboard.set_var("is_attacking", true)
+	
 	var main_food_item = food_items.get_node(GeneralData.selected_mini_boss_name)
 	var food_item = main_food_item.duplicate()
 	var current_scale: Vector3 = food_item.scale
@@ -229,6 +256,10 @@ func _spawn_food():
 	food_item.freeze = false
 	food_item.get_child(0).disabled = false
 	await get_tree().create_timer(1).timeout
+	
+	await get_tree().create_timer(30).timeout
+	
+	blackboard.set_var("is_attacking", true)
 
 func _pick_attack_side() -> String:
 	var sides: Array[String] = ["left", "right"]
@@ -268,7 +299,7 @@ func damage_boss():
 	chef_sprite.pause()
 	
 	chef_sprite.modulate = Color("#ffb5a9")
-	await get_tree().create_timer(0.25).timeout
+	await get_tree().create_timer(0.1).timeout
 	chef_sprite.modulate = Color.WHITE
 	
 	chef_sprite.play()

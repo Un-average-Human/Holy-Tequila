@@ -1,6 +1,7 @@
 extends Node3D
 
 @export var void_detector: Area3D
+@export var boss: Node3D
 
 @export var spawn_point: Marker3D
 @export var player_scene: PackedScene = preload("uid://ckudr8chj1kgo")
@@ -14,6 +15,9 @@ func _ready() -> void:
 	add_child(player)
 	player.global_position = spawn_point.global_position
 	player.special_action = player.get_node(special_action.to_lower())
+	
+	print("world script: ", player)
+	boss.player = player
 	
 	void_detector.body_exited.connect(_fell_in_void)
 	SignalBus.player_died.connect(_end_bossfight.bind(false))
