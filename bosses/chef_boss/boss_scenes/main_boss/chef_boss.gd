@@ -23,11 +23,11 @@ extends Boss
 @export var food_animation: AnimationPlayer
 
 func _ready() -> void:
-	health = 1
-	Engine.set_meta("chef_boss", health)
+	boss_health_manager()
 	
 	blackboard = bt_player.blackboard
 	blackboard.set_var("can_pick_miniboss", false)
+	blackboard.set_var("miniboss_alive", false)
 	
 	slam_preview.hide()
 	slash_preview.hide()
@@ -43,21 +43,23 @@ func _ready() -> void:
 	
 	if !Engine.get_meta("chef_bossfight_started"):
 		Engine.set_meta("chef_bossfight_started", true)
-		
 		start_bossfight_area.body_entered.connect(_start_bossfight_area_entered)
 		chef_sprite.global_position.y = -60
-		
 	else:
-		start_bossfight_area.monitoring = false
+		if is_instance_valid(start_bossfight_area):
+			start_bossfight_area.monitoring = false
+			
 		await get_tree().physics_frame
 		player.special_action.boss = chef_sprite
+		idle()
+		
 		await get_tree().create_timer(2).timeout
 		_spawn_food()
-		can_attack = true
 
 func _start_bossfight_area_entered(body: Node3D):
 	if body.is_in_group("player") and has_started == false:
-		start_bossfight_area.queue_free()
+		if is_instance_valid(start_bossfight_area):
+			start_bossfight_area.queue_free()
 		has_started = true
 		_start_bossfight()
 
@@ -112,13 +114,10 @@ func slam_attack():
 	weapon_animations.pause()
 	await get_tree().create_timer(2.0).timeout
 	
-	cleaver_blade_area.monitoring = true
 	chef_sprite.play("slam")
 	weapon_animations.play("slam") 
 	
-	slam_damage_area.monitoring = true
 	await chef_sprite.animation_finished
-	slam_damage_area.monitoring = false
 	
 	var end_slam_preview_tween = create_tween().set_parallel().set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_QUAD)
 	end_slam_preview_tween.tween_property(slam_preview, "scale:x", 0.001, 1)
@@ -127,7 +126,6 @@ func slam_attack():
 	await end_slam_preview_tween.finished
 	slam_preview.hide()
 	
-	cleaver_blade_area.monitoring = false
 	chef_sprite.flip_h = false
 	idle()
 	
@@ -139,7 +137,6 @@ func slam_attack():
 	
 	await get_tree().create_timer(1.0).timeout
 	blackboard.set_var("is_attacking", false)
-
 
 func slash_attack():
 	blackboard.set_var("is_attacking", true)
@@ -170,11 +167,10 @@ func slash_attack():
 		await chef_sprite.animation_finished
 		
 	weapon_animations.pause()
-	await get_tree().create_timer(2).timeout
+	await get_tree().create_timer(2)
 	
 	chef_sprite.play("finish_attack")
 	weapon_animations.play("knife")
-	cleaver_damage_area.monitoring = true
 	
 	await chef_sprite.animation_finished
 	
@@ -189,14 +185,13 @@ func slash_attack():
 	await end_slash_preview_tween.finished
 	slash_preview.hide()
 	
-	cleaver_damage_area.monitoring = false
-	await get_tree().create_timer(1).timeout
+	await get_tree().create_timer(1)
 	
 	_manage_cleaver_visibility(false)
 	await get_tree().create_timer(0.25).timeout
 	cleaver.global_position.y = -60
 	
-	await get_tree().create_timer(1).timeout
+	await get_tree().create_timer(1)
 	blackboard.set_var("is_attacking", false)
 
 func _manage_cleaver_visibility(show: bool):
@@ -217,7 +212,8 @@ func _manage_cleaver_visibility(show: bool):
 		cleaver.hide()
 
 func prepare_miniboss():
-	await weapon_animations.animation_finished
+	if weapon_animations.is_playing():
+		await weapon_animations.animation_finished
 	await get_tree().create_timer(2).timeout
 	
 	chef_sprite.play("turn_around")
@@ -257,9 +253,7 @@ func _spawn_food():
 	food_item.get_child(0).disabled = false
 	await get_tree().create_timer(1).timeout
 	
-	await get_tree().create_timer(30).timeout
-	
-	blackboard.set_var("is_attacking", true)
+	blackboard.set_var("is_attacking", false)
 
 func _pick_attack_side() -> String:
 	var sides: Array[String] = ["left", "right"]
@@ -296,19 +290,36 @@ func _choose_miniboss():
 	GeneralData.selected_mini_boss_name = GeneralData.mini_bosses_available[boss_index]
 
 func damage_boss():
-	chef_sprite.pause()
-	
-	chef_sprite.modulate = Color("#ffb5a9")
+	chef_sprite.modulate = Color("ffb5a9")
 	await get_tree().create_timer(0.1).timeout
 	chef_sprite.modulate = Color.WHITE
 	
-	chef_sprite.play()
-	
 	_hurt(1.0)
+	
+	Engine.set_meta("chef_boss_health", health)
+	if !can_attack:
+		can_attack = true
+	
+	can_attack = true
+	if blackboard:
+		blackboard.set_var("is_attacking", false)
+	
+	print("Updated health value: ", health)
 	
 	if health <= 0:
 		death()
 
+func manage_damage_area(damage_area_path: NodePath, is_monitoring: bool) -> void:
+	var damage_area = get_node_or_null(damage_area_path) as Area3D
+	if damage_area:
+		damage_area.set_deferred("monitoring", is_monitoring)
+
+func boss_health_manager():
+	if Engine.has_meta("chef_boss_health"):
+		health = Engine.get_meta("chef_boss_health")
+	else:
+		Engine.set_meta("chef_boss_health", health)
+	print("Initial loaded health: ", health)
 func death():
 	can_attack = false
 	

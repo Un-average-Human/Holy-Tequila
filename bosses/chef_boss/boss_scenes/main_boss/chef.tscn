@@ -986,6 +986,23 @@ tracks/2/keys = {
 "update": 1,
 "values": []
 }
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../../boss")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.75, 1.375),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [NodePath("../controller/cleaver/blade_area"), true],
+"method": &"manage_damage_area"
+}, {
+"args": [NodePath("../controller/cleaver/blade_area"), false],
+"method": &"manage_damage_area"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_w5q7o"]
 resource_name = "slam"
@@ -1013,6 +1030,29 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
 "values": [Vector3(0.34906584, -3.1415927, 0), Vector3(0.61086524, -3.1415927, 0), Vector3(0.7853982, -3.1415927, -0.17453292), Vector3(0.7853982, -3.1415927, -0.43633235), Vector3(0.7853982, -3.1415927, -0.2617994), Vector3(0.7853982, -3.1415927, -0.26179945), Vector3(0.7853982, -3.1415927, -0.43633232), Vector3(0.2617994, -3.1415927, -0.43633232), Vector3(0.17453292, -3.1415927, -0.43633232), Vector3(0.17453292, -3.1415927, -0.41887903), Vector3(0.17453292, -3.1415927, -0.43633232), Vector3(0.17453292, -3.1415927, -0.4537856)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../../boss")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.625, 0.96666664, 1, 1.1333333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"values": [{
+"args": [NodePath("../controller/cleaver/blade_area"), true],
+"method": &"manage_damage_area"
+}, {
+"args": [NodePath("../controller/cleaver/blade_area"), false],
+"method": &"manage_damage_area"
+}, {
+"args": [NodePath("../controller/slam_damage_area"), true],
+"method": &"manage_damage_area"
+}, {
+"args": [NodePath("../controller/slam_damage_area"), false],
+"method": &"manage_damage_area"
+}]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_w5x60"]
