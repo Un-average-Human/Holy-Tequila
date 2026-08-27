@@ -40,9 +40,9 @@ var boss_data: Dictionary = {
 	},
 	"Chef Doe Nut-Holl": {
 		"losing_quote":
-			"FUCK!",
+			"I barely get paid to work like this and now I'm getting humiliated?! I'm sending a message to HR [i]IMMEDIATELY[i]!",
 		"winning_quote":
-			"Suck it loser"
+			"Take that you infernal pest! Let me work in peace. The salary is already terrible."
 	}
 }
 

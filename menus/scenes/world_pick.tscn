@@ -21,10 +21,18 @@
 [ext_resource type="FontFile" uid="uid://dj858wkygbdbc" path="res://lowbudget.ttf" id="19_3xe1t"]
 [ext_resource type="Theme" uid="uid://bl2p5taqyov0l" path="res://ui.tres" id="20_kkp1b"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_hpjpr"]
-font = ExtResource("19_3xe1t")
-font_size = 40
-outline_size = 3
+[sub_resource type="FontVariation" id="FontVariation_kkp1b"]
+base_font = ExtResource("19_3xe1t")
+variation_embolden = 0.75
+
+[sub_resource type="FontVariation" id="FontVariation_jvghj"]
+base_font = ExtResource("19_3xe1t")
+variation_embolden = 0.75
+variation_transform = Transform2D(1, 0.2, 0, 1, 0, 0)
+
+[sub_resource type="FontVariation" id="FontVariation_4c2iq"]
+base_font = ExtResource("19_3xe1t")
+variation_transform = Transform2D(1, 0.2, 0, 1, 0, 0)
 
 [node name="Node2D" type="Control" unique_id=829474174 node_paths=PackedStringArray("return_btn", "interactive_noises", "planet_list")]
 layout_mode = 3
@@ -179,7 +187,7 @@ unique_name_in_owner = true
 stream = ExtResource("18_qr0nj")
 bus = &"SFX"
 
-[node name="Label" type="Label" parent="." unique_id=1883111888]
+[node name="Label" type="RichTextLabel" parent="." unique_id=889934130]
 texture_filter = 1
 layout_mode = 1
 anchors_preset = -1
@@ -187,11 +195,19 @@ anchor_left = 0.16927083
 anchor_top = 0.86728394
 anchor_right = 0.8289931
 anchor_bottom = 0.9984568
-text = "Only mars is available right now. I still have to complete the other planets and it'll take a while"
-label_settings = SubResource("LabelSettings_hpjpr")
+offset_bottom = 14.0
+theme_override_fonts/normal_font = ExtResource("19_3xe1t")
+theme_override_fonts/bold_font = SubResource("FontVariation_kkp1b")
+theme_override_fonts/bold_italics_font = SubResource("FontVariation_jvghj")
+theme_override_fonts/italics_font = SubResource("FontVariation_4c2iq")
+theme_override_font_sizes/normal_font_size = 30
+theme_override_font_sizes/bold_font_size = 30
+theme_override_font_sizes/bold_italics_font_size = 30
+theme_override_font_sizes/italics_font_size = 30
+bbcode_enabled = true
+text = "Only [b][i]2 worlds[/i][/b] are available right now. I still have to complete the other planets and it'll take a while. All worlds will be available for testing purposes."
 horizontal_alignment = 1
 vertical_alignment = 1
-autowrap_mode = 3
 metadata/_edit_use_anchors_ = true
 
 [node name="return_btn" type="Button" parent="." unique_id=405030402]

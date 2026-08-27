@@ -167,7 +167,7 @@ func slash_attack():
 		await chef_sprite.animation_finished
 		
 	weapon_animations.pause()
-	await get_tree().create_timer(2)
+	await get_tree().create_timer(2).timeout
 	
 	chef_sprite.play("finish_attack")
 	weapon_animations.play("knife")
@@ -185,13 +185,13 @@ func slash_attack():
 	await end_slash_preview_tween.finished
 	slash_preview.hide()
 	
-	await get_tree().create_timer(1)
+	await get_tree().create_timer(1).timeout
 	
 	_manage_cleaver_visibility(false)
 	await get_tree().create_timer(0.25).timeout
 	cleaver.global_position.y = -60
 	
-	await get_tree().create_timer(1)
+	await get_tree().create_timer(1).timeout
 	blackboard.set_var("is_attacking", false)
 
 func _manage_cleaver_visibility(show: bool):
@@ -304,8 +304,6 @@ func damage_boss():
 	if blackboard:
 		blackboard.set_var("is_attacking", false)
 	
-	print("Updated health value: ", health)
-	
 	if health <= 0:
 		death()
 
@@ -319,7 +317,6 @@ func boss_health_manager():
 		health = Engine.get_meta("chef_boss_health")
 	else:
 		Engine.set_meta("chef_boss_health", health)
-	print("Initial loaded health: ", health)
 func death():
 	can_attack = false
 	
@@ -330,6 +327,11 @@ func death():
 	
 	await chef_sprite.animation_finished
 	self.visible = false
+	
+	Engine.remove_meta("chef_boss_started")
+	Engine.remove_meta("chef_miniboss")
+	Engine.remove_meta("chef_boss_health")
+	Engine.remove_meta("chef_attack_side")
 	
 	await get_tree().create_timer(1).timeout
 	SignalBus.boss_defeated.emit()

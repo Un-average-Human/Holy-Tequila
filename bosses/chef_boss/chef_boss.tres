@@ -37,9 +37,6 @@ property = &"can_attack"
 value = SubResource("BBVariant_i0j1x")
 custom_name = "Is can_attack True?"
 
-[sub_resource type="BTConsolePrint" id="BTConsolePrint_i0j1x"]
-text = "can attack"
-
 [sub_resource type="BBNode" id="BBNode_3dw6m"]
 saved_value = NodePath("boss")
 resource_name = "boss"
@@ -50,9 +47,6 @@ method = &"idle"
 
 [sub_resource type="BTWait" id="BTWait_o2k44"]
 duration = 3.0
-
-[sub_resource type="BTConsolePrint" id="BTConsolePrint_3dw6m"]
-text = "finished waiting 3 seconds"
 
 [sub_resource type="BBVariant" id="BBVariant_rotxm"]
 type = 2
@@ -71,6 +65,9 @@ resource_name = "<null>"
 [sub_resource type="BTCheckVar" id="BTCheckVar_tcflo"]
 variable = &"is_attacking"
 value = SubResource("BBVariant_dgluc")
+
+[sub_resource type="BTRepeatUntilSuccess" id="BTRepeatUntilSuccess_3dw6m"]
+children = [SubResource("BTCheckVar_tcflo")]
 
 [sub_resource type="BBNode" id="BBNode_fmd32"]
 saved_value = NodePath("boss")
@@ -92,7 +89,7 @@ method = &"slash_attack"
 children = [SubResource("BTCallMethod_a06dt"), SubResource("BTCallMethod_tq7bc")]
 
 [sub_resource type="BTSequence" id="BTSequence_dgj1q"]
-children = [SubResource("BTCheckAgentProperty_dpuih"), SubResource("BTCheckVar_tcflo"), SubResource("BTProbabilitySelector_3gyvx")]
+children = [SubResource("BTCheckAgentProperty_dpuih"), SubResource("BTRepeatUntilSuccess_3dw6m"), SubResource("BTProbabilitySelector_3gyvx")]
 
 [sub_resource type="BBVariant" id="BBVariant_y43lu"]
 type = 2
@@ -282,6 +279,18 @@ children = [SubResource("BTCheckAgentProperty_tioj0"), SubResource("BTCheckVar_d
 [sub_resource type="BTSelector" id="BTSelector_l4ars"]
 children = [SubResource("BTSequence_dgj1q"), SubResource("BTSequence_ys6xv"), SubResource("BTSequence_3dw6m")]
 
+[sub_resource type="BBVariant" id="BBVariant_tcflo"]
+type = 1
+saved_value = false
+resource_name = "false"
+
+[sub_resource type="BTCheckVar" id="BTCheckVar_fmd32"]
+variable = &"is_attacking"
+value = SubResource("BBVariant_tcflo")
+
+[sub_resource type="BTRepeatUntilSuccess" id="BTRepeatUntilSuccess_a06dt"]
+children = [SubResource("BTCheckVar_fmd32")]
+
 [sub_resource type="BBNode" id="BBNode_7ua8e"]
 saved_value = NodePath("boss")
 resource_name = "boss"
@@ -324,7 +333,7 @@ custom_name = "Pick a Miniboss"
 children = [SubResource("BTCheckVar_3dw6m"), SubResource("BTCallMethod_i0j1x")]
 
 [sub_resource type="BTSequence" id="BTSequence_dpuih"]
-children = [SubResource("BTCheckAgentProperty_o2k44"), SubResource("BTConsolePrint_i0j1x"), SubResource("BTCallMethod_7ua8e"), SubResource("BTWait_o2k44"), SubResource("BTConsolePrint_3dw6m"), SubResource("BTSelector_l4ars"), SubResource("BTCallMethod_tioj0"), SubResource("BTRepeatUntilSuccess_i0j1x"), SubResource("BTSequence_o2k44")]
+children = [SubResource("BTCheckAgentProperty_o2k44"), SubResource("BTCallMethod_7ua8e"), SubResource("BTWait_o2k44"), SubResource("BTSelector_l4ars"), SubResource("BTRepeatUntilSuccess_a06dt"), SubResource("BTCallMethod_tioj0"), SubResource("BTRepeatUntilSuccess_i0j1x"), SubResource("BTSequence_o2k44")]
 
 [sub_resource type="BTSequence" id="BTSequence_i0j1x"]
 children = [SubResource("BTSequence_dpuih")]

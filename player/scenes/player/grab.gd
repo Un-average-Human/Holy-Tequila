@@ -11,12 +11,8 @@ extends Node
 var obj_carried: RigidBody3D
 var boss: Node3D
 
-func _ready() -> void:
-	set_process(false)
-
 func execute():
 	if obj_carried != null:
-		set_physics_process(false)
 		
 		if player_body:
 			player_body.remove_collision_exception_with(obj_carried)
@@ -54,8 +50,6 @@ func execute():
 			
 			if player_body:
 				player_body.add_collision_exception_with(obj_carried)
-				
-			set_physics_process(true)
 			break
 
 func _physics_process(delta: float) -> void:
