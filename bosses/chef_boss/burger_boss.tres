@@ -29,6 +29,11 @@ custom_name = "Start Idling"
 [sub_resource type="BTWait" id="BTWait_o385p"]
 duration = 2.0
 
+[sub_resource type="BBVariant" id="BBVariant_e1m7o"]
+type = 4
+saved_value = "sauce"
+resource_name = "sauce"
+
 [sub_resource type="BBNode" id="BBNode_e1m7o"]
 saved_value = NodePath("boss")
 resource_name = "boss"
@@ -36,6 +41,7 @@ resource_name = "boss"
 [sub_resource type="BTCallMethod" id="BTCallMethod_nwa7h"]
 node = SubResource("BBNode_e1m7o")
 method = &"attack"
+args = Array[BBVariant]([SubResource("BBVariant_e1m7o")])
 custom_name = "Start Attacking"
 
 [sub_resource type="BTSequence" id="BTSequence_o385p"]

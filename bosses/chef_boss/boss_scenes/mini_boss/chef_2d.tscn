@@ -32,6 +32,54 @@ region = Rect2(3240, 3240, 1080, 1080)
 atlas = ExtResource("2_urwqr")
 region = Rect2(4320, 3240, 1080, 1080)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_tfjrn"]
+atlas = ExtResource("2_urwqr")
+region = Rect2(0, 1080, 1080, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8cq3n"]
+atlas = ExtResource("2_urwqr")
+region = Rect2(1080, 1080, 1080, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ihadp"]
+atlas = ExtResource("2_urwqr")
+region = Rect2(2160, 1080, 1080, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_77h12"]
+atlas = ExtResource("2_urwqr")
+region = Rect2(3240, 1080, 1080, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6fyxq"]
+atlas = ExtResource("2_urwqr")
+region = Rect2(4320, 1080, 1080, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4phrl"]
+atlas = ExtResource("2_urwqr")
+region = Rect2(0, 2160, 1080, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vsvnu"]
+atlas = ExtResource("2_urwqr")
+region = Rect2(1080, 2160, 1080, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uox3v"]
+atlas = ExtResource("2_urwqr")
+region = Rect2(2160, 2160, 1080, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a8o3s"]
+atlas = ExtResource("2_urwqr")
+region = Rect2(0, 0, 1080, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lmf7v"]
+atlas = ExtResource("2_urwqr")
+region = Rect2(1080, 0, 1080, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rt4g2"]
+atlas = ExtResource("2_urwqr")
+region = Rect2(2160, 0, 1080, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6vlee"]
+atlas = ExtResource("2_urwqr")
+region = Rect2(3240, 0, 1080, 1080)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_rfj0l"]
 atlas = ExtResource("3_urwqr")
 region = Rect2(426, 200, 142, 200)
@@ -88,54 +136,6 @@ region = Rect2(142, 200, 142, 200)
 atlas = ExtResource("3_urwqr")
 region = Rect2(284, 200, 142, 200)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_tfjrn"]
-atlas = ExtResource("2_urwqr")
-region = Rect2(0, 1080, 1080, 1080)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_8cq3n"]
-atlas = ExtResource("2_urwqr")
-region = Rect2(1080, 1080, 1080, 1080)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ihadp"]
-atlas = ExtResource("2_urwqr")
-region = Rect2(2160, 1080, 1080, 1080)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_77h12"]
-atlas = ExtResource("2_urwqr")
-region = Rect2(3240, 1080, 1080, 1080)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_6fyxq"]
-atlas = ExtResource("2_urwqr")
-region = Rect2(4320, 1080, 1080, 1080)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_4phrl"]
-atlas = ExtResource("2_urwqr")
-region = Rect2(0, 2160, 1080, 1080)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_vsvnu"]
-atlas = ExtResource("2_urwqr")
-region = Rect2(1080, 2160, 1080, 1080)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_uox3v"]
-atlas = ExtResource("2_urwqr")
-region = Rect2(2160, 2160, 1080, 1080)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_a8o3s"]
-atlas = ExtResource("2_urwqr")
-region = Rect2(0, 0, 1080, 1080)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_lmf7v"]
-atlas = ExtResource("2_urwqr")
-region = Rect2(1080, 0, 1080, 1080)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_rt4g2"]
-atlas = ExtResource("2_urwqr")
-region = Rect2(2160, 0, 1080, 1080)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_6vlee"]
-atlas = ExtResource("2_urwqr")
-region = Rect2(3240, 0, 1080, 1080)
-
 [sub_resource type="SpriteFrames" id="SpriteFrames_a8o3s"]
 animations = [{
 "frames": [{
@@ -152,7 +152,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_hqmdd")
 }],
 "loop": false,
-"name": &"attack",
+"name": &"burger_attack",
 "speed": 8.0
 }, {
 "frames": [{
@@ -163,7 +163,53 @@ animations = [{
 "texture": SubResource("AtlasTexture_4hwrx")
 }],
 "loop": true,
-"name": &"attack_idle",
+"name": &"burger_attack_idle",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tfjrn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8cq3n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ihadp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_77h12")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6fyxq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4phrl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vsvnu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uox3v")
+}],
+"loop": true,
+"name": &"burger_idle",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a8o3s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lmf7v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rt4g2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6vlee")
+}],
+"loop": false,
+"name": &"burger_prepare_attack",
 "speed": 8.0
 }, {
 "frames": [{
@@ -212,52 +258,6 @@ animations = [{
 "loop": false,
 "name": &"explosion",
 "speed": 12.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_tfjrn")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_8cq3n")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ihadp")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_77h12")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_6fyxq")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_4phrl")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_vsvnu")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_uox3v")
-}],
-"loop": true,
-"name": &"idle",
-"speed": 8.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_a8o3s")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_lmf7v")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_rt4g2")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_6vlee")
-}],
-"loop": false,
-"name": &"prepare_attack",
-"speed": 8.0
 }]
 
 [sub_resource type="BlackboardPlan" id="BlackboardPlan_c8kok"]
@@ -281,11 +281,11 @@ size = Vector2(1152, 66)
 
 [node name="Node2D" type="Node2D" unique_id=1619152881]
 
-[node name="boss" type="Area2D" parent="." unique_id=1882780013 node_paths=PackedStringArray("boss_hit_box", "mini_bosses_available", "burger_attack", "bt_player") groups=["boss_hitbox"]]
+[node name="boss" type="Area2D" parent="." unique_id=1882780013 node_paths=PackedStringArray("boss_hit_box", "mini_bosses_available", "attack_container", "bt_player") groups=["boss_hitbox"]]
 script = ExtResource("1_2at6i")
 boss_hit_box = NodePath(".")
 mini_bosses_available = [NodePath("burger")]
-burger_attack = NodePath("burger/burger_attack")
+attack_container = NodePath("attacks")
 chef_scene = "res://bosses/chef_boss/boss_scenes/main_boss/chef.tscn"
 bt_player = NodePath("BTState")
 
@@ -294,69 +294,7 @@ texture_filter = 1
 position = Vector2(579, 337)
 scale = Vector2(0.6, 0.6)
 sprite_frames = SubResource("SpriteFrames_a8o3s")
-animation = &"attack"
-
-[node name="point1" type="Marker2D" parent="boss/burger" unique_id=1953071078]
-position = Vector2(-840.00006, -728.3335)
-scale = Vector2(1.6666667, 1.6666671)
-
-[node name="point2" type="Marker2D" parent="boss/burger" unique_id=687093130]
-position = Vector2(-561.66675, -721.6668)
-scale = Vector2(1.6666667, 1.6666671)
-
-[node name="point3" type="Marker2D" parent="boss/burger" unique_id=224160729]
-position = Vector2(-283.33334, -721.6669)
-scale = Vector2(1.6666667, 1.6666671)
-
-[node name="point4" type="Marker2D" parent="boss/burger" unique_id=836273731]
-position = Vector2(-5, -721.6669)
-scale = Vector2(1.6666667, 1.6666671)
-
-[node name="point5" type="Marker2D" parent="boss/burger" unique_id=763058435]
-position = Vector2(273.33334, -721.6669)
-scale = Vector2(1.6666667, 1.6666671)
-
-[node name="point6" type="Marker2D" parent="boss/burger" unique_id=1655544880]
-position = Vector2(551.6667, -721.6669)
-scale = Vector2(1.6666667, 1.6666671)
-
-[node name="point7" type="Marker2D" parent="boss/burger" unique_id=843825415]
-position = Vector2(830.00006, -728.3335)
-scale = Vector2(1.6666667, 1.6666671)
-
-[node name="point8" type="Marker2D" parent="boss/burger" unique_id=763429276]
-position = Vector2(-5, 191.66675)
-
-[node name="point9" type="Marker2D" parent="boss/burger" unique_id=89698168]
-position = Vector2(-418.33337, -721.6668)
-scale = Vector2(1.6666667, 1.6666671)
-
-[node name="point10" type="Marker2D" parent="boss/burger" unique_id=973387377]
-position = Vector2(-140, -721.6669)
-scale = Vector2(1.6666667, 1.6666671)
-
-[node name="point11" type="Marker2D" parent="boss/burger" unique_id=347021524]
-position = Vector2(138.33331, -721.6669)
-scale = Vector2(1.6666667, 1.6666671)
-
-[node name="point12" type="Marker2D" parent="boss/burger" unique_id=1174881591]
-position = Vector2(416.6667, -721.6669)
-scale = Vector2(1.6666667, 1.6666671)
-
-[node name="point13" type="Marker2D" parent="boss/burger" unique_id=11508668]
-position = Vector2(695.00006, -721.6669)
-scale = Vector2(1.6666667, 1.6666671)
-
-[node name="point14" type="Marker2D" parent="boss/burger" unique_id=274182846]
-position = Vector2(-701.66675, -721.6668)
-scale = Vector2(1.6666667, 1.6666671)
-
-[node name="burger_attack" type="Node" parent="boss/burger" unique_id=1981235820 node_paths=PackedStringArray("projectile_spawn", "fall_point_array")]
-script = ExtResource("3_rfj0l")
-projectile_scene = ExtResource("4_5n2hg")
-projectile_spawn = NodePath("../point8")
-fall_point_array = [NodePath("../point1"), NodePath("../point2"), NodePath("../point3"), NodePath("../point4"), NodePath("../point5"), NodePath("../point6"), NodePath("../point7"), NodePath("../point8"), NodePath("../point9"), NodePath("../point10"), NodePath("../point11"), NodePath("../point12"), NodePath("../point13"), NodePath("../point14")]
-point_height = Vector2(0, -721.667)
+animation = &"burger_attack"
 
 [node name="BTState" type="BTPlayer" parent="boss" unique_id=1542784193]
 behavior_tree = ExtResource("5_l62rj")
@@ -365,6 +303,78 @@ blackboard_plan = SubResource("BlackboardPlan_c8kok")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="boss" unique_id=1822554302]
 position = Vector2(572.5, 417)
 shape = SubResource("RectangleShape2D_2at6i")
+
+[node name="attacks" type="Node" parent="boss" unique_id=626311614]
+
+[node name="burger" type="Node" parent="boss/attacks" unique_id=185692409]
+
+[node name="bullet_spawn_point" type="Marker2D" parent="boss/attacks/burger" unique_id=763429276]
+position = Vector2(576, 452.00006)
+scale = Vector2(0.6, 0.6)
+
+[node name="points" type="Node2D" parent="boss/attacks/burger" unique_id=1810217211]
+
+[node name="point1" type="Marker2D" parent="boss/attacks/burger/points" unique_id=1953071078]
+position = Vector2(74.99994, -100.00012)
+scale = Vector2(1.0000001, 1.0000004)
+
+[node name="point2" type="Marker2D" parent="boss/attacks/burger/points" unique_id=687093130]
+position = Vector2(241.99994, -96.00009)
+scale = Vector2(1.0000001, 1.0000004)
+
+[node name="point3" type="Marker2D" parent="boss/attacks/burger/points" unique_id=224160729]
+position = Vector2(409, -96.00015)
+scale = Vector2(1.0000001, 1.0000004)
+
+[node name="point4" type="Marker2D" parent="boss/attacks/burger/points" unique_id=836273731]
+position = Vector2(576, -96.00015)
+scale = Vector2(1.0000001, 1.0000004)
+
+[node name="point5" type="Marker2D" parent="boss/attacks/burger/points" unique_id=763058435]
+position = Vector2(743, -96.00015)
+scale = Vector2(1.0000001, 1.0000004)
+
+[node name="point6" type="Marker2D" parent="boss/attacks/burger/points" unique_id=1655544880]
+position = Vector2(910, -96.00015)
+scale = Vector2(1.0000001, 1.0000004)
+
+[node name="point7" type="Marker2D" parent="boss/attacks/burger/points" unique_id=843825415]
+position = Vector2(1077, -100.00012)
+scale = Vector2(1.0000001, 1.0000004)
+
+[node name="point9" type="Marker2D" parent="boss/attacks/burger/points" unique_id=89698168]
+position = Vector2(327.99997, -96.00009)
+scale = Vector2(1.0000001, 1.0000004)
+
+[node name="point10" type="Marker2D" parent="boss/attacks/burger/points" unique_id=973387377]
+position = Vector2(495, -96.00015)
+scale = Vector2(1.0000001, 1.0000004)
+
+[node name="point11" type="Marker2D" parent="boss/attacks/burger/points" unique_id=347021524]
+position = Vector2(662, -96.00015)
+scale = Vector2(1.0000001, 1.0000004)
+
+[node name="point12" type="Marker2D" parent="boss/attacks/burger/points" unique_id=1174881591]
+position = Vector2(829, -96.00015)
+scale = Vector2(1.0000001, 1.0000004)
+
+[node name="point13" type="Marker2D" parent="boss/attacks/burger/points" unique_id=11508668]
+position = Vector2(996.00006, -96.00015)
+scale = Vector2(1.0000001, 1.0000004)
+
+[node name="point14" type="Marker2D" parent="boss/attacks/burger/points" unique_id=274182846]
+position = Vector2(157.99994, -96.00009)
+scale = Vector2(1.0000001, 1.0000004)
+
+[node name="sauce" type="Node" parent="boss/attacks/burger" unique_id=1981235820 node_paths=PackedStringArray("projectile_spawn", "fall_point_container")]
+script = ExtResource("3_rfj0l")
+projectile_scene = ExtResource("4_5n2hg")
+projectile_spawn = NodePath("../bullet_spawn_point")
+fall_point_container = NodePath("../points")
+point_height = Vector2(0, -100)
+
+[node name="fries" type="Node" parent="boss/attacks/burger" unique_id=210969868]
+script = ExtResource("3_rfj0l")
 
 [node name="border" type="StaticBody2D" parent="." unique_id=2110720380]
 

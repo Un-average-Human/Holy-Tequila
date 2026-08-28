@@ -8,24 +8,31 @@ extends Node
 
 @export var projectile_spawn: Marker2D
 var last_fall_point_indexes: Array[int] = []
-@export var fall_point_array: Array[Marker2D]
+
+@export var fall_point_container: Node2D
+var fall_point_array: Array[Marker2D]
 @export var point_height: Vector2
 
+func _ready() -> void:
+	pass
+
 func execute(mini_boss: AnimatedSprite2D, boss: Boss):
+	for point in fall_point_container.get_children():
+		fall_point_array.append(point)
 	if boss.health <= 0 or not is_instance_valid(mini_boss):
 		return
 		
-	mini_boss.play("prepare_attack")
+	mini_boss.play("burger_prepare_attack")
 	await mini_boss.animation_finished
 	
 	if boss.health <= 0 or not is_instance_valid(mini_boss): return
-	mini_boss.play("attack_idle")
+	mini_boss.play("burger_attack_idle")
 			
 	var projectile_amount = GeneralData.rng.randi_range(min_projectile_amount, max_projectile_amount)
 			
 	for i in range(projectile_amount):
 		if boss.health <= 0 or not is_instance_valid(mini_boss): return
-		mini_boss.play("attack")
+		mini_boss.play("burger_attack")
 		
 		while is_instance_valid(mini_boss) and mini_boss.frame != 2 and boss.health > 0:
 			await mini_boss.frame_changed
@@ -36,13 +43,13 @@ func execute(mini_boss: AnimatedSprite2D, boss: Boss):
 		await mini_boss.animation_finished
 		
 		if boss.health <= 0 or not is_instance_valid(mini_boss): return
-		mini_boss.play("attack_idle")
+		mini_boss.play("burger_attack_idle")
 				
 		await get_tree().create_timer(fire_rate).timeout
 				
 	if boss.health <= 0 or not is_instance_valid(mini_boss): return
 	last_fall_point_indexes.clear()
-	mini_boss.play_backwards("prepare_attack")
+	mini_boss.play_backwards("burger_prepare_attack")
 	await mini_boss.animation_finished
 	
 	if is_instance_valid(mini_boss) and mini_boss.get_parent():

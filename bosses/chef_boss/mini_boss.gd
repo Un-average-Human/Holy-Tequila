@@ -4,11 +4,13 @@ extends Boss
 
 @export var mini_bosses_available: Array[AnimatedSprite2D]
 var mini_boss: AnimatedSprite2D
-@export var burger_attack: Node
+@export var attack_container: Node
 
 @export_file_path("*.tscn") var chef_scene: String
 
 func _ready() -> void:
+	GeneralData.selected_mini_boss_name = "burger"
+	
 	blackboard = bt_player.blackboard
 	blackboard.set_var("is_attacking", false)
 	can_attack = false
@@ -29,15 +31,14 @@ func _load_selected_mini_boss():
 
 func idle():
 	if is_instance_valid(mini_boss) and health > 0:
-		mini_boss.play("idle")
+		mini_boss.play(GeneralData.selected_mini_boss_name + "_idle")
 
-func attack():
+func attack(attack: String):
 	if !mini_boss or health <= 0:
 		return
 	blackboard.set_var("is_attacking", true)
-	match mini_boss.name:
-		"burger":
-			burger_attack.execute(mini_boss, self)
+	attack_container.get_node(GeneralData.selected_mini_boss_name)\
+	.get_node(attack).execute(mini_boss, self)
 
 	Engine.set_meta("chef_miniboss", mini_boss.name)
 
