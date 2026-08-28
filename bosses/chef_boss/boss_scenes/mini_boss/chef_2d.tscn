@@ -6,7 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://coclkixcchksq" path="res://bullet/sprites/funny_explosion.png" id="3_urwqr"]
 [ext_resource type="PackedScene" uid="uid://bseq6hdhssiqa" path="res://bullet/scenes/2d_bullet.tscn" id="4_5n2hg"]
 [ext_resource type="BehaviorTree" uid="uid://cch7ocwgo13jj" path="res://bosses/chef_boss/burger_boss.tres" id="5_l62rj"]
-[ext_resource type="PackedScene" uid="uid://6uerk7ux082i" path="res://player/scenes/player/2D_player.tscn" id="6_2ygan"]
 [ext_resource type="Script" uid="uid://bj4isk3vmcxjq" path="res://bosses/chef_boss/boss_scenes/mini_boss/fries.gd" id="7_5n2hg"]
 [ext_resource type="Texture2D" uid="uid://2yiqn5u2ljbi" path="res://enemy/sprite/fries.png" id="7_rfj0l"]
 
@@ -379,7 +378,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_jbd6q"]
 resource_name = "fries"
-length = 1.25
+length = 1.75
 step = 0.125
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -388,10 +387,10 @@ tracks/0/path = NodePath(".:position")
 tracks/0/interp = 0
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.125, 0.25, 0.375, 0.5, 0.625, 0.75, 0.875, 1, 1.125, 1.25),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.125, 0.25, 0.375, 0.5, 0.625, 0.75, 0.875, 1, 1.125, 1.25, 1.375, 1.5, 1.625, 1.75),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [Vector2(827, 361), Vector2(772, 361), Vector2(717, 361), Vector2(662, 361), Vector2(607, 361), Vector2(552, 361), Vector2(497, 361), Vector2(442, 361), Vector2(387, 361), Vector2(332, 361), Vector2(277, 361)]
+"values": [Vector2(827, 361), Vector2(772, 361), Vector2(717, 361), Vector2(662, 361), Vector2(607, 361), Vector2(552, 361), Vector2(497, 361), Vector2(442, 361), Vector2(387, 361), Vector2(332, 361), Vector2(277, 361), Vector2(222, 361), Vector2(167, 361), Vector2(112, 361), Vector2(57, 361)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -400,10 +399,10 @@ tracks/1/path = NodePath(".:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.125, 0.25, 0.375, 0.5, 0.625, 0.75, 0.875, 1, 1.125, 1.25),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.125, 0.25, 0.375, 0.5, 0.625, 0.75, 0.875, 1, 1.125, 1.25, 1.375, 1.5, 1.625, 1.75),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [0, 1, 2, 3, 4, 0, 1, 2, 3, 4, 0]
+"values": [0, 1, 2, 3, 4, 0, 1, 2, 3, 4, 0, 1, 2, 3, 4]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_dtny3"]
@@ -529,6 +528,7 @@ fries_controller = NodePath("../fries_controller")
 fries_sprite = NodePath("../fries_controller/fries_sprite")
 fries_animation = NodePath("../fries_controller/fries_sprite/AnimationPlayer")
 damage_area = NodePath("../fries_controller/fries_sprite/Area2D")
+projectile_scene = ExtResource("4_5n2hg")
 
 [node name="fries_controller" type="Node2D" parent="boss/attacks/burger" unique_id=1542641970]
 position = Vector2(573, 0)
@@ -551,6 +551,9 @@ scale = Vector2(2.142858, 2.142858)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="boss/attacks/burger/fries_controller/fries_sprite/Area2D" unique_id=222326930]
 position = Vector2(97.5, -12.5)
 shape = SubResource("RectangleShape2D_5n2hg")
+
+[node name="danger_indicator_marker" type="Marker2D" parent="boss/attacks/burger/fries_controller" unique_id=1065049137]
+position = Vector2(504, 483)
 
 [node name="border" type="StaticBody2D" parent="." unique_id=2110720380]
 
@@ -581,10 +584,7 @@ z_index = 1
 position = Vector2(576, 615)
 shape = SubResource("RectangleShape2D_hqmdd")
 
-[node name="CharacterBody2D" parent="." unique_id=369724669 instance=ExtResource("6_2ygan")]
-position = Vector2(266, 546)
-
 [node name="spawn_point" type="Marker2D" parent="." unique_id=1269625403]
-position = Vector2(576, 535)
+position = Vector2(576, 492)
 
 [connection signal="body_entered" from="boss/attacks/burger/fries_controller/fries_sprite/Area2D" to="boss/attacks/burger/fries_attack" method="_damage_area_entered"]

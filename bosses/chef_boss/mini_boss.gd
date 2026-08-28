@@ -1,15 +1,16 @@
 extends Boss
 
-@export var boss_hit_box: Area2D
 
+@export var boss_hit_box: Area2D
 @export var mini_bosses_available: Array[AnimatedSprite2D]
-var mini_boss: AnimatedSprite2D
 @export var attack_container: Node
+var mini_boss: AnimatedSprite2D
 
 @export_file_path("*.tscn") var chef_scene: String
+@export var player_scene: PackedScene
 
 func _ready() -> void:
-	GeneralData.selected_mini_boss_name = "burger"
+	
 	
 	blackboard = bt_player.blackboard
 	blackboard.set_var("is_attacking", false)
@@ -19,6 +20,10 @@ func _ready() -> void:
 	boss_hit_box.area_entered.connect(_bullet_hit)
 	
 	_load_selected_mini_boss()
+
+func _load_player():
+	var player = player_scene.instantiate()
+	player.global_position
 
 func _load_selected_mini_boss():
 	var target_name = GeneralData.selected_mini_boss_name
@@ -58,7 +63,7 @@ func _hurt(damage: float):
 	
 	if health <= 0:
 		_death_pipeline()
-		
+
 func _impact_frame(start: bool) -> Color:
 	if !is_instance_valid(mini_boss): return Color.WHITE
 	if start:

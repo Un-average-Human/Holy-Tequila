@@ -4,6 +4,8 @@ extends Node
 @export var fries_sprite: AnimatedSprite2D
 @export var fries_animation: AnimationPlayer
 @export var damage_area: Area2D
+@export var danger_indicator: Marker2D
+@export var projectile_scene: PackedScene
 
 var last_side_index: int = -1 
 
@@ -14,6 +16,26 @@ func execute(mini_boss: AnimatedSprite2D, boss: Boss):
 			fries_controller.scale.x = 1
 		"left":
 			fries_controller.scale.x = -1
+	
+	var projectile = projectile_scene.instantiate()
+	projectile.hide()
+	projectile.scale = Vector2(0.001, 0.001)
+	danger_indicator.add_child(projectile)
+	projectile.play("danger_indicator")
+	
+	var danger_indicator_tween = create_tween()
+	projectile.show()
+	danger_indicator_tween.tween_property(projectile, "scale", Vector2.ONE/4, 0.5)\
+	.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BACK)
+	
+	danger_indicator_tween.tween_interval(2)
+	
+	danger_indicator_tween.tween_property(projectile, "scale", Vector2(0.001, 0.001), 0.5)\
+	.set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_BACK)
+	await danger_indicator_tween.finished
+	projectile.hide()
+	projectile.queue_free()
+	
 	
 	fries_sprite.animation = "walking"
 	fries_animation.play("fries")

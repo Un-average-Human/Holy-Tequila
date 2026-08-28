@@ -1,8 +1,9 @@
 [gd_scene format=3 uid="uid://bseq6hdhssiqa"]
 
 [ext_resource type="Texture2D" uid="uid://btortt1vb5ht4" path="res://bullet/sprites/burger_projectile.png" id="1_mrgpq"]
-[ext_resource type="Script" uid="uid://c4wh4w8k7qwqr" path="res://bullet/scenes/2d_bullet.gd" id="2_i255j"]
+[ext_resource type="Script" uid="uid://c4wh4w8k7qwqr" path="res://bullet/script/2d_bullet.gd" id="2_i255j"]
 [ext_resource type="Texture2D" uid="uid://cjj3xmcx0cujk" path="res://bullet/sprites/player_bullet.png" id="2_iay1k"]
+[ext_resource type="Texture2D" uid="uid://bqvrlc0u4g7qp" path="res://bullet/sprites/danger_indicator.png" id="2_yah2a"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i255j"]
 atlas = ExtResource("1_mrgpq")
@@ -43,6 +44,22 @@ region = Rect2(1620, 540, 540, 540)
 [sub_resource type="AtlasTexture" id="AtlasTexture_v1kop"]
 atlas = ExtResource("1_mrgpq")
 region = Rect2(2160, 540, 540, 540)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_csh4o"]
+atlas = ExtResource("2_yah2a")
+region = Rect2(0, 0, 540, 540)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c026m"]
+atlas = ExtResource("2_yah2a")
+region = Rect2(540, 0, 540, 540)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pmb13"]
+atlas = ExtResource("2_yah2a")
+region = Rect2(1080, 0, 540, 540)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gtoii"]
+atlas = ExtResource("2_yah2a")
+region = Rect2(1620, 0, 540, 540)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_n6vy0"]
 atlas = ExtResource("2_iay1k")
@@ -104,6 +121,23 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_csh4o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c026m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pmb13")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gtoii")
+}],
+"loop": true,
+"name": &"danger_indicator",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_n6vy0")
 }, {
 "duration": 1.0,
@@ -117,7 +151,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"player_bullet",
-"speed": 0.0
+"speed": 8.0
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_yah2a"]
@@ -126,7 +160,8 @@ radius = 88.0
 [node name="Node2D" type="AnimatedSprite2D" unique_id=32769433 node_paths=PackedStringArray("area", "collision_shape") groups=["projectile"]]
 scale = Vector2(0.25, 0.25)
 sprite_frames = SubResource("SpriteFrames_n6vy0")
-animation = &"burger_falling"
+animation = &"danger_indicator"
+frame_progress = 0.23502256
 script = ExtResource("2_i255j")
 area = NodePath("area")
 collision_shape = NodePath("area/CollisionShape2D")
