@@ -31,8 +31,8 @@ duration = 2.0
 
 [sub_resource type="BBVariant" id="BBVariant_e1m7o"]
 type = 4
-saved_value = "sauce"
-resource_name = "sauce"
+saved_value = "sauce_attack"
+resource_name = "sauce_attack"
 
 [sub_resource type="BBNode" id="BBNode_e1m7o"]
 saved_value = NodePath("boss")
@@ -44,9 +44,31 @@ method = &"attack"
 args = Array[BBVariant]([SubResource("BBVariant_e1m7o")])
 custom_name = "Start Attacking"
 
+[sub_resource type="BTWait" id="BTWait_e1m7o"]
+duration = 2.5
+
+[sub_resource type="BBVariant" id="BBVariant_qbdgu"]
+type = 4
+saved_value = "fries_attack"
+resource_name = "fries_attack"
+
+[sub_resource type="BBNode" id="BBNode_nwa7h"]
+saved_value = NodePath("boss")
+resource_name = "boss"
+
+[sub_resource type="BTCallMethod" id="BTCallMethod_2aqmi"]
+node = SubResource("BBNode_nwa7h")
+method = &"attack"
+args = Array[BBVariant]([SubResource("BBVariant_qbdgu")])
+custom_name = "Start Attacking"
+
+[sub_resource type="BTProbability" id="BTProbability_dh70q"]
+run_chance = 0.75
+children = [SubResource("BTCallMethod_2aqmi")]
+
 [sub_resource type="BTSequence" id="BTSequence_o385p"]
 custom_name = "Attack"
-children = [SubResource("BTCheckVar_e1m7o"), SubResource("BTCallMethod_e1m7o"), SubResource("BTWait_o385p"), SubResource("BTCallMethod_nwa7h")]
+children = [SubResource("BTCheckVar_e1m7o"), SubResource("BTCallMethod_e1m7o"), SubResource("BTWait_o385p"), SubResource("BTCallMethod_nwa7h"), SubResource("BTWait_e1m7o"), SubResource("BTProbability_dh70q")]
 
 [sub_resource type="BTSelector" id="BTSelector_e1m7o"]
 children = [SubResource("BTSequence_o385p")]

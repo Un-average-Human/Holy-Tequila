@@ -14,7 +14,7 @@ func _ready() -> void:
 	blackboard = bt_player.blackboard
 	blackboard.set_var("is_attacking", false)
 	can_attack = false
-	health = 2
+	health = 2000
 	
 	boss_hit_box.area_entered.connect(_bullet_hit)
 	

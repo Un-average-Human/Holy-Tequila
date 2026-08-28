@@ -1,6 +1,5 @@
 extends Node
 
-@export_category("Burger")
 @export var projectile_scene: PackedScene
 @export var min_projectile_amount: int = 4
 @export var max_projectile_amount: int = 8
@@ -12,9 +11,6 @@ var last_fall_point_indexes: Array[int] = []
 @export var fall_point_container: Node2D
 var fall_point_array: Array[Marker2D]
 @export var point_height: Vector2
-
-func _ready() -> void:
-	pass
 
 func execute(mini_boss: AnimatedSprite2D, boss: Boss):
 	for point in fall_point_container.get_children():
