@@ -11,9 +11,11 @@ var player
 func _ready() -> void:
 	GeneralData.current_boss = "Spaceship Boss"
 	player = player_scene.instantiate()
-	#player.global_position = spawn_point.global_position
 	add_child(player)
 	player.special_action = player.get_node(special_action.to_lower())
+	
+	player.special_action.ability_label.text = "Parry pink objects"
+	player.special_action.cooldown_bar.show()
 	
 	void_detector.body_exited.connect(_fell_in_void)
 	SignalBus.player_died.connect(_end_bossfight.bind(false))

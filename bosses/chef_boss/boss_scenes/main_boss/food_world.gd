@@ -16,6 +16,9 @@ func _ready() -> void:
 	player.global_position = spawn_point.global_position
 	player.special_action = player.get_node(special_action.to_lower())
 	
+	player.special_action.ability_label.text = "Grab/Drop"
+	player.special_action.cooldown_bar.hide()
+	
 	boss.player = player
 	
 	void_detector.body_exited.connect(_fell_in_void)

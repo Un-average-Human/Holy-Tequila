@@ -36,7 +36,6 @@ func _on_area_entered(other_area: Area2D) -> void:
 	if other_projectile and other_projectile.is_in_group("projectile"):
 		if !player_bullet and other_projectile.player_bullet:
 			other_projectile.queue_free()
-			queue_free()
 
 func _process(delta: float) -> void:
 	if player_bullet and !has_damaged_boss:

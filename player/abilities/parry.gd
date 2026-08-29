@@ -12,7 +12,7 @@ var yeet_sprite_scene = preload("uid://dwsikl4kkdfi3")
 
 @export var audio: AudioStreamPlayer
 @export var ability_cooldown: float = 2.0
-@export var ability_cooldown_bar: ProgressBar
+@export var cooldown_bar: ProgressBar
 @export var ability_label: Label
 
 var parriable_objects: Array
@@ -21,8 +21,8 @@ var parriable_objects: Array
 @export var sprite: AnimatedSprite3D
 
 func _ready() -> void:
-	if is_instance_valid(ability_cooldown_bar):
-		ability_cooldown_bar.max_value = ability_cooldown
+	if is_instance_valid(cooldown_bar):
+		cooldown_bar.max_value = ability_cooldown
 		ability_label.text = self.name.capitalize() + " Cooldown"
 
 	set_process(false)
@@ -41,12 +41,12 @@ func _start_parry_window():
 	
 	sprite.play("parrying")
 	
-	if is_instance_valid(ability_cooldown_bar):
-		ability_cooldown_bar.max_value = parry_window
-		ability_cooldown_bar.value = parry_window
+	if is_instance_valid(cooldown_bar):
+		cooldown_bar.max_value = parry_window
+		cooldown_bar.value = parry_window
 		
 		var window_tween = create_tween()
-		window_tween.tween_property(ability_cooldown_bar, "value", 0.0, parry_window)\
+		window_tween.tween_property(cooldown_bar, "value", 0.0, parry_window)\
 		.set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 	
 	for overlapping_area in parry_area.get_overlapping_areas():
@@ -58,9 +58,9 @@ func _start_parry_window():
 	if sprite.animation == "parrying":
 		sprite.play("idle")
 	
-	if is_instance_valid(ability_cooldown_bar):
-		ability_cooldown_bar.max_value = ability_cooldown
-		ability_cooldown_bar.value = 0.0
+	if is_instance_valid(cooldown_bar):
+		cooldown_bar.max_value = ability_cooldown
+		cooldown_bar.value = 0.0
 		
 	set_process(true)
 
@@ -121,8 +121,8 @@ func _yeet_sprite(object: Node3D):
 	tween.tween_property(yeet_sprite, "scale", Vector3.ZERO, 0.25).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_QUAD)
 
 func _process(delta: float) -> void:
-	if ability_cooldown_bar.value < ability_cooldown:
-		ability_cooldown_bar.value += delta
+	if cooldown_bar.value < ability_cooldown:
+		cooldown_bar.value += delta
 	else:
 		can_parry = true
 		set_process(false)

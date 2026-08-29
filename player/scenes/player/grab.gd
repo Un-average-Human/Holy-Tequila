@@ -1,5 +1,8 @@
 extends Node
 
+@export var cooldown_bar: ProgressBar
+@export var ability_label: Label
+
 @export var grab_area: Area3D
 @export var grabbed_obj_marker: Marker3D
 
