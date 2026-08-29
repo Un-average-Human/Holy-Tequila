@@ -1,9 +1,9 @@
 extends Node
 
 @export var projectile_scene: PackedScene
-@export var min_projectile_amount: int = 4
-@export var max_projectile_amount: int = 8
-@export var fire_rate: float = 0.5
+@export var min_projectile_amount: int = 10
+@export var max_projectile_amount: int = 13
+@export var fire_rate: float = 0.01
 
 @export var projectile_spawn: Marker2D
 var last_fall_point_indexes: Array[int] = []
@@ -23,9 +23,9 @@ func execute(mini_boss: AnimatedSprite2D, boss: Boss):
 	
 	if boss.health <= 0 or not is_instance_valid(mini_boss): return
 	mini_boss.play("burger_attack_idle")
-			
+	
 	var projectile_amount = GeneralData.rng.randi_range(min_projectile_amount, max_projectile_amount)
-			
+	
 	for i in range(projectile_amount):
 		if boss.health <= 0 or not is_instance_valid(mini_boss): return
 		mini_boss.play("burger_attack")

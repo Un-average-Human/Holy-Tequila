@@ -18,6 +18,7 @@ func execute(mini_boss: AnimatedSprite2D, boss: Boss):
 			fries_controller.scale.x = -1
 	
 	var projectile = projectile_scene.instantiate()
+	projectile.can_collide = false
 	projectile.hide()
 	projectile.scale = Vector2(0.001, 0.001)
 	danger_indicator.add_child(projectile)
@@ -25,12 +26,12 @@ func execute(mini_boss: AnimatedSprite2D, boss: Boss):
 	
 	var danger_indicator_tween = create_tween()
 	projectile.show()
-	danger_indicator_tween.tween_property(projectile, "scale", Vector2.ONE/4, 0.5)\
+	danger_indicator_tween.tween_property(projectile, "scale", Vector2.ONE/4, 0.25)\
 	.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BACK)
 	
 	danger_indicator_tween.tween_interval(2)
 	
-	danger_indicator_tween.tween_property(projectile, "scale", Vector2(0.001, 0.001), 0.5)\
+	danger_indicator_tween.tween_property(projectile, "scale", Vector2(0.001, 0.001), 0.25)\
 	.set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_BACK)
 	await danger_indicator_tween.finished
 	projectile.hide()

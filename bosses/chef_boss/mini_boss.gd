@@ -8,22 +8,25 @@ var mini_boss: AnimatedSprite2D
 
 @export_file_path("*.tscn") var chef_scene: String
 @export var player_scene: PackedScene
+@export var spawn_point: Marker2D
 
 func _ready() -> void:
-	
+	GeneralData.selected_mini_boss_name = "burger"
+	_load_player()
 	
 	blackboard = bt_player.blackboard
 	blackboard.set_var("is_attacking", false)
 	can_attack = false
-	health = 2000
+	health = 5000
 	
 	boss_hit_box.area_entered.connect(_bullet_hit)
 	
-	_load_selected_mini_boss()
+	#_load_selected_mini_boss()
 
 func _load_player():
 	var player = player_scene.instantiate()
-	player.global_position
+	get_tree().current_scene.add_child.call_deferred(player)
+	player.global_position = spawn_point.global_position
 
 func _load_selected_mini_boss():
 	var target_name = GeneralData.selected_mini_boss_name
@@ -74,7 +77,7 @@ func _impact_frame(start: bool) -> Color:
 func _bullet_hit(bullet_area: Area2D):
 	var bullet = bullet_area.get_parent()
 	if bullet.is_in_group("projectile") and bullet.player_bullet:
-		bullet.queue_free()
+		#bullet.queue_free()
 		_hurt(20.0)
 
 func _death_pipeline():
