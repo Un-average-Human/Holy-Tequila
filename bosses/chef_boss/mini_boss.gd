@@ -21,7 +21,7 @@ func _ready() -> void:
 	
 	boss_hit_box.area_entered.connect(_bullet_hit)
 	
-	#_load_selected_mini_boss()
+	_load_selected_mini_boss()
 
 func _load_player():
 	var player = player_scene.instantiate()
@@ -77,7 +77,6 @@ func _impact_frame(start: bool) -> Color:
 func _bullet_hit(bullet_area: Area2D):
 	var bullet = bullet_area.get_parent()
 	if bullet.is_in_group("projectile") and bullet.player_bullet:
-		#bullet.queue_free()
 		_hurt(20.0)
 
 func _death_pipeline():
