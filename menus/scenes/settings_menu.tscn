@@ -557,11 +557,13 @@ grow_vertical = 2
 
 [node name="menu_tabs" type="VBoxContainer" parent="." unique_id=1955084870]
 layout_mode = 0
-offset_left = 24.0
-offset_top = 275.0
-offset_right = 175.0
-offset_bottom = 469.0
+anchor_left = 0.020833334
+anchor_top = 0.42438272
+anchor_right = 0.15190972
+anchor_bottom = 0.77469134
+offset_bottom = -33.0
 theme_override_constants/separation = 25
+metadata/_edit_use_anchors_ = true
 
 [node name="graphic_tab" type="Button" parent="menu_tabs" unique_id=1540494907]
 texture_filter = 1
