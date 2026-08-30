@@ -65,7 +65,7 @@ controls_settings = NodePath("menus/controls_settings")
 menu_tabs = NodePath("menu_tabs")
 menu_title = NodePath("Label")
 available_actions = NodePath("menus/controls_settings/HBoxContainer/keybinds/available_actions/VBoxContainer")
-rebind_key_button_list = [NodePath("menus/controls_settings/HBoxContainer/keybinds/available_actions/VBoxContainer/SpecialAction/special_action_btn"), NodePath("menus/controls_settings/HBoxContainer/keybinds/available_actions/VBoxContainer/Forward/forward_btn"), NodePath("menus/controls_settings/HBoxContainer/keybinds/available_actions/VBoxContainer/Backward/backward_btn"), NodePath("menus/controls_settings/HBoxContainer/keybinds/available_actions/VBoxContainer/Right/right_btn"), NodePath("menus/controls_settings/HBoxContainer/keybinds/available_actions/VBoxContainer/Left/left_btn"), NodePath("menus/controls_settings/HBoxContainer/keybinds/available_actions/VBoxContainer/Jump/jump_btn"), NodePath("menus/controls_settings/HBoxContainer/keybinds/available_actions/VBoxContainer/OpenMenu/open_menu_btn"), NodePath("menus/controls_settings/HBoxContainer/keybinds/available_actions/VBoxContainer/UnlockMouse/unlock_mouse_btn"), NodePath("menus/controls_settings/HBoxContainer/keybinds/available_actions/VBoxContainer/Left2D/2D_left"), NodePath("menus/controls_settings/HBoxContainer/keybinds/available_actions/VBoxContainer/Right2D/2D_right"), NodePath("menus/controls_settings/HBoxContainer/keybinds/available_actions/VBoxContainer/LookUp/look_up"), NodePath("menus/controls_settings/HBoxContainer/keybinds/available_actions/VBoxContainer/LookLeft/look_left"), NodePath("menus/controls_settings/HBoxContainer/keybinds/available_actions/VBoxContainer/LookRight/look_right")]
+rebind_key_button_list = [NodePath("menus/controls_settings/HBoxContainer/keybinds/available_actions/VBoxContainer/SpecialAction/special_action_btn"), NodePath("menus/controls_settings/HBoxContainer/keybinds/available_actions/VBoxContainer/Forward/forward_btn"), NodePath("menus/controls_settings/HBoxContainer/keybinds/available_actions/VBoxContainer/Backward/backward_btn"), NodePath("menus/controls_settings/HBoxContainer/keybinds/available_actions/VBoxContainer/Right/right_btn"), NodePath("menus/controls_settings/HBoxContainer/keybinds/available_actions/VBoxContainer/Left/left_btn"), NodePath("menus/controls_settings/HBoxContainer/keybinds/available_actions/VBoxContainer/Jump/jump_btn"), NodePath("menus/controls_settings/HBoxContainer/keybinds/available_actions/VBoxContainer/OpenMenu/open_menu_btn"), NodePath("menus/controls_settings/HBoxContainer/keybinds/available_actions/VBoxContainer/UnlockMouse/unlock_mouse_btn"), NodePath("menus/controls_settings/HBoxContainer/keybinds/available_actions/VBoxContainer/Left2D/2D_left"), NodePath("menus/controls_settings/HBoxContainer/keybinds/available_actions/VBoxContainer/Right2D/2D_right"), NodePath("menus/controls_settings/HBoxContainer/keybinds/available_actions/VBoxContainer/LookUp/look_up"), NodePath("menus/controls_settings/HBoxContainer/keybinds/available_actions/VBoxContainer/LookDown/look_down")]
 vsync_toggle = NodePath("menus/graphic_settings/vsync/CheckButton")
 fps_limit_picker = NodePath("menus/graphic_settings/fps_limit/fps_limit_picker")
 window_mode_picker = NodePath("menus/graphic_settings/window_mode/window_mode_picker")
@@ -415,32 +415,12 @@ grow_horizontal = 2
 grow_vertical = 2
 toggle_mode = true
 
-[node name="LookLeft" type="Label" parent="menus/controls_settings/HBoxContainer/keybinds/available_actions/VBoxContainer" unique_id=961147253]
+[node name="LookDown" type="Label" parent="menus/controls_settings/HBoxContainer/keybinds/available_actions/VBoxContainer" unique_id=48090684]
 layout_mode = 2
 size_flags_vertical = 6
-text = "Look Left:"
+text = "Look Down:"
 
-[node name="look_left" type="Button" parent="menus/controls_settings/HBoxContainer/keybinds/available_actions/VBoxContainer/LookLeft" unique_id=803867373]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -8.172424
-offset_top = -15.0
-offset_right = 113.827576
-offset_bottom = 21.0
-grow_horizontal = 2
-grow_vertical = 2
-toggle_mode = true
-
-[node name="LookRight" type="Label" parent="menus/controls_settings/HBoxContainer/keybinds/available_actions/VBoxContainer" unique_id=107530219]
-layout_mode = 2
-size_flags_vertical = 6
-text = "Look Right:"
-
-[node name="look_right" type="Button" parent="menus/controls_settings/HBoxContainer/keybinds/available_actions/VBoxContainer/LookRight" unique_id=970403154]
+[node name="look_down" type="Button" parent="menus/controls_settings/HBoxContainer/keybinds/available_actions/VBoxContainer/LookDown" unique_id=985745276]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5

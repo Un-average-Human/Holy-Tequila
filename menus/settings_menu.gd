@@ -10,8 +10,7 @@ Jump,
 OpenMenu, 
 UnlockMouse, 
 LookUp, 
-LookLeft, 
-LookRight, 
+LookDown, 
 Left2D,
 Right2D
 }
@@ -109,8 +108,6 @@ func _settings_tab(toggled_on: bool, button: Button):
 					SignalBus.back_pressed.emit()
 				menu_tabs.get_child(0).set_pressed(true)
 
-
-#check button
 func _check_button(toggled: bool, button: CheckButton):
 	match button:
 		vsync_toggle:
@@ -119,7 +116,6 @@ func _check_button(toggled: bool, button: CheckButton):
 			else:
 				DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_DISABLED)
 
-#option buttons
 func _option_buttons(index: int, button: Button):
 	match button:
 		window_mode_picker:
@@ -140,7 +136,6 @@ func _option_buttons(index: int, button: Button):
 			else:
 				Engine.max_fps = value_string.to_int()
 
-# change keybinds
 func _input(event: InputEvent) -> void:
 	if event is InputEvent and is_customisable:
 		if event.is_pressed():
@@ -151,10 +146,6 @@ func _change_action_key(new_key: InputEvent):
 	var action_events = InputMap.action_get_events(action_string)
 	if not action_events.is_empty():
 		InputMap.action_erase_event(action_string, action_events[0])
-	
-	for project_action_name in ACTIONS.keys():
-		if InputMap.action_has_event(project_action_name, new_key):
-			InputMap.action_erase_event(project_action_name, new_key)
 			
 	InputMap.action_add_event(action_string, new_key)
 	_update_keys()
@@ -162,7 +153,7 @@ func _change_action_key(new_key: InputEvent):
 func _update_keys():
 	for node_name in ACTIONS.keys():
 		if not available_actions.has_node(node_name) or available_actions.get_node(node_name).get_child_count() == 0:
-			return
+			continue
 		var input_button: Button = available_actions.get_node(node_name).get_child(0)
 		input_button.set_pressed(false)
 		
@@ -192,6 +183,8 @@ func _toggle_action_key(action_key_string: String):
 	
 	for node_name in ACTIONS.keys():
 		if node_name != action_key_string:
+			if not available_actions.has_node(node_name) or available_actions.get_node(node_name).get_child_count() == 0:
+				continue
 			var input_button: Button = available_actions.get_node(node_name).get_child(0)
 			input_button.set_pressed(false)
 

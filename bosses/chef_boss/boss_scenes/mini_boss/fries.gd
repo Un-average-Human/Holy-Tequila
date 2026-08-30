@@ -10,6 +10,9 @@ extends Node
 var last_side_index: int = -1 
 
 func execute(mini_boss: AnimatedSprite2D, boss: Boss):
+	if mini_boss.get_parent().blackboard.get_var("is_attacking") == false:
+		return
+
 	var attack_side = _pick_attack_side()
 	match attack_side:
 		"right":

@@ -542,13 +542,14 @@ projectile_scene = ExtResource("4_5n2hg")
 
 [node name="fries_controller" type="Node2D" parent="boss/attacks/burger" unique_id=1542641970]
 position = Vector2(573, 0)
+scale = Vector2(-1, 1)
 
 [node name="fries_sprite" type="AnimatedSprite2D" parent="boss/attacks/burger/fries_controller" unique_id=359430777]
 position = Vector2(1400, 346)
 rotation = 0.03701937
 scale = Vector2(0.46666652, 0.46666652)
 sprite_frames = SubResource("SpriteFrames_5tctq")
-animation = &"stab"
+animation = &"walking"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="boss/attacks/burger/fries_controller/fries_sprite" unique_id=1130757090]
 libraries/ = SubResource("AnimationLibrary_dtny3")
