@@ -20,9 +20,9 @@ Erm, I added a tutorial for a reason, BUT if you are one of those people that ju
 <br>SPACE to jump
 <br>G to lock/unlock the mouse
 <br>ESC to open the menu ofc
-<br>F to use the special action
+<br>LMB to use the special action
 
-<br> For those of you who haven't played or watched Cuphead gameplay before, you can only parry stuff that's pink, so you'll be able to parry <b>PINK</b> projectiles.
+<br> For those of you who haven't played or watched Cuphead gameplay before, you can only parry stuff that's pink, so you'll be able to parry <b>PINK</b> projectiles. Another thing is, when in the 2D thingmabob you can move left and right by using **A** and **D**, look up and down using **W** and **S**, and jump using **space**.
 
 ## How to install?
 Pretty simple actually! Go to the game's Itch.io page [here](https://un-average-human.itch.io/holy-tequila) and download the zip file corresponding to your OS.<br>
