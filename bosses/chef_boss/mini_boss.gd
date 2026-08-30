@@ -11,8 +11,10 @@ var mini_boss: AnimatedSprite2D
 @export var spawn_point: Marker2D
 
 func _ready() -> void:
+	GeneralData.current_boss = "Chef Doe Nut-Holl"
 	GeneralData.selected_mini_boss_name = "burger"
 	_load_player()
+	SignalBus.player_died.connect(_end_bossfight.bind(false))
 	
 	blackboard = bt_player.blackboard
 	blackboard.set_var("is_attacking", false)
@@ -24,7 +26,7 @@ func _ready() -> void:
 	_load_selected_mini_boss()
 
 func _load_player():
-	var player = player_scene.instantiate()
+	player = player_scene.instantiate()
 	get_tree().current_scene.add_child.call_deferred(player)
 	player.global_position = spawn_point.global_position
 
@@ -93,3 +95,10 @@ func _death_pipeline():
 	mini_boss.queue_free()
 	
 	SceneTransition.transition(true, chef_scene, "rolling_pin")
+
+func _end_bossfight(has_player_won: bool):
+	if has_player_won:
+		GeneralData.world_beaten = "food"
+	player.unlock_mouse()
+	SceneTransition.transition(true, "uid://ctaa2uxxlgoop")
+	GeneralData.player_won = has_player_won
