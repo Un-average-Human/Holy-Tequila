@@ -10,8 +10,10 @@ extends Node
 var last_side_index: int = -1 
 
 func execute(mini_boss: AnimatedSprite2D, boss: Boss):
-	if mini_boss.get_parent().blackboard.get_var("is_attacking") == true:
-		return
+	if mini_boss.get_parent().blackboard.get_var("are_fries_attacking"):
+		if mini_boss.get_parent().blackboard.get_var("are_fries_attacking") == true:
+			return
+	mini_boss.get_parent().blackboard.set_var("are_fries_attacking", true)
 
 	var attack_side = _pick_attack_side()
 	match attack_side:
@@ -65,7 +67,7 @@ func execute(mini_boss: AnimatedSprite2D, boss: Boss):
 	fries_animation.play_backwards("fries")
 	await fries_animation.animation_finished
 	
-	mini_boss.get_parent().blackboard.set_var("is_attacking", false)
+	mini_boss.get_parent().blackboard.set_var("are_fries_attacking", false)
 
 func _pick_attack_side() -> String:
 	var sides: Array[String] = ["left", "right"]
