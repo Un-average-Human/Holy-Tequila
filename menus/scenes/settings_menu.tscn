@@ -249,6 +249,12 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 30
 
+[node name="3D_category" type="Label" parent="menus/controls_settings/HBoxContainer/keybinds/available_actions/VBoxContainer" unique_id=646008811]
+layout_mode = 2
+size_flags_vertical = 6
+text = "3D Controls"
+label_settings = SubResource("LabelSettings_ux87g")
+
 [node name="Forward" type="Label" parent="menus/controls_settings/HBoxContainer/keybinds/available_actions/VBoxContainer" unique_id=1223017953]
 layout_mode = 2
 size_flags_vertical = 6
@@ -502,58 +508,6 @@ offset_bottom = 18.0
 grow_horizontal = 2
 grow_vertical = 2
 toggle_mode = true
-
-[node name="camera" type="Label" parent="menus/controls_settings/HBoxContainer" unique_id=1698597629]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Camera:"
-metadata/_edit_use_anchors_ = true
-
-[node name="VBoxContainer" type="VBoxContainer" parent="menus/controls_settings/HBoxContainer/camera" unique_id=65063676]
-layout_mode = 0
-anchor_left = 0.10344828
-anchor_top = 1.3333334
-anchor_right = 0.59770113
-anchor_bottom = 6.4333334
-offset_right = -11.0
-
-[node name="x_axis" type="Label" parent="menus/controls_settings/HBoxContainer/camera/VBoxContainer" unique_id=513890257]
-layout_mode = 2
-size_flags_vertical = 6
-text = "Invert Camera X Axis"
-
-[node name="CheckButton" type="CheckButton" parent="menus/controls_settings/HBoxContainer/camera/VBoxContainer/x_axis" unique_id=1280077661]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 100.0
-offset_top = -15.0
-offset_right = 147.00621
-offset_bottom = 16.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="y_axis" type="Label" parent="menus/controls_settings/HBoxContainer/camera/VBoxContainer" unique_id=1387395480]
-layout_mode = 2
-size_flags_vertical = 6
-text = "Invert Camera Y Axis"
-
-[node name="CheckButton" type="CheckButton" parent="menus/controls_settings/HBoxContainer/camera/VBoxContainer/y_axis" unique_id=996202705]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 103.5
-offset_top = -12.0
-offset_right = 147.5
-offset_bottom = 12.0
-grow_horizontal = 2
-grow_vertical = 2
 
 [node name="menu_tabs" type="VBoxContainer" parent="." unique_id=1955084870]
 layout_mode = 0
